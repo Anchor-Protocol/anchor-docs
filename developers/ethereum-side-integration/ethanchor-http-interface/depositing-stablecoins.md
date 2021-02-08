@@ -14,11 +14,7 @@ Initiate stablecoin deposit
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`init_deposit_stable` allows you to initiate a stablecoin deposit request.  
-  
-This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast any custodian API that supports signing a raw Tx payload.  
-  
-Note that only **one** `init_deposit_stable` operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the Ethereum contract will block any subsequent operation until an ongoing redeem stable is finished with `finish_deposit_stable`.
+`init_deposit_stable` allows you to initiate a stablecoin deposit request.This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast any custodian API that supports signing a raw Tx payload.Note that only **one** `init_deposit_stable` operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the Ethereum contract will block any subsequent operation until an ongoing redeem stable is finished with `finish_deposit_stable`.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -31,9 +27,7 @@ Anchor client key.
 
 {% api-method-body-parameters %}
 {% api-method-parameter required=true name="stable\_denom" type="string" %}
-Denomination of stablecoin to deposit  
-  
-Example: `"uusd"`
+Denomination of stablecoin to depositExample: `"uusd"`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="stable\_amount" type="string" required=true %}
@@ -48,7 +42,7 @@ Example: `"uusd"`
 DepositStable raw Tx hash.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": true,
     "tx_hash": "0x......",
@@ -64,7 +58,7 @@ DepositStable raw Tx hash.
 You are not authorized to call this endpoint; client not registered.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": false,
     "error": "unauthorized; client not registered"
@@ -81,9 +75,7 @@ Finish stablecoin deposit
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`finish_deposit_stable` allows you to finish a previously requested deposit stable operation.  
-  
-This endpoint returns an unsigned Ethereum transaction payload. You can sign the transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
+`finish_deposit_stable` allows you to finish a previously requested deposit stable operation.This endpoint returns an unsigned Ethereum transaction payload. You can sign the transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -101,7 +93,7 @@ Anchor client key.
 FinishDepositStable raw Tx hash
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": true,
     "tx_hash": "0x......",
@@ -115,7 +107,7 @@ FinishDepositStable raw Tx hash
 You are not authorized to call this endpoint; client not registered
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": false,
     "error": "unauthorized; client not registered"
@@ -132,13 +124,7 @@ Check stablecoin deposit status
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`GET /v1/deposit_stable_status` allows you to check the status of an ongoing `deposit_stable` operation.  
-  
-You may want to periodically check the progress of your `deposit_stable` request, since an operation may take up to minutes due to congestion on the Ethereum network.   
-  
-Please note that status being `"finished"` does **NOT** mean you have run a full cycle of `deposit_stable` operation; you still need to send another transaction from `POST /v1/finish_deposit_stable` to finalize your operation.  
-  
-This endpoint responds with HTTP 204 when there is no ongoing operation. 
+`GET /v1/deposit_stable_status` allows you to check the status of an ongoing `deposit_stable` operation.You may want to periodically check the progress of your `deposit_stable` request, since an operation may take up to minutes due to congestion on the Ethereum network.Please note that status being `"finished"` does **NOT** mean you have run a full cycle of `deposit_stable` operation; you still need to send another transaction from `POST /v1/finish_deposit_stable` to finalize your operation.This endpoint responds with HTTP 204 when there is no ongoing operation.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -156,7 +142,7 @@ Anchor client access key.
 Current status of ongoing deposit stable operation.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     // Phase
     // 0 - (Ethereum) wrapper contract has received stablecoins (e.g. UST) and 
@@ -169,26 +155,26 @@ Current status of ongoing deposit stable operation.
     //     through Shuttle
     // 4 - (Ethereum) contract has received aTokens; operation finished
     "phase": 0,
-    
+
     // LastUpdated
     // Unix timestamp at which the last update to this response has been made
     "last_updated": 1608662606,
-    
+
     // Status
     // Operation status
     // pending   - operation in flight
     // failed    - operation failed; last known tx has been recorded
     // finished  - operation finished; you can call /finish_deposit_stable
     "status": "pending",
-    
+
     // Denomination
     // denomination stablecoin to be deposited
     "stable_denom": "uusd", 
-    
+
     // Amount
     // amount of stablecoins to be deposited
     "stable_amount": "20000000",
-    
+
     // TxHash
     // List of known tx hashes and the corresponding network name
     "tx_hash": [
@@ -211,7 +197,7 @@ Current status of ongoing deposit stable operation.
 No ongoing `deposit_stable` operation
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "status": "idle"
 }
@@ -223,7 +209,7 @@ No ongoing `deposit_stable` operation
 You are not authorized to call this endpoint; client not registered.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": false,
     "error": "unauthorized; client not registered"

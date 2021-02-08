@@ -8,7 +8,7 @@ In addition to collateral liquidation, the Liquidation Contract handles calculat
 
 ## Bids
 
-Collateral tokens are liquidated to Terra stablecoins by executing bids submitted to the Liquidation Contract. Bids are purchase offers for Cw20 tokens in exchange for Terra stablecoins, typically submitted by those that hold Terra stablecoins, and are wishing to exchange their stablecoins with a certain Cw20 token. 
+Collateral tokens are liquidated to Terra stablecoins by executing bids submitted to the Liquidation Contract. Bids are purchase offers for Cw20 tokens in exchange for Terra stablecoins, typically submitted by those that hold Terra stablecoins, and are wishing to exchange their stablecoins with a certain Cw20 token.
 
 ### Properties
 
@@ -77,8 +77,6 @@ $$
 $$
 
 Note that $$\text{feeDeductor}$$ uses the maximum rate of fees that can be applied during liquidation, liquidating slightly more collateral than the minimum required \(to reach the safe risk ratio\).
-
-
 
 ### Bid Execution
 

@@ -18,7 +18,7 @@ The Market contract acts as the point of interaction for all lending and borrowi
 
 ## InitMsg
 
-Instantiates the money market Market contract. Requires the owner to make an initial deposit of 1 Terra stablecoin and mints 1 aToken to the Market contract \(inaccessible\). The creator's initial stablecoin deposit ensures the aToken supply to always be a high enough value to prevent rounding errors in the aToken exchange rate calculation. 
+Instantiates the money market Market contract. Requires the owner to make an initial deposit of 1 Terra stablecoin and mints 1 aToken to the Market contract \(inaccessible\). The creator's initial stablecoin deposit ensures the aToken supply to always be a high enough value to prevent rounding errors in the aToken exchange rate calculation.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -643,7 +643,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key |  Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `start_after`\* | HumanAddr | Borrower address to start query |
 | `limit`\* | u32 | Maximum number of entries to query |

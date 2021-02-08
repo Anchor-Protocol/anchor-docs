@@ -22,8 +22,6 @@ bLuna tokens equally share all losses from slashing events of whitelisted valida
 
 The protocol applies a fee of **0.1%** to bLuna mints and burns whenever the exchange rate is below 1, targeting a gradual recovery to a one-to-one peg.
 
-
-
 ### Validator Whitelist
 
 The bLuna contract keeps a whitelist of validators, only permitting delegations to those included in the whitelist. This is crucial since all bLuna tokens equally share slashing risks, and delegations to low-performing validators could negatively affect all holders.
@@ -45,8 +43,6 @@ Validators that have proven their operational capabilities are eligible for whit
 Underperforming validators are deregistered from the whitelist, disallowing bLuna minters from making new delegations to them. Following deregistration, the bLuna contract automatically redelegates existing delegations to a different, randomly selected validator.
 
 The Terra blockchain permanently disables validator addresses that have double signed a block \(i.e. tombstoned\). Tombstoned validators are also deregistered, with their remaining delegations redelegated. The new address of the tombstoned validator can later be re-registered to the whitelist if necessary.
-
-
 
 ### Undelegation Batches
 
@@ -74,8 +70,6 @@ A fixed peg recovery fee of **0.1%** is applied to bLuna minting and redeeming w
 
 bLuna tokens are minted by delegating Luna via the bLuna contract. Users are required to specify a validator to delegate, selected among the list of [whitelisted validators](bonded-luna-bluna.md#validator-whitelist). The amount of bLuna they receive is dependent on the current bLuna exchange rate -- minted bLuna amounts will be greater than the Luna amount sent when the bLuna exchange rate is below 1.
 
-
-
 ### Redeeming bLuna
 
 {% hint style="warning" %}
@@ -84,11 +78,11 @@ Slashing occurrences between the time of request and withdrawal may affect the f
 
 Any bLuna holder can redeem their tokens for their underlying bonded Luna. Redemption is a two-step process; 1\) requesting to unbond bLuna \(undelegates underlying Luna\) and 2\) withdrawing undelegated Luna.
 
-Due to the Terra blockchain's unbonding period, a complete redemption cycle requires **at least 21 days** to finish. 
+Due to the Terra blockchain's unbonding period, a complete redemption cycle requires **at least 21 days** to finish.
 
 #### Requesting to Unbond bLuna
 
-A bLuna unbond request triggers the undelegation its underlying staked Luna. To track the Luna amount later withdrawable by each user, a waitlist entry with the the below information is created: 
+A bLuna unbond request triggers the undelegation its underlying staked Luna. To track the Luna amount later withdrawable by each user, a waitlist entry with the the below information is created:
 
 * `address`: address of bLuna unbond requester
 * `batch_id`: ID of the batch that includes the user's undelegation request
@@ -96,13 +90,11 @@ A bLuna unbond request triggers the undelegation its underlying staked Luna. To 
 
 The user's request is added to the current [undelegation batch](bonded-luna-bluna.md#undelegation-batches), which is undelegated in epochs of **3 days**. If 3 days have past since the previous batch was undelegated, the current batch, along with the user's request is undelegated.
 
-To disallow any holder from manipulating the bLuna contract's delegations by constant minting and redeeming, undelegations are performed from a randomly selected validator. 
+To disallow any holder from manipulating the bLuna contract's delegations by constant minting and redeeming, undelegations are performed from a randomly selected validator.
 
 #### Withdrawing Undelegated Luna
 
 Users that previously made a request to unbond bLuna can later withdraw the undelegated Luna tokens. The amount of Luna that the user can withdraw from an undelegation batch is calculated by multiplying the amount in the user's waitlist with the batch's `withdraw_rate`. Summation of this value for batches that are past the unbonding period \(`released` marked as `true`\) yields the user's total withdrawable amount.
-
-
 
 ### bLuna Rewards
 

@@ -14,11 +14,7 @@ Initiate stablecoin redemption
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`init_redeem_stable` allows you to initialize a stablecoin redemption request.  
-  
-This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.  
-  
-Note that only **one** `init_redeem_stable` operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the Ethereum contract will block any subsequent operation until an ongoing redeem stable is finished with `finish_redeem_stable`.
+`init_redeem_stable` allows you to initialize a stablecoin redemption request.This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.Note that only **one** `init_redeem_stable` operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the Ethereum contract will block any subsequent operation until an ongoing redeem stable is finished with `finish_redeem_stable`.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -31,15 +27,11 @@ Anchor client key.
 
 {% api-method-body-parameters %}
 {% api-method-parameter name="underlying\_denom" type="string" required=true %}
-Underlying denomination of aToken to redeem from Anchor.  
-  
-Example: `"uusd"`
+Underlying denomination of aToken to redeem from Anchor.Example: `"uusd"`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="a\_token\_amount" type="string" required=false %}
-\(uint256\) amount of aTokens to redeem from Anchor.  
-  
-if empty, redeems all aToken holdings.
+\(uint256\) amount of aTokens to redeem from Anchor.if empty, redeems all aToken holdings.
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -50,7 +42,7 @@ if empty, redeems all aToken holdings.
 `init_redeem_stable` unsigned Tx hash.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": true,
     "tx_hash": "0x......",
@@ -66,7 +58,7 @@ if empty, redeems all aToken holdings.
 You are not authorized to call this endpoint; client not registered.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": false,
     "error": "unauthorized; client not registered"
@@ -83,9 +75,7 @@ Finish stablecoin redemption
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`finish_redeem_stable` allows you to finish a previously requested redeem stable operation.  
-  
-This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
+`finish_redeem_stable` allows you to finish a previously requested redeem stable operation.This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -103,7 +93,7 @@ Anchor client key.
 `finsish_redeem_stable` unsigned Tx hash.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": true,
     "tx_hash": "0x......",
@@ -117,7 +107,7 @@ Anchor client key.
 You are not authorized to call this endpoint; client not registered.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "success": false,
     "error": "unauthorized; client not registered"
@@ -134,13 +124,7 @@ Check stablecoin redemption status
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`GET /v1/redeem_stable_status` allows you to check the status of an ongoing `redeem_stable` operation.  
-  
-You may want to periodically check the progress of your `redeem_stable` request, since an operation may take up to minutes to finish due to congestion on either side of the networks.  
-  
-Please note that status being `"finished"` does **NOT** mean you have run a full cycle of `redeem_stable` operation; you still need to send another transaction from `POST /v1/finish_redeem_stable` to finalize your operation.  
-  
-This endpoint responds with HTTP 204 when there is no ongoing operation.
+`GET /v1/redeem_stable_status` allows you to check the status of an ongoing `redeem_stable` operation.You may want to periodically check the progress of your `redeem_stable` request, since an operation may take up to minutes to finish due to congestion on either side of the networks.Please note that status being `"finished"` does **NOT** mean you have run a full cycle of `redeem_stable` operation; you still need to send another transaction from `POST /v1/finish_redeem_stable` to finalize your operation.This endpoint responds with HTTP 204 when there is no ongoing operation.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -158,7 +142,7 @@ Anchor client access key.
 Current status of ongoing `redeem_stable` operation.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     // Phase
     // 0 - (Ethereum) wrapper contract has received aTokens (e.g. aUST) and 
@@ -171,26 +155,26 @@ Current status of ongoing `redeem_stable` operation.
     //     through Shuttle
     // 4 - (Ethereum) contract has received stablecoins; operation finished
     "phase": 0,
-    
+
     // LastUpdated
     // Unix timestamp at which the last update to this response has been made
     "last_updated": 1608662606,
-    
+
     // Status
     // Operation status
     // pending   - operation in flight
     // failed    - operation failed; last known tx has been recorded
     // finished  - operation finished; you can call /finish_redeem_stable
     "status": "pending",
-    
+
     // UnderlyingDenom
     // Underlying denomination of aTokens to be redeemed
     "underlying_denom": "uusd", 
-    
+
     // aTokenAmount
     // amount of aTokens to be redeemed
     "a_token_amount": :20000000:,
-    
+
     // TxHash
     // List of known tx hashes and the corresponding network name
     "tx_hash": [
@@ -213,7 +197,7 @@ Current status of ongoing `redeem_stable` operation.
 No ongoing `redeem_stable` operation.
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
     "status": "idle"
 }

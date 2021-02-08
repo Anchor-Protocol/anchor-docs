@@ -1,6 +1,6 @@
 # Money Market
 
-Anchor's money market is a Compound-inspired lending protocol for lending out deposited Terra stablecoins to borrowers. Anchor sources its deposit yields from bAsset-collateralized loans, where rewards of deposited bAsset collaterals are utilized to subsidize the deposit rate. 
+Anchor's money market is a Compound-inspired lending protocol for lending out deposited Terra stablecoins to borrowers. Anchor sources its deposit yields from bAsset-collateralized loans, where rewards of deposited bAsset collaterals are utilized to subsidize the deposit rate.
 
 The money market leverages bAsset rewards to catalyze a positive usage cycle: subsidies incentivize new stablecoin deposits, lowering the borrow rate, which incentivizes more bAsset-collateralized loans, and enables more bAsset rewards to be collected.
 
@@ -12,7 +12,7 @@ Interest on borrows are computed via the interest index. The interest index exis
 
 #### Global Interest Index
 
-The global interest index acts as the reference value for interest accrual, tracking the amount of interest that a single unit of Terra stablecoin liability would have accrued since protocol creation. 
+The global interest index acts as the reference value for interest accrual, tracking the amount of interest that a single unit of Terra stablecoin liability would have accrued since protocol creation.
 
 For every user interaction, the global interest index is updated to reflect the interest accrued since last user interaction. The effective interest rate between the current time $$\text{t}_\text{2}$$ and the time of last user interaction $$\text{t}_\text{1}$$ is proportional to the [borrow rate](money-market.md#algorithmic-interest-rate) at $$\text{t}_\text{1}$$ :
 
@@ -44,7 +44,7 @@ After the user's liability is updated to an interest-accrued value, the user's i
 
 ### Depositing Terra Stablecoins
 
-The money market aggregates stablecoin deposits with matching denominations into a pool, called **markets**. Borrows are proceeded from this pool, and interest gained from them is equally shared among all unit of stablecoin deposits. 
+The money market aggregates stablecoin deposits with matching denominations into a pool, called **markets**. Borrows are proceeded from this pool, and interest gained from them is equally shared among all unit of stablecoin deposits.
 
 This pooling of deposits enable markets to have high liquidity. Deposits can be withdrawn anytime, unless every stablecoin in a market are borrowed.
 
@@ -54,7 +54,7 @@ Deposit interest is distributed through the value appreciation of Anchor Tokens 
 
 aToken balances represent a depositor's share in the market. The exchange rate with their underlying stablecoin, the **aToken exchange rate**, increases as deposits accrue interest, appreciating the value of aTokens. With time, holders can redeem aTokens with a greater number of underlying stablecoins, enabling depositors to collect interest simply by holding them.
 
-The aToken exchange rate is defined as: 
+The aToken exchange rate is defined as:
 
 $$
 \text{aTokenExchangeRate} = \frac{\text{liquidity} + \text{liabilities} - \text{reserves}}{\text{aTokenSupply}}
@@ -78,8 +78,6 @@ Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination,
 
 Distributed subsidies are added to the money market’s liquidity, increasing the aToken exchange rate. Depositors indirectly receive subsidies via value appreciation of their aTokens.
 
-
-
 ### Borrowing Terra Stablecoins
 
 Terra stablecoins can be borrowed from the money market by creating a **loan position** with whitelisted bAssets as collateral. An account can only own a single loan position, though a user may create more loan positions with the use of multiple accounts.
@@ -98,8 +96,6 @@ One should observe that the borrow limit fluctuates with the oracle-reported bAs
 
 To prevent liquidation, borrowers can lock additional collateral to their position and increase their borrow limit. Collaterals can also be unlocked and withdrawn from a loan position, as long as the borrower's liability does not exceed the position's borrow limit.
 
-
-
 ### Algorithmic Interest Rate
 
 Stablecoins borrowed from a market all follow a unified, algorithmically determined borrow rate. The applied borrow rate constantly adjusts based on the market supply and demand for stablecoins, set to increase as a function of the utilization ratio.
@@ -112,7 +108,7 @@ $$
 \text{utilizationRatio} = \frac{\text{stablecoinsLent}}{\text{stablecoinsDeposited}}
 $$
 
-where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both interest-accrued values. 
+where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both interest-accrued values.
 
 #### Borrow Rate Model
 
@@ -123,6 +119,4 @@ $$
 $$
 
 The borrow rate equation incentivizes markets to have sufficient liquidity at their equilibrium. An increase in borrow demand is met with higher borrow rates, incentivizing repayments, and restoring market liquidity.
-
-
 

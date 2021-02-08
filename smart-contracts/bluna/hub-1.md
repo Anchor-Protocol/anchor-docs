@@ -9,6 +9,7 @@ The Hub contract acts as the central hub for all minted bLuna. Native Luna token
 | `creator` | CanonicalAddr | Address of contract creator that is allowed to change config and parameters |
 | `reward_contract`\* | CanonicalAddr | Contract address of bLuna Reward |
 | `token_contract`\* | CanonicalAddr | Contract address of bLuna's Cw20 token contract |
+| `airdrop_registry_contract`\* | CanonicalAddr | Contract address of bLuna Airdrop Registry |
 
 \* = Set as `None` until an address is registered
 
@@ -30,6 +31,7 @@ Instantiates the bLuna Hub contract. Adds specified validator to whitelist and b
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InitMsg {
     pub epoch_period: u64, 
     pub underlying_coin_denom: String, 
@@ -71,7 +73,7 @@ pub struct InitMsg {
 
 ### `Receive`
 
-Can be called during a CW20 token transfer when the Hub contract is the recipient. Allows the token transfer to execute a [Receive Hook](hub.md#receive-hooks) as a subsequent action within the same transaction.
+Can be called during a CW20 token transfer when the Hub contract is the recipient. Allows the token transfer to execute a [Receive Hook]() as a subsequent action within the same transaction.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -105,7 +107,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `amount` | Uint128 | Amount of tokens received |
 | `sender` | HumanAddr | Sender of the token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](hub.md#receive-hooks) |
+| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook]() |
 
 \* = optional
 
@@ -145,13 +147,17 @@ pub enum HandleMsg {
 
 Distributes Luna delegation rewards to bLuna holders. Withdraws all accrued delegation rewards to the `Reward` contract and requests the `Reward` contract to update the global reward index value. Can be issued by anyone without restrictions.
 
+Tokens airdropped to Luna stakers \(i.e. bLuna Hub contract\) can be claimed by providing the relevant binary in `airdrop_hooks`.
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    UpdateGlobalIndex {}
+    UpdateGlobalIndex {
+        airdrop_hooks: Option<Vec<Binary>>, 
+    }
 }
 ```
 {% endtab %}
@@ -159,7 +165,11 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "update_global_index": {}
+  "update_global_index": {
+    "airdrop_hooks": [
+      "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
+    ]
+  }
 }
 ```
 {% endtab %}
@@ -167,7 +177,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-|  |  |  |
+| `airdrop_hooks`\* | Vec&lt;Binary&gt; | Base64-encoded string of JSON of [`FabricateMIRClaim`]()\`\` |
+
+\* = optional
 
 ### `WithdrawUnbonded`
 
@@ -196,46 +208,6 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 |  |  | ~~~~ |
-
-### `[Internal] RegisterSubcontracts`
-
-Registers the address of `Reward` and `Token` contract to the `Hub` contract. Can only be issued by the creator.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
-    RegisterSubcontracts {
-        contract: Registration, 
-        contract_address: HumanAddr, 
-    }
-}
-
-pub enum Registration {
-    Token, 
-    Reward, 
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "register_subcontracts": { 
-    "contract": "Token", 
-    "contract_address": "terra1..." 
-  }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `contract` | Registration | Contract to register |
-| `contract_address` | HumanAddr | Contract address of contract being registered |
 
 ### `RegisterValidator`
 
@@ -389,9 +361,10 @@ Updates the `Hub` contract configuration. Can only be issued by the creator.
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
     UpdateConfig {
-        owner: HumanAddr, 
-        reward_contract: HumanAddr, 
-        token_contract: HumanAddr, 
+        owner: Option<HumanAddr>, 
+        reward_contract: Option<HumanAddr>, 
+        token_contract: Option<HumanAddr>, 
+        airdrop_registry_contract: Option<HumanAddr>, 
     }
 }
 ```
@@ -403,7 +376,8 @@ pub enum HandleMsg {
   "update_config": {
     "owner": "terra1...", 
     "reward_contract": "terra1...", 
-    "token_contract": "terra1..." 
+    "token_contract": "terra1...", 
+    "airdrop_registry_contract": "terra1..." 
   }
 }
 ```
@@ -412,9 +386,95 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of new owner |
-| `reward_contract` | HumanAddr | New contract address of bLuna Reward |
-| `token_contract` | HumanAddr | New contract address of bLuna Cw20 token |
+| `owner`\* | HumanAddr | Address of new owner |
+| `reward_contract`\* | HumanAddr | New contract address of bLuna Reward |
+| `token_contract`\* | HumanAddr | New contract address of bLuna Cw20 token |
+| `airdrop_registry_contract`\* | HumanAddr | New contract address of bLuna Airdrop Registry |
+
+\* = optional
+
+### `ClaimAirdrop`
+
+Claims tokens airdropped to `Hub`'s Luna delegations and swaps them to UST through [`SwapHook`](hub-1.md#swaphook).
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    ClaimAirdrop {
+        airdrop_token_contract: HumanAddr, 
+        airdrop_contract: HumanAddr, 
+        airdrop_swap_contract: HumanAddr, 
+        claim_msg: Binary, 
+        swap_msg: Binary, 
+    }    
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "claim_airdrop": {
+    "airdrop_token_contract": "terra1...", 
+    "airdrop_contract": "terra1...", 
+    "airdrop_swap_contract": "terra1...", 
+    "airdrop_swap_contract": "terra1...", 
+    "claim_msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9", 
+    "swap_msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
+| `airdrop_contract` | HumanAddr | Contract address of airdrop contract |
+| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
+| `claim_msg` | Binary | Base64-encoded string of JSON of airdrop contract's claim message \(claims airdrop\) |
+| `swap_msg` | Binary | Base64-encoded string of JSON of swap contract's swap message \(swaps airdrop token to Terra USD\) |
+
+### `SwapHook`
+
+Swaps claimed airdrop tokens to Terra USD.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    SwapHook {
+        airdrop_token_contract: HumanAddr, 
+        airdrop_swap_contract: HumanAddr, 
+        swap_msg: Binary, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "swap_hook": {
+    "airdrop_token_contract": "terra1...", 
+    "airdrop_swap_contract": "terra1...", 
+    "swap_msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
+| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
+| `swap_msg` | Binary | Base64-encoded string of JSON of swap contract's swap message \(swaps airdrop token to Terra USD\) |
 
 ## Receive Hooks
 
@@ -486,6 +546,7 @@ pub struct ConfigResponse {
     pub owner: HumanAddr,
     pub reward_contract: Option<HumanAddr>,
     pub token_contract: Option<HumanAddr>,
+    pub airdrop_registry_contract: Option<HumanAddr>, 
 }
 ```
 {% endtab %}
@@ -495,7 +556,8 @@ pub struct ConfigResponse {
 {
   "owner": "terra1...", 
   "reward_contract": "terra1...", 
-  "token_contract": "terra1..." 
+  "token_contract": "terra1...", 
+  "airdrop_registry_contract": "terra1..." 
 }
 ```
 {% endtab %}
@@ -506,6 +568,7 @@ pub struct ConfigResponse {
 | `owner` | HumanAddr | Address of contract owner |
 | `reward_contract`\* | HumanAddr | Contract address of bLuna Reward |
 | `token_contract`\* | HumanAddr | Contract address of bLuna's Cw20 token contract |
+| `airdrop_registry_contract`\* | HumanAddr | Contract address of bLuna Airdrop Registry |
 
 \* = Not returned if address not registered yet
 

@@ -61,8 +61,7 @@ function initDepositStable(uint256 amount) external;
 **Prerequisite**: must have called `approve()` for an `allowance` of at least `amount` for the wrapped UST contract, `ActionFlag` is set to `false`  
 **Accepts**: `amount` - how much UST to deposit  
 **Updates**: `ActionFlag` to `true`  
-**Emits**: `InitDeposit`  
-
+**Emits**: `InitDeposit`
 
 ### `finishDepositStable`
 
@@ -75,7 +74,7 @@ function finishDepositStable() external;
 
 **Prerequisite**: aUST balance of account-specific endpoint contract must be greater than 0, `ActionFlag` is set to `true`  
 **Updates**: sets `ActionFlag` to `false`, `transfer`s all aUST balances from contract address to `tx.origin`  
-**Emits**: `FinishDeposit` 
+**Emits**: `FinishDeposit`
 
 ```text
 // custodied mode
@@ -84,7 +83,7 @@ function finishDepositStableCustody() external;
 
 **Prerequisite**: aUST balance of account-specific endpoint contract must be greater than 0, `ActionFlag` is set to `true`  
 **Updates**: sets `ActionFlag` to `false`  
-**Emits**: `FinishDeposit` 
+**Emits**: `FinishDeposit`
 
 ```text
 // fallback function
@@ -93,9 +92,7 @@ function finishDepositStable(bool _isCustodyEnabled) external;
 
 **Prerequisite**: aUST balance of account-specific endpoint contract must be greater than 0, `ActionFlag` is set to `true`  
 **Checks**: `_isCustodyEnabled`. If this value is set to `true`, `delegatecall`s `finishDepositStableCustody`. Otherwise, `delegatecall`s `finishDepositStable`.  
-**Emits**: `FinishDeposit` 
-
-
+**Emits**: `FinishDeposit`
 
 ### `initRedeemStable`
 
@@ -109,7 +106,7 @@ function initRedeemStable(uint256 amount) external;
 **Prerequisite**: must have called `approve()` for an allowance of at least `amount` for the wrapped aUST contract, `ActionFlag` is set to `false`  
 **Accepts**: `amount` - how much aUST to redeem back to UST  
 **Updates**: `ActionFlag` to `true`**IMPORTANT**: aUST redemptions may fail if UST buffer is low on the Terra side Anchor money market → be sure to check account contract balances & `initRedeemStable()` `success` parameters.  
-**Emits**: `InitRedemption` 
+**Emits**: `InitRedemption`
 
 ```text
 // custodied mode
@@ -117,9 +114,9 @@ function initRedeemStableCustody(uint256 amount) external;
 ```
 
 **Prerequisite**: `ActionFlag` is set to `false`  
-**Accepts**: `amount` - how much aUST to redeem back to UST. If this value is set to 0, all balances held within the contract are redeemed back to UST. Otherwise, `amount` aUST held under the contract account is redeemed back to UST \(assuming that contract aUST balances is equal to or larger than `amount`\).   
+**Accepts**: `amount` - how much aUST to redeem back to UST. If this value is set to 0, all balances held within the contract are redeemed back to UST. Otherwise, `amount` aUST held under the contract account is redeemed back to UST \(assuming that contract aUST balances is equal to or larger than `amount`\).  
 **Updates**: `ActionFlag` to `true`**IMPORTANT**: aUST redemptions may fail if UST buffer is low on the Terra side Anchor money market → be sure to check account contract balances & `initRedeemStable()` `success` parameters.  
-**Emits**: `InitRedemption` 
+**Emits**: `InitRedemption`
 
 ```text
 // fallback function
@@ -129,9 +126,7 @@ function initRedeemStableCustody(uint256 amount, bool _isCustodyEnabled) externa
 **Prerequisite**: `ActionFlag` is set to `false`  
 **Accepts**: `amount` - how much aUST to redeem back to UST. If this value is set to 0, all balances held within the contract; `_isCustodyEnabled` - an indicator to which mode `amount` should be passed as a parameter to.  
 **Checks**: `_isCustodyEnabled`. If this value is set to `true`, `delegatecall`s `initRedeemStableCustody`. Otherwise, `delegatecall`s `initRedeemStable`.  
-**Emits**: `InitRedemption` 
-
-
+**Emits**: `InitRedemption`
 
 ### `finishRedeemStable`
 
@@ -145,8 +140,6 @@ function finishRedeemStable() external;
 **Updates**: sets `ActionFlag` to `false`, transfers all UST balances from contract address to `tx.origin`  
 **Emits**: `FinishRedemption`
 
-### 
-
 ### `reportFailure`
 
 Reports any failures in-between `init` operations to allow the AnchorEth bot to return any funds, and reset `ActionFlag` back to `false`. Only callable by contract owner.
@@ -156,9 +149,7 @@ function reportFailure() external;
 ```
 
 **Prerequisite**: UST balance of account-specific endpoint contract must be 0, `ActionFlag` is set to `true`  
-**Updates**: sets `RedemptionFlag` to `false` 
-
-
+**Updates**: sets `RedemptionFlag` to `false`
 
 ### `emergencyWithdraw`
 
@@ -233,7 +224,7 @@ proxyContract.requiredTxGas(
 )
 ```
 
-5. **Transaction execution** -- using `requiredGas`, run `execTransaction` with the following parameters
+1. **Transaction execution** -- using `requiredGas`, run `execTransaction` with the following parameters
 
 ```text
 proxyContract.execTransaction(

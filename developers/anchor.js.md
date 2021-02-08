@@ -1,7 +1,7 @@
 # Anchor.js
 
 {% hint style="info" %}
-This section 
+This section
 {% endhint %}
 
 The Anchor.js SDK allows applications with JavaScript runtimes to interact with Anchor Protocol. It supports easy fabrication of messages relevant to Terra-side Anchor smart contracts, used to make contract calls or query contract state.
@@ -10,17 +10,17 @@ Anchor.js is developed to be used in tandem with [Terra.js](https://terra-projec
 
 The full API reference of Anchor.js can be found [here](https://terra-project.github.io/terra.js/).
 
-### Installation
+## Installation
 
-Anchor.js is available as a package on NPM ~~\(TBD\)~~. 
+Anchor.js is available as a package on NPM ~~\(TBD\)~~.
 
 ```text
 $ npm install -S @terra-money/terra.js @anchor-protocol/anchor.js
 ```
 
-### Usage \(TBD\)
+## Usage \(TBD\)
 
-#### `Anchor` Object
+### `Anchor` Object
 
 Anchor.js can be utilized to either query the state of Anchor smart contracts or fabricate `MsgExecuteContract` objects to be included in Terra transactions.
 
@@ -59,7 +59,7 @@ const anchor = new Anchor({
 });
 ```
 
-#### Query
+### Query
 
 The `Anchor` object contains smart contract queries for all Anchor contracts, which will be run via the specified `LCDClient`.
 
@@ -71,7 +71,7 @@ async function main() {
 main().catch(console.error);
 ```
 
-#### Execute
+### Execute
 
 The `Anchor` object contains functions for fabricating `MsgExecuteContract` messages to be included in a transaction and broadcasted.
 

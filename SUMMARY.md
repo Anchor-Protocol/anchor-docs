@@ -28,7 +28,8 @@
 
 * [Deployed Contracts](smart-contracts/deployed-contracts.md)
 * [bLuna](smart-contracts/bluna/README.md)
-  * [Hub](smart-contracts/bluna/hub.md)
+  * [Hub](smart-contracts/bluna/hub-1.md)
+  * [Airdrop Registry](smart-contracts/bluna/airdrop-registry.md)
   * [Reward](smart-contracts/bluna/reward.md)
 * [Money Market](smart-contracts/money-market/README.md)
   * [Overseer](smart-contracts/money-market/overseer.md)
