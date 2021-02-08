@@ -3,7 +3,7 @@
 bLuna tokens are bAssets built for the Terra blockchain, their value backed by underlying Luna delegations. bLuna tokens follows full compliance with the [Cw20 standard](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw20/README.md), having the potential to be integrated into a wide variety of decentralized finance applications.
 
 {% hint style="info" %}
-bLuna tokens are used as collateral to borrow Terra stablecoins from Anchor. Learn more about creating loan positions [here](../money-market.md).
+bLuna tokens are used as collateral to borrow Terra stablecoins from Anchor. Learn more about creating loan positions [here](../money-market/).
 {% endhint %}
 
 ## Concepts

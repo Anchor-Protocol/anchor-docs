@@ -7,7 +7,7 @@ Anchor Protocol can be subdivided to the below components:
 | Component | Description |
 | :--- | :--- |
 | [Bonded Assets \(bAssets\)](bonded-assets-bassets/) | Tokenized representations of bonded PoS assets |
-| [Money Market](money-market.md) | Handles lending and borrowing of Terra stablecoins, with borrows collateralized by bAssets |
+| [Money Market](money-market/) | Handles lending and borrowing of Terra stablecoins, with borrows collateralized by bAssets |
 | [Liquidation Contract](liquidations.md) | Manages collateral liquidations of loans at risk of undercollateralization |
 
 ## Protocol Participants
@@ -20,11 +20,11 @@ In Anchor Protocol, depositors are incentivized to lend Terra stablecoins to Anc
 
 A **Depositor** is a user that lends Terra stablecoins to the Anchor money market. Deposited stablecoins are pooled and lent out to borrowers, with accrued interest proportionally distributed to all depositors.
 
-Depositors receive newly minted [Anchor Tokens \(aTokens\)](money-market.md#anchor-tokens-atokens) in exchange for their deposit. aTokens represent a depositor's share in the stablecoin pool and can later be redeemed to claim the initial stablecoin deposit, along with accrued interest and depositor subsidies.
+Depositors receive newly minted [Anchor Tokens \(aTokens\)](money-market/#anchor-tokens-atokens) in exchange for their deposit. aTokens represent a depositor's share in the stablecoin pool and can later be redeemed to claim the initial stablecoin deposit, along with accrued interest and depositor subsidies.
 
 ### Borrower
 
-**Borrowers** are entities that create bAsset-collateralized loan positions to borrow Terra stablecoins from the Anchor money market. bAssets that were whitelisted by Anchor can be deposited and locked to create a loan position. Positions are required to maintain a [loan-to-value \(LTV\)](money-market.md#borrowing-terra-stablecoins) ratio below the set maximum.
+**Borrowers** are entities that create bAsset-collateralized loan positions to borrow Terra stablecoins from the Anchor money market. bAssets that were whitelisted by Anchor can be deposited and locked to create a loan position. Positions are required to maintain a [loan-to-value \(LTV\)](money-market/#borrowing-terra-stablecoins) ratio below the set maximum.
 
 By borrowing, users can gain access to liquidity without losing price exposure to their bAsset collateral. Borrowers are recommended to keep a close eye on their loan position's LTV ratio, as loans with LTV ratios over the set maximum are subject to liquidation.
 
@@ -46,5 +46,5 @@ As an entity crucial for protocol operation, Anchor's oracle feeder is initially
 | :--- | :--- | :--- |
 | Terra USD \(UST\) | Native Terra Token | Stablecoin |
 | [Bonded Assets \(bAssets\)](bonded-assets-bassets/) | Cw20 Token | Loan collateral for Anchor money market |
-| [Anchor Tokens \(aTokens\)](money-market.md#anchor-tokens-atokens) | Cw20 Token | Deposit receipt for Anchor money market |
+| [Anchor Tokens \(aTokens\)](money-market/#anchor-tokens-atokens) | Cw20 Token | Deposit receipt for Anchor money market |
 

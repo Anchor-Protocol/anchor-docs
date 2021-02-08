@@ -14,7 +14,7 @@ Interest on borrows are computed via the interest index. The interest index exis
 
 The global interest index acts as the reference value for interest accrual, tracking the amount of interest that a single unit of Terra stablecoin liability would have accrued since protocol creation.
 
-For every user interaction, the global interest index is updated to reflect the interest accrued since last user interaction. The effective interest rate between the current time $$\text{t}_\text{2}$$ and the time of last user interaction $$\text{t}_\text{1}$$ is proportional to the [borrow rate](money-market.md#algorithmic-interest-rate) at $$\text{t}_\text{1}$$ :
+For every user interaction, the global interest index is updated to reflect the interest accrued since last user interaction. The effective interest rate between the current time $$\text{t}_\text{2}$$ and the time of last user interaction $$\text{t}_\text{1}$$ is proportional to the [borrow rate](./#algorithmic-interest-rate) at $$\text{t}_\text{1}$$ :
 
 $$
 \text{effectiveRate} = \text{borrowRate}_{\text{t}_\text{1}}\cdot(\text{t}_\text{2}-\text{t}_\text{1})
@@ -92,7 +92,7 @@ $$
 \text{borrowLimit} = \sum \text{amountLocked} \cdot \text{bAssetPrice} \cdot \text{maxLTV}
 $$
 
-One should observe that the borrow limit fluctuates with the oracle-reported bAsset price. Loan positions with a liability higher than their borrow limit are subject to [liquidation](liquidations.md), where their collaterals are liquidated to repay their liabilities.
+One should observe that the borrow limit fluctuates with the oracle-reported bAsset price. Loan positions with a liability higher than their borrow limit are subject to [liquidation](../liquidations.md), where their collaterals are liquidated to repay their liabilities.
 
 To prevent liquidation, borrowers can lock additional collateral to their position and increase their borrow limit. Collaterals can also be unlocked and withdrawn from a loan position, as long as the borrower's liability does not exceed the position's borrow limit.
 

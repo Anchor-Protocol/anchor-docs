@@ -1,6 +1,6 @@
 # Getting market information
 
-General information about a stablecoin [market](../../../protocol/money-market.md#depositing-terra-stablecoins) can be retrieved via the below endpoint:
+General information about a stablecoin [market](../../../protocol/money-market/#depositing-terra-stablecoins) can be retrieved via the below endpoint:
 
 | Endpoint Name | Method | Description |
 | :--- | :--- | :--- |

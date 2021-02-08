@@ -8,8 +8,18 @@
 * [Overview](protocol/overview.md)
 * [Bonded Assets \(bAssets\)](protocol/bonded-assets-bassets/README.md)
   * [Bonded Luna \(bLuna\)](protocol/bonded-assets-bassets/bonded-luna-bluna.md)
-* [Money Market](protocol/money-market.md)
+* [Money Market](protocol/money-market/README.md)
+  * [Deposit Rate Subsidization](protocol/money-market/deposit-rate-subsidization.md)
+  * [bAsset Collaterals](protocol/money-market/basset-collaterals.md)
 * [Loan Liquidation](protocol/liquidations.md)
+* [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
+* [Anchor Governance](protocol/anchor-governance/README.md)
+  * [Text Proposal](protocol/anchor-governance/text-proposal.md)
+  * [Collateral Whitelisting](protocol/anchor-governance/collateral-whitelisting.md)
+  * [Update Collateral Parameters](protocol/anchor-governance/update-collateral-parameters.md)
+  * [Update Market Parameters](protocol/anchor-governance/update-market-parameters.md)
+  * [Update Governance Parameters](protocol/anchor-governance/update-governance-parameters.md)
+  * [Spend Community Pool](protocol/anchor-governance/spend-community-pool.md)
 
 ## Developers
 
