@@ -14,25 +14,34 @@
 * [Loan Liquidation](protocol/liquidations.md)
 * [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
 * [Anchor Governance](protocol/anchor-governance/README.md)
-  * [Text Proposal](protocol/anchor-governance/text-proposal.md)
   * [Collateral Whitelisting](protocol/anchor-governance/collateral-whitelisting.md)
-  * [Update Collateral Parameters](protocol/anchor-governance/update-collateral-parameters.md)
+  * [Update Collateral Attributes](protocol/anchor-governance/update-collateral-parameters.md)
   * [Update Market Parameters](protocol/anchor-governance/update-market-parameters.md)
   * [Update Governance Parameters](protocol/anchor-governance/update-governance-parameters.md)
-  * [Spend Community Pool](protocol/anchor-governance/spend-community-pool.md)
+  * [Update the Interest Model](protocol/anchor-governance/update-the-interest-model.md)
+  * [Community Grants](protocol/anchor-governance/spend-community-pool.md)
+  * [Text Proposal](protocol/anchor-governance/text-proposal.md)
 
 ## Developers
 
 * [Anchor CLI](developers/anchor-cli.md)
 * [Anchor API](developers/anchor-api.md)
 * [Anchor.js](developers/anchor.js.md)
-* [Ethereum-Side Integration](developers/ethereum-side-integration/README.md)
+* [EthAnchor](developers/ethereum-side-integration/README.md)
   * [Integration Flow](developers/ethereum-side-integration/integration-flow.md)
   * [Ethereum Wrapper Contract](developers/ethereum-side-integration/ethereum-wrapper-contract.md)
   * [HTTP API Endpoints](developers/ethereum-side-integration/ethanchor-http-interface/README.md)
     * [Getting market information](developers/ethereum-side-integration/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
     * [Depositing Stablecoins](developers/ethereum-side-integration/ethanchor-http-interface/depositing-stablecoins.md)
     * [Redeeming Stablecoins](developers/ethereum-side-integration/ethanchor-http-interface/redeeming-stablecoins.md)
+
+## User Guide
+
+* [Web App](user-guide/web-app/README.md)
+  * [Earn](user-guide/web-app/earn.md)
+  * [Borrow](user-guide/web-app/borrow.md)
+  * [Claim ANC Rewards](user-guide/web-app/claim-anc-rewards.md)
+  * [Governance](user-guide/web-app/governance.md)
 
 ## Smart Contracts
 
@@ -47,6 +56,12 @@
   * [Custody \[bLUNA\]](smart-contracts/money-market/custody-bluna-specific.md)
   * [Interest Model](smart-contracts/money-market/interest-model.md)
   * [Oracle](smart-contracts/money-market/oracle.md)
+  * [Collector](smart-contracts/money-market/collector.md)
+  * [Distributor](smart-contracts/money-market/distributor.md)
+  * [Dripper](smart-contracts/money-market/dripper.md)
+  * [Distribution Model](smart-contracts/money-market/distribution-model.md)
+  * [Staking](smart-contracts/money-market/staking.md)
+  * [Gov](smart-contracts/money-market/gov.md)
 * [Liquidation](smart-contracts/liquidations/README.md)
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
 

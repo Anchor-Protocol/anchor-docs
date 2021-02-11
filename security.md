@@ -8,7 +8,8 @@ We believe that size, visibility, and time are the true test for the security of
 
 ## Audits
 
-* TBD
+* Cryptonics
+* Quantstamp
 
 ## Anchor Bug Bounty Program
 

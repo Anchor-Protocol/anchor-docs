@@ -1,4 +1,4 @@
-# Ethereum-Side Integration
+# EthAnchor
 
 Welcome to the developer documentation for Ethereum-side Anchor. This documentation outlines the tools to interact with Anchor Protocol using wrapped Terra USD \(UST\), an ERC20-compliant token representation of UST on the Ethereum blockchain.
 

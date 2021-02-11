@@ -11,7 +11,7 @@ The core smart contracts of Anchor are deployed on the [Terra blockchain](https:
 
 For money market and liquidations, a separate set of contracts are to be deployed for each Terra stablecoin denomination. Each set, called Markets, will use different Terra denominations as their base currency. Only UST-supporting contracts have been deployed on initial launch.
 
-### bLuna
+### bLuna Smart Contracts
 
 {% tabs %}
 {% tab title="Mainnet" %}
@@ -21,8 +21,9 @@ For money market and liquidations, a separate set of contracts are to be deploye
 | :--- | :--- |
 | Hub | [terra1...](https://finder.terra.money/) |
 | Reward | [terra1...](https://finder.terra.money/) |
+| Airdrop Registry | [terra1...](https://finder.terra.money/) |
 
-#### Cw20 Token Contracts
+#### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
@@ -36,8 +37,9 @@ For money market and liquidations, a separate set of contracts are to be deploye
 | :--- | :--- |
 | Hub | [terra1...](https://finder.terra.money/) |
 | Reward | [terra1...](https://finder.terra.money/) |
+| Airdrop Registry | [terra1...](https://finder.terra.money/) |
 
-#### Cw20 Token Contracts
+#### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
@@ -45,7 +47,7 @@ For money market and liquidations, a separate set of contracts are to be deploye
 {% endtab %}
 {% endtabs %}
 
-### Terra USD Market
+### Terra USD Market Smart Contracts
 
 {% hint style="danger" %}
 ### **WARNING**
@@ -69,10 +71,11 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 | Interest Model | [terra1...](https://finder.terra.money/) |
 | Oracle | [terra1...](https://finder.terra.money/) |
 
-#### Cw20 Token Contracts
+#### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
+| Anchor Token \(ANC\) | [terra1...](https://finder.terra.money/) |
 | Anchor UST \(aUST\) | [terra1...](https://finder.terra.money/) |
 {% endtab %}
 
@@ -87,10 +90,11 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 | Interest Model | [terra1...](https://finder.terra.money/) |
 | Oracle | [terra1...](https://finder.terra.money/) |
 
-#### Cw20 Token Contracts
+#### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
+| Anchor Token \(ANC\) | [terra1...](https://finder.terra.money/) |
 | Anchor UST \(aUST\) | [terra1...](https://finder.terra.money/) |
 {% endtab %}
 {% endtabs %}

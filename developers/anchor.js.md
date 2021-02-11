@@ -1,93 +1,75 @@
 # Anchor.js
 
 {% hint style="info" %}
-This section
+This section only provides a brief overview of Anchor.js. For additional information refer to the [Anchor.js repository](https://github.com/Anchor-Protocol/anchor.js).
 {% endhint %}
 
-The Anchor.js SDK allows applications with JavaScript runtimes to interact with Anchor Protocol. It supports easy fabrication of messages relevant to Terra-side Anchor smart contracts, used to make contract calls or query contract state.
+The Anchor.js SDK allows applications with JavaScript runtimes to interact with Anchor Protocol. It supports easy fabrication of messages relevant to Terra-side Anchor smart contracts, used to make contract calls or query contract states.
 
-Anchor.js is developed to be used in tandem with [Terra.js](https://terra-project.github.io/terra.js/), required to interact with the Terra blockchain.
+Anchor.js is developed to be used in tandem with [Terra.js](https://terra-project.github.io/terra.js/), required to interact with the Terra blockchain. Developers must install both:
 
-The full API reference of Anchor.js can be found [here](https://terra-project.github.io/terra.js/).
+* `@terra-money/terra.js`
+* `@anchor-protocol/anchor.js`
 
-## Installation
+### Installation
 
-Anchor.js is available as a package on NPM ~~\(TBD\)~~.
+Anchor.js is available as a package on NPM. 
 
 ```text
 $ npm install -S @terra-money/terra.js @anchor-protocol/anchor.js
 ```
 
-## Usage \(TBD\)
+### Usage \(TBD\)
 
-### `Anchor` Object
+#### `Anchor` Object
 
 Anchor.js can be utilized to either query the state of Anchor smart contracts or fabricate `MsgExecuteContract` objects to be included in Terra transactions.
 
-Creating an `Anchor` object:
+Both functionalities are accessible through [`MessageFabricators`](https://github.com/Anchor-Protocol/anchor.js/tree/master/src/fabricators).
+
+Using `MessageFabricators`:
 
 ```javascript
-import { LCDClient } from '@terra-money/terra.js';
-import { Anchor } from '@anchor-protocl/anchor.js';
+import {fabricateRedeemStable, fabricateDepositStableCoin} from '@anchor-protocol/anchor.js';
+import {contractAddresses, AddressProviderFromJSON} from ".@anchor-protocol/anchor.js";
 
-// default -- uses Columbus-4 core contract addresses
-const anchor = new Anchor();
+// default -- uses tequila core contract addresses
+const addressProvider = new AddressProviderFromJSON(contractaddresses);
+    const redeemMsg = fabricateRedeemStable({
+      address: 'terra123...',
+      symbol: 'usd',
+      amount: '10000',
+    })(addressProvider);
 
-// optional -- specify contract addresses and assets
-const anchor = new Anchor({
-  lcd: new LCDClient(...),
-  key: new MnemonicKey(), // or other Terra.js-compliant key
-  bluna: {
-    Hub
-    Reward
-    blunaToken: {
-      name: 'BLUNA'; 
-      symbol: 'BLUNA'; 
-      token: 'terra1...';
-    }
-  }, 
-  moneyMarket: {
-    overseer: 'terra1...'; 
-    market: 'terra1...'; 
-    blunaCustody: 'terra1...'; 
-    interestModel: 'terra1...'; 
-    oracle: 'terra1...'; 
-  }
-  liquidations: {
-    liquidation: 'terra1...'; 
-  }
-});
+    const depositMsg = fabricateDepositStableCoin({
+      address: 'terra123...',
+      symbol: 'usd',
+      amount: '10',
+    })(addressProvider);
 ```
 
-### Query
+#### Executing
 
-The `Anchor` object contains smart contract queries for all Anchor contracts, which will be run via the specified `LCDClient`.
-
-```javascript
-async function main() {
-  const result = await anchor.moneyMarket.overseer.getConfig();
-}
-
-main().catch(console.error);
-```
-
-### Execute
-
-The `Anchor` object contains functions for fabricating `MsgExecuteContract` messages to be included in a transaction and broadcasted.
+A message fabricator contains functions for generating proper `MsgExecuteContract` messages to be included in a transaction and broadcasted via the specified `LCDClient`.
 
 ```javascript
-const wallet = anchor.lcd.wallet(mirror.key);
+import { LCDClient, Wallet, MnemonicKey, StdFee} from '@terra-money/terra.js';
 
-async function claimRewards() {
-  const tx = await wallet.createAndSignTx({
-    msgs: [anchor.bluna.claimRewards('terra1...')],
-    fee: new StdFee(200_000, { uluna: 20_000_000 })
-  });
-  return await anchor.lcd.tx.broadcast(tx);
+const anchor = new LCDClient({ URL: 'https://tequila-lcd.terra.dev', chainID:'tequila-0004' });
+const owner = new MnemonicKey({ mnemonic: "...."});
+const wallet = new Wallet(anchor, owner);
+
+
+async function depositStable() {
+    const tx = await wallet.createAndSignTx({
+        msgs: depositMsg,
+        fee: new StdFee(200_000, { uluna: 20_000_000 })
+    });
+    return await anchor.tx.broadcast(tx);
 }
 
 async function main() {
-  await claimRewards();
+    await depositStable();
 }
 
 main().catch(console.error);

@@ -1,12 +1,16 @@
 # Anchor Governance
 
+Development and maturization of Anchor Protocol is driven by the Anchor community.
 
 
 
 
-## Proposals
 
 
+
+## Proposal Types
+
+Improv
 
 
 

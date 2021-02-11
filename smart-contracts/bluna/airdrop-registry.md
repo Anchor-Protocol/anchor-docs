@@ -141,7 +141,7 @@ pub struct AirdropInfo {
 | `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to Terra USD. |
 | `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to Terra USD. |
 
-\* =optional
+\* = optional
 
 ### `UpdateAirdropInfo`
 

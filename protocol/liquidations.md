@@ -28,7 +28,7 @@ The **size** of a bid is the amount of Terra stablecoins that were put up upon b
 
 #### Premium Rate
 
-The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **20%**.
+The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **10%**.
 
 ### Bid Submission / Retraction
 
@@ -82,5 +82,5 @@ Note that $$\text{feeDeductor}$$ uses the maximum rate of fees that can be appli
 
 Collaterals locked to a liquidated loan position are converted to Terra stablecoins through bid execution. The money market executes bids that were submitted by the loan liquidator, and stablecoins received from execution are used to repay the liquidated borrower's loan.
 
-The money market sets the execution fee address to its interest buffer, transferring 0.5% of the bid value to the interest buffer.
+The money market sets the execution fee address to its interest buffer, transferring **5%** of the bid value to the interest buffer.
 
