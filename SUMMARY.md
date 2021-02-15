@@ -19,6 +19,7 @@
   * [Update Market Parameters](protocol/anchor-governance/update-market-parameters.md)
   * [Update Governance Parameters](protocol/anchor-governance/update-governance-parameters.md)
   * [Update the Interest Model](protocol/anchor-governance/update-the-interest-model.md)
+  * [Update the Distribution Model](protocol/anchor-governance/update-the-distribution-model.md)
   * [Community Grants](protocol/anchor-governance/spend-community-pool.md)
   * [Text Proposal](protocol/anchor-governance/text-proposal.md)
 
