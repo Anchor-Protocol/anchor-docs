@@ -3,6 +3,26 @@
 * [Introduction](README.md)
 * [Security](security.md)
 
+## User Guide
+
+* [Earn](user-guide/earn.md)
+* [Borrow](user-guide/borrow.md)
+* [Claim ANC Rewards](user-guide/claim-anc-rewards.md)
+* [Governance](user-guide/governance.md)
+
+## Governance
+
+* [Anchor Governance](governance/anchor-governance/README.md)
+  * [Collateral Whitelisting](governance/anchor-governance/collateral-whitelisting/README.md)
+    * [bAsset Collaterals](governance/anchor-governance/collateral-whitelisting/basset-collaterals.md)
+  * [Update Collateral Attributes](governance/anchor-governance/update-collateral-parameters.md)
+  * [Update Market Parameters](governance/anchor-governance/update-market-parameters.md)
+  * [Update Governance Parameters](governance/anchor-governance/update-governance-parameters.md)
+  * [Update the Interest Model](governance/anchor-governance/update-the-interest-model.md)
+  * [Update the Distribution Model](governance/anchor-governance/update-the-distribution-model.md)
+  * [Community Grants](governance/anchor-governance/spend-community-pool.md)
+  * [Text Proposal](governance/anchor-governance/text-proposal.md)
+
 ## Protocol
 
 * [Overview](protocol/overview.md)
@@ -10,18 +30,8 @@
   * [Bonded Luna \(bLuna\)](protocol/bonded-assets-bassets/bonded-luna-bluna.md)
 * [Money Market](protocol/money-market/README.md)
   * [Deposit Rate Subsidization](protocol/money-market/deposit-rate-subsidization.md)
-  * [bAsset Collaterals](protocol/money-market/basset-collaterals.md)
 * [Loan Liquidation](protocol/liquidations.md)
 * [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
-* [Anchor Governance](protocol/anchor-governance/README.md)
-  * [Collateral Whitelisting](protocol/anchor-governance/collateral-whitelisting.md)
-  * [Update Collateral Attributes](protocol/anchor-governance/update-collateral-parameters.md)
-  * [Update Market Parameters](protocol/anchor-governance/update-market-parameters.md)
-  * [Update Governance Parameters](protocol/anchor-governance/update-governance-parameters.md)
-  * [Update the Interest Model](protocol/anchor-governance/update-the-interest-model.md)
-  * [Update the Distribution Model](protocol/anchor-governance/update-the-distribution-model.md)
-  * [Community Grants](protocol/anchor-governance/spend-community-pool.md)
-  * [Text Proposal](protocol/anchor-governance/text-proposal.md)
 
 ## Developers
 
@@ -35,14 +45,6 @@
     * [Getting market information](developers/ethereum-side-integration/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
     * [Depositing Stablecoins](developers/ethereum-side-integration/ethanchor-http-interface/depositing-stablecoins.md)
     * [Redeeming Stablecoins](developers/ethereum-side-integration/ethanchor-http-interface/redeeming-stablecoins.md)
-
-## User Guide
-
-* [Web App](user-guide/web-app/README.md)
-  * [Earn](user-guide/web-app/earn.md)
-  * [Borrow](user-guide/web-app/borrow.md)
-  * [Claim ANC Rewards](user-guide/web-app/claim-anc-rewards.md)
-  * [Governance](user-guide/web-app/governance.md)
 
 ## Smart Contracts
 
@@ -62,7 +64,7 @@
 * [Anchor Token](smart-contracts/anchor-token/README.md)
   * [Gov](smart-contracts/anchor-token/gov.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
-  * [Dripper](smart-contracts/anchor-token/dripper.md)
+  * [Faucet](smart-contracts/anchor-token/dripper.md)
   * [Distribution Model](smart-contracts/anchor-token/distribution-model.md)
 
 ## External Resources

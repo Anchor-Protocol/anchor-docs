@@ -1,30 +1,23 @@
 # Deposit Rate Subsidization
 
-Anchor Protocol's deposit rate stability is supported by two mechanisms, ANC distribution incentives and direct subsidization. The protocol defines a target deposit rate \($$r_{target}$$\) and a threshold deposit rate \($$r_{threshold}$$\), constantly attempting to retain a deposit rate close to $$r_{target}$$ and always above $$r_{threshold}$$.
+Anchor Protocol's deposit rate stability is supported by two mechanisms, ANC distribution incentives and direct subsidization. The protocol defines a target deposit rate \($$r_{target}$$\) and a threshold deposit rate \($$r_{threshold}$$\) and constantly attempts to retain a deposit rate close to $$r_{target}$$ and always above $$r_{threshold}$$.
 
 Every epoch, the average deposit rate during the last epoch \($$r_{current}$$\) is calculated and compared with the target and threshold rates. Appropriate measures are then made to readjust the deposit rate.
 
 ## Borrower ANC Incentives
 
-Anchor's deposit rate is typically adjusted by constantly calibrating the rate of ANC emission to borrowers \(e\). The emission rate is updated via a feedback control mechanism.
+Anchor's deposit rate is typically adjusted by constantly calibrating the rate of ANC emission to borrowers \($$e$$\). The emission rate is updated via a feedback control mechanism.
 
 ### ANC Emission Feedback Control
 
-The feedback control mechanism alters the ANC emission rate based on the degree of deviation between the current deposit rate \($$r_{current}$$\) and the target deposit rate \($$r_{target}$$\). The ANC emission rate of the next epoch, $$e_{n+1}$$ is adjusted from the previous emission rate of $$e_n$$:
+The feedback control mechanism alters the ANC emission rate based on the degree of deviation between the current deposit rate \($$r_{current}$$\) and the target deposit rate \($$r_{target}$$\). Anchor uses a **multiplicative increase / multiplicative decrease feedback control** algorithm, which adjusts the ANC emission rate of the next epoch $$e_{n+1}$$ based on the previous emission rate of $$e_n$$:
 
 $$
-e_{n+1} = f\left(\frac{r_{target}}{r_{current}}\right) \cdot e_n
+e_{n+1} = k \cdot e_n
 $$
 
-The multiplier function $$f$$ should be a continuous monotonically increasing concave function with a fixed point of $$f(x) = 1$$ , set to maintain a constant emission rate when the current deposit rate matches the target deposit rate. Through this equation, the emission rate increases when the deposit rate is below the target and decreases when the deposit rate exceeds the target.
-
-$$f$$ is initially set as the square root function but may be updated through protocol governance.
-
-$$
-e_{n+1}=\sqrt{\frac{r_{target}}{r_{current}}} \cdot e_n
-$$
-
-The protocol caps the maximum emission rate to 10 ANC / day \(example value\).
+* If the deposit rate is below the target \($$r_{current} < r_{target}$$\), $$k = 2$$
+* If the deposit rate exceeds the target \($$r_{current} > r_{target}$$\), $$k = 0.9$$
 
 ## Direct Subsidization
 

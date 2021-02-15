@@ -12,29 +12,29 @@ ANC is designed to benefit its stakers with increasing adoption of Anchor Protoc
 ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
 {% endhint %}
 
-ANC is designed to generate a buying pressure that increases proportionally with Anchor Protocol's assets under management \(AUM\).
+ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from the ANC &lt;&gt; UST Terraswap pair.
 
-### bAsset Rewards
+A part of the ANC tokens purchased from protocol fees are recollected as future borrower ANC incentives, prolonging borrower incentivization to persist even after the initial ANC allocation has been fully distributed.
 
-The protocol uses a portion of rewards from deposited bAsset collaterals to purchase ANC from Terraswap, with the remainder used to replenish the interest buffer. The portion of bAsset rewards used for ANC purchases \($$portion_{ANC}$$\) increases with the inventory level of the interest buffer pool, displayed as: 
+### Protocol Fees
 
-$$
-portion_{ANC} = (cap - balance) \cdot multiplier
-$$
+#### bAsset Rewards
 
-$$portion_{ANC}$$ increases as the interest buffer balance \( $$balance$$ \) converges to the set interest buffer cap \($$cap$$\), allowing more value accrual to ANC as the interest buffer reaches a sufficient amount.
+A portion of rewards from deposited bAsset collaterals to purchase ANC, with the remainder used to replenish the interest buffer. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the interest buffer's inventory rises to a sufficient level.
 
-### Deposit Rate Commission
+#### Deposit Rate Commission
 
-The protocol also applies a commission to the deposit interest, used to purchase ANC from Terraswap.
+Reserves accrued from the money market are also used to purchase ANC, effectively applying a commission to the deposit interest. This allows the value of ANC to scale with the deposit AUM.
 
-### Collateral Liquidation Fees
+#### Collateral Liquidation Fees
 
 Whenever a loan is liquidated, 1% of the liquidated collateral value is used to purchase ANC.
 
-### Proposal Creation Fees
 
-ANC token deposits of Anchor governance proposals that have failed to reach the required quorum are redistributed ANC stakers.
+
+### Governance Fees
+
+ANC token deposits of Anchor governance polls that have failed to reach the required quorum are redistributed ANC stakers.
 
 ## Anchor Token Supply
 

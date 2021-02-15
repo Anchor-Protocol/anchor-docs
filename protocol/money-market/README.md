@@ -64,21 +64,17 @@ where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount o
 
 #### Interest Buffer Collection
 
-Deposit rate subsidization is a multi-step process, requiring:
+Every epoch, rewards of deposited bAsset collaterals are collected by the money market. Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **interest buffer** pool. 
 
-* Reward collection from bAsset collaterals deposited by borrowers
-* Conversion of rewards into Terra stablecoins
-* Distribution of subsidies to depositors
+This process can only be triggered at most once in a 24-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate recalibration](deposit-rate-subsidization.md#anc-emission-feedback-control) and [interest buffer distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
 
-The subsidization process can only be triggered at most once in 30 minutes. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction.
 
-Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **interest buffer** pool. 
 
 ### Borrowing Terra Stablecoins
 
 Terra stablecoins can be borrowed from the money market by creating a **loan position** with whitelisted bAssets as collateral. An account can only own a single loan position, though a user may create more loan positions with the use of multiple accounts.
 
-bAssets collaterals are locked to open a loan position. Users are allowed to lock multiple bAsset types to a single position, diversifying the collateral price exposure.
+bAssets collaterals are locked to open a loan position. Users are allowed to lock multiple bAsset types to a single position, diversifying collateral price exposure.
 
 #### Borrow Limit
 
@@ -88,9 +84,11 @@ $$
 \text{borrowLimit} = \sum \text{amountLocked} \cdot \text{bAssetPrice} \cdot \text{maxLTV}
 $$
 
-One should observe that the borrow limit fluctuates with the oracle-reported bAsset price. Loan positions with a liability higher than their borrow limit are subject to [liquidation](../liquidations.md), where their collaterals are liquidated to repay their liabilities.
+One should observe that the borrow limit fluctuates with the oracle-reported bAsset price. Loan positions with a liability higher than their borrow limit are subject to [liquidation](../liquidations.md), where their collaterals are converted to stablecoins to repay their liabilities.
 
 To prevent liquidation, borrowers can lock additional collateral to their position and increase their borrow limit. Collaterals can also be unlocked and withdrawn from a loan position, as long as the borrower's liability does not exceed the position's borrow limit.
+
+
 
 ### Algorithmic Interest Rate
 
