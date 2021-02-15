@@ -20,7 +20,7 @@ A part of the ANC tokens purchased from protocol fees are recollected as future 
 
 #### bAsset Rewards
 
-A portion of rewards from deposited bAsset collaterals to purchase ANC, with the remainder used to replenish the interest buffer. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the interest buffer's inventory rises to a sufficient level.
+A portion of rewards from deposited bAsset collaterals are used to purchase ANC, with the remainder used to replenish the interest buffer. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the interest buffer's inventory rises to a sufficient level.
 
 #### Deposit Rate Commission
 
