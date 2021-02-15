@@ -66,7 +66,7 @@ pub struct InitMsg {
 
 ### `Receive`
 
-Can be called during a CW20 token transfer when the Mint contract is the recipient. Allows the token transfer to execute a [Receive Hook](gov.md#receive-hooks) as a subsequent action within the same transaction.
+Can be called during a CW20 token transfer when the Gov contract is the recipient. Allows the token transfer to execute a [Receive Hook](gov.md#receive-hooks) as a subsequent action within the same transaction.
 
 {% tabs %}
 {% tab title="Rust" %}
