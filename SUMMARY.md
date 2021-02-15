@@ -56,14 +56,13 @@
   * [Custody \[bLUNA\]](smart-contracts/money-market/custody-bluna-specific.md)
   * [Interest Model](smart-contracts/money-market/interest-model.md)
   * [Oracle](smart-contracts/money-market/oracle.md)
-  * [Collector](smart-contracts/money-market/collector.md)
-  * [Distributor](smart-contracts/money-market/distributor.md)
-  * [Dripper](smart-contracts/money-market/dripper.md)
-  * [Distribution Model](smart-contracts/money-market/distribution-model.md)
-  * [Staking](smart-contracts/money-market/staking.md)
-  * [Gov](smart-contracts/money-market/gov.md)
 * [Liquidation](smart-contracts/liquidations/README.md)
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
+* [Anchor Token](smart-contracts/anchor-token/README.md)
+  * [Gov](smart-contracts/anchor-token/gov.md)
+  * [Collector](smart-contracts/anchor-token/collector.md)
+  * [Dripper](smart-contracts/anchor-token/dripper.md)
+  * [Distribution Model](smart-contracts/anchor-token/distribution-model.md)
 
 ## External Resources
 

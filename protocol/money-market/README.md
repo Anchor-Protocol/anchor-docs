@@ -62,9 +62,17 @@ $$
 
 where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount of deposited stablecoins that are yet to be lent out, and the interest-accrued amount of lent out stablecoins. In addition, $$\text{reserves}$$ are liquidity buffers for processing aToken redemptions when liquidity is low, funded by setting aside 5% of collected borrow interest. Interest to reserves are not distributed to depositors.
 
-#### Deposit Rate Subsidization
+#### Interest Buffer Collection
 
+Deposit rate subsidization is a multi-step process, requiring:
 
+* Reward collection from bAsset collaterals deposited by borrowers
+* Conversion of rewards into Terra stablecoins
+* Distribution of subsidies to depositors
+
+The subsidization process can only be triggered at most once in 30 minutes. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction.
+
+Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **interest buffer** pool. 
 
 ### Borrowing Terra Stablecoins
 

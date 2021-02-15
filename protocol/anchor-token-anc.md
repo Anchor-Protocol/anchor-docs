@@ -12,27 +12,39 @@ ANC is designed to benefit its stakers with increasing adoption of Anchor Protoc
 ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
 {% endhint %}
 
+ANC is designed to generate a buying pressure that increases proportionally with Anchor Protocol's assets under management \(AUM\).
+
+### bAsset Rewards
+
+The protocol uses a portion of rewards from deposited bAsset collaterals to purchase ANC from Terraswap, with the remainder used to replenish the interest buffer. The portion of bAsset rewards used for ANC purchases \($$portion_{ANC}$$\) increases with the inventory level of the interest buffer pool, displayed as: 
+
+$$
+portion_{ANC} = (cap - balance) \cdot multiplier
+$$
+
+$$portion_{ANC}$$ increases as the interest buffer balance \( $$balance$$ \) converges to the set interest buffer cap \($$cap$$\), allowing more value accrual to ANC as the interest buffer reaches a sufficient amount.
+
 ### Deposit Rate Commission
 
-Anchor Protocol uses a portion of Anchor's deposit interest to purchase ANC tokens from Terraswap, which are distributed pro-rata to stakers of ANC. The rate of commission, a value set by Anchor governance, creates a buying pressure that increases with the protocol's assets under management \(AUM\).
+The protocol also applies a commission to the deposit interest, used to purchase ANC from Terraswap.
 
 ### Collateral Liquidation Fees
 
-
+Whenever a loan is liquidated, 1% of the liquidated collateral value is used to purchase ANC.
 
 ### Proposal Creation Fees
 
-ANC token deposits of Anchor governance proposals that have failed to reach the required quorum are also distributed to ANC stakers.
+ANC token deposits of Anchor governance proposals that have failed to reach the required quorum are redistributed ANC stakers.
 
 ## Anchor Token Supply
 
-
+There are planned to be a total of 1,000,000 ANC tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
 
 ### Cumulative Distribution Schedule
 
 |  | Genesis | Year 1 | Year 2 | Year 3 | Year 4 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-|  |  |  |  |  |  |
+| Luna staking airdrop |  |  |  |  |  |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
@@ -40,11 +52,19 @@ ANC token deposits of Anchor governance proposals that have failed to reach the 
 | **Token Supply** |  |  |  |  |  |
 | Annual Inflation \(%\) | nil |  |  |  |  |
 
+### Genesis Token Distribution
+
 ///// Diagram of Token Distribution at Genesis ///// 
 
 
 
+### Final Token Distribution
+
 ///// Diagram of Token Distribution Post-Distribution /////
+
+
+
+#### Inflation Rate
 
 
 

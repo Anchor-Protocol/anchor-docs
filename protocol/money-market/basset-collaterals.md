@@ -190,12 +190,6 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
-#### \`\`
-
-
-
-
-
 ### Maximum Loan-To-Value \(LTV\) Ratio
 
 On whitelisting, a maximum LTV ratio is set for each bAsset type, which determines the maximum amount of liability allowed per unit of locked collateral. The maximum LTV ratio, a value between 0 and 1, is set according to the bAsset's degree of usability as loan collateral. bAssets with high liquidity and low volatility have values set closer to 1, while bAssets with low liquidity and high volatility have lower set values.

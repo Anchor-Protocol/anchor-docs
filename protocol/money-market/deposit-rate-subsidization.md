@@ -1,66 +1,44 @@
 # Deposit Rate Subsidization
 
-Anchor Protocol's deposit rate stability is supported by two mechanisms, 
+Anchor Protocol's deposit rate stability is supported by two mechanisms, ANC distribution incentives and direct subsidization. The protocol defines a target deposit rate \($$r_{target}$$\) and a threshold deposit rate \($$r_{threshold}$$\), constantly attempting to retain a deposit rate close to $$r_{target}$$ and always above $$r_{threshold}$$.
 
-offers deposit rate stability via
+Every epoch, the average deposit rate during the last epoch \($$r_{current}$$\) is calculated and compared with the target and threshold rates. Appropriate measures are then made to readjust the deposit rate.
 
-Direct subsidization of Anchor's 
+## Borrower ANC Incentives
 
+Anchor's deposit rate is typically adjusted by constantly calibrating the rate of ANC emission to borrowers \(e\). The emission rate is updated via a feedback control mechanism.
 
+### ANC Emission Feedback Control
 
-## Interest Buffer Pool
+The feedback control mechanism alters the ANC emission rate based on the degree of deviation between the current deposit rate \($$r_{current}$$\) and the target deposit rate \($$r_{target}$$\). The ANC emission rate of the next epoch, $$e_{n+1}$$ is adjusted from the previous emission rate of $$e_n$$:
 
-Markets periodically distribute subsidies to depositors whenever the deposit APY is below 10%.
+$$
+e_{n+1} = f\left(\frac{r_{target}}{r_{current}}\right) \cdot e_n
+$$
 
-Deposit rate subsidization is a multi-step process, requiring:
+The multiplier function $$f$$ should be a continuous monotonically increasing concave function with a fixed point of $$f(x) = 1$$ , set to maintain a constant emission rate when the current deposit rate matches the target deposit rate. Through this equation, the emission rate increases when the deposit rate is below the target and decreases when the deposit rate exceeds the target.
 
-* Reward collection from bAsset collaterals deposited by borrowers
-* Conversion of rewards into Terra stablecoins
-* Distribution of subsidies to depositors
+$$f$$ is initially set as the square root function but may be updated through protocol governance.
 
-The subsidization process can only be triggered at most once in 30 minutes. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction.
+$$
+e_{n+1}=\sqrt{\frac{r_{target}}{r_{current}}} \cdot e_n
+$$
 
-Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **interest buffer** pool. Besides holding on to future subsidies, the interest buffers are responsible for calculating the amount of stablecoins required to increase the deposit rate to 10%. To prevent excessive drainage of the interest buffer, only up to 5% of its balance can be used per subsidization process.
+The protocol caps the maximum emission rate to 10 ANC / day \(example value\).
+
+## Direct Subsidization
+
+If the deposit rate is observed to be below the threshold, this is comprehended as 
+
+Interest Buffer Pool
+
+Markets periodically distribute subsidies to depositors whenever the deposit APY is below the threshold rate.
+
+$$
+r_{current}<r_{threshold}
+$$
+
+Besides holding on to future subsidies, the interest buffers are responsible for calculating the amount of stablecoins required to increase the deposit rate to 10%. To prevent excessive drainage of the interest buffer, only up to 5% of its balance can be used per subsidization process.
 
 Distributed subsidies are added to the money market’s liquidity, increasing the aToken exchange rate. Depositors indirectly receive subsidies via value appreciation of their aTokens.
-
-
-
-## Borrow Demand Bootstrapping Via ANC Distribution
-
-The subsidization process 
-
-
-
-### Multiplicative Increase / Additive Decrease \(MIAD\) Distribution Rate
-
-In order to prevent borrow demand runaways, 
-
-
-
-
-
-#### When `deposit_rate < distribution_threshold`
-
-
-
-
-
-#### When `deposit_rate > target_deposit_rate`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
