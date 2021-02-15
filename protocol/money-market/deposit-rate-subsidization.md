@@ -21,11 +21,7 @@ $$
 
 ## Direct Subsidization
 
-Anchor directly subsidizes the deposit rate if it is observed to be below the threshold rate, funded from the interest buffer's stockpiled stablecoins. 
+As an additional layer of safety, the protocol directly subsidizes the deposit rate if it is below the threshold rate \($$r_{current}<r_{threshold}$$\), funded from the interest buffer's stockpiled stablecoins. 
 
-$$
-r_{current}<r_{threshold}
-$$
-
-Only the minimum subsidy amount required to raise the deposit rate to the threshold is distributed, which is limited to 5% of the interest buffer's balance per subsidization to prevent excessive drainage. Distributed subsidies are added to the money market’s liquidity, increasing the aToken exchange rate and appreciating the value of aTokens.
+An amount required to raise the deposit rate to the threshold is distributed to depositors, which is limited to 5% of the interest buffer's balance per subsidization to prevent excessive drainage. Distributed subsidies are added to the money market’s liquidity, increasing the aToken exchange rate and appreciating the value of aTokens.
 
