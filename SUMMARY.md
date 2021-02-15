@@ -63,6 +63,8 @@
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
 * [Anchor Token](smart-contracts/anchor-token/README.md)
   * [Gov](smart-contracts/anchor-token/gov.md)
+  * [Staking](smart-contracts/anchor-token/staking.md)
+  * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Faucet](smart-contracts/anchor-token/dripper.md)
   * [Distribution Model](smart-contracts/anchor-token/distribution-model.md)
