@@ -4,7 +4,13 @@ Any proposal that does not fit the pre-listed proposals can be submitted as a **
 
 Given that the text poll smart contract only supports very short descriptions \(currently 64-bits\), it is advisable to include a more detailed description on an external link and then attach the link in the `Information Link` field.
 
-|  | Description | Optionality |
+
+
+///// Screenshot image of WebApp -- Text Proposal /////
+
+
+
+| Title | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Title of proposal | Required |
 | Description | Short description of proposal | Required |
