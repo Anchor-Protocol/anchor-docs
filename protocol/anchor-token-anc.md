@@ -1,20 +1,20 @@
 # Anchor Token \(ANC\)
 
-The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC tokens used as a deposit to create new governance proposals, which can be voted by users that have staked ANC.
+The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC tokens used as a deposit to create new governance polls, which can be voted by users that have staked ANC.
 
-ANC tokens are also used to bootstrap the initial borrow demand for the Anchor money market. ANC is distributed to borrowers, with the rate of distribution carefully controlled to ensure deposit rate stability.
+ANC tokens accrue value from protocol fees, which are distributed pro-rata to ANC stakers. The ANC token is designed to benefit its stakers with increasing adoption of Anchor Protocol -- stakers of ANC are incentivized to vote for proposals that further merit the protocol.
 
-ANC is designed to benefit its stakers with increasing adoption of Anchor Protocol; stakers of ANC are incentivized to vote for proposals that further merit the protocol.
+ANC is also used as incentives to bootstrap borrow demand. ANC is distributed every block to stablecoin borrowers, proportional to the amount of borrow interest they accrued. 
 
-## Value Accrual to ANC
+## Value Accrual
 
 {% hint style="info" %}
 ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
 {% endhint %}
 
-ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from the ANC &lt;&gt; UST Terraswap pair.
+ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap.
 
-A part of the ANC tokens purchased from protocol fees are recollected as future borrower ANC incentives, prolonging borrower incentivization to persist even after the initial ANC allocation has been fully distributed.
+A part of the ANC tokens purchased from protocol fees are recollected as future borrower ANC incentives, enabling borrower incentivization to continue even after full expenditure of their initial ANC allocation.
 
 ### Protocol Fees
 
@@ -28,7 +28,7 @@ Reserves accrued from the money market are also used to purchase ANC, effectivel
 
 #### Collateral Liquidation Fees
 
-Whenever a loan is liquidated, 1% of the liquidated collateral value is used to purchase ANC.
+Whenever a loan is liquidated, 1% of the liquidated collateral value is used to purchase ANC. This fee is applied separately to a bid's [premium](liquidations.md#premium-rate).
 
 
 
@@ -40,7 +40,7 @@ ANC token deposits of Anchor governance polls that have failed to reach the requ
 
 There are planned to be a total of 1,000,000 ANC tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
 
-### Cumulative Distribution Schedule
+### Cumulative Allocation Schedule
 
 |  | Genesis | Year 1 | Year 2 | Year 3 | Year 4 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -52,13 +52,13 @@ There are planned to be a total of 1,000,000 ANC tokens to be distributed over a
 | **Token Supply** |  |  |  |  |  |
 | Annual Inflation \(%\) | nil |  |  |  |  |
 
-### Genesis Token Distribution
+### Genesis Token Allocation
 
 ///// Diagram of Token Distribution at Genesis ///// 
 
 
 
-### Final Token Distribution
+### Final Token Allocation
 
 ///// Diagram of Token Distribution Post-Distribution /////
 
@@ -68,5 +68,19 @@ There are planned to be a total of 1,000,000 ANC tokens to be distributed over a
 
 
 
+## Distribution to Borrowers
 
+~~ANC tokens allocated for borrower incentives are gradually distributed to borrowers through the~~ [~~ANC emission control algorithm~~](money-market/deposit-rate-subsidization.md#anc-emission-feedback-control)~~. This is further distributed to individual borrowers pro-rata to their amount of accrued borrow interest. For example, if a borrower has accrued~~ $$\text{interestAccrued}_{\text{user}, \,\Delta t}$$ ~~amount of borrow interest during a time period of~~ $$\Delta t$$~~, and~~
+
+$$
+\text{tokensDistributed}_{\text{user}} \propto e_{ANC} \cdot \text{interestAccrued}_\text{user} \cdot \Delta t
+$$
+
+
+
+~~Distribution of ANC fuels a self-reinforcing adoption cycle, where Rewards from bAsset collaterals of borrowers bring buying pressure to ANC, increasing borrower~~
+
+~~A self-reinforcing cycle is~~ 
+
+TBD -- Awaiting distribution logic settlement
 

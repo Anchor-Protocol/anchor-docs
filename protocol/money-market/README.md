@@ -1,8 +1,12 @@
 # Money Market
 
-Anchor's money market is a Compound-inspired lending protocol for lending out deposited Terra stablecoins to borrowers. Anchor sources its deposit yields from bAsset-collateralized loans, where rewards of deposited bAsset collaterals are utilized to subsidize the deposit rate.
+{% hint style="info" %}
+ANC tokens are distributed to borrowers in the Anchor money market. For additional information on ANC distribution, see [here](../anchor-token-anc.md#distribution).
+{% endhint %}
 
-The money market leverages bAsset rewards to catalyze a positive usage cycle: subsidies incentivize new stablecoin deposits, lowering the borrow rate, which incentivizes more bAsset-collateralized loans, and enables more bAsset rewards to be collected.
+Anchor's money market is a Compound-inspired lending protocol for lending out deposited Terra stablecoins to borrowers. Anchor sources its deposit yields from bAsset-collateralized loans, where rewards of their bAsset collaterals are utilized to subsidize the deposit rate.
+
+The protocol leverages bAsset rewards to catalyze a positive usage cycle: subsidies incentivize new stablecoin deposits, lowering the borrow rate, which incentivizes more bAsset-collateralized loans, and enables more bAsset rewards to be collected.
 
 ## Concepts
 
@@ -14,7 +18,7 @@ Interest on borrows are computed via the interest index. The interest index exis
 
 The global interest index acts as the reference value for interest accrual, tracking the amount of interest that a single unit of Terra stablecoin liability would have accrued since protocol creation.
 
-For every user interaction, the global interest index is updated to reflect the interest accrued since last user interaction. The effective interest rate between the current time $$\text{t}_\text{2}$$ and the time of last user interaction $$\text{t}_\text{1}$$ is proportional to the [borrow rate](./#algorithmic-interest-rate) at $$\text{t}_\text{1}$$ :
+For every user interaction, the global interest index is updated to reflect the interest accrued since last user interaction. The effective interest rate between current time $$\text{t}_\text{2}$$ and the time of last user interaction $$\text{t}_\text{1}$$ is proportional to the [borrow rate](./#algorithmic-interest-rate) at $$\text{t}_\text{1}$$ :
 
 $$
 \text{effectiveRate} = \text{borrowRate}_{\text{t}_\text{1}}\cdot(\text{t}_\text{2}-\text{t}_\text{1})
@@ -60,13 +64,13 @@ $$
 \text{aTokenExchangeRate} = \frac{\text{liquidity} + \text{liabilities} - \text{reserves}}{\text{aTokenSupply}}
 $$
 
-where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount of deposited stablecoins that are yet to be lent out, and the interest-accrued amount of lent out stablecoins. In addition, $$\text{reserves}$$ are liquidity buffers for processing aToken redemptions when liquidity is low, funded by setting aside 5% of collected borrow interest. Interest to reserves are not distributed to depositors.
+where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount of deposited stablecoins that are yet to be lent out, and the interest-accrued amount of lent out stablecoins. In addition, $$\text{reserves}$$ are protocol fees funded by setting aside 5% of collected borrow interest. Interest to reserves are not distributed to depositors but instead used for [ANC value appreciation](../anchor-token-anc.md#deposit-rate-commission).
 
 #### Interest Buffer Collection
 
 Every epoch, rewards of deposited bAsset collaterals are collected by the money market. Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **interest buffer** pool. 
 
-This process can only be triggered at most once in a 24-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate recalibration](deposit-rate-subsidization.md#anc-emission-feedback-control) and [interest buffer distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
+This process can only be triggered at most once in a 24-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate readjustment](deposit-rate-subsidization.md#borrower-anc-incentives) and [interest buffer distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
 
 
 
@@ -106,7 +110,7 @@ where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both in
 
 #### Borrow Rate Model
 
-The stablecoin borrow rate increases proportionally with the utilization ratio. Parameter values of the equation are initially configured to accrue a 10% APR borrow rate when the utilization ratio is at 50%, with a minimum base borrow rate of **2%**.
+The stablecoin borrow rate increases proportionally with the utilization ratio. Parameter values of the equation are initially configured to accrue a **10%** annualized borrow rate when the utilization ratio is at **50%**, with a minimum base borrow rate of **2%**.
 
 $$
 \text{borrowRate} = \text{utilizationRatio} \cdot \text{interestMultiplier} + \text{baseRate}
