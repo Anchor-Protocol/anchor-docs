@@ -4,13 +4,15 @@ The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC toke
 
 ANC tokens accrue value from protocol fees, which are distributed pro-rata to ANC stakers. The ANC token is designed to benefit its stakers with increasing adoption of Anchor Protocol -- stakers of ANC are incentivized to vote for proposals that further merit the protocol.
 
-ANC is also used as incentives to bootstrap borrow demand. ANC is distributed every block to stablecoin borrowers, proportional to the amount of borrow interest they accrued. 
+ANC is also used as incentives to bootstrap borrow demand. ANC is distributed every block to stablecoin borrowers, proportional to the amount of their accrued borrow interest.
 
 ## Value Accrual
 
 {% hint style="info" %}
 ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
 {% endhint %}
+
+![ANC Token Structure](../.gitbook/assets/anc_incentive_diagram%20%283%29.png)
 
 ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap.
 
@@ -24,7 +26,7 @@ A portion of rewards from deposited bAsset collaterals are used to purchase ANC,
 
 #### Deposit Rate Commission
 
-Reserves accrued from the money market are also used to purchase ANC, effectively applying a commission to the deposit interest. This allows the value of ANC to scale with the deposit AUM.
+Anchor applies a 5% commission to accrued deposit interest, set aside as ANC purchase [reserves](money-market/#anchor-tokens-atokens). This allows ANC value to scale with the deposit AUM.
 
 #### Collateral Liquidation Fees
 
@@ -66,21 +68,11 @@ There are planned to be a total of 1,000,000 ANC tokens to be distributed over a
 
 #### Inflation Rate
 
-
+Inflation rate of ANC tokens are designed to gradually decrease every year, until it reaches **1M** at the end of year 4. After the end of year 4, no more ANC tokens will be minted through inflation.
 
 ## Distribution to Borrowers
 
-~~ANC tokens allocated for borrower incentives are gradually distributed to borrowers through the~~ [~~ANC emission control algorithm~~](money-market/deposit-rate-subsidization.md#anc-emission-feedback-control)~~. This is further distributed to individual borrowers pro-rata to their amount of accrued borrow interest. For example, if a borrower has accrued~~ $$\text{interestAccrued}_{\text{user}, \,\Delta t}$$ ~~amount of borrow interest during a time period of~~ $$\Delta t$$~~, and~~
+ANC tokens allocated for borrower incentives are gradually distributed to borrowers through the [ANC emission control algorithm](money-market/deposit-rate-subsidization.md#anc-emission-feedback-control). This is further distributed to individual borrowers pro-rata to their amount of accrued borrow interest. 
 
-$$
-\text{tokensDistributed}_{\text{user}} \propto e_{ANC} \cdot \text{interestAccrued}_\text{user} \cdot \Delta t
-$$
-
-
-
-~~Distribution of ANC fuels a self-reinforcing adoption cycle, where Rewards from bAsset collaterals of borrowers bring buying pressure to ANC, increasing borrower~~
-
-~~A self-reinforcing cycle is~~ 
-
-TBD -- Awaiting distribution logic settlement
+ANC incentives fuel a self-reinforcing adoption cycle, where they incentivize more borrowers to deposit bAsset collaterals, bringing further buying pressure to ANC, further increasing borrow incentives.
 
