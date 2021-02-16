@@ -5,6 +5,7 @@
 
 ## User Guide
 
+* [Anchor WebApp](user-guide/anchor-webapp.md)
 * [Deposit](user-guide/earn.md)
 * [Borrow](user-guide/borrow.md)
 * [Claim ANC Rewards](user-guide/claim-anc-rewards.md)

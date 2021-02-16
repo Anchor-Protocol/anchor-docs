@@ -12,7 +12,7 @@ ANC is also used as incentives to bootstrap borrow demand. ANC is distributed ev
 ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
 {% endhint %}
 
-![ANC Token Structure](../.gitbook/assets/anc_incentive_diagram%20%283%29.png)
+![ANC Token Structure](../.gitbook/assets/anc_incentive_diagram%20%281%29.png)
 
 ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap.
 
@@ -40,7 +40,7 @@ ANC token deposits of Anchor governance polls that have failed to reach the requ
 
 ## Anchor Token Supply
 
-There are planned to be a total of 1,000,000 ANC tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
+There are planned to be a total of **1,000,000 ANC** tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
 
 ### Cumulative Allocation Schedule
 
