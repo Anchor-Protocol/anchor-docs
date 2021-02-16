@@ -45,7 +45,7 @@ pub struct InitMsg {
 
 ### `UpdateConfig`
 
-Updates the Airdrop Registry contract configuration.
+Updates the Airdrop Registry contract configuration. Can only be issued by contract owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -85,7 +85,7 @@ pub enum HandleMsg {
 
 ### `AddAirdropInfo`
 
-Adds support for a new airdrop to Luna stakers.
+Adds support for a new airdrop to Luna stakers. Can only be issued by contract owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -145,7 +145,7 @@ pub struct AirdropInfo {
 
 ### `UpdateAirdropInfo`
 
-Updates information for an already supported airdrop token.
+Updates information for an already supported airdrop token. Can only be issued by contract owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -205,7 +205,7 @@ pub struct AirdropInfo {
 
 ### `RemoveAirdropInfo`
 
-Removes support for a currently supported airdrop.
+Removes support for a currently supported airdrop. Can only be issued by contract owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -237,7 +237,7 @@ pub enum HandleMsg {
 
 ### `FabricateMIRClaim`
 
-Fabricates a message to claim MIR airdrop.
+Fabricates a message to claim MIR airdrop. Can only be issued by [Hub](hub-1.md).
 
 {% tabs %}
 {% tab title="Rust" %}

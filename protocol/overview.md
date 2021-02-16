@@ -38,7 +38,7 @@ Collaterals are liquidated by executing bids in the Liquidation Contract. Only b
 
 An **Oracle Feeder** is a Terra account that is responsible for providing an accurate and up-to-date price feed for bAsset collaterals. Fed-in price data is used to calculate the collateral value of a borrower, also used as the reference price in the Liquidation Contract.
 
-As an entity crucial for protocol operation, Anchor's oracle feeder is initially set as the creator of Anchor Protocol. Anchor will extend support for third-party oracle feeders as the protocol further matures.
+As an entity crucial for protocol operation, Anchor's oracle feeder is initially set as the creator of Anchor Protocol. Through governance, support can be extended to third-party oracle feeders as the protocol further matures.
 
 ## Tokens
 
@@ -47,4 +47,5 @@ As an entity crucial for protocol operation, Anchor's oracle feeder is initially
 | Terra USD \(UST\) | Native Terra Token | Stablecoin |
 | [Bonded Assets \(bAssets\)](bonded-assets-bassets/) | Cw20 Token | Loan collateral for Anchor money market |
 | [Anchor Tokens \(aTokens\)](money-market/#anchor-tokens-atokens) | Cw20 Token | Deposit receipt for Anchor money market |
+| [Anchor Token \(ANC\)](anchor-token-anc.md) | Cw20 Token | Governance token for Anchor Protocol |
 

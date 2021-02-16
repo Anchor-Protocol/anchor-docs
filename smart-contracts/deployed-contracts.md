@@ -47,6 +47,48 @@ For money market and liquidations, a separate set of contracts are to be deploye
 {% endtab %}
 {% endtabs %}
 
+### ANC-related Smart Contracts
+
+{% tabs %}
+{% tab title="Mainnet" %}
+#### Core Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| Gov | [terra1...](https://finder.terra.money/) |
+| Staking | [terra1...](https://finder.terra.money/) |
+| Community | [terra1...](https://finder.terra.money/) |
+| Collector | [terra1...](https://finder.terra.money/) |
+| Faucet | [terra1...](https://finder.terra.money/) |
+| Distribution Model | [terra1...](https://finder.terra.money/) |
+
+#### Cw20-Compliant Token Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| Anchor Token \(ANC\) | [terra1...](https://finder.terra.money/) |
+{% endtab %}
+
+{% tab title="Testnet" %}
+#### Core Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| Gov | [terra1...](https://finder.terra.money/) |
+| Staking | [terra1...](https://finder.terra.money/) |
+| Community | [terra1...](https://finder.terra.money/) |
+| Collector | [terra1...](https://finder.terra.money/) |
+| Faucet | [terra1...](https://finder.terra.money/) |
+| Distribution Model | [terra1...](https://finder.terra.money/) |
+
+#### Cw20-Compliant Token Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| Anchor Token \(ANC\) | [terra1...](https://finder.terra.money/) |
+{% endtab %}
+{% endtabs %}
+
 ### Terra USD Market Smart Contracts
 
 {% hint style="danger" %}

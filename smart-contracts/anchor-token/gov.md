@@ -203,7 +203,7 @@ pub enum VoteOption {
 
 ### `WithdrawVotingTokens`
 
-Removes specified amount of staked ANC tokens from a staking position and returns them to a user's balance. Withdraws all staked ANC tokens if `amount` is empty.
+Removes specified amount of staked ANC tokens from a staking position and returns them to a user's balance. Withdraws all staked ANC tokens if `amount` is not specified.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -388,6 +388,7 @@ pub enum Cw20HookMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct ExecuteMsg {
+    pub order: u32, 
     pub contract: HumanAddr,
     pub msg: Binary,
 }
@@ -403,10 +404,12 @@ pub struct ExecuteMsg {
     "link": "https://...", 
     "execute_msgs": [
       {
+        "order": 1, 
         "contract": "terra1...", 
         "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
       }, 
       {
+        "order": 2, 
         "contract": "terra1...", 
         "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
       } 
@@ -426,6 +429,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| `order` | u32 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON of governance message |
 
@@ -732,6 +736,7 @@ pub enum PollStatus {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct ExecuteMsg {
+    pub order: u32, 
     pub contract: HumanAddr,
     pub msg: Binary,
 }
@@ -751,10 +756,12 @@ pub struct ExecuteMsg {
   "deposit_amount": "100000000", 
   "execute_data": [
     {
+      "order": 1, 
       "contract": "terra1...", 
       "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
     }, 
     {
+      "order": 2, 
       "contract": "terra1...", 
       "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
     }
@@ -792,6 +799,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| `order` | u32 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON governance message |
 
@@ -909,6 +917,7 @@ pub enum PollStatus {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct ExecuteMsg {
+    pub order: u32, 
     pub contract: HumanAddr,
     pub msg: Binary,
 }
@@ -953,10 +962,12 @@ pub struct ExecuteMsg {
       "deposit_amount": "100000000", 
       "execute_data": [
         {
+          "order": 1, 
           "contract": "terra1...", 
           "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
         }, 
         {
+          "order": 2, 
           "contract": "terra1...", 
           "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
         }
@@ -1000,6 +1011,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| `order` | u32 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON governance message |
 

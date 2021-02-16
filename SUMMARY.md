@@ -5,7 +5,7 @@
 
 ## User Guide
 
-* [Earn](user-guide/earn.md)
+* [Deposit](user-guide/earn.md)
 * [Borrow](user-guide/borrow.md)
 * [Claim ANC Rewards](user-guide/claim-anc-rewards.md)
 * [Governance](user-guide/governance.md)
@@ -61,7 +61,7 @@
   * [Oracle](smart-contracts/money-market/oracle.md)
 * [Liquidation](smart-contracts/liquidations/README.md)
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
-* [Anchor Token](smart-contracts/anchor-token/README.md)
+* [Anchor Token \(ANC\)](smart-contracts/anchor-token/README.md)
   * [Gov](smart-contracts/anchor-token/gov.md)
   * [Staking](smart-contracts/anchor-token/staking.md)
   * [Community](smart-contracts/anchor-token/community.md)

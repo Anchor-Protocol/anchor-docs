@@ -73,7 +73,7 @@ pub struct InitMsg {
 
 ### `Receive`
 
-Can be called during a CW20 token transfer when the Hub contract is the recipient. Allows the token transfer to execute a [Receive Hook]() as a subsequent action within the same transaction.
+Can be called during a CW20 token transfer when the Hub contract is the recipient. Allows the token transfer to execute a [Receive Hook](hub-1.md#receive-hooks) as a subsequent action within the same transaction.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -107,7 +107,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `amount` | Uint128 | Amount of tokens received |
 | `sender` | HumanAddr | Sender of the token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook]() |
+| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](hub-1.md#receive-hooks) |
 
 \* = optional
 
@@ -393,9 +393,9 @@ pub enum HandleMsg {
 
 \* = optional
 
-### `ClaimAirdrop`
+### `[Internal] ClaimAirdrop`
 
-Claims tokens airdropped to `Hub`'s Luna delegations and swaps them to UST through [`SwapHook`](hub-1.md#swaphook).
+Claims tokens airdropped to `Hub`'s Luna delegations and swaps them to UST through [`SwapHook`](hub-1.md#swaphook). Can only be issued by [Airdrop Registry](airdrop-registry.md).
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -438,9 +438,9 @@ pub enum HandleMsg {
 | `claim_msg` | Binary | Base64-encoded string of JSON of airdrop contract's claim message \(claims airdrop\) |
 | `swap_msg` | Binary | Base64-encoded string of JSON of swap contract's swap message \(swaps airdrop token to Terra USD\) |
 
-### `SwapHook`
+### `[Interal] SwapHook`
 
-Swaps claimed airdrop tokens to Terra USD.
+Swaps claimed airdrop tokens to Terra USD. Can only be issued by itself.
 
 {% tabs %}
 {% tab title="Rust" %}

@@ -10,5 +10,5 @@ Even with a thorough understanding of Anchor Protocol, it is highly recommended 
 
 | Contract | Function |
 | :--- | :--- |
-| Liquidation Contract | OTC exchange contract for bAsset collateral liquidations |
+| [Liquidation Contract](liquidation-contract.md) | OTC exchange contract for bAsset collateral liquidations |
 

@@ -43,7 +43,7 @@ pub struct InitMsg {
 
 ### `ClaimRewards`
 
-Claims bLuna holder's accrued rewards to the specified address. Sends rewards to message sender if the `recipient` field is not filled.
+Claims bLuna holder's accrued rewards to the specified address. Sends rewards to message sender if the `recipient` is not specified.
 
 {% tabs %}
 {% tab title="Rust" %}
