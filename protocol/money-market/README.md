@@ -100,13 +100,13 @@ Stablecoins borrowed from a market all follow a unified, algorithmically determi
 
 #### Utilization Ratio
 
-The utilization ratio quantifies a stablecoin's borrow demand relative to the amount of deposited stablecoins. In a market with $$\text{stablecoinsDeposited}$$ amount of deposits and $$stablecoinsLent$$ amount of borrows, utilization ratio is calculated as:
+The utilization ratio quantifies a stablecoin's borrow demand relative to the amount of deposited stablecoins. In a market with $$\text{stablecoinsDeposited}$$ amount of deposits and $$\text{stablecoinsLent}$$ amount of borrows, utilization ratio is calculated as:
 
 $$
 \text{utilizationRatio} = \frac{\text{stablecoinsLent}}{\text{stablecoinsDeposited}}
 $$
 
-where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both interest-accrued values.
+where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both interest-accrued values.268
 
 #### Borrow Rate Model
 

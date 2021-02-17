@@ -6,8 +6,9 @@
 ## User Guide
 
 * [Anchor WebApp](user-guide/anchor-webapp.md)
-* [Deposit](user-guide/earn.md)
+* [Earn](user-guide/earn.md)
 * [Borrow](user-guide/borrow.md)
+* [bAsset](user-guide/basset.md)
 * [Claim ANC Rewards](user-guide/claim-anc-rewards.md)
 * [Governance](user-guide/governance.md)
 
@@ -17,7 +18,7 @@
   * [Collateral Whitelisting](governance/anchor-governance/collateral-whitelisting/README.md)
     * [bAsset Collaterals](governance/anchor-governance/collateral-whitelisting/basset-collaterals.md)
   * [Update Collateral Attributes](governance/anchor-governance/update-collateral-parameters.md)
-  * [Update Parameter Values](governance/anchor-governance/update-market-parameters.md)
+  * [Update Market Parameters](governance/anchor-governance/update-market-parameters.md)
   * [Update Liquidation Parameters](governance/anchor-governance/update-liquidation-parameters.md)
   * [Update ANC Parameters](governance/anchor-governance/update-anc-parameters.md)
   * [Update Governance Parameters](governance/anchor-governance/update-governance-parameters.md)

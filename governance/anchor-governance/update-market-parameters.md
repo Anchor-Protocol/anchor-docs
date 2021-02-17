@@ -1,4 +1,4 @@
-# Update Parameter Values
+# Update Market Parameters
 
 
 
@@ -13,7 +13,6 @@
 | `price_timeframe` |  |
 | `reserve_factor` | Market |
 | `max_borrow_ratio` | Not yet added |
-| `anc_purchase_factor` | Net added yet |
 
 
 

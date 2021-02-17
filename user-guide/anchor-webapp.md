@@ -103,20 +103,16 @@ Station Extension also support cross-chain transfer to Ethereum addresses throug
 
 ![](../.gitbook/assets/picture-10.png)
 
-## Getting TerraUSD
+## Obtaining Terra Stablecoins
 
-Mirror runs on the Terra blockchain, and uses TerraUSD \(UST\), a USD-pegged stablecoin, as the currency of denomination and as a form of collateral. You must have a UST balance in order to use the Mirror Web App, since it pays transaction fees in UST. In addition, it is necessary to trade mAssets and provide liquidity to mAsset/MIR Terraswap pools.
+Anchor's money market uses Terra stablecoins as their base denomination. Users must have a balance of Terra stablecoins before they can perform stablecoin deposits to Anchor.
 
-There are several ways to obtain UST:
+There are several ways to obtain Terra stablecoins:
 
-* Purchasing UST from an exchange
-* Swapping LUNA or other Terra stablecoins for UST
+* Swapping Luna for Terra stablecoins
+* Purchasing Terra stablecoins from an exchange
 
-### Purchasing UST from an exchange
-
-The most direct way to obtain UST is to purchase it from an exchange. This requires having an exchange account with some funds that you can exchange into UST via a trading pair. For instance, you can purchase UST through [Bittrex](https://bittrex.com) through UST/BTC and UST/USDT markets, or on [Kucoin](https://kucoin.com) against BTC, ETH, USDT and XRP. 
-
-### Swapping LUNA or other Terra stablecoins tokens to UST
+### Swapping Luna to Terra Stablecoins
 
 If you have a Terra account with a balance of Luna or other stablecoins such as KRT, or SDT, you can turn them into UST through the Terra blockchain's native swap functionality. For instance, on [Terra Station](https://station.terra.money), the official Terra desktop wallet, you can access the swap feature through the "Swap" page.
 
@@ -131,4 +127,15 @@ The approximate spread and fee for swapping Luna to UST or other stablecoins to 
 {% endhint %}
 
 3. Click **\[Next\]** and sign the transaction to complete the swap. 
+
+### Purchasing Terra Stablecoins From Exchanges
+
+Terra stablecoins can be obtained by directly purchasing them from cryptocurrency exchanges. Trading pairs of Terra stablecoins are available at various exchanges.
+
+### Terra USD \(UST\) Trading Pairs
+
+| Exchange | Trading Pairs |
+| :--- | :--- |
+| [Bittrex](https://bittrex.com/) | [USDT](https://global.bittrex.com/Market/Index?MarketName=USDT-UST), [BTC](https://global.bittrex.com/Market/Index?MarketName=BTC-UST) |
+| [Kucoin](https://kucoin.com/) | [USDT](https://trade.kucoin.com/USDT-UST), [USDC](https://trade.kucoin.com/USDC-UST), [BTC](https://trade.kucoin.com/BTC-UST), [ETH](https://trade.kucoin.com/ETH-UST), [DOT](https://trade.kucoin.com/DOT-UST), [ATOM](https://trade.kucoin.com/ATOM-UST), [SNX](https://trade.kucoin.com/SNX-UST), [AAVE](https://trade.kucoin.com/AAVE-UST), [YFI](https://trade.kucoin.com/YFI-UST) |
 

@@ -1,6 +1,6 @@
 # Collector
 
-The Collector accumulates Anchor protocol fees and swaps them to ANC through the ANC &lt;&gt; UST Terraswap pair. A portion of the swapped ANC tokens are distributed to ANC stakers \(sent to Gov contract\), and the rest is used to replenish future ANC borrower incentives \(sent to Faucet contract\)
+The Collector accumulates Anchor protocol fees and swaps them to ANC through the ANC &lt;&gt; UST Terraswap pair. A portion of the swapped ANC tokens are distributed to ANC stakers \(sent to Gov contract\), with the remainder used to replenish future ANC borrower incentives \(sent to Faucet contract\).
 
 ## Config
 
@@ -48,8 +48,6 @@ pub struct InitMsg {
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `faucet_contract` | HumanAddr | Contract address of Faucet |
 | `reward_weight` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
-
-
 
 ## HandleMsg
 

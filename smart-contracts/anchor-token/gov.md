@@ -18,6 +18,7 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 | `effective_delay` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
+| `fixing_staked_amount_period` | u64 |  |
 
 ## InitMsg
 
@@ -33,6 +34,7 @@ pub struct InitMsg {
     pub effective_delay: u64,
     pub expiration_period: u64,
     pub proposal_deposit: Uint128,
+    pub fixing_staked_amount_period: u64, 
 }
 ```
 {% endtab %}
@@ -46,7 +48,8 @@ pub struct InitMsg {
   "voting_period": 123456, 
   "effective_delay": 123456, 
   "expiration_period": 123456, 
-  "proposal_deposit": "100000000" 
+  "proposal_deposit": "100000000", 
+  "fixing_staked_amount_period": 123456 
 }
 ```
 {% endtab %}
@@ -61,6 +64,7 @@ pub struct InitMsg {
 | `effective_delay` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
+| `fixing_staked_amount_period` | u64 |  |
 
 ## HandleMsg
 
@@ -122,6 +126,7 @@ pub enum HandleMsg {
         effective_delay: Option<u64>, 
         expiration_period: Option<u64>, 
         proposal_deposit: Option<Uint128>, 
+        fixing_staked_amount_period: Option<u64>,
     }
 }
 ```
@@ -137,7 +142,8 @@ pub enum HandleMsg {
     "voting_period": 123456, 
     "effective_delay": 123456, 
     "expiration_period": 123456, 
-    "proposal_deposit": "100000000" 
+    "proposal_deposit": "100000000", 
+    "fixing_staked_amount_period": 123456 
   }
 }
 ```
@@ -153,6 +159,7 @@ pub enum HandleMsg {
 | `effective_delay`\* | u64 | New number of blocks required after a poll pass before executing changes |
 | `expiration_period`\* | u64 | New number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit`\* | Uint128 | New minimum ANC deposit required for a poll to enter voting |
+| `fixing_staked_amount_period`\* | u64 |  |
 
 \* = optional
 
@@ -186,9 +193,9 @@ pub enum VoteOption {
 ```javascript
 {
   "cast_vote": {
-    "amount": "10000000",
     "poll_id": 8,
-    "vote": "yes"
+    "vote": "yes", 
+    "amount": "10000000" 
   }
 }
 ```
@@ -197,9 +204,9 @@ pub enum VoteOption {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `poll_id` | u64 | Amount of voting power \(staked ANC\) to allocate |
-| `vote` | VoteOption | Poll ID |
-| `amount` | Uint128 | Can be `yes` or `no` |
+| `poll_id` | u64 | Poll ID |
+| `vote` | VoteOption | Can be `yes` or `no` |
+| `amount` | Uint128 | Amount of voting power \(staked ANC\) to allocate |
 
 ### `WithdrawVotingTokens`
 
@@ -320,6 +327,38 @@ pub enum HandleMsg {
 ```javascript
 {
   "expire_poll": {
+    "poll_id": 8 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| `poll_id` | u64 | Poll ID |
+
+### `FixStakedAmount`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    FixStakedAmount {
+        poll_id: u64, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "fix_staked_amount": {
     "poll_id": 8 
   }
 }
