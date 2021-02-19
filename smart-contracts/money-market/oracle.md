@@ -73,6 +73,41 @@ pub enum HandleMsg {
 
 \* = optional
 
+### `RegisterFeeder`
+
+Registers a feeder to the specified asset token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    RegisterFeeder {
+        asset: String, 
+        feeder: HumanAddr, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "register_feeder": {
+    "asset": "terra1...", // Stringified Cw20 contract address
+    "feeder": "terra1..." 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `asset` | String | Asset to register feeder |
+| `feeder` | HumanAddr | Address of feeder to register |
+
 ### `FeedPrice`
 
 Feeds new price data. Can only be issued by the owner.
@@ -165,6 +200,56 @@ pub struct ConfigResponse {
 | :--- | :--- | :--- |
 | `owner` | HumanAddr | Address of contract owner |
 | `base_asset` | String | Asset in which fed-in prices will be denominated |
+
+### `Feeder`
+
+Gets the feeder for the specified asset.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg {
+    Feeder {
+        asset: String, 
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `asset` | String | Asset to get feeder information |
+
+### `FeederResponse`
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct FeederResponse {
+    pub asset: String, 
+    pub feeder: HumanAddr, 
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "asset": "terra1...", // Stringified Cw20 Token contract address
+  "feeder": "terra1..." 
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `asset` | String | Asset type |
+| `feeder` | HumanAddr | Address of feeder allowed to feed prices for this asset |
 
 ### `Price`
 
@@ -279,6 +364,7 @@ pub struct PricesResponse {
     pub prices: Vec<PricesResponseElem>, 
 }
 
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct PricesResponseElem {
     pub asset: String,
     pub price: Decimal256,

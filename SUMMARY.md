@@ -55,13 +55,14 @@
 * [Deployed Contracts](smart-contracts/deployed-contracts.md)
 * [bLuna](smart-contracts/bluna/README.md)
   * [Hub](smart-contracts/bluna/hub-1.md)
-  * [Airdrop Registry](smart-contracts/bluna/airdrop-registry.md)
   * [Reward](smart-contracts/bluna/reward.md)
+  * [Airdrop Registry](smart-contracts/bluna/airdrop-registry.md)
 * [Money Market](smart-contracts/money-market/README.md)
   * [Overseer](smart-contracts/money-market/overseer.md)
   * [Market](smart-contracts/money-market/market.md)
   * [Custody \[bLUNA\]](smart-contracts/money-market/custody-bluna-specific.md)
   * [Interest Model](smart-contracts/money-market/interest-model.md)
+  * [Distribution Model](smart-contracts/money-market/distribution-model.md)
   * [Oracle](smart-contracts/money-market/oracle.md)
 * [Liquidation](smart-contracts/liquidations/README.md)
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
@@ -71,7 +72,6 @@
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Faucet](smart-contracts/anchor-token/dripper.md)
-  * [Distribution Model](smart-contracts/anchor-token/distribution-model.md)
 
 ## External Resources
 

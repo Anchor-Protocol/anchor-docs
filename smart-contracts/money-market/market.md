@@ -2,7 +2,7 @@
 
 The Market contract acts as the point of interaction for all lending and borrowing related activities. New stablecoin deposits are added to this contract's balance, while borrows are subtracted from the contract balance.
 
-**10%** of accrued borrow interest \(`reserve_factor`\) is set aside as aToken liquidity reserves, for fluid aToken redemptions even in cases of high borrow demand.
+**10%** of accrued borrow interest \(`reserve_factor`\) is set aside as ANC purchase reserves, used to purchase ANC tokens via the Collector.
 
 ## Config
 
@@ -10,15 +10,18 @@ The Market contract acts as the point of interaction for all lending and borrowi
 | :--- | :--- | :--- |
 | `contract_addr` | CanonicalAddr | Address of itself \(Market contract\) |
 | `owner_addr` | CanonicalAddr | Address of contract owner that can update config |
-| `anchor_token` | CanonicalAddr | Contract address of aToken |
+| `aterra_contract` | CanonicalAddr | Contract address of aTerra |
 | `interest_model` | CanonicalAddr | Contract address of Interest Model |
+| `distribution_model` | CanonicalAddr | Contract address of Distribution Model |
 | `overseer_contract` | CanonicalAddr | Contract address of Overseer |
+| `collector_contract` | CanonicalAddr | Contract address of Collector |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `reserve_factor` | Decimal256 | Percentage of borrower interest set aside as aToken reserves |
+| `reserve_factor` | Decimal256 | Percentage of borrower interest set aside as ANC purchase reserves |
+| `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
 ## InitMsg
 
-Instantiates the money market Market contract. Requires the owner to make an initial deposit of 1 Terra stablecoin and mints 1 aToken to the Market contract \(inaccessible\). The creator's initial stablecoin deposit ensures the aToken supply to always be a high enough value to prevent rounding errors in the aToken exchange rate calculation.
+Instantiates the money market Market contract. Requires the owner to make an initial deposit of 1 Terra stablecoin and mints 1 aTerra to the Market contract \(inaccessible\). The creator's initial stablecoin deposit ensures the aTerra supply to always be a high enough value to prevent rounding errors in the aTerra exchange rate calculation.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -28,9 +31,14 @@ Instantiates the money market Market contract. Requires the owner to make an ini
 pub struct InitMsg {
     pub owner_addr: HumanAddr, 
     pub interest_model: HumanAddr, 
+    pub distribution_model HumanAddr, 
+    pub collector_contract: HumanAddr, 
+    pub faucet_contract: HumanAddr, 
     pub stable_denom: String, 
     pub reserve_factor: Decimal256, 
-    pub anchor_token_code_id: u64, 
+    pub aterra_code_id: u64, 
+    pub anc_emission_rate: Decimal256, 
+    pub max_borrow_factor: Decimal256, 
 }
 ```
 {% endtab %}
@@ -40,9 +48,14 @@ pub struct InitMsg {
 {
   "owner_addr": "terra1...", 
   "interest_model": "terra1...", 
+  "distribution_model": "terra1...", 
+  "collector_contract": "terra1...", 
+  "faucet_contract": "terra1...", 
   "stable_denom": "uusd", // Terra USD
   "reserve_factor": "0.1", 
-  "anchor_token_code_id": 5 
+  "aterra_code_id": 5, 
+  "anc_emission_rate": "0.05", 
+  "max_borrow_factor": "1.0" 
 }
 ```
 {% endtab %}
@@ -52,9 +65,14 @@ pub struct InitMsg {
 | :--- | :--- | :--- |
 | `owner_addr` | HumanAddr | Address of contract owner |
 | `interest_model` | HumanAddr | Contract address of Interest Model |
+| `distribution_model` | HumanAddr | Contract address of Distribution Model |
+| `collector_contract` | HumanAddr | Contract address of Collector |
+| `faucet_contract` | HumanAddr | Contract address of Faucet |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `reserve_factor` | Decimal256 | Portion of borrower interest set aside as reserves |
-| `anchor_token_code_id` | u64 | Code ID for aToken contract |
+| `aterra_code_id` | u64 | Code ID for aTerra contract |
+| `anc_emission_rate` | Decimal256 | Initial per-block ANC emission rate to borrowers |
+| `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
 ## HandleMsg
 
@@ -130,9 +148,9 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `overseer_contract` | HumanAddr | Contract address of Overseer |
 
-### `[Internal] RegisterAnchorToken`
+### `[Internal] RegisterATerra`
 
-Registers the contract address of `aToken`. Issued by `aToken` after initialization.
+Registers the contract address of `aTerra` Cw20 Token contract. Issued by `aTerra` after initialization.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -140,7 +158,7 @@ Registers the contract address of `aToken`. Issued by `aToken` after initializat
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    RegisterAnchorToken {}
+    RegisterATerra {}
 }
 ```
 {% endtab %}
@@ -148,7 +166,7 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "register_anchor_token": {}
+  "register_a_terra": {}
 }
 ```
 {% endtab %}
@@ -158,7 +176,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
-### `UpdateConfig`
+### `UpdateConfig /// Not updated`
 
 Updates the configuration of the contract. Can be only issued by the owner.
 
@@ -326,6 +344,40 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
+### `ClaimRewards`
+
+Claims accrued ANC rewards. Can designate an optional recipient. Sends rewards to message sender if `to` is not specified.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    ClaimRewards {
+        to: Option<HumanAddr>, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "claim_rewards": {
+    "to": "terra1..." 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `to`\* | HumanAddr | Optional recipient of accrued ANC rewards |
+
+\* = optional
+
 ## Receive Hooks
 
 ### `RedeemStable`
@@ -394,11 +446,15 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
     pub owner_addr: HumanAddr, 
-    pub anchor_token: HumanAddr, 
+    pub aterra_contract: HumanAddr, 
     pub interest_model: HumanAddr, 
+    pub distribution_model: HumanAddr, 
     pub overseer_contract: HumanAddr, 
+    pub collector_contract: HumanAddr, 
+    pub faucet_contract: HumanAddr, 
     pub stable_denom: String, 
     pub reserve_factor: Decimal256, 
+    pub max_borrow_factor: Decimal256, 
 }
 ```
 {% endtab %}
@@ -407,11 +463,15 @@ pub struct ConfigResponse {
 ```javascript
 {
   "owner_addr": "terra1...", 
-  "anchor_token": "terra1...", 
+  "aterra_contract": "terra1...", 
   "interest_model": "terra1...", 
+  "distribution_model": "terra1...", 
   "overseer_contract": "terra1...", 
+  "collector_contract": "terra1...", 
+  "faucet_contract": "terra1...", 
   "stable_denom": "uusd", 
-  "reserve_factor": "0.1" 
+  "reserve_factor": "0.1", 
+  "max_borrow_factor": "1.0" 
 }
 ```
 {% endtab %}
@@ -420,11 +480,15 @@ pub struct ConfigResponse {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner_addr` | HumanAddr | Address of contract owner |
-| `anchor_token` | HumanAddr | Contract address of aToken |
+| `aterra_contract` | HumanAddr | Contract address of aTerra |
 | `interest_model` | HumanAddr | Contract address of Interest Model |
+| `distribution_model` | HumanAddr | Contract address of Distribution Model |
 | `overseer_contract` | HumanAddr | Contract address of Overseer |
+| `collector_contract` | HumanAddr | Contract address of Collector |
+| `faucet_contract` | HumanAddr | Contract address of Faucet |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `reserve_factor` | Decimal256 | Portion of borrower interest set aside as reserves |
+| `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
 ### `State`
 
@@ -464,7 +528,10 @@ pub struct State {
     pub total_liabilites: Decimal256, 
     pub total_reserves: Decimal256, 
     pub last_interest_updated: u64, 
+    pub last_reward_updated: u64, 
     pub global_interest_index: Decimal256, 
+    pub global_reward_index: Decimal256, 
+    pub anc_emission_rate: Decimal256, 
 }
 ```
 {% endtab %}
@@ -475,7 +542,10 @@ pub struct State {
   "total_liabilities": "123.456789", 
   "total_reserves": "12.3456789", 
   "last_interest_updated": 123456789, 
-  "global_interest_index": "1.23456789" 
+  "last_reward_updated": 123456789, 
+  "global_interest_index": "1.23456789", 
+  "global_reward_index": "123456.789", 
+  "anc_emission_rate": "0.05"
 }
 ```
 {% endtab %}
@@ -486,11 +556,14 @@ pub struct State {
 | `total_liabilities` | Decimal256 | Total amount of liabilities of all borrowers |
 | `total_reserves` | Decimal256 | Total amount of aToken reserves |
 | `last_interest_updated` | u64 | Block number when interest was last accrued |
+| `last_reward_updated` | u64 | Block number when rewards were last accrued |
 | `global_interest_index` | Decimal256 | Current global interest index |
+| `global_reward_index` | Decimal256 | Current ANC global reward index |
+| `anc_emission_rate` | Decimal256 | Current per-block ANC emission rate to borrowers |
 
 ### `EpochState`
 
-Gets state information related to epoch operations. Returns the interest-accrued `block_height` field is filled. Returns the stored \(no interest accrued\) state if not filled.
+Gets state information related to epoch operations. Returns an interest-accrued value if `block_height` field is filled. Returns the stored \(no interest accrued\) state if not filled.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -530,7 +603,7 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct EpochStateResponse {
     pub exchange_rate: Decimal256, 
-    pub a_token_supply: Uint256, 
+    pub aterra_supply: Uint256, 
 }
 ```
 {% endtab %}
@@ -539,7 +612,7 @@ pub struct EpochStateResponse {
 ```javascript
 {
   "exchange_rate": "1.23", 
-  "a_token_supply": "100000000" 
+  "aterra_supply": "100000000" 
 }
 ```
 {% endtab %}
@@ -547,12 +620,12 @@ pub struct EpochStateResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `exchange_rate` | Decimal256 | Current aToken exchange rate |
-| `a_token_supply` | Uint256 | Current aToken supply |
+| `exchange_rate` | Decimal256 | Current aTerra exchange rate |
+| `aterra_supply` | Uint256 | Current aTerra supply |
 
-### `Liability`
+### `BorrowerInfo`
 
-Gets liability information for the specified borrower
+Gets information for the specified borrower. Returns an interest-and-reward-accrued value if `block_height` field is filled. Returns the stored \(no interest / reward accrued\) state if not filled.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -560,8 +633,9 @@ Gets liability information for the specified borrower
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    Liability {
+    BorrowerInfo {
         borrower: HumanAddr, 
+        block_height: Option<u64>, 
     }
 }
 ```
@@ -570,8 +644,9 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "liability": {
-    "borrower": "terra1..."
+  "borrower_info": {
+    "borrower": "terra1...", 
+    "block_height": 123456 
   }
 }
 ```
@@ -581,17 +656,22 @@ pub enum QueryMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `borrower` | HumanAddr | Address of borrower |
+| `block_height`\* | u64 | Current block number |
 
-### `LiabilityResponse`
+\* = optional
+
+### `BorrowerInfoResponse`
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct LiabilityResponse {
+pub struct BorrowInfoResponse {
     pub borrower: HumanAddr, 
     pub interest_index: Decimal256, 
+    pub reward_index: Decimal256, 
     pub loan_amount: Uint256, 
+    pub pending_rewards: Decimal256, 
 }
 ```
 {% endtab %}
@@ -601,7 +681,9 @@ pub struct LiabilityResponse {
 {
   "borrower": "terra1...", 
   "interest_index": "1.23456789", 
-  "loan_amount": "123456789" 
+  "reward_index": "123.456789", 
+  "loan_amount": "123456789", 
+  "pending_rewards": "123456.789" 
 }
 ```
 {% endtab %}
@@ -611,11 +693,13 @@ pub struct LiabilityResponse {
 | :--- | :--- | :--- |
 | `borrower` | HumanAddr | Address of borrower |
 | `interest_index` | Decimal256 | Interest index of borrower |
+| `reward_index` | Decimal256 | ANC reward index of borrower |
 | `loan_amount` | Uint256 | Amount of borrower's liability |
+| `pending_rewards` | Decimal256 | Amount of ANC rewards accrued to borrower |
 
-### `Liabilities`
+### `BorrowInfos`
 
-Gets liability information for all borrowers.
+Gets information for all borrowers.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -623,7 +707,7 @@ Gets liability information for all borrowers.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    Liabilites {
+    BorrowInfos {
         start_after: Option<HumanAddr>, 
         limit: Option<u32>, 
     }
@@ -634,7 +718,7 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "liabilites": {
+  "borrower_infos": {
     "start_after": "terra1...", 
     "limit": 10 
   }
@@ -650,20 +734,23 @@ pub enum QueryMsg {
 
 \* = optional
 
-### `LiabilitiesResponse`
+### `BorrowerInfosResponse`
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct LiabilitiesResponse {
-    pub liabilities: Vec<LiabilityResponse>, 
+pub struct BorrowerInfosResponse {
+    pub borrower_infos: Vec<BorrowerInfoResponse>, 
 }
 
-pub struct LiabilityResponse {
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct BorrowInfoResponse {
     pub borrower: HumanAddr, 
     pub interest_index: Decimal256, 
-    pub loan_amount: Uint128, 
+    pub reward_index: Decimal256, 
+    pub loan_amount: Uint256, 
+    pub pending_rewards: Decimal256, 
 }
 ```
 {% endtab %}
@@ -671,17 +758,21 @@ pub struct LiabilityResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-  "liabilities": [
+  "borrower_infos": [
     {
       "borrower": "terra1...", 
-      "interest_index": "1.387", 
-      "loan_amount": "2840753" 
+      "interest_index": "1.23456789", 
+      "reward_index": "123.456789", 
+      "loan_amount": "123456789", 
+      "pending_rewards": "123456.789" 
     }, 
     {
       "borrower": "terra1...", 
-      "interest_index": "1.387", 
-      "loan_amount": "2840753" 
-    } 
+      "interest_index": "1.23456789", 
+      "reward_index": "123.456789", 
+      "loan_amount": "123456789", 
+      "pending_rewards": "123456.789" 
+    }  
   ]
 }
 ```
@@ -690,74 +781,13 @@ pub struct LiabilityResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `liabilities` | Vec&lt;LiabilityResponse&gt; | Liability information of borrowers |
+| `borrower_infos` | Vec&lt;BorrowerInfoResponse&gt; | List of borrower information |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `borrower` | HumanAddr | Address of borrower |
 | `interest_index` | Decimal256 | Interest index of borrower |
+| `reward_index` | Decimal256 | ANC reward index of borrower |
 | `loan_amount` | Uint256 | Amount of borrower's liability |
-
-### `LoanAmount`
-
-Gets the liability amount for the specified borrower at the specified block number.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
-    LoanAmount {
-        borrower: HumanAddr, 
-        block_height: u64, 
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "loan_amount": {
-    "borrower": "terra1...", 
-    "block_height": 123456 
-  }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
-| `block_height` | u64 | Block number to apply in calculation |
-
-### `LoanAmountResponse`
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct LoanAmountResponse {
-    pub borrower: HumanAddr, 
-    pub loan_amount: Uint256, 
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "borrower": "terra1...", 
-  "loan_amount": "100000000" 
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
-| `loan_amount` | Uint256 | Amount of borrower's liability at the specified block |
+| `pending_rewards` | Decimal256 | Amount of ANC rewards accrued to borrower |
 

@@ -443,7 +443,7 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 ### `Bid`
 
-Gets information about the specifed bidder's bid for the specified collateral.
+Gets information about the specified bidder's bid for the specified collateral.
 
 {% tabs %}
 {% tab title="Rust" %}

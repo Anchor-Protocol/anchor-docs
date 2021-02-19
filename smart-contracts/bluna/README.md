@@ -10,6 +10,9 @@ Even with a thorough understanding of Anchor Protocol, it is highly recommended 
 
 | Contract | Function |
 | :--- | :--- |
-| [Hub]() | Central hub that manages underlying Luna delegation / undelegation |
+| [Hub](hub-1.md) | Central hub that manages underlying Luna delegation / undelegation |
 | [Reward](reward.md) | Handles bLuna reward distribution |
+| [Airdrop Registry](airdrop-registry.md) | Stores contract interfaces for claiming and swapping tokens airdropped to Luna delegations |
+
+
 

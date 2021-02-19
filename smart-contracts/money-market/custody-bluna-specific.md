@@ -12,6 +12,7 @@ The Custody contract is where supplied bAsset collaterals are managed. Users can
 | `reward_contract` | CanonicalAddr | Contract address of bLuna Reward |
 | `liquidation_contract` | CanonicalAddr | Contract address of Liquidation Contract |
 | `stable_denom` | String | Native token denomination for stablecoin |
+| `basset_info` | BAssetInfo | bAsset token information |
 
 ## InitMsg
 
@@ -27,6 +28,14 @@ pub struct InitMsg {
     pub reward_contract: HumanAddr,
     pub liquidation_contract: HumanAddr,
     pub stable_denom: String, 
+    pub basset_info: BAssetInfo
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct BAssetInfo {
+    pub name: String,
+    pub symbol: String,
+    pub decimals: u8,
 }
 ```
 {% endtab %}
@@ -39,7 +48,12 @@ pub struct InitMsg {
   "market_contract": "terra1...",
   "reward_contract": "terra1...",
   "liquidation_contract": "terra1...", 
-  "stable_denom": "uusd"
+  "stable_denom": "uusd", 
+  "basset_info": {
+    "name": "bonded luna", 
+    "symbol": "ubluna", 
+    "decimals": 6 
+  }
 }
 ```
 {% endtab %}
@@ -53,6 +67,13 @@ pub struct InitMsg {
 | `reward_contract` | HumanAddr | Contract address of bLuna Reward |
 | `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
 | `stable_denom` | String | Native token denomination for stablecoin |
+| `basset_info` | BAssetInfo | bAsset token information |
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `name` | String | Name of bAsset |
+| `symbol` | String | Symbol of bAsset |
+| `decimals` | u8 | Number of decimals of bAsset token |
 
 ## HandleMsg
 
@@ -322,7 +343,7 @@ pub enum HandleMsg {
 | `borrower` | HumanAddr | Address of borrower being liquidated |
 | `amount` | Uint256 | Amount of collateral to liquidate |
 
-### `WithdrawCollateral`
+### `WithdrawCollateral // Not Updated`
 
 {% hint style="info" %}
 Collaterals have to be first unlocked in the [Overseer](overseer.md) before they can be withdrawn by the user.
@@ -437,6 +458,14 @@ pub struct ConfigResponse {
     pub reward_contract: HumanAddr, 
     pub liquidation_contract: HumanAddr, 
     pub stable_denom: String, 
+    pub basset_info: BAssetInfo, 
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct BAssetInfo {
+    pub name: String,
+    pub symbol: String,
+    pub decimals: u8,
 }
 ```
 {% endtab %}
@@ -463,6 +492,13 @@ pub struct ConfigResponse {
 | `reward_contract` | HumanAddr | Contract address bLuna Reward |
 | `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
 | `stable_denom` | String | Native token denomination for stablecoin |
+| `basset_info` | BAssetInfo | bAsset token information |
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `name` | String | Name of bAsset token |
+| `symbol` | String | Symbol of bAsset token |
+| `decimals` | u8 | Number of decimals of bAsset token |
 
 ### `Borrower`
 
