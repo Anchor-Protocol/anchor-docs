@@ -6,13 +6,15 @@
 
 ## Minting bLuna
 
-1. Navigate to the MINT tab in the bASSET page. 
+1. Navigate to the **MINT** tab in the **bASSET** page. 
 
 
 
 2. Enter the amount of Luna to use in minting or the amount of bLuna to mint.
 
-3. Select a Terra blockchain validator to stake Luna and click the \[Proceed\] button to confirm.
+
+
+3. Select a Terra blockchain validator to stake Luna and click the **\[Proceed\]** button to confirm.
 
 
 

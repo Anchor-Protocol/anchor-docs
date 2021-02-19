@@ -280,6 +280,49 @@ pub enum HandleMsg {
 | `amount` | Uint128 | Amount of MIR airdrop claimable by bLuna at this stage |
 | `proof` | Vec&lt;String&gt; | Merkle proof to prove airdrop eligibility |
 
+### `FabricateANCClaim`
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    FabricateANCClaim {
+        stage: u8, 
+        amount: Uint128, 
+        proof: Vec<String>, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "fabricate_anc_claim": {
+    "stage": 5, 
+    "amount": "100000000", 
+    "proof": [
+      "7132d2bab1c85ecda6aa6b417e7b2d085675c1139c5cf5b5556d1c10502ddd53", 
+      "21ca861414821082c98620ba1eef9c91f41309a79c043d5615d51d26cc796b61", 
+      "03cd093fcf64825e33a18eaf86bc828049b1ee1a7348ce60d90ee07b3858bb83", 
+      "b55feb67c2a3540502ea11349ff75bc83ebab03626a2c7b1d4333a7776fd2178", 
+      "6f96345d8d8e8eeea738f51c5f31ce01122ce9e93f7f1a978860263ffc29462e", 
+      "878ec313d28ef91384b426f0c81c2bce00c817added7bdb1e075250df46b0a0d" 
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `stage` | u8 | MIR airdrop stage |
+| `amount` | Uint128 | Amount of MIR airdrop claimable by bLuna at this stage |
+| `proof` | Vec&lt;String&gt; | Merkle proof to prove airdrop eligibility |
+
 ## QueryMsg
 
 ### `Config`

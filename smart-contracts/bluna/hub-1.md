@@ -177,7 +177,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `airdrop_hooks`\* | Vec&lt;Binary&gt; | Base64-encoded string of JSON of [`FabricateMIRClaim`]()\`\` |
+| `airdrop_hooks`\* | Vec&lt;Binary&gt; | Base64-encoded string of JSON of [`FabricateMIRClaim`]() / [`FabricateANCClaim`](airdrop-registry.md#fabricateancclaim)\`\` |
 
 \* = optional
 
@@ -317,7 +317,6 @@ pub enum HandleMsg {
         unbonding_period: Option<u64>, 
         peg_recovery_fee: Option<Decimal>, 
         er_threshold: Option<Decimal>, 
-        reward_denom: Option<String>, 
     }
 }
 ```
@@ -331,8 +330,7 @@ pub enum HandleMsg {
     "underlying_coin_denom": "uluna", 
     "unbonding_period": 1000000, 
     "peg_recovery_fee": "0.001", 
-    "er_threshold": "1.0", 
-    "reward_denom": "uusd" 
+    "er_threshold": "1.0" 
   }
 }
 ```
@@ -346,7 +344,6 @@ pub enum HandleMsg {
 | `unbonding_period`\* | u64 | New time period required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) |
 | `peg_recovery_fee`\* | Decimal | New fee applied to bLuna generation and redemption |
 | `er_threshold`\* | Decimal | New minimum bLuna exchange rate before the peg recovery fee is applied |
-| `reward_denom`\* | String | New native token denomination for distributed bLuna rewards |
 
 \* = optional
 

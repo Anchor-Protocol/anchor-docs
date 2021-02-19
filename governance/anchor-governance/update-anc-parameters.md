@@ -4,6 +4,8 @@
 
 | Parameter | Description |
 | :--- | :--- |
-| `reward_weight` |  |
-| `anc_purchase_factor` |  |
+| `Epoch Period` |  |
+| `ANC Purchase Factor` |  |
+| `Reserver Factor` |  |
+| `Staking Reward Factor` |  |
 

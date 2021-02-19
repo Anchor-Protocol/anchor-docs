@@ -113,9 +113,7 @@ Updates the global reward index based on the newly withdrawn rewards. Can only b
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    UpdateGlobalIndex {
-        prev_balance: Uint128, 
-    }
+    UpdateGlobalIndex {}
 }
 ```
 {% endtab %}
@@ -123,9 +121,7 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "update_global_index": {
-    "prev_balance": "100000000" 
-  }
+  "update_global_index": {}
 }
 ```
 {% endtab %}
@@ -133,41 +129,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `prev_balance` | Uint128 | `reward_denom`balance of `Reward` when this message is issued |
-
-### `[Internal] UpdateRewardDenom`
-
-Updates the native token denomination for bLuna rewards. Can only be issued by `Hub`.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
-    UpdateRewardDenom {
-        reward_denom: Option<String>, 
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "update_reward_denom": {
-    "reward_denom": "uusd" 
-  }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `reward_denom`\* | String | New native token denomination for distributed bLuna rewards |
-
-\* = optional
+|  |  |  |
 
 ### ~~`[Internal] IncreaseBalance`~~
 
@@ -334,6 +296,7 @@ pub enum QueryMsg {
 pub struct StateResponse {
     pub global_index: Decimal, 
     pub total_balance: Uint128, 
+    pub prev_reward_balance: Uint128, 
 }
 ```
 {% endtab %}
@@ -352,6 +315,7 @@ pub struct StateResponse {
 | :--- | :--- | :--- |
 | `global_index` | Decimal | Current global reward index of bLuna |
 | `total_balance` | Uint128 | Total bLuna balance of all holders |
+| `prev_reward_balance` | Uint128 | Terra USD balance of bLuna Reward at the end of last [`UpdateGlobalIndex`](reward.md#internal-updateglobalindex)\`\` |
 
 ### `AccruedRewards`
 

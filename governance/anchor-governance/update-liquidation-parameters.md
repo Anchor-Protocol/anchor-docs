@@ -4,13 +4,13 @@
 
 
 
-| Parameter Name | Description |
-| :--- | :--- |
-| `safe_ratio` |  |
-| `bid_fee` |  |
-| `max_premium_rate` |  |
-| `liquidation_threshold` |  |
-| `price_timeframe` |  |
+| Parameter Name | Description | Initial Value |
+| :--- | :--- | :--- |
+| `Safe Ratio` |  |  |
+| `Bid Fee` |  |  |
+| `Maximum Premium Rate` |  |  |
+| `Partial Liquidation Threshold` |  |  |
+| `Price Timeframe` |  |  |
 
 
 

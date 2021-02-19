@@ -8,11 +8,11 @@ As of February 18th, 2021, Anchor only supports Terra USD as the base currency.
 
 ## Depositing Terra stablecoins
 
-1. Navigate to the Earn page. 
+1. Navigate to the **EARN** page. 
 
 
 
-2. Enter the amount of stablecoins to deposit and click the \[Proceed\] button to confirm.
+2. Enter the amount of stablecoins to deposit and click the **\[Proceed\]** button to confirm.
 
 
 
@@ -26,11 +26,11 @@ As of February 18th, 2021, Anchor only supports Terra USD as the base currency.
 
 ## Withdrawing Terra stablecoins
 
-1. Navigate to the Earn page. 
+1. Navigate to the **EARN** page. 
 
 
 
-2. Enter the withdraw amount and click the \[Proceed\] button to confirm.
+2. Enter the withdraw amount and click the **\[Proceed\]** button to confirm.
 
 
 
