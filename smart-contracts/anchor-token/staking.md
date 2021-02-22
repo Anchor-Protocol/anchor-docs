@@ -18,6 +18,7 @@ The Staking Contract contains the logic for LP Token staking and reward distribu
 pub struct InitMsg {
     pub anchor_token: HumanAddr,
     pub staking_token: HumanAddr,
+    pub distribution_schedule: Vec<(u64, u64, Uint128)>, 
 }
 ```
 {% endtab %}
@@ -26,7 +27,11 @@ pub struct InitMsg {
 ```javascript
 {
   "anchor_token": "terra1...", 
-  "staking_token": "terra1..." 
+  "staking_token": "terra1...", 
+  "distribution_schedule": [
+    [123456, 234567, "100000000"], 
+    [234567, 345678, "200000000"]
+  ]
 }
 ```
 {% endtab %}
@@ -36,6 +41,7 @@ pub struct InitMsg {
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `staking_token` | HumanAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
+| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers |
 
 ## HandleMsg
 
@@ -175,34 +181,6 @@ pub enum Cw20HookMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
-### `DepositReward`
-
-Deposits and distributes ANC rewards to LP token stakers.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum Cw20HookMsg {
-    DepositReward {}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "deposit_reward": {}
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
-
 ## QueryMsg
 
 ### `Config`
@@ -242,6 +220,7 @@ pub enum QueryMsg {
 pub struct ConfigResponse {
     pub anchor_token: HumanAddr,
     pub staking_token: HumanAddr,
+    pub distribution_schedule: Vec<(u64, u64, Uin128)>, 
 }
 ```
 {% endtab %}
@@ -250,7 +229,11 @@ pub struct ConfigResponse {
 ```javascript
 {
   "anchor_token": "terra1...", 
-  "staking_token": "terra1..." 
+  "staking_token": "terra1...", 
+  "distribution_schedule": [
+    [123456, 234567, "100000000"], 
+    [234567, 345678, "200000000"]
+  ]
 }
 ```
 {% endtab %}
@@ -260,10 +243,11 @@ pub struct ConfigResponse {
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `staking_token` | HumanAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
+| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers |
 
-### `PoolInfo`
+### `State`
 
-Gets LP token staking information.
+Gets state information for the specified block number.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -271,7 +255,9 @@ Gets LP token staking information.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    PoolInfo {}
+    State {
+        block_height: Option<u64>, 
+    }
 }
 ```
 {% endtab %}
@@ -279,7 +265,9 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "pool_info": {}
+  "state": {
+    "block_height": 123456 
+  }
 }
 ```
 {% endtab %}
@@ -287,18 +275,20 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-|  |  |  |
+| `block_height`\* | u64 | Current block number |
 
-### `PoolInfoResponse`
+\* = optional
+
+### `StateResponse`
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct PoolInfoResponse {
-    pub total_bond_amount: Uint128,
-    pub reward_index: Decimal,
-    pub pending_reward: Uint128,
+pub struct StateResponse {
+    pub last_distributed: u64, 
+    pub total_bond_amount: Uint128, 
+    pub global_reward_index: Decimal,
 }
 ```
 {% endtab %}
@@ -306,9 +296,9 @@ pub struct PoolInfoResponse {
 {% tab title="JSON" %}
 ```javascript
 {
+  "last_distributed": 123456, 
   "total_bond_amount": "100000000", 
-  "reward_index": "123.456", 
-  "pending_reward": "100000000" 
+  "global_reward_index": "123.456" 
 }
 ```
 {% endtab %}
@@ -316,11 +306,11 @@ pub struct PoolInfoResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| `last_distributed` | u64 | Block number when rewards where last distributed |
 | `total_bond_amount` | Uint128 | Total amount of bonded LP tokens by all stakers |
-| `reward_index` | Decimal | Global reward index for LP staking rewards |
-| `pending_reward` | Uint128 | Total amount of deposited rewards yet to be distributed |
+| `global_reward_index` | Decimal | Global reward index for LP staking rewards |
 
-### `RewardInfo`
+### `StakerInfo`
 
 Gets reward information for the specified LP token staker.
 
@@ -330,8 +320,9 @@ Gets reward information for the specified LP token staker.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    RewardInfo {
+    StakerInfo {
         staker: HumanAddr, 
+        block_height: Option<u64>, 
     }
 }
 ```
@@ -340,8 +331,9 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "reward_info": {
-    "staker": "terra1..." 
+  "staker_info": {
+    "staker": "terra1...", 
+    "block_height": 123456 
   }
 }
 ```
@@ -351,16 +343,19 @@ pub enum QueryMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `staker` | HumanAddr | Address of LP token staker |
+| `block_height`\* | u64 | Current block number |
 
-### `RewardInfoResponse`
+\* = optional
+
+### `StakerInfoResponse`
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct RewardInfoResponse {
+pub struct StakerInfoResponse {
     pub staker: HumanAddr,
-    pub index: Decimal,
+    pub reward_index: Decimal,
     pub bond_amount: Uint128,
     pub pending_reward: Uint128,
 }
@@ -371,7 +366,7 @@ pub struct RewardInfoResponse {
 ```javascript
 {
   "staker": "terra1...", 
-  "index": "123.456", 
+  "reward_index": "123.456", 
   "bond_amount": "100000000", 
   "pending_rewards": "100000000" 
 }
@@ -382,7 +377,7 @@ pub struct RewardInfoResponse {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `staker` | HumanAddr | Address of LP token staker |
-| `index` | Decimal | Reward index of staker |
+| `reward_index` | Decimal | Reward index of staker |
 | `bond_amount` | Uint128 | Amount of LP tokens bonded by staker |
 | `pending_rewards` | Uint128 | Amount of pending rewards of staker |
 

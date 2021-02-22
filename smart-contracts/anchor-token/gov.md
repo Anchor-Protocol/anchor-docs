@@ -15,10 +15,10 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
 | `voting_period` | u64 | Number of blocks during which votes can be cast |
-| `effective_delay` | u64 | Number of blocks required after a poll pass before executing changes |
+| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `fixing_staked_amount_period` | u64 |  |
+| `snapshot_period` | u64 |  |
 
 ## InitMsg
 
@@ -31,10 +31,10 @@ pub struct InitMsg {
     pub quorum: Decimal,
     pub threshold: Decimal,
     pub voting_period: u64,
-    pub effective_delay: u64,
+    pub timelock_period: u64,
     pub expiration_period: u64,
     pub proposal_deposit: Uint128,
-    pub fixing_staked_amount_period: u64, 
+    pub snapshot_period: u64, 
 }
 ```
 {% endtab %}
@@ -46,10 +46,10 @@ pub struct InitMsg {
   "quorum": "0.1", 
   "threshold": "0.5", 
   "voting_period": 123456, 
-  "effective_delay": 123456, 
+  "timelock_period": 123456, 
   "expiration_period": 123456, 
   "proposal_deposit": "100000000", 
-  "fixing_staked_amount_period": 123456 
+  "snapshot_period": 123456 
 }
 ```
 {% endtab %}
@@ -61,10 +61,10 @@ pub struct InitMsg {
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
 | `voting_period` | u64 | Number of blocks during which votes can be cast |
-| `effective_delay` | u64 | Number of blocks required after a poll pass before executing changes |
+| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `fixing_staked_amount_period` | u64 |  |
+| `snapshot_period` | u64 |  |
 
 ## HandleMsg
 
@@ -123,10 +123,10 @@ pub enum HandleMsg {
         quorum: Option<Decimal>, 
         threshold: Option<Decimal>, 
         voting_period: Option<u64>, 
-        effective_delay: Option<u64>, 
+        timelock_period: Option<u64>, 
         expiration_period: Option<u64>, 
         proposal_deposit: Option<Uint128>, 
-        fixing_staked_amount_period: Option<u64>,
+        snapshot_period: Option<u64>,
     }
 }
 ```
@@ -140,10 +140,10 @@ pub enum HandleMsg {
     "quorum": "0.1", 
     "threshold": "0.1", 
     "voting_period": 123456, 
-    "effective_delay": 123456, 
+    "timelock_period": 123456, 
     "expiration_period": 123456, 
     "proposal_deposit": "100000000", 
-    "fixing_staked_amount_period": 123456 
+    "snapshot_period": 123456 
   }
 }
 ```
@@ -156,10 +156,10 @@ pub enum HandleMsg {
 | `quorum`\* | Decimal | New percentage of participation \(of total staked ANC\) required for a poll to pass |
 | `threshold`\* | Decimal | New percentage of `yes` votes required for a poll to pass |
 | `voting_period`\* | u64 | New number of blocks during which votes for a poll can be cast after it has finished its deposit |
-| `effective_delay`\* | u64 | New number of blocks required after a poll pass before executing changes |
+| `timelock_period`\* | u64 | New number of blocks required after a poll pass before executing changes |
 | `expiration_period`\* | u64 | New number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit`\* | Uint128 | New minimum ANC deposit required for a poll to enter voting |
-| `fixing_staked_amount_period`\* | u64 |  |
+| `snapshot_period`\* | u64 |  |
 
 \* = optional
 
@@ -427,7 +427,7 @@ pub enum Cw20HookMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct ExecuteMsg {
-    pub order: u32, 
+    pub order: u64, 
     pub contract: HumanAddr,
     pub msg: Binary,
 }
@@ -468,7 +468,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `order` | u32 | Order sequence of message |
+| `order` | u64 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON of governance message |
 
@@ -516,9 +516,10 @@ pub struct ConfigResponse {
     pub quorum: Decimal,
     pub threshold: Decimal,
     pub voting_period: u64,
-    pub effective_delay: u64,
+    pub timelock_period: u64,
     pub expiration_period: u64,
-    pub proposal_deposit: Uint128,
+    pub proposal_deposit: Uint128, 
+    pub snapshot_period: u64, 
 }
 ```
 {% endtab %}
@@ -526,13 +527,15 @@ pub struct ConfigResponse {
 {% tab title="JSON" %}
 ```javascript
 {
+  "owner": "terra1...", 
   "anchor_token": "terra1...", 
   "quorum": "0.1", 
   "threshold": "0.5", 
   "voting_period": 123456, 
-  "effective_delay": 123456, 
+  "timelock_period": 123456, 
   "expiration_period": 123456, 
-  "proposal_deposit": "100000000" 
+  "proposal_deposit": "100000000", 
+  "snapshot_period": 123456 
 }
 ```
 {% endtab %}
@@ -545,9 +548,10 @@ pub struct ConfigResponse {
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
 | `voting_period` | u64 | Number of blocks during which votes can be cast |
-| `effective_delay` | u64 | Number of blocks required after a poll pass before executing changes |
+| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
+| `snapshot_period` | u64 |  |
 
 ### `State`
 
@@ -775,7 +779,7 @@ pub enum PollStatus {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct ExecuteMsg {
-    pub order: u32, 
+    pub order: u64, 
     pub contract: HumanAddr,
     pub msg: Binary,
 }
@@ -838,7 +842,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `order` | u32 | Order sequence of message |
+| `order` | u64 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON governance message |
 
@@ -1029,13 +1033,13 @@ pub struct ExecuteMsg {
 | :--- | :--- | :--- |
 | `id` | u64 | Poll ID |
 | `creator` | HumanAddr | Poll creator |
-| `status` | `PollStatus` | Current poll status |
+| `status` | PollStatus | Current poll status |
 | `end_height` | u64 | Block number when voting for this poll closes |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
 | `deposit_amount` | Uint128 | ANC deposit used to submit poll |
-| `execute_data`\* | `Vec<ExecuteMsg>` | List of governance messages to be issued upon poll execution |
+| `execute_data`\* | Vec&lt;ExecuteMsg&gt; | List of governance messages to be issued upon poll execution |
 | `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
 | `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
 | `total_balance_at_end_poll`\* | Uint128 | Poll's total votes \(staked ANC amount\) at the end of the poll |
@@ -1050,7 +1054,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `order` | u32 | Order sequence of message |
+| `order` | u64 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON governance message |
 

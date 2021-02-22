@@ -10,7 +10,7 @@ The Collector accumulates Anchor protocol fees and swaps them to ANC through the
 | `terraswap_factory` | CanonicalAddr | Contract address of Terraswap Factory |
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
 | `faucet_contract` | CanonicalAddr | Contract address of Faucet |
-| `reward_weight` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
+| `reward_factor` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
 
 ## InitMsg
 
@@ -23,7 +23,7 @@ pub struct InitMsg {
     pub terraswap_factory: HumanAddr,
     pub anchor_token: HumanAddr,
     pub faucet_contract: HumanAddr,
-    pub reward_weight: Decimal,
+    pub reward_factor: Decimal,
 }
 ```
 {% endtab %}
@@ -35,7 +35,7 @@ pub struct InitMsg {
   "terraswap_factory": "terra1...", 
   "anchor_token": "terra1...", 
   "faucet_contract": "terra1...", 
-  "reward_weight": "0.5" 
+  "reward_factor": "0.5" 
 }
 ```
 {% endtab %}
@@ -47,7 +47,7 @@ pub struct InitMsg {
 | `terraswap_factory` | HumanAddr | Contract address of Terraswap Factory |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `faucet_contract` | HumanAddr | Contract address of Faucet |
-| `reward_weight` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
+| `reward_factor` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
 
 ## HandleMsg
 
@@ -62,7 +62,7 @@ Updates the Collector contract configuration.
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
     UpdateConfig {
-        reward_weight: Option<Decimal>, 
+        reward_factor: Option<Decimal>, 
     }
 }
 ```
@@ -72,7 +72,7 @@ pub enum HandleMsg {
 ```javascript
 {
   "update_config": {
-    "reward_weight": "0.5" 
+    "reward_factor": "0.5" 
   }
 }
 ```
@@ -81,7 +81,7 @@ pub enum HandleMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `reward_weight`\* | Decimal | New ratio of purchased ANC distributed to ANC stakers |
+| `reward_factor`\* | Decimal | New ratio of purchased ANC distributed to ANC stakers |
 
 \* = optional
 
@@ -119,7 +119,7 @@ pub enum HandleMsg {
 
 ### `[Internal] Distribute`
 
-Distributes `reward_weight` portion of swapped ANC tokens to ANC stakers and sends the remainder to the Faucet contract to replenish future borrower ANC incentives. Can only be issued by itself.
+Distributes `reward_factor` portion of swapped ANC tokens to ANC stakers and sends the remainder to the Faucet contract to replenish future borrower ANC incentives. Can only be issued by itself.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -186,7 +186,7 @@ pub struct ConfigResponse {
     pub terraswap_factory: HumanAddr,
     pub anchor_token: HumanAddr,
     pub faucet_contract: HumanAddr,
-    pub reward_weight: Decimal,
+    pub reward_factor: Decimal,
 }
 ```
 {% endtab %}
@@ -210,5 +210,5 @@ pub struct ConfigResponse {
 | `terraswap_factory` | HumanAddr | Contract address of Terraswap Factory |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `faucet_contract` | HumanAddr | Contract address of Faucet |
-| `reward_weight` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
+| `reward_factor` | Decimal | Ratio of purchased ANC distributed to ANC stakers |
 
