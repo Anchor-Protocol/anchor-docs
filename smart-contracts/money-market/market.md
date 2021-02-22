@@ -15,6 +15,7 @@ The Market contract acts as the point of interaction for all lending and borrowi
 | `distribution_model` | CanonicalAddr | Contract address of Distribution Model |
 | `overseer_contract` | CanonicalAddr | Contract address of Overseer |
 | `collector_contract` | CanonicalAddr | Contract address of Collector |
+| `faucet_contract` | CanonicalAddr | Contract address of Faucet |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `reserve_factor` | Decimal256 | Percentage of borrower interest set aside as ANC purchase reserves |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
@@ -176,7 +177,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
-### `UpdateConfig /// Not updated`
+### `UpdateConfig /// TBD`
 
 Updates the configuration of the contract. Can be only issued by the owner.
 
@@ -190,6 +191,7 @@ pub enum HandleMsg {
         owner_addr: Option<HumanAddr>, 
         reserve_factor: Option<Decimal256>, 
         interest_model: Option<HumanAddr>, 
+        distribution_model: Option<HumanAddr>, 
     }
 }
 ```
@@ -201,7 +203,8 @@ pub enum HandleMsg {
   "update_config": {
     "owner_addr": "terra1...", 
     "reserve_factor": "0.1", 
-    "interest_model": "terra1..."
+    "interest_model": "terra1...", 
+    "distribution_model": "terra1..." 
   }
 }
 ```
@@ -213,6 +216,7 @@ pub enum HandleMsg {
 | `owner_addr`\* | HumanAddr | Address of new owner |
 | `reserve_factor`\* | Decimal256 | New portion of borrower interest set aside as reserves |
 | `interest_model`\* | HumanAddr | New interest model contract address |
+| `distribution_model`\* | HumanAddr | New contract address of Distribution Model |
 
 \* = optional
 
@@ -382,7 +386,7 @@ pub enum HandleMsg {
 
 ### `RedeemStable`
 
-Redeems aTokens to their underlying stablecoins.
+Redeems aTerra to their underlying stablecoins.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -554,7 +558,7 @@ pub struct State {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `total_liabilities` | Decimal256 | Total amount of liabilities of all borrowers |
-| `total_reserves` | Decimal256 | Total amount of aToken reserves |
+| `total_reserves` | Decimal256 | Total amount of ANC purchase reserves |
 | `last_interest_updated` | u64 | Block number when interest was last accrued |
 | `last_reward_updated` | u64 | Block number when rewards were last accrued |
 | `global_interest_index` | Decimal256 | Current global interest index |

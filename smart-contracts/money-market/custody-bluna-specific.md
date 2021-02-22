@@ -28,7 +28,7 @@ pub struct InitMsg {
     pub reward_contract: HumanAddr,
     pub liquidation_contract: HumanAddr,
     pub stable_denom: String, 
-    pub basset_info: BAssetInfo
+    pub basset_info: BAssetInfo, 
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -343,7 +343,7 @@ pub enum HandleMsg {
 | `borrower` | HumanAddr | Address of borrower being liquidated |
 | `amount` | Uint256 | Amount of collateral to liquidate |
 
-### `WithdrawCollateral // Not Updated`
+### `WithdrawCollateral // TBD`
 
 {% hint style="info" %}
 Collaterals have to be first unlocked in the [Overseer](overseer.md) before they can be withdrawn by the user.
@@ -478,7 +478,12 @@ pub struct BAssetInfo {
   "market_contract": "terra1...", 
   "reward_contract": "terra1...", 
   "liquidation_contract": "terra1...", 
-  "stable_denom": "uusd" 
+  "stable_denom": "uusd", 
+  "basset_info": {
+    "name": "bonded luna", 
+    "symbol": "ubluna", 
+    "decimals": 6 
+  }
 }
 ```
 {% endtab %}
@@ -498,7 +503,7 @@ pub struct BAssetInfo {
 | :--- | :--- | :--- |
 | `name` | String | Name of bAsset token |
 | `symbol` | String | Symbol of bAsset token |
-| `decimals` | u8 | Number of decimals of bAsset token |
+| `decimals` | u8 | Number of decimals of bAsset Token |
 
 ### `Borrower`
 
@@ -610,6 +615,7 @@ pub struct BorrowersResponse {
     pub borrowers: Vec<BorrowerResponse>, 
 }
 
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BorrowerResponse {
     pub borrower: HumanAddr, 
     pub balance: Uint256, 

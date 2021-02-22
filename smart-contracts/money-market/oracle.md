@@ -217,6 +217,16 @@ pub enum QueryMsg {
 }
 ```
 {% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "feeder": {
+    "asset": "terra1..." // Stringified Cw20 Token contract address
+  }
+}
+```
+{% endtab %}
 {% endtabs %}
 
 | Key | Type | Description |
