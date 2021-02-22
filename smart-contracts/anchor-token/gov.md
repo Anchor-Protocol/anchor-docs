@@ -18,7 +18,7 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 | `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 |  |
+| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
 
 ## InitMsg
 
@@ -64,7 +64,7 @@ pub struct InitMsg {
 | `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 |  |
+| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
 
 ## HandleMsg
 
@@ -159,7 +159,7 @@ pub enum HandleMsg {
 | `timelock_period`\* | u64 | New number of blocks required after a poll pass before executing changes |
 | `expiration_period`\* | u64 | New number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit`\* | Uint128 | New minimum ANC deposit required for a poll to enter voting |
-| `snapshot_period`\* | u64 |  |
+| `snapshot_period`\* | u64 | New window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
 
 \* = optional
 
@@ -338,9 +338,9 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
-### `FixStakedAmount`
+### `SnapshotPoll`
 
-
+Snapshots the total amount of staked ANC and stores the number to the specified poll. This staked ANC amount is used to determine the degree of participation for this poll, calculated by dividing the total amount of ANC voted to the poll with the total staked ANC supply at the time of [EndPoll](gov.md#endpoll). Can only be issued within a window of `snapshot_period` blocks before the poll's `end_height`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -348,7 +348,7 @@ pub enum HandleMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    FixStakedAmount {
+    SnapshotPoll {
         poll_id: u64, 
     }
 }
@@ -358,7 +358,7 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "fix_staked_amount": {
+  "snapshot_poll": {
     "poll_id": 8 
   }
 }
@@ -551,7 +551,7 @@ pub struct ConfigResponse {
 | `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
 | `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 |  |
+| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
 
 ### `State`
 
@@ -701,11 +701,11 @@ pub enum VoteOption {
 | :--- | :--- | :--- |
 | `balance` | Uint128 | Amount of ANC staked by staker |
 | `share` | Uint128 | Total voting shares owned by staker |
-| `locked_balance` | `Vec<(u64, VoterInfo)>` | List of \(voted poll's ID, voter's vote information\) |
+| `locked_balance` | Vec&lt;\(u64, VoterInfo\)&gt; | List of \(voted poll's ID, voter's vote information\) |
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `vote` | `VoteOption` | Vote type made by staker |
+| `vote` | VoteOption | Vote type made by staker |
 | `balance` | Uint128 | Amount of staked ANC locked to vote this poll |
 
 | Name | Description |
@@ -821,7 +821,7 @@ pub struct ExecuteMsg {
 | :--- | :--- | :--- |
 | `id` | u64 | Poll ID |
 | `creator` | HumanAddr | Poll creator |
-| `status` | `PollStatus` | Current poll status |
+| `status` | PollStatus | Current poll status |
 | `end_height` | u64 | Block number when voting for this poll closes |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
@@ -1027,7 +1027,7 @@ pub struct ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `polls` | `Vec<PollResponse>` | List of poll information |
+| `polls` | Vec&lt;PollResponse&gt; | List of poll information |
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
@@ -1156,12 +1156,12 @@ pub enum VoteOption {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `voters` | `Vec<VotersResponseItem>` | List of voter information |
+| `voters` | Vec&lt;VotersResponseItem&gt; | List of voter information |
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `voter` | HumanAddr | Address of voter |
-| `vote` | `VoteOption` | Vote type made by voter |
+| `vote` | VoteOption | Vote type made by voter |
 | `balance` | Uint128 | Amount of staked ANC locked to vote this poll |
 
 | Name | Description |
