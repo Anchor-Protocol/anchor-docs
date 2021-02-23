@@ -60,7 +60,6 @@ For money market and liquidations, a separate set of contracts are to be deploye
 | Community | [terra1...](https://finder.terra.money/) |
 | Collector | [terra1...](https://finder.terra.money/) |
 | Faucet | [terra1...](https://finder.terra.money/) |
-| Distribution Model | [terra1...](https://finder.terra.money/) |
 
 #### Cw20-Compliant Token Contracts
 
@@ -79,7 +78,6 @@ For money market and liquidations, a separate set of contracts are to be deploye
 | Community | [terra1...](https://finder.terra.money/) |
 | Collector | [terra1...](https://finder.terra.money/) |
 | Faucet | [terra1...](https://finder.terra.money/) |
-| Distribution Model | [terra1...](https://finder.terra.money/) |
 
 #### Cw20-Compliant Token Contracts
 
@@ -111,6 +109,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 | Market | [terra1...](https://finder.terra.money/) |
 | bLuna Custody | [terra1...](https://finder.terra.money/) |
 | Interest Model | [terra1...](https://finder.terra.money/) |
+| Distribution Model | [terra1...](https://finder.terra.money/) |
 | Oracle | [terra1...](https://finder.terra.money/) |
 
 #### Cw20-Compliant Token Contracts
@@ -130,6 +129,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 | Market | [terra1...](https://finder.terra.money/) |
 | bLuna Custody | [terra1...](https://finder.terra.money/) |
 | Interest Model | [terra1...](https://finder.terra.money/) |
+| Distribution Model | [terra1...](https://finder.terra.money/) |
 | Oracle | [terra1...](https://finder.terra.money/) |
 
 #### Cw20-Compliant Token Contracts

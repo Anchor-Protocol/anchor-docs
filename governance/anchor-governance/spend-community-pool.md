@@ -12,9 +12,9 @@ The purpose of the grant is to empower ecosystem teams to build necessary tools 
 
 | Title | Description | Optionality |
 | :--- | :--- | :--- |
-| Title |  | Required |
-| Description |  | Required |
-| Information Link |  | Optional |
+| Title | Title of proposal | Required |
+| Description | Short description of proposal | Required |
+| Information Link | External link for further proposal rationale | Optional |
 
 
 
