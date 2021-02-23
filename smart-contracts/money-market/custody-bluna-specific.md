@@ -6,6 +6,7 @@ The Custody contract is where supplied bAsset collaterals are managed. Users can
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `owner` | CanonicalAddr | Address of contract owner |
 | `collateral_token` | CanonicalAddr | Contract address of bLuna Token |
 | `overseer_contract` | CanonicalAddr | Contract address of Overseer |
 | `market_contract` | CanonicalAddr | Contract address of Market |
@@ -22,6 +23,7 @@ The Custody contract is where supplied bAsset collaterals are managed. Users can
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct InitMsg {
+    pub owner: HumanAddr, 
     pub collateral_token: HumanAddr,
     pub overseer_contract: HumanAddr,
     pub market_contract: HumanAddr,
@@ -43,6 +45,7 @@ pub struct BAssetInfo {
 {% tab title="JSON" %}
 ```javascript
 {
+  "owner": "terra1...", 
   "collateral_token": "terra1...",
   "overseer_contract": "terra1...",
   "market_contract": "terra1...",
@@ -61,6 +64,7 @@ pub struct BAssetInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `owner` | HumanAddr | Address of contract owner |
 | `collateral_token` | HumanAddr | Contract address of bLuna Token |
 | `overseer_contract` | HumanAddr | Contract address of Overseer |
 | `market_contract` | HumanAddr | Contract address of Market |
@@ -128,6 +132,7 @@ Updates the configuration of the Custody contract.
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
     UpdateConfig {
+        owner: Option<HumanAddr>, 
         liquidation_contract: Option<HumanAddr>, 
     }
 }
@@ -138,6 +143,7 @@ pub enum HandleMsg {
 ```javascript
 {
   "update_config": {
+    "owner": "terra1...", 
     "liquidation_contract": "terra1..." 
   }
 }
@@ -147,6 +153,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `owner`\* | HumanAddr | New address of contract owner |
 | `liquidation_contract`\* | HumanAddr | New contract address of Liquidation Contract |
 
 \* = optional
@@ -343,7 +350,7 @@ pub enum HandleMsg {
 | `borrower` | HumanAddr | Address of borrower being liquidated |
 | `amount` | Uint256 | Amount of collateral to liquidate |
 
-### `WithdrawCollateral // TBD`
+### `WithdrawCollateral`
 
 {% hint style="info" %}
 Collaterals have to be first unlocked in the [Overseer](overseer.md) before they can be withdrawn by the user.
@@ -452,6 +459,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
+    pub owner: HumanAddr, 
     pub collateral_token: HumanAddr, 
     pub overseer_contract: HumanAddr, 
     pub market_contract: HumanAddr, 
@@ -473,6 +481,7 @@ pub struct BAssetInfo {
 {% tab title="JSON" %}
 ```javascript
 {
+  "owner": "terra1...", 
   "collateral_token": "terra1...", 
   "overseer_contract": "terra1...", 
   "market_contract": "terra1...", 
@@ -491,6 +500,7 @@ pub struct BAssetInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `owner` | HumanAddr | Address of contract owner |
 | `collateral_token` | HumanAddr | Contract address of bLuna Token |
 | `overseer_contract` | HumanAddr | Contract address of Overseer |
 | `market_contract` | HumanAddr | Contract address of Market |

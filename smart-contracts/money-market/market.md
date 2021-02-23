@@ -31,10 +31,6 @@ Instantiates the money market Market contract. Requires the owner to make an ini
 #[serde(rename_all = "snake_case")]
 pub struct InitMsg {
     pub owner_addr: HumanAddr, 
-    pub interest_model: HumanAddr, 
-    pub distribution_model HumanAddr, 
-    pub collector_contract: HumanAddr, 
-    pub faucet_contract: HumanAddr, 
     pub stable_denom: String, 
     pub reserve_factor: Decimal256, 
     pub aterra_code_id: u64, 
@@ -48,15 +44,11 @@ pub struct InitMsg {
 ```javascript
 {
   "owner_addr": "terra1...", 
-  "interest_model": "terra1...", 
-  "distribution_model": "terra1...", 
-  "collector_contract": "terra1...", 
-  "faucet_contract": "terra1...", 
   "stable_denom": "uusd", // Terra USD
   "reserve_factor": "0.1", 
   "aterra_code_id": 5, 
   "anc_emission_rate": "0.05", 
-  "max_borrow_factor": "1.0" 
+  "max_borrow_factor": "0.95" 
 }
 ```
 {% endtab %}
@@ -65,10 +57,6 @@ pub struct InitMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner_addr` | HumanAddr | Address of contract owner |
-| `interest_model` | HumanAddr | Contract address of Interest Model |
-| `distribution_model` | HumanAddr | Contract address of Distribution Model |
-| `collector_contract` | HumanAddr | Contract address of Collector |
-| `faucet_contract` | HumanAddr | Contract address of Faucet |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `reserve_factor` | Decimal256 | Portion of borrower interest set aside as reserves |
 | `aterra_code_id` | u64 | Code ID for aTerra contract |
@@ -117,9 +105,9 @@ pub enum HandleMsg {
 
 \* = optional
 
-### `RegisterOverseer`
+### `RegisterContracts`
 
-Registers the contract address of `Overseer`. Can only be issued by the owner.
+Registers the addresses of other Money Market contracts. Can only be issued by the owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -127,8 +115,12 @@ Registers the contract address of `Overseer`. Can only be issued by the owner.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    RegisterOverseer {
+    RegisterContracts {
         overseer_contract: HumanAddr, 
+        interest_model: HumanAddr, 
+        distribution_model: HumanAddr, 
+        collector_contract: HumanAddr, 
+        faucet_contract: HumanAddr, 
     }
 }
 ```
@@ -137,8 +129,12 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "register_overseer": {
-    "overseer_contract": "terra1..."
+  "register_contracts": {
+    "overseer_contract": "terra1...", 
+    "interest_model": "terra1...", 
+    "distribution_model": "terra1...", 
+    "collector_contract": "terra1...", 
+    "faucet_contract": "terra1..." 
   }
 }
 ```
@@ -148,6 +144,10 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `overseer_contract` | HumanAddr | Contract address of Overseer |
+| `interest_model` | HumanAddr | Contract address of Interest Model |
+| `distribution_model` | HumanAddr | Contract address of Distribution Model |
+| `collector_contract` | HumanAddr | Contract address of Collector |
+| `faucet_contract` | HumanAddr | Contract address of Faucet |
 
 ### `[Internal] RegisterATerra`
 
@@ -177,7 +177,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
-### `UpdateConfig /// TBD`
+### `UpdateConfig`
 
 Updates the configuration of the contract. Can be only issued by the owner.
 
@@ -190,6 +190,7 @@ pub enum HandleMsg {
     UpdateConfig {
         owner_addr: Option<HumanAddr>, 
         reserve_factor: Option<Decimal256>, 
+        max_borrow_factor: Option<Decimal256>, 
         interest_model: Option<HumanAddr>, 
         distribution_model: Option<HumanAddr>, 
     }
@@ -203,6 +204,7 @@ pub enum HandleMsg {
   "update_config": {
     "owner_addr": "terra1...", 
     "reserve_factor": "0.1", 
+    "max_borrow_factor": "0.95", 
     "interest_model": "terra1...", 
     "distribution_model": "terra1..." 
   }
@@ -215,6 +217,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `owner_addr`\* | HumanAddr | Address of new owner |
 | `reserve_factor`\* | Decimal256 | New portion of borrower interest set aside as reserves |
+| `max_borrow_factor`\* | Decimal256 | New maximum portion of stablecoin liquidity available for borrows |
 | `interest_model`\* | HumanAddr | New interest model contract address |
 | `distribution_model`\* | HumanAddr | New contract address of Distribution Model |
 
@@ -254,6 +257,41 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `borrower` | HumanAddr | Address of loan borrower |
 | `prev_balance` | Uint256 | Balance of Market contract prior to collateral liquidation |
+
+### `ExecuteEpochOperations`
+
+Adjusts the borrower ANC emission rate and sends accumulated ANC purchase reserves to Collector. Can only be issued by Overseer
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    ExecuteEpochOperations {
+        target_deposit_rate: Decimal256, 
+        deposit_rate: Decimal256, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "execute_epoch_operations": {
+    "target_deposit_rate": "0.000000001", 
+    "deposit_rate": "0.000000002" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `target_deposit_rate` | Decimal256 | Target per-block deposit rate of Anchor |
+| `deposit_rate` | Decimal256 | Calculated per-block deposit of the last epoch |
 
 ### `DepositStable`
 

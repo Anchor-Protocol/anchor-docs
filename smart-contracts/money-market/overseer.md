@@ -146,7 +146,7 @@ pub enum HandleMsg {
         symbol: String, 
         collateral_token: HumanAddr, 
         custody_contract: HumanAddr, 
-        ltv: Decimal256,  
+        max_ltv: Decimal256,  
     }
 }
 ```
@@ -160,7 +160,7 @@ pub enum HandleMsg {
     "symbol": "ubluna", 
     "collateral_token": "terra1...", 
     "custody_contract": "terra1...", 
-    "ltv": "0.5" 
+    "max_ltv": "0.75" 
   }
 }
 ```
@@ -173,7 +173,7 @@ pub enum HandleMsg {
 | `symbol` | String | Token symbol of collateral bAsset |
 | `collateral_token` | HumanAddr | Cw20 token contract address of collateral |
 | `custody_contract` | HumanAddr | Custody contract address of collateral |
-| `ltv` | Decimal256 | Maximum loan-to-value ratio allowed for collateral |
+| `max_ltv` | Decimal256 | Maximum loan-to-value ratio allowed for collateral |
 
 ### `UpdateWhitelist`
 
@@ -188,7 +188,7 @@ pub enum HandleMsg {
     UpdateWhitelist {
         collateral_token: HumanAddr, 
         custody_contract: Option<HumanAddr>, 
-        ltv: Option<Decimal256>,  
+        max_ltv: Option<Decimal256>,  
     }
 }
 ```
@@ -200,7 +200,7 @@ pub enum HandleMsg {
   "update_whitelist": {
     "collateral_token": "terra1...", 
     "custody_contract": "terra1...", 
-    "ltv": "0.7" 
+    "max_ltv": "0.75" 
   }
 }
 ```
@@ -211,7 +211,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `collateral_token` | HumanAddr | Cw20 token contract address of collateral |
 | `custody_contract`\* | HumanAddr | New Custody contract address of collateral |
-| `ltv`\* | Decimal256 | New maximum loan-to-value ratio allowed for collateral |
+| `max_ltv`\* | Decimal256 | New maximum loan-to-value ratio allowed for collateral |
 
 \* = optional
 
@@ -584,7 +584,7 @@ pub struct WhitelistResponse {
 pub struct WhitelistResponseElem {
     pub name: String, 
     pub symbol: String, 
-    pub ltv: Decimal256, 
+    pub max_ltv: Decimal256, 
     pub custody_contract: HumanAddr, 
     pub collateral_token: HumanAddr, 
 }
@@ -598,14 +598,14 @@ pub struct WhitelistResponseElem {
     {
       "name": "bonded luna", 
       "symbol": "ubluna", 
-      "ltv": "0.5", 
+      "max_ltv": "0.5", 
       "custody_contract": "terra1...", 
       "collateral_token": "terra1..." 
     }, 
     {
       "name": "bonded atom", 
       "symbol": "ubatom", 
-      "ltv": "0.4", 
+      "max_ltv": "0.4", 
       "custody_contract": "terra1...", 
       "collateral_token": "terra1..." 
     }
@@ -623,7 +623,7 @@ pub struct WhitelistResponseElem {
 | :--- | :--- | :--- |
 | `name` | String | Name of bAsset collateral |
 | `symbol` | String | Token symbol of bAsset collateral |
-| `ltv` | Decimal256 | Loan-to-value ratio allowed for collateral |
+| `max_ltv` | Decimal256 | Loan-to-value ratio allowed for collateral |
 | `custody_contract` | HumanAddr | Custody contract address of this collateral |
 | `collateral_token` | HumanAddr | Cw20 Token contract address of this collateral |
 
