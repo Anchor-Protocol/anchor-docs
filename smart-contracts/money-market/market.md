@@ -258,7 +258,7 @@ pub enum HandleMsg {
 | `borrower` | HumanAddr | Address of loan borrower |
 | `prev_balance` | Uint256 | Balance of Market contract prior to collateral liquidation |
 
-### `ExecuteEpochOperations`
+### `[Internal] ExecuteEpochOperations`
 
 Adjusts the borrower ANC emission rate and sends accumulated ANC purchase reserves to Collector. Can only be issued by Overseer
 
