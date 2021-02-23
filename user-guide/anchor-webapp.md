@@ -1,8 +1,8 @@
 # Anchor WebApp
 
-**The Anchor WebApp is the official web frontend for interacting with Anchor Protocol on the Terra network. It is located at** [**https://app.anchorprotocol.com**](https://app.anchorprotocol.com/)**.**
+**The Anchor WebApp is the official web frontend for interacting with Anchor Protocol on the Terra network. The WebApp can be accessed at** [**https://app.anchorprotocol.com**](https://app.anchorprotocol.com/)**.**
 
-The Anchor WebApp offers a graphical user interface for accessing Anchor's core user operations, such as depositing & redeeming Terra stablecoins, borrowing Terra stablecoins with bAssets as collateral, and participating in Anchor governance.
+The Anchor WebApp offers a graphical user interface for accessing Anchor's core user operations, such as depositing & redeeming Terra stablecoins, minting bAsset tokens, borrowing Terra stablecoins with bAssets as collateral, and participating in Anchor governance.
 
 {% hint style="warning" %}
 The Mirror web app requires [Google Chrome](https://www.google.com/chrome/) and [Station Extension](https://chrome.google.com/webstore/detail/terra-station/aiifbnbfobpmeekipheeijimdpnlpgpp) to be installed. Please follow the instructions below to set up your browser to be able to access the WebApp.

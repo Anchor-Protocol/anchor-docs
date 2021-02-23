@@ -1,8 +1,23 @@
-# Borrow
+# BORROW
 
-The Borrow page can be used to borrow Terra stablecoins from Anchor. The protocol requires users to provide bAsset tokens as collateral before making a loan.
+The **BORROW** page can be used to borrow Terra stablecoins from Anchor. The protocol requires users to provide bAsset tokens as collateral before making a loan.
 
 Borrows can be made until the loan's loan-to-value \(LTV\) ratio reaches the MAX LTV, calculated based on collateral types, their prices, and deposit amount. Loans with a LTV ratio higher than MAX LTV can be liquidated, and thus it is important for borrowers to closely maintain their LTV ratios as changes in collateral prices may occur.
+
+{% hint style="info" %}
+As of February 18th, 2021, Anchor only supports Terra USD as the base currency.
+{% endhint %}
+
+The **BORROW** page displays:
+
+* **Collateral Value**: Total USD-denominated value of all collaterals provided by user. 
+* **Borrowed Value**: Total USD-denominated value of Terra stablecoins borrowed by user. 
+  * **Borrowed**: Total amount of Terra stablecoins borrowed by user.
+* **APR**: Current borrow annualized percentage rate \(APR\). 
+  * **Accrued**: Amount of Terra stablecoins accrued as borrow interest. 
+* **Linear Graph**: Displays the liquidation riskiness of user's loan position. 
+  * **Borrow Limit**: Maximum USD value borrowable by user based on provided collaterals. 
+  * **Borrowed Value / Borrow Limit Ratio**: Ratio value that signals user loan position's liquidation riskiness. Calculated by dividing user's borrowed value with their borrow limit.
 
 ## Providing bAsset collateral
 
@@ -18,7 +33,11 @@ Borrows can be made until the loan's loan-to-value \(LTV\) ratio reaches the MAX
 
 
 
-4. Collateral provide complete.
+4. Station Extension should prompt you to sign a transaction that contains the collateral provide operation. Confirm the details presented and enter your password to sign.
+
+
+
+5. Collateral provide complete.
 
 
 
@@ -36,7 +55,11 @@ Borrows can be made until the loan's loan-to-value \(LTV\) ratio reaches the MAX
 
 
 
-4. Borrow complete.
+4. Station Extension should prompt you to sign a transaction that contains the borrow operation. Confirm the details presented and enter your password to sign.
+
+
+
+5. Borrow complete.
 
 
 
@@ -54,7 +77,11 @@ Borrows can be made until the loan's loan-to-value \(LTV\) ratio reaches the MAX
 
 
 
-4. Repayment complete.
+4. Station Extension should prompt you to sign a transaction that contains the repay operation. Confirm the details presented and enter your password to sign.
+
+
+
+5. Repay complete.
 
 
 
@@ -72,7 +99,11 @@ Borrows can be made until the loan's loan-to-value \(LTV\) ratio reaches the MAX
 
 
 
-4. Withdraw complete.
+4. Station Extension should prompt you to sign a transaction that contains the collateral withdraw operation. Confirm the details presented and enter your password to sign.
+
+
+
+5. Collateral withdraw complete.
 
 
 

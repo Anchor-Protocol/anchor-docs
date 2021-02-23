@@ -54,14 +54,14 @@ This pooling of deposits enable markets to have high liquidity. Deposits can be 
 
 Deposit interest is distributed through the value appreciation of Anchor Tokens \(aTokens\), which are minted to depositors as a deposit receipt.
 
-#### Anchor Tokens \(aTokens\)
+#### Anchor Terra \(aTerra\)
 
-aToken balances represent a depositor's share in the market. The exchange rate with their underlying stablecoin, the **aToken exchange rate**, increases as deposits accrue interest, appreciating the value of aTokens. With time, holders can redeem aTokens with a greater number of underlying stablecoins, enabling depositors to collect interest simply by holding them.
+aTerra balances represent a depositor's share in the market. The exchange rate with their underlying stablecoin, the **aTerra exchange rate**, increases as deposits accrue interest, appreciating the value of aTerra. With time, holders can redeem aTerra with a greater number of underlying stablecoins, enabling depositors to collect interest simply by holding them.
 
-The aToken exchange rate is defined as:
+The aTerra exchange rate is defined as:
 
 $$
-\text{aTokenExchangeRate} = \frac{\text{liquidity} + \text{liabilities} - \text{reserves}}{\text{aTokenSupply}}
+\text{aTerraExchangeRate} = \frac{\text{liquidity} + \text{liabilities} - \text{reserves}}{\text{aTerraSupply}}
 $$
 
 where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount of deposited stablecoins that are yet to be lent out, and the interest-accrued amount of lent out stablecoins. In addition, $$\text{reserves}$$ are protocol fees funded by setting aside 5% of collected borrow interest. Interest to reserves are not distributed to depositors but instead used for [ANC value appreciation](../anchor-token-anc.md#deposit-rate-commission).

@@ -1,10 +1,19 @@
-# Earn
+# EARN
 
-The **Earn** page provides an interface for depositing and withdrawing Terra stablecoins to / from Anchor.
+The **EARN** page provides an interface for depositing and withdrawing Terra stablecoins to / from Anchor. It allows users to track their current deposit value, history of transactions, current deposit annualized percentage rate \(APY\), and amount of interest earned from Anchor.
 
 {% hint style="info" %}
 As of February 18th, 2021, Anchor only supports Terra USD as the base currency.
 {% endhint %}
+
+The **EARN** page displays the following data:
+
+* **Total Deposit**: UST value of user's deposit. Includes accrued deposit interest. 
+* **Transaction History**: History of user's deposit & withdraw interactions. Displays the deposit / withdraw amount, sender / recipient, and transaction time. 
+* **Interest**: Display data related to deposit interest. 
+  * **APY**: Current deposit APY. ****
+  * **APY Graph**: Historical graph of deposit APY. 
+  * **Interest Earned**: Amount of deposit interest accrued during the selected time period.
 
 ## Depositing Terra stablecoins
 

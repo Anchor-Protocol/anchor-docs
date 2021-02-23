@@ -6,11 +6,14 @@
 ## User Guide
 
 * [Anchor WebApp](user-guide/anchor-webapp.md)
-* [Earn](user-guide/earn.md)
-* [Borrow](user-guide/borrow.md)
-* [bAsset](user-guide/basset.md)
-* [Claim ANC Rewards](user-guide/claim-anc-rewards.md)
-* [Governance](user-guide/governance.md)
+* [EARN](user-guide/earn.md)
+* [BORROW](user-guide/borrow.md)
+* [BOND](user-guide/basset.md)
+* [GOVERN](user-guide/govern/README.md)
+  * [ANC - UST LP](user-guide/govern/anc-ust-lp.md)
+  * [Anchor Governance Staking](user-guide/govern/claim-anc-rewards.md)
+  * [Claiming ANC Rewards](user-guide/govern/claiming-anc-rewards.md)
+  * [Governance Proposals](user-guide/govern/governance-proposals.md)
 
 ## Governance
 
