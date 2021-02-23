@@ -1,8 +1,8 @@
 # Anchor Token \(ANC\)
 
-The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC tokens used as a deposit to create new governance polls, which can be voted by users that have staked ANC.
+The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC tokens can be deposited to create new governance polls, which can be voted on by users that have staked ANC.
 
-ANC tokens accrue value from protocol fees, which are distributed pro-rata to ANC stakers. The ANC token is designed to benefit its stakers with increasing adoption of Anchor Protocol -- stakers of ANC are incentivized to vote for proposals that further merit the protocol.
+ANC tokens accrue value from protocol fees, which are distributed pro-rata to ANC stakers. The ANC token is designed to benefit its stakers as adoption of Anchor Protocol increases -- stakers of ANC are incentivized to vote for proposals that further merit the protocol.
 
 ANC is also used as incentives to bootstrap borrow demand. ANC is distributed every block to stablecoin borrowers, proportional to the amount of their accrued borrow interest.
 
