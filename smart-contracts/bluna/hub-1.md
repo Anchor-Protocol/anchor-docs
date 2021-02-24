@@ -1000,6 +1000,7 @@ pub struct UnbondHistory {
     pub batch_id: u64, 
     pub time: u64, 
     pub amount: Uint128, 
+    pub applied_exchange_rate: Decimal
     pub withdraw_rate: Decimal, 
     pub released: bool, 
 }
@@ -1014,14 +1015,16 @@ pub struct UnbondHistory {
       "batch_id": 7, 
       "time": 100000, 
       "amount": "100000000", 
-      "withdraw_rate": "0.99", 
+      "applied_exchange_rate": "0.99", 
+      "withdraw_rate": "0.98", 
       "released": true 
     }, 
     {
       "batch_id": 8, 
       "time": 150000, 
       "amount": "300000000", 
-      "withdraw_rate": "0.98", 
+      "applied_exchange_rate": "0.98", 
+      "withdraw_rate": "0.97", 
       "released": false 
     } 
   ]
@@ -1039,6 +1042,7 @@ pub struct UnbondHistory {
 | `batch_id` | u64 | Batch ID |
 | `time` | u64 | Block timestamp when this batch was undelegated |
 | `amount` | Uint128 | \(Fee-applied\) amount of bLuna unbonded in this batch |
+| `applied_exchange_rate` | Decimal | bLuna exchange rate at the time of batch undelegation |
 | `withdraw_rate` | Decimal | Conversion rate applied when users later withdraw from this batch |
 | `released` | bool | Indicator on whether is batch is released \(processed as fully undelegated by the contract\) |
 

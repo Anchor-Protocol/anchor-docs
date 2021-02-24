@@ -6,11 +6,11 @@
 
 | Parameter Name | Description |
 | :--- | :--- |
-| `Safe Ratio` |  |
+| `Safe Ratio` | Targeted borrowed |
 | `Bid Fee` |  |
 | `Max Premium Rate` |  |
 | `Partial Liquidation Threshold` |  |
-| `Valid Price Timeframe` |  |
+| `Valid Price Timeframe` | Time window before the Liquidation Contract considers oracle price data invalid |
 
 
 
@@ -30,12 +30,12 @@
 
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
-| Title | Poll title |  |
-| Rationale | Short description of poll |  |
-| Information Link | External URL for further information |  |
-| Safe Ratio | Proposed  |  |
-| Bid Fee | Proposed |  |
-| Max Premium Rate | Proposed |  |
-| Partial Liquidation Threshold | Proposed |  |
-| Valid Price Timeframe | Proposed |  |
+| Title | Poll title | Required |
+| Rationale | Short description of poll | Required |
+| Information Link | External URL for further information | Optional |
+| Safe Ratio | Proposed  | Optional |
+| Bid Fee | Proposed | Optional |
+| Max Premium Rate | Proposed | Optional |
+| Partial Liquidation Threshold | Proposed | Optional |
+| Valid Price Timeframe | Proposed | Optional |
 
