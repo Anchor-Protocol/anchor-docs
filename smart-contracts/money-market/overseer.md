@@ -14,11 +14,13 @@ The Overseer halts borrow-related operations if the Oracle's price data is older
 | `oracle_contract` | CanonicalAddr | Contract address of Oracle |
 | `market_contract` | CanonicalAddr | Contract address of Market |
 | `liquidation_contract` | CanonicalAddr | Contract address of Liquidation Contract |
+| `collector_contract` | CanonicalAddr | Contract address of Collector |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `epoch_period` | u64 | Minimum time delay between epoch operations |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
 | `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
+| `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated |
 
 ## InitMsg
@@ -33,11 +35,13 @@ pub struct InitMsg {
     pub oracle_contract: HumanAddr, 
     pub market_contract: HumanAddr, 
     pub liquidation_contract: HumanAddr, 
+    pub collector_contract: HumanAddr, 
     pub stable_denom: String, 
     pub epoch_period: u64, 
     pub threshold_deposit_rate: Decimal256, 
     pub target_deposit_rate: Decimal256, 
     pub buffer_distribution_factor: Decimal256, 
+    pub anc_purchase_factor: Decimal256, 
     pub price_timeframe: u64, 
 }
 ```
@@ -50,11 +54,13 @@ pub struct InitMsg {
   "oracle_contract": "terra1...", 
   "market_contract": "terra1...", 
   "liquidation_contract": "terra1...", 
+  "collector_contract": "terra1...", 
   "stable_denom": "uusd", 
   "epoch_period": 86400, 
   "threshold_deposit_rate": "0.1", 
   "target_deposit_rate": "0.15", 
   "buffer_distribution_factor": "0.1", 
+  "anc_purchase_factor": "0.5", 
   "price_timeframe": 60 
 }
 ```
@@ -67,11 +73,13 @@ pub struct InitMsg {
 | `oracle_contract` | HumanAddr | Contract address of Oracle |
 | `market_contract` | HumanAddr | Contract address of Market |
 | `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
+| `collector_contract` | HumanAddr | Contract address of Collector |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `epoch_period` | u64 | Minimum time delay between epoch operations |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate to trigger interest buffer distribution |
 | `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
+| `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated |
 
 ## HandleMsg
@@ -93,6 +101,7 @@ pub enum HandleMsg {
         threshold_deposit_rate: Option<Decimal256>, 
         target_deposit_rate: Option<Decimal256>, 
         buffer_distribution_factor: Option<Decimal256>, 
+        anc_purchase_factor: Option<Decimal256>, 
         epoch_period: Option<u64>, 
         price_timeframe: Option<u64>, 
     }
@@ -110,6 +119,7 @@ pub enum HandleMsg {
     "threshold_deposit_rate": "0.1", 
     "target_deposit_rate": "0.15", 
     "buffer_distribution_factor": "0.1", 
+    "anc_purchase_factor": "0.5", 
     "epoch_period": 86400, 
     "price_timeframe": 60 
   }
@@ -126,6 +136,7 @@ pub enum HandleMsg {
 | `threshold_deposit_rate`\* | Decimal256 | New threshold per-block deposit rate to trigger interest buffer distribution |
 | `target_deposit_rate`\* | Decimal256 | New maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor`\* | Decimal256 | New maximum portion of interest buffer that can be distributed in an epoch |
+| `anc_purchase_factor`\* | Decimal256 | New portion of bAsset rewards used to purchase ANC |
 | `epoch_period`\* | u64 | New minimum time delay between epoch operations |
 | `price_timeframe`\* | u64 | New window of time before price data is considered outdated |
 
@@ -426,9 +437,11 @@ pub struct ConfigResponse {
     pub oracle_contract: HumanAddr, 
     pub market_contract: HumanAddr, 
     pub liquidation_contract: HumanAddr, 
+    pub collector_contract: HumanAddr, 
     pub threshold_deposit_rate: Decimal256, 
     pub target_deposit_rate: Decimal256, 
     pub buffer_distribution_factor: Decimal256, 
+    pub anc_purchase_factor: Decimal256, 
     pub stable_denom: String, 
     pub epoch_period: u64, 
     pub price_timeframe: u64, 
@@ -439,14 +452,15 @@ pub struct ConfigResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-
   "owner_addr": "terra1...", 
   "oracle_contract": "terra1...", 
   "market_contract": "terra1...", 
   "liquidation_contract": "terra1...", 
+  "collector_contract": "terra1...", 
   "distribution_threshold": "0.1", 
   "target_deposit_rate": "0.15", 
   "buffer_distribution_rate": "0.1", 
+  "anc_purchase_factor": "0.5", 
   "stable_denom": "uusd", 
   "epoch_period": 86400, 
   "price_timeframe": 60 
@@ -461,9 +475,11 @@ pub struct ConfigResponse {
 | `oracle_contract` | HumanAddr | Contract address of Oracle |
 | `market_contract` | HumanAddr | Contract address of Market |
 | `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
+| `collector_contract` | HumanAddr | Contract address of Collector |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
 | `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
+| `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `epoch_period` | u64 | Minimum time delay between epoch operations |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated |
