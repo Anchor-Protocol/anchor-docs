@@ -4,13 +4,21 @@
 
 
 
-| Parameter Name | Description | Initial Value |
-| :--- | :--- | :--- |
-| `Safe Ratio` |  |  |
-| `Bid Fee` |  |  |
-| `Maximum Premium Rate` |  |  |
-| `Partial Liquidation Threshold` |  |  |
-| `Price Timeframe` |  |  |
+| Parameter Name | Description |
+| :--- | :--- |
+| `Safe Ratio` |  |
+| `Bid Fee` |  |
+| `Maximum Premium Rate` |  |
+| `Partial Liquidation Threshold` |  |
+| `Price Timeframe` |  |
 
 
+
+
+
+Genesis Values
+
+| Parameter Name | Value |
+| :--- | :--- |
+|  |  |
 

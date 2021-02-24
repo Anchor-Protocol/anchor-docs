@@ -30,7 +30,7 @@ Anchor applies a 5% commission to accrued deposit interest, set aside as ANC pur
 
 #### Collateral Liquidation Fees
 
-Whenever a loan is liquidated, 1% of the liquidated collateral value is used to purchase ANC. This fee is applied separately to a bid's [premium](liquidations.md#premium-rate).
+Whenever a loan is liquidated, 1% of the liquidated collateral value is sent the interest buffer, which a portion of which is used to purchase ANC. This fee is applied separately to a bid's [premium](liquidations.md#premium-rate).
 
 
 

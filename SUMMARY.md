@@ -20,7 +20,7 @@
 * [Anchor Governance](governance/anchor-governance/README.md)
   * [Collateral Whitelisting](governance/anchor-governance/collateral-whitelisting/README.md)
     * [bAsset Collaterals](governance/anchor-governance/collateral-whitelisting/basset-collaterals.md)
-  * [Update Collateral Attributes](governance/anchor-governance/update-collateral-parameters.md)
+  * [Modify Collateral Attributes](governance/anchor-governance/modify-collateral-parameters.md)
   * [Update Market Parameters](governance/anchor-governance/update-market-parameters.md)
   * [Update Liquidation Parameters](governance/anchor-governance/update-liquidation-parameters.md)
   * [Update ANC Parameters](governance/anchor-governance/update-anc-parameters.md)

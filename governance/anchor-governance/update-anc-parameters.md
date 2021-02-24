@@ -6,6 +6,6 @@
 | :--- | :--- |
 | `Epoch Period` |  |
 | `ANC Purchase Factor` |  |
-| `Reserver Factor` |  |
+| `Reserve Factor` |  |
 | `Staking Reward Factor` |  |
 

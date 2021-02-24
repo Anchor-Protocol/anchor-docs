@@ -2,13 +2,21 @@
 
 The mechanism behind Anchor's money market is controlled by a set of carefully determined parameters, listed below alongside their initial values at the time of protocol genesis:
 
-| Parameter Name | Description | Initial Value |
-| :--- | :--- | :--- |
-| `Target Deposit Rate` | The Anchor Rate |  |
-| `Threshold Deposit Rate` | Threshold deposit rate to trigger interest buffer distribution |  |
-| `Buffer Distribution Factor` | Maximum portion of interest buffer that can be distributed per deposit rate subsidization |  |
-| `Max Borrow Factor` | Maximum  |  |
-| `Valid Price Timeframe` |  |  |
+| Parameter Name | Description |
+| :--- | :--- |
+| `Target Deposit Rate` |  |
+| `Threshold Deposit Rate` | Threshold deposit rate to trigger interest buffer distribution |
+| `Buffer Distribution Factor` | Maximum portion of interest buffer that can be distributed per deposit rate subsidization |
+| `Max Borrow Factor` | Maximum  |
+| `Valid Price Timeframe` |  |
+
+Genesis Values
+
+| Parameter Name | Value |
+| :--- | :--- |
+|  |  |
+
+
 
 
 
