@@ -2,6 +2,10 @@
 
 Anchor periodically distributes portion of ANC tokens purchased from protocol fees are distributed to ANC stakers to incentivize governance participation and decrease circulating ANC supply. The functionalities required to stake ANC are supported in the **Dashboard** section of the **GOVERN** page, enabling users to easily acquire and stake / unstake ANC tokens.
 
+{% hint style="info" %}
+Unlike ANC rewards from UST borrowing or ANC - UST LP staking, rewards from governance staking do not have a separate claiming procedure but instead automatically claimed when a user unstakes.
+{% endhint %}
+
 ## Trading ANC
 
 The Anchor WebApp provides an interface for users to trade ANC tokens with Terra USD, supported by Terraswap's ANC &lt;&gt; UST exchange pair.
