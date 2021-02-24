@@ -1,2 +1,0 @@
-# Update the Distribution Model
-
