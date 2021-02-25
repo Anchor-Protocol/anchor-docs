@@ -6,10 +6,10 @@
 
 | Parameter Name | Description |
 | :--- | :--- |
-| `Safe Ratio` | Targeted borrowed |
+| `Safe Ratio` | Targeted risk ratio of  |
 | `Bid Fee` |  |
 | `Max Premium Rate` |  |
-| `Partial Liquidation Threshold` |  |
+| `Partial Liquidation Threshold` | Threshold total collateral value to trigger partial collateral liquidations |
 | `Valid Price Timeframe` | Time window before the Liquidation Contract considers oracle price data invalid |
 
 

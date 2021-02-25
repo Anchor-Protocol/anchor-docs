@@ -25,8 +25,8 @@
   * [Modify Liquidation Parameters](governance/anchor-governance/modify-liquidation-parameters.md)
   * [Modify ANC Parameters](governance/anchor-governance/modify-anc-parameters.md)
   * [Modify Governance Parameters](governance/anchor-governance/modify-governance-parameters.md)
-  * [Modify the Interest Model](governance/anchor-governance/modify-the-interest-model.md)
-  * [Modify the Distribution Model](governance/anchor-governance/modify-the-distribution-model.md)
+  * [Modify Borrow Interest](governance/anchor-governance/modify-the-interest-model.md)
+  * [Modify ANC Distribution](governance/anchor-governance/modify-the-distribution-model.md)
   * [Community Grants](governance/anchor-governance/spend-community-pool.md)
   * [Text Proposal](governance/anchor-governance/text-proposal.md)
 
@@ -78,6 +78,7 @@
 
 ## External Resources
 
+* [Anchor WebApp](https://app.anchorprotocol.com/)
 * [Anchor Protocol GitHub](https://github.com/Anchor-Protocol)
 * [Terra Blockchain](https://terra.money/)
 

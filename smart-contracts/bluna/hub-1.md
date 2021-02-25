@@ -7,9 +7,9 @@ The Hub contract acts as the central hub for all minted bLuna. Native Luna token
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `creator` | CanonicalAddr | Address of contract creator that is allowed to change config and parameters |
-| `reward_contract`\* | CanonicalAddr | Contract address of bLuna Reward |
+| `reward_contract`\* | CanonicalAddr | Contract address of [bLuna Reward](reward.md) |
 | `token_contract`\* | CanonicalAddr | Contract address of bLuna's Cw20 token contract |
-| `airdrop_registry_contract`\* | CanonicalAddr | Contract address of bLuna Airdrop Registry |
+| `airdrop_registry_contract`\* | CanonicalAddr | Contract address of [bLuna Airdrop Registry](airdrop-registry.md) |
 
 \* = Set as `None` until an address is registered
 
@@ -17,12 +17,12 @@ The Hub contract acts as the central hub for all minted bLuna. Native Luna token
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `epoch_period` | u64 | Minimum time delay between undelegation batches |
+| `epoch_period` | u64 | Minimum time delay between undelegation batches **\[seconds\]** |
 | `underlying_coin_denom` | String | Underlying asset denomination of bAsset \(Luna\) |
-| `unbonding_period` | u64 | Time required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) |
+| `unbonding_period` | u64 | Time required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) **\[seconds\]** |
 | `peg_recovery_fee` | Decimal | Fee applied to bLuna generation and redemption |
-| `er_threshold` | Decimal | Minimum bLuna exchange rate before the peg recovery fee is applied |
-| `reward_denom` | String | Native token denomination for distributed bLuna rewards |
+| `er_threshold` | Decimal | Minimum bLuna exchange rate before peg recovery fee is applied |
+| `reward_denom` | String | Native token denomination for distributed bLuna rewards \(Terra USD\) |
 
 ## InitMsg
 
@@ -61,9 +61,9 @@ pub struct InitMsg {
 
 | Key | Type | Description`epoch_poer` |
 | :--- | :--- | :--- |
-| `epoch_period` | u64 | Minimum time delay between undelegation batches |
+| `epoch_period` | u64 | Minimum time delay between undelegation batches **\[seconds\]** |
 | `underlying_coin_denom` | String | Underlying asset denomination of bAsset \(Luna\) |
-| `unbonding_period` | u64 | Time required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) |
+| `unbonding_period` | u64 | Time required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) **\[seconds\]** |
 | `peg_recovery_fee` | Decimal | Fee applied to bLuna generation and redemption |
 | `er_threshold` | Decimal | Minimum bLuna exchange rate before the peg recovery fee is applied |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
@@ -106,14 +106,14 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of the token transfer |
+| `sender` | HumanAddr | Sender of token transfer |
 | `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](hub-1.md#receive-hooks) |
 
 \* = optional
 
 ### `Bond`
 
-Bonds luna to the specified validator and mints bLuna tokens to the message sender. Requires native Luna tokens to be sent to `Hub` beforehand.
+Bonds luna to the specified validator and mints bLuna tokens to the message sender. Requires native Luna tokens to be sent to `Hub`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -167,6 +167,7 @@ pub enum HandleMsg {
 {
   "update_global_index": {
     "airdrop_hooks": [
+      "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9", 
       "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
     ]
   }
@@ -303,7 +304,7 @@ pub enum HandleMsg {
 
 ### `UpdateParams`
 
-Updates parameters of the Hub contract. Can only be issued by the creator.
+Updates parameter values of the Hub contract. Can only be issued by the creator.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -313,7 +314,6 @@ Updates parameters of the Hub contract. Can only be issued by the creator.
 pub enum HandleMsg {
     UpdateParams {
         epoch_period: Option<u64>, 
-        underlying_coin_denom: Option<String>, 
         unbonding_period: Option<u64>, 
         peg_recovery_fee: Option<Decimal>, 
         er_threshold: Option<Decimal>, 
@@ -327,9 +327,8 @@ pub enum HandleMsg {
 {
   "update_params": {
     "epoch_period": 260000, 
-    "underlying_coin_denom": "uluna", 
     "unbonding_period": 1000000, 
-    "peg_recovery_fee": "0.001", 
+    "peg_recovery_fee": "0.005", 
     "er_threshold": "1.0" 
   }
 }
@@ -339,9 +338,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `epoch_period`\* | u64 | New minimum time delay between undelegation batches |
-| `underlying_coin_denom`\* | String | New underlying asset denomination of bAsset \(Luna\) |
-| `unbonding_period`\* | u64 | New time period required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) |
+| `epoch_period`\* | u64 | New minimum time delay between undelegation batches **\[seconds\]** |
+| `unbonding_period`\* | u64 | New time period required for the Hub contract to consider an undelegation batch to be fully undelegated \(past the unbonding period\) **\[seconds\]** |
 | `peg_recovery_fee`\* | Decimal | New fee applied to bLuna generation and redemption |
 | `er_threshold`\* | Decimal | New minimum bLuna exchange rate before the peg recovery fee is applied |
 
@@ -383,7 +381,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new owner |
+| `owner`\* | HumanAddr | Address of new creator |
 | `reward_contract`\* | HumanAddr | New contract address of bLuna Reward |
 | `token_contract`\* | HumanAddr | New contract address of bLuna Cw20 token |
 | `airdrop_registry_contract`\* | HumanAddr | New contract address of bLuna Airdrop Registry |
@@ -437,7 +435,7 @@ pub enum HandleMsg {
 
 ### `[Interal] SwapHook`
 
-Swaps claimed airdrop tokens to Terra USD. Can only be issued by itself.
+Swaps claimed airdrop tokens to the reward denomination. Can only be issued by itself \(Hub\).
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -562,10 +560,10 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
-| `reward_contract`\* | HumanAddr | Contract address of bLuna Reward |
+| `owner` | HumanAddr | Address of contract creator |
+| `reward_contract`\* | HumanAddr | Contract address of [bLuna Reward](reward.md) |
 | `token_contract`\* | HumanAddr | Contract address of bLuna's Cw20 token contract |
-| `airdrop_registry_contract`\* | HumanAddr | Contract address of bLuna Airdrop Registry |
+| `airdrop_registry_contract`\* | HumanAddr | Contract address of [bLuna Airdrop Registry](airdrop-registry.md) |
 
 \* = Not returned if address not registered yet
 
@@ -618,10 +616,10 @@ pub struct StateResponse {
 {
   "exchange_rate": "0.99", 
   "total_bond_amount": "100000000", 
-  "last_index_modification": 10000, 
+  "last_index_modification": 123456, 
   "prev_hub_balance": "100000000", 
   "actual_unbonded_amount": "10000000", 
-  "last_unbonded_time": 10000, 
+  "last_unbonded_time": 123456, 
   "last_processed_batch": 10 
 }
 ```
@@ -632,11 +630,11 @@ pub struct StateResponse {
 | :--- | :--- | :--- |
 | `exchange_rate` | Decimal | Current bLuna &lt;&gt; Luna exchange rate |
 | `total_bond_amount` | Uint128 | Total amount of Luna currently bonded by `Hub` |
-| `last_index_modification` | u64 | Block timestamp when the global reward index was last updated |
+| `last_index_modification` | u64 | Unix block timestamp when the global reward index was last updated |
 | `prev_hub_balance` | Uint128 | `Hub`'s Luna balance when `WithdrawUnbonded` was lasted executed. Used to calculate the actual amount of unbonded Luna |
 | `actual_unbonded_amount` | Uint128 | Amount of Luna released from undelegation since last undelegation batch release |
-| `last_unbonded_time` | u64 | Block timestamp when a batch was last undelegated |
-| `last_processed_batch` | u64 | Batch id of the most recently released batch |
+| `last_unbonded_time` | u64 | Unix block timestamp when a batch was last undelegated |
+| `last_processed_batch` | u64 | Batch ID of the most recently released batch |
 
 ### `WhitelistedValidators`
 
@@ -693,7 +691,7 @@ pub struct WhitelistedvalidatorsResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `validators` | Vec&lt;HumanAddr&gt; | Vector of whitelisted validator addresses |
+| `validators` | Vec&lt;HumanAddr&gt; | List of whitelisted validator addresses |
 
 ### `CurrentBatch`
 
@@ -740,7 +738,7 @@ pub struct CurrentBatchResponse {
 ```javascript
 {
   "id": 10, 
-  "requested_with_fee": "100000" 
+  "requested_with_fee": "100000000" 
 }
 ```
 {% endtab %}
@@ -748,12 +746,12 @@ pub struct CurrentBatchResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `id` | u64 | Batch id of the current undelegation batch |
+| `id` | u64 | Batch ID of the current undelegation batch |
 | `requested_with_fee` | Uint128 | Amount of \(fee-applied\) bLuna requested for undelegation in this batch |
 
 ### `WithdrawableUnbonded`
 
-Gets the amount of undelegated Luna that is available for withdrawal \(unbonding requests past the unbonding period\).
+Gets the amount of undelegated Luna that will be available for withdrawal \(unbonding requests past the unbonding period\) at the fed-in `block_time` for the specified user.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -784,7 +782,7 @@ pub enum QueryMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `address` | HumanAddr | Address of user that previously unbonded Luna via redeeming bLuna |
-| `block_time` | u64 | Current block timestamp |
+| `block_time` | u64 | Unix block timestamp to use in calculation |
 
 ### `WithdrawableUnbondedResponse`
 
@@ -872,9 +870,9 @@ pub struct Parameters {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `epoch_period` | u64 | Minimum time delay between undelegations |
+| `epoch_period` | u64 | Minimum time delay between undelegations **\[seconds\]** |
 | `underlying_coin_denom` | String | Underlying asset denomination of bAsset \(Luna\) |
-| `unbonding_period` | u64 | Time required for the Hub contract to consider an undelegation batch to be fully undelegated |
+| `unbonding_period` | u64 | Time required for the Hub contract to consider an undelegation batch to be fully undelegated **\[seconds\]** |
 | `peg_recovery_fee` | Decimal | Fee applied to bLuna generation and redemption |
 | `er_threshold` | Decimal | Minimum bLuna exchange rate before the peg recovery fee is applied |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
@@ -947,7 +945,7 @@ pub type UnbondRequest = Vec<(u64, Uint128)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `UnbondRequest` | Vec&lt;\(u64, Uint128\)&gt; | Vector of \(batch id, bLuna unbond amount\) |
+| `UnbondRequest` | Vec&lt;\(u64, Uint128\)&gt; | List of \(batch ID, bLuna unbond amount\) |
 
 ### `AllHistory`
 
@@ -1035,12 +1033,12 @@ pub struct UnbondHistory {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `history` | Vec&lt;UnbondHistory&gt; | Vector of batch information |
+| `history` | Vec&lt;UnbondHistory&gt; | List of batch information |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `batch_id` | u64 | Batch ID |
-| `time` | u64 | Block timestamp when this batch was undelegated |
+| `time` | u64 | Unix block timestamp when this batch was undelegated |
 | `amount` | Uint128 | \(Fee-applied\) amount of bLuna unbonded in this batch |
 | `applied_exchange_rate` | Decimal | bLuna exchange rate at the time of batch undelegation |
 | `withdraw_rate` | Decimal | Conversion rate applied when users later withdraw from this batch |

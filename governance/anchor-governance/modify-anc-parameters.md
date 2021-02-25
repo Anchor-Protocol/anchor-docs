@@ -2,7 +2,7 @@
 
 
 
-| Parameter | Description |
+| Parameter Name | Description |
 | :--- | :--- |
 | `Epoch Period` | Minimum time between operations for bAsset reward collection, deposit rate subsidization, and ANC emission rate adjustment |
 | `ANC Purchase Factor` | Portion of bAsset rewards and collateral liquidation fees \(bid fee\) used to purchase ANC |
