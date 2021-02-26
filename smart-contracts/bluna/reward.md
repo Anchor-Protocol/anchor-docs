@@ -8,7 +8,7 @@ The Reward contract also stores the balance and reward index values for all bLun
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `hub_contract` | CanonicalAddr | Contract address of bLuna Hub |
+| `hub_contract` | CanonicalAddr | Contract address of [bLuna Hub](hub-1.md) |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
 
 ## InitMsg
@@ -71,7 +71,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `recipient`\* | HumanAddr | Recipient address of claimed rewards |
+| `recipient`\* | HumanAddr | Recipient address of claimed bLuna rewards |
 
 \* = optional
 
@@ -256,7 +256,7 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `hub_contract` | HumanAddr | Contract address of bLuna `Hub` |
+| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
 
 ### `State`
@@ -315,7 +315,7 @@ pub struct StateResponse {
 | :--- | :--- | :--- |
 | `global_index` | Decimal | Current global reward index of bLuna |
 | `total_balance` | Uint128 | Total bLuna balance of all holders |
-| `prev_reward_balance` | Uint128 | Terra USD balance of bLuna Reward at the end of last [`UpdateGlobalIndex`](reward.md#internal-updateglobalindex)\`\` |
+| `prev_reward_balance` | Uint128 | Terra USD balance of Reward contract at the end of last [`UpdateGlobalIndex`](reward.md#internal-updateglobalindex)\`\` |
 
 ### `AccruedRewards`
 
@@ -416,7 +416,7 @@ pub struct HolderResponse {
     pub address: HumanAddr, 
     pub balance: Uint128, 
     pub index: Decimal, 
-    pub pending_rewards: Uint128, 
+    pub pending_rewards: Decimal, 
 }
 ```
 {% endtab %}
@@ -427,7 +427,7 @@ pub struct HolderResponse {
   "address": "terra1...", 
   "balance": "100000000", 
   "index": "100.0", 
-  "pending_rewards": "1000000" 
+  "pending_rewards": "1000000.123" 
 }
 ```
 {% endtab %}
@@ -438,7 +438,7 @@ pub struct HolderResponse {
 | `address` | HumanAddr | Address of bLuna holder |
 | `balance` | Uint128 | bLuna balance of holder |
 | `index` | Decimal | Holder's reward index value |
-| `pending_rewards` | Uint128 | Amount of holder's pending rewards |
+| `pending_rewards` | Decimal | Amount of holder's pending rewards |
 
 ### `Holders`
 
@@ -491,7 +491,7 @@ pub struct HolderResponse {
     pub address: HumanAddr, 
     pub balance: Uint128, 
     pub index: Decimal, 
-    pub pending_rewards: Uint128, 
+    pub pending_rewards: Decimal, 
 }
 ```
 {% endtab %}
@@ -504,13 +504,13 @@ pub struct HolderResponse {
       "address": "terra1...", 
       "balance": "100000000", 
       "index": "100.00", 
-      "pending_rewards": "1000000" 
+      "pending_rewards": "1000000.123" 
     }, 
     {
       "address": "terra1...", 
       "balance": "100000000", 
       "index": "100.00", 
-      "pending_rewards": "1000000" 
+      "pending_rewards": "1000000.123" 
     }
   ]
 }
@@ -527,5 +527,5 @@ pub struct HolderResponse {
 | `address` | HumanAddr | Address of bLuna holder |
 | `balance` | Uint128 | bLuna balance of holder |
 | `index` | Decimal | Holder's reward index value |
-| `pending_rewards` | Uint128 | Amount of holder's pending rewards |
+| `pending_rewards` | Decimal | Amount of holder's pending rewards |
 

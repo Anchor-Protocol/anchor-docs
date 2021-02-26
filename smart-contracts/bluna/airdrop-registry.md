@@ -2,15 +2,15 @@
 
 The Airdrop Registry contract manages the fabrication of messages relevant to claiming and swapping tokens airdropped to Luna delegators. Airdropped tokens to the bLuna Hub contract is swapped for Terra USD and distributed as bLuna rewards.
 
-The Airdrop Registry is initially registered to support the airdrop [Mirror Protocol](https://mirror.finance)'s governance token, MIR. When a new airdrop is distributed to Luna stakers, a new Airdrop Registry contract that includes the message interface for claiming and swapping the airdrop token will be deployed and its address will be registered to the bLuna Hub contract.
+The Airdrop Registry is initially registered to support the airdrop of [ANC](../../protocol/anchor-token-anc.md) and [Mirror Protocol](https://mirror.finance)'s governance token, [MIR](https://docs.mirror.finance/protocol/mirror-token-mir). When a new airdrop is distributed to Luna stakers, a new Airdrop Registry contract that includes the message interface for claiming and swapping the airdrop token can be deployed and its address newly registered to the bLuna Hub contract.
 
 ## Config
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner` | CanonicalAddr | Address of contract owner |
-| `hub_contract` | HumanAddr | Contract address of bLuna Hub |
-| `reward_contract` | HumanAddr | Contract address of bLuna Reward |
+| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract` | HumanAddr | Contract address of [bLuna Reward](reward.md) |
 | `airdrop_tokens` | Vec&lt;String&gt; | List of supported airdrop token tickers |
 
 ## InitMsg
@@ -38,8 +38,8 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `hub_contract` | HumanAddr | Contract address of bLuna Hub |
-| `reward_contract` | HumanAddr | Contract address of bLuna Reward |
+| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract` | HumanAddr | Contract address of [bLuna Reward](reward.md) |
 
 ## HandleMsg
 
@@ -78,8 +78,8 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner`\* | HumanAddr | Address of new owner |
-| `hub_contract`\* | HumanAddr | New contract address of bLuna Hub |
-| `reward_contract`\* | HumanAddr | New contract address of bLuna Reward |
+| `hub_contract`\* | HumanAddr | New contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract`\* | HumanAddr | New contract address of [bLuna Reward](reward.md) |
 
 \* = optional
 
@@ -385,8 +385,8 @@ pub struct ConfigResponse {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner` | HumanAddr | Address of contract owner |
-| `hub_contract` | HumanAddr | Contract address of bLuna Hub |
-| `reward_contract` | HumanAddr | Contract address of bLuna Reward |
+| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract` | HumanAddr | Contract address of [bLuna Reward](reward.md) |
 | `airdrop_tokens` | Vec&lt;String&gt; | List of supported airdrop token tickers |
 
 ### `AirdropInfo`
