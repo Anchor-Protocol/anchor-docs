@@ -326,8 +326,8 @@ pub struct PriceResponse {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `rate` | Decimal256 | Price of `base` asset denominated in `quote` assets |
-| `last_updated_base` | u64 | Block timestamp when the `base` asset price was last fed in |
-| `last_updated_quote` | u64 | Block timestamp when the `quote` asset price was last fed in |
+| `last_updated_base` | u64 | Unix block timestamp when the `base` asset price was last fed in |
+| `last_updated_quote` | u64 | Unix block timestamp when the `quote` asset price was last fed in |
 
 ### `Prices`
 
@@ -411,5 +411,5 @@ pub struct PricesResponseElem {
 | :--- | :--- | :--- |
 | `asset` | String | Asset whose price is being read |
 | `price` | Decimal256 | Price of Asset |
-| `last_updated_time` | u64 | Block timestamp when the price was last updated |
+| `last_updated_time` | u64 | Unix block timestamp when the price was last updated |
 

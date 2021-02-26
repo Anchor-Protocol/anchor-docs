@@ -41,7 +41,7 @@ pub struct InitMsg {
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `staking_token` | HumanAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
-| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers |
+| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, amount\) |
 
 ## HandleMsg
 
@@ -243,7 +243,7 @@ pub struct ConfigResponse {
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `staking_token` | HumanAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
-| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers |
+| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, amount\) |
 
 ### `State`
 
@@ -275,7 +275,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `block_height`\* | u64 | Current block number |
+| `block_height`\* | u64 | Current block number **\[block\]** |
 
 \* = optional
 
@@ -306,7 +306,7 @@ pub struct StateResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `last_distributed` | u64 | Block number when rewards where last distributed |
+| `last_distributed` | u64 | Block number when rewards where last distributed **\[block\]** |
 | `total_bond_amount` | Uint128 | Total amount of bonded LP tokens by all stakers |
 | `global_reward_index` | Decimal | Global reward index for LP staking rewards |
 
@@ -343,7 +343,7 @@ pub enum QueryMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `staker` | HumanAddr | Address of LP token staker |
-| `block_height`\* | u64 | Current block number |
+| `block_height`\* | u64 | Current block number **\[block\]** |
 
 \* = optional
 

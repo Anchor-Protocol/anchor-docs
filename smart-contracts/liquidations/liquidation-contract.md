@@ -19,7 +19,7 @@ Price data from the Oracle contract are only valid for 60 seconds \(`price_timef
 | `bid_fee` | Decimal256 | Fee rate applied to all executed bids |
 | `max_premium_rate` | Decimal256 | Maximum rate of commission given to bidder of an executed bid |
 | `liquidation_threshold` | Uint256 | Threshold collateral value for partial collateral liquidations |
-| `price_timeframe` | u64 | Window of time before oracle price data is considered outdated |
+| `price_timeframe` | u64 | Window of time before oracle price data is considered outdated **\[seconds\]** |
 
 ## InitMsg
 
@@ -65,7 +65,7 @@ pub struct InitMsg {
 | `bid_fee` | Decimal256 | Fee rate applied to executed bids |
 | `max_premium_rate` | Decimal256 | Maximum rate of commission given to the bidder of an executed bid |
 | `liquidation_threshold` | Uint256 | Threshold collateral value for triggering partial collateral liquidations |
-| `price_timeframe` | u64 | Window of time before oracle price data is considered outdated |
+| `price_timeframe` | u64 | Window of time before oracle price data is considered outdated **\[seconds\]** |
 
 ## HandleMsg
 
@@ -160,7 +160,7 @@ pub enum HandleMsg {
 | `bid_fee`\* | Decimal256 | New fee rate applied to executed bids |
 | `max_premium_rate`\* | Decimal256 | New maximum rate of commission given to the bidder of  an executed bid |
 | `liquidation_threshold`\* | Uint256 | New threshold collateral value for triggering partial collateral liquidations |
-| `price_timeframe`\* | u64 | New window of time before price data is considered outdated |
+| `price_timeframe`\* | u64 | New window of time before price data is considered outdated **\[seconds\]** |
 
 \* = optional
 
@@ -352,7 +352,7 @@ pub struct ConfigResponse {
 | `bid_fee` | Decimal256 | Fee rate applied to all executed bids |
 | `max_premium_rate` | Decimal256 | Maximum rate of commission given to bidder of an executed bid |
 | `liquidation_threshold` | Uint256 | Threshold collateral value for partial collateral liquidations |
-| `price_timeframe` | u64 | Window of time before price data is considered outdated |
+| `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
 
 ### `LiquidationAmount`
 

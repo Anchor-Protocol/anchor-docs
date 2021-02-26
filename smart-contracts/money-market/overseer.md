@@ -16,12 +16,12 @@ The Overseer halts borrow-related operations if the Oracle's price data is older
 | `liquidation_contract` | CanonicalAddr | Contract address of Liquidation Contract |
 | `collector_contract` | CanonicalAddr | Contract address of Collector |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `epoch_period` | u64 | Minimum time delay between epoch operations |
+| `epoch_period` | u64 | Minimum time delay between epoch operations **\[blocks\]** |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
 | `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
-| `price_timeframe` | u64 | Window of time before price data is considered outdated |
+| `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
 
 ## InitMsg
 
@@ -75,12 +75,12 @@ pub struct InitMsg {
 | `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
 | `collector_contract` | HumanAddr | Contract address of Collector |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `epoch_period` | u64 | Minimum time delay between epoch operations |
+| `epoch_period` | u64 | Minimum time delay between epoch operations **\[blocks\]** |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate to trigger interest buffer distribution |
 | `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
-| `price_timeframe` | u64 | Window of time before price data is considered outdated |
+| `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
 
 ## HandleMsg
 
@@ -137,8 +137,8 @@ pub enum HandleMsg {
 | `target_deposit_rate`\* | Decimal256 | New maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
 | `buffer_distribution_factor`\* | Decimal256 | New maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor`\* | Decimal256 | New portion of bAsset rewards used to purchase ANC |
-| `epoch_period`\* | u64 | New minimum time delay between epoch operations |
-| `price_timeframe`\* | u64 | New window of time before price data is considered outdated |
+| `epoch_period`\* | u64 | New minimum time delay between epoch operations **\[blocks\]** |
+| `price_timeframe`\* | u64 | New window of time before price data is considered outdated **\[seconds\]** |
 
 \* = optional
 
@@ -481,8 +481,8 @@ pub struct ConfigResponse {
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `epoch_period` | u64 | Minimum time delay between epoch operations |
-| `price_timeframe` | u64 | Window of time before price data is considered outdated |
+| `epoch_period` | u64 | Minimum time delay between epoch operations **\[blocks\]** |
+| `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
 
 ### `EpochState`
 

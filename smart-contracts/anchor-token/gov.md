@@ -14,11 +14,11 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
-| `voting_period` | u64 | Number of blocks during which votes can be cast |
-| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
-| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
+| `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
+| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes **\[blocks\]** |
+| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
+| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
 
 ## InitMsg
 
@@ -60,11 +60,11 @@ pub struct InitMsg {
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
-| `voting_period` | u64 | Number of blocks during which votes can be cast |
-| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
-| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
+| `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
+| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes **\[blocks\]** |
+| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
+| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
 
 ## HandleMsg
 
@@ -155,11 +155,11 @@ pub enum HandleMsg {
 | `owner`\* | HumanAddr | New address of contract owner |
 | `quorum`\* | Decimal | New percentage of participation \(of total staked ANC\) required for a poll to pass |
 | `threshold`\* | Decimal | New percentage of `yes` votes required for a poll to pass |
-| `voting_period`\* | u64 | New number of blocks during which votes for a poll can be cast after it has finished its deposit |
-| `timelock_period`\* | u64 | New number of blocks required after a poll pass before executing changes |
-| `expiration_period`\* | u64 | New number of blocks after a poll's voting period during which the poll can be executed |
+| `voting_period`\* | u64 | New number of blocks during which votes for a poll can be cast after it has finished its deposit **\[blocks\]** |
+| `timelock_period`\* | u64 | New number of blocks required after a poll pass before executing changes **\[blocks\]** |
+| `expiration_period`\* | u64 | New number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
 | `proposal_deposit`\* | Uint128 | New minimum ANC deposit required for a poll to enter voting |
-| `snapshot_period`\* | u64 | New window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
+| `snapshot_period`\* | u64 | New window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
 
 \* = optional
 
@@ -547,11 +547,11 @@ pub struct ConfigResponse {
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
-| `voting_period` | u64 | Number of blocks during which votes can be cast |
-| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes |
-| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed |
+| `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
+| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes **\[blocks\]** |
+| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end |
+| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
 
 ### `State`
 
@@ -822,7 +822,7 @@ pub struct ExecuteMsg {
 | `id` | u64 | Poll ID |
 | `creator` | HumanAddr | Poll creator |
 | `status` | PollStatus | Current poll status |
-| `end_height` | u64 | Block number when voting for this poll closes |
+| `end_height` | u64 | Block number when voting for this poll closes **\[block\]** |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
@@ -1034,7 +1034,7 @@ pub struct ExecuteMsg {
 | `id` | u64 | Poll ID |
 | `creator` | HumanAddr | Poll creator |
 | `status` | PollStatus | Current poll status |
-| `end_height` | u64 | Block number when voting for this poll closes |
+| `end_height` | u64 | Block number when voting for this poll closes **\[block\]** |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
