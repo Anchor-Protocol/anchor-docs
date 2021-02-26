@@ -10,7 +10,7 @@ description: Welcome to the Anchor documentation site.
 
 Any user that wishes to gain extra leverage on their portfolio can borrow stablecoins from Anchor by locking bAssets as collateral. Rewards generated from locked bAsset collaterals are used to subsidize the stablecoin deposit rate.
 
-Deposited stablecoins are represented by [Anchor Tokens](protocol/money-market/) \(aTokens\). aTokens are redeemable for the initial deposit along with accrued interest, allowing interest collection to be done just by holding on to them. Anchor is structured to provide depositors with:
+Deposited stablecoins are represented by [Anchor Terra \(aTerra\)](protocol/money-market/#anchor-terra-aterra). aTerra tokens are redeemable for the initial deposit along with accrued interest, allowing interest collection to be done just by holding on to them. Anchor is structured to provide depositors with:
 
 * **High, stable deposit APYs** from rewards of [bAsset collaterals](protocol/money-market/#borrowing-terra-stablecoins)
 * **Instant withdrawals** through [pooled lending](protocol/money-market/#depositing-terra-stablecoins) of stablecoin deposits

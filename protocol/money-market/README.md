@@ -52,7 +52,7 @@ The money market aggregates stablecoin deposits with matching denominations into
 
 This pooling of deposits enable markets to have high liquidity. Deposits can be withdrawn anytime, unless every stablecoin in a market are borrowed.
 
-Deposit interest is distributed through the value appreciation of Anchor Tokens \(aTokens\), which are minted to depositors as a deposit receipt.
+Deposit interest is distributed through the value appreciation of Anchor Terra \(aTerra\), which are minted to depositors as a deposit receipt.
 
 #### Anchor Terra \(aTerra\)
 

@@ -20,7 +20,7 @@ In Anchor Protocol, depositors are incentivized to lend Terra stablecoins to Anc
 
 A **Depositor** is a user that lends Terra stablecoins to the Anchor money market. Deposited stablecoins are pooled and lent out to borrowers, with accrued interest proportionally distributed to all depositors.
 
-Depositors receive newly minted [Anchor Tokens \(aTokens\)](money-market/#anchor-tokens-atokens) in exchange for their deposit. aTokens represent a depositor's share in the stablecoin pool and can later be redeemed to claim the initial stablecoin deposit, along with accrued interest and depositor subsidies.
+Depositors receive newly minted [Anchor Terra \(aTerra\)](money-market/#anchor-terra-aterra) in exchange for their deposit. aTerra tokens represent a depositor's share in the stablecoin pool and can later be redeemed to claim the initial stablecoin deposit, along with accrued interest and depositor subsidies.
 
 ### Borrower
 
@@ -46,6 +46,6 @@ As an entity crucial for protocol operation, Anchor's oracle feeder is initially
 | :--- | :--- | :--- |
 | Terra USD \(UST\) | Native Terra Token | Stablecoin |
 | [Bonded Assets \(bAssets\)](bonded-assets-bassets/) | Cw20 Token | Loan collateral for Anchor money market |
-| [Anchor Tokens \(aTokens\)](money-market/#anchor-tokens-atokens) | Cw20 Token | Deposit receipt for Anchor money market |
+| [Anchor Terra \(aTerra\)](money-market/#anchor-terra-aterra) | Cw20 Token | Deposit receipt for Anchor money market |
 | [Anchor Token \(ANC\)](anchor-token-anc.md) | Cw20 Token | Governance token for Anchor Protocol |
 

@@ -59,7 +59,7 @@ pub struct InitMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description`epoch_poer` |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `epoch_period` | u64 | Minimum time delay between undelegation batches **\[seconds\]** |
 | `underlying_coin_denom` | String | Underlying asset denomination of bAsset \(Luna\) |
