@@ -4,9 +4,11 @@ The mechanism behind Anchor's money market is controlled by a set of carefully d
 
 Modifying the `Target Deposit Rate` adjusts Anchor's target deposit APY, which the protocol attempts to achieve by constantly controlling the ANC emission rate as borrower incentives.
 
-The `Threshold Deposit Rate` value is the minimum deposit APY that Anchor tries to ensure by making direct deposit rate subsidizations from the interest buffer if the current deposit rate is observed to be below this value.
+The `Threshold Deposit Rate` value is the minimum deposit APY that Anchor tries to ensure by making direct deposit rate subsidizations from the interest buffer if the current deposit rate is observed to be below this value. Interest buffer usage from direct subsidization events are limited to a `Buffer Distribution Factor` portion of the interest buffer's balance per subsidization event.
 
+In cases of excessive and uncontrollable borrow demand, the `Max Borrow Factor`, which limits the amount of stablecoin liquidity available to be borrowed, can be adjusted to allow aTerra redemptions to occur.
 
+The money market is configured to be resilient to price oracle downtimes, where price values are considered invalid if they are older than `Valid Price Timeframe`.
 
 | Parameter Name | Description |
 | :--- | :--- |
