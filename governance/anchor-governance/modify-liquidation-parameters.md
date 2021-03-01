@@ -6,13 +6,11 @@
 
 | Parameter Name | Description |
 | :--- | :--- |
-| `Safe Ratio` | Targeted risk ratio of  |
-| `Bid Fee` |  |
-| `Max Premium Rate` |  |
+| `Safe Ratio` | Targeted risk ratio of a liquidated loan |
+| `Bid Fee` | Protocol commission on executed bids used to purchase ANC |
+| `Max Premium Rate` | Maximum bid premium rate value submittable by bidders |
 | `Partial Liquidation Threshold` | Threshold total collateral value to trigger partial collateral liquidations |
 | `Valid Price Timeframe` | Time window before the Liquidation Contract considers oracle price data invalid |
-
-
 
 
 
@@ -33,9 +31,9 @@
 | Title | Poll title | Required |
 | Rationale | Short description of poll | Required |
 | Information Link | External URL for further information | Optional |
-| Safe Ratio | Proposed  | Optional |
-| Bid Fee | Proposed | Optional |
-| Max Premium Rate | Proposed | Optional |
-| Partial Liquidation Threshold | Proposed | Optional |
-| Valid Price Timeframe | Proposed | Optional |
+| Safe Ratio | Proposed risk ratio target for a liquidated loan | Optional |
+| Bid Fee | Proposed protocol commission on executed bids used to purchase ANC | Optional |
+| Max Premium Rate | Proposed maximum bid premium rate value submittable by bidders | Optional |
+| Partial Liquidation Threshold | Proposed threshold total collateral value to trigger partial collateral liquidations | Optional |
+| Valid Price Timeframe | Proposed time window before the Liquidation Contract considers oracle price data invalid | Optional |
 

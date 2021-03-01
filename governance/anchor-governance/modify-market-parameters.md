@@ -1,6 +1,10 @@
 # Modify Market Parameters
 
-The mechanism behind Anchor's money market is controlled by a set of carefully determined parameters.
+The mechanism behind Anchor's money market is controlled by a set of carefully determined parameters, which are `Target Deposit Rate`, `Threshold Deposit Rate`, `Buffer Distribution Factor`, `Max Borrow Factor`, and `Valid Price Timeframe`. The **Modify Market Parameters** poll allows users to submit governance polls that adjust parameters that 
+
+Modifying the `Target Deposit Rate` adjusts Anchor's target deposit APY, which the protocol attempts to achieve by constantly controlling the ANC emission rate as borrower incentives.
+
+The `Threshold Deposit Rate` value is the minimum deposit APY that Anchor tries to ensure by making direct deposit rate subsidizations from the interest buffer if the current deposit rate is observed to be below this value.
 
 
 
@@ -19,7 +23,7 @@ The mechanism behind Anchor's money market is controlled by a set of carefully d
 | `Target Deposit Rate` | 15% APY |
 | `Threshold Deposit Rate` | 10% APY |
 | `Buffer Distribution Factor` | 10% |
-| `Max Borrow Factor` | 95% |
+| `Max Borrow Factor` | 100% |
 | `Valid Price Timeframe` | 60 seconds |
 
 ## Poll Format
