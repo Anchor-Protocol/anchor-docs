@@ -32,7 +32,7 @@ Governance polls in Anchor follow the below procedure:
 
 1. A new poll is created with an initial ANC deposit of `proposal_deposit`
 2. The poll enters the voting phase, where it can voted for by anybody with a staked ANC position. Users can vote `yes` or `no`, and can assign how many of their staked ANC to use for voting.
-3. snapshot
+3. The total amount of staked ANC can be snapshotted to the poll within a time window of `snapshot_period` before the poll's end. This value is used to calculate the poll's quorum.
 4. The voting period ends after `voting_period` has passed.
 5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
 6. If the poll passes, its contents can be executed after `effective_delay` blocks have passed. The poll must be executed prior to the `expiration_period`, otherwise it will automatically expire and no longer be considered valid.
