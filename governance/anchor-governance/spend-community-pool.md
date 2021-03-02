@@ -14,5 +14,3 @@ The purpose of the grant is to empower ecosystem teams to build necessary tools 
 | Description | Short description of poll | Required |
 | Information Link | External URL for further information | Optional |
 
-
-
