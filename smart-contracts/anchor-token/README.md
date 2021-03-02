@@ -15,5 +15,4 @@ Even with a thorough understanding of Anchor Protocol, it is highly recommended 
 | [Community](community.md) | Manages ANC community grants |
 | [Collector](collector.md) | Accumulates protocol fees, converts them to ANC and distributes to Gov and Faucet |
 | [Faucet](dripper.md) | Holds ANC distribution balance |
-| [Distribution Model]() | Calculates ANC borrower distribution logic |
 
