@@ -8,7 +8,7 @@ The `Threshold Deposit Rate` value is the minimum deposit APY that Anchor tries 
 
 In cases of excessive and uncontrollable borrow demand, the `Max Borrow Factor`, which limits the amount of stablecoin liquidity available to be borrowed, can be adjusted to allow aTerra redemptions to occur.
 
-The money market is configured to be resilient to price oracle downtimes, where price values are considered invalid if they are older than `Valid Price Timeframe`.
+The money market is configured to be somewhat resilient to price oracle downtimes, where price values are considered invalid if they are older than `Valid Price Timeframe`.
 
 | Parameter Name | Description |
 | :--- | :--- |

@@ -18,8 +18,6 @@
 ## Governance
 
 * [Anchor Governance](governance/anchor-governance/README.md)
-  * [Collateral Whitelisting](governance/anchor-governance/collateral-whitelisting/README.md)
-    * [bAsset Collaterals](governance/anchor-governance/collateral-whitelisting/basset-collaterals.md)
   * [Modify Collateral Attributes](governance/anchor-governance/modify-collateral-parameters.md)
   * [Modify Market Parameters](governance/anchor-governance/modify-market-parameters.md)
   * [Modify Liquidation Parameters](governance/anchor-governance/modify-liquidation-parameters.md)
@@ -75,6 +73,12 @@
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Faucet](smart-contracts/anchor-token/dripper.md)
+
+## WIP
+
+* [Collateral Whitelisting](wip/collateral-whitelisting/README.md)
+  * [bAsset Collaterals](wip/collateral-whitelisting/basset-collaterals.md)
+* [Untitled](wip/untitled.md)
 
 ## External Resources
 

@@ -4,15 +4,17 @@
 It is recommended to first start a community discussion at the Anchor Protocol Forum before submitting a poll.
 {% endhint %}
 
-Development and maturization of Anchor Protocol is driven by the Anchor community.
+Development and maturization of Anchor Protocol is driven by the Anchor community thorough democratic governance. Anchor does not contain any admin keys and all changes or upgrades in the protocol are decided and executed by Anchor governance.
+
+Following the initial deployment of Anchor smart contracts, the Anchor [Gov contract](../../smart-contracts/anchor-token/gov.md) is set as the owner of all [Anchor Protocol contracts](../../smart-contracts/deployed-contracts.md). Further modifications  and improvements to Anchor contracts can only be made through the [governance poll creation process](./#poll-lifecycle).
 
 ## Anchor Governance Token \(ANC\)
 
-Governance over Anchor is managed by ANC token holders
+{% hint style="info" %}
+Although a user receives 1 vote per staked MIR for every poll, voting in polls does not have any effect on the user's current staking balance.
+{% endhint %}
 
-
-
-
+Governance over Anchor is managed by stakers of Anchor Tokens \(ANC\). ANC acts as Anchor Protocol's governance token and is used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
 
 ## Polls
 
@@ -23,17 +25,17 @@ Polls consist of a text description of the proposition \(with an optional URL to
 Once submitted, a poll can be voted on by the community until its voting period has concluded. If the poll passes quorum and threshold conditions \(defined below\), it is ratified and its contents can automatically be applied after a set period of time. These changes take effect without requiring updates to the core Anchor Protocol contracts.
 
 {% hint style="danger" %}
-Staked ANC tokens utilized in on-going polls cannot be withdrawn until the poll completes. In addition, the number of ANC used in a proposal **cannot** be modified after the vote has been submitted.
+Staked ANC tokens utilized in on-going polls **cannot be withdrawn** until the poll completes. In addition, the number of ANC used in a proposal **cannot be modified** after the vote has been submitted.
 {% endhint %}
 
 ## Poll Lifecycle
 
 Governance polls in Anchor follow the below procedure:
 
-1. A new poll is created with an initial ANC deposit of `proposal_deposit`
+1. A new poll is created with an initial ANC deposit of `Proposal Deposit`
 2. The poll enters the voting phase, where it can voted for by anybody with a staked ANC position. Users can vote `yes` or `no`, and can assign how many of their staked ANC to use for voting.
-3. The total amount of staked ANC can be snapshotted to the poll within a time window of `snapshot_period` before the poll's end. This value is used to calculate the poll's quorum.
-4. The voting period ends after `voting_period` has passed.
-5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
-6. If the poll passes, its contents can be executed after `effective_delay` blocks have passed. The poll must be executed prior to the `expiration_period`, otherwise it will automatically expire and no longer be considered valid.
+3. The total amount of staked ANC can be snapshotted to the poll within a time window of `Snapshot Period` before the poll's end. This value is used to calculate the poll's quorum.
+4. The voting period ends after `Voting Period` has passed.
+5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC, value snapshotted at step 3.\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
+6. If the poll passes, its contents can be executed after `Timelock Period` blocks have passed. The poll must be executed prior to the `Timelock Period`, otherwise it will automatically expire and no longer be considered valid.
 
