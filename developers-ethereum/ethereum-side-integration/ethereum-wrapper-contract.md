@@ -1,6 +1,14 @@
 # Ethereum Wrapper Contract
 
-Deposits and redemptions of wrapped UST and wrapped aUST 
+{% hint style="info" %}
+As of March 12th, 2021, both Anchor and EthAnchor only supports UST.
+{% endhint %}
+
+The Ethereum wrapper contract handles 
+
+Deposit / redeem requests of wrapped ERC20 stablecoins are first handled by the Ethereum wrapper contract.
+
+Deposits and redemptions of wrapped UST and wrapped aUST are first handled
 
 Anchor's Ethereum wrapper contract is a **client-specifically** generated smart contract on the Ethereum blockchain to handle wrapped UST deposits to Anchor. Both depositing wrapped UST and redeeming wrapped aUST is processed with an `init` - `finish` architecture. It is important to note that additional processing time \(separate from time required for Ethereum tx confirmation\) is needed in order for `init` requests, until which `finish` requests will result in failure.
 

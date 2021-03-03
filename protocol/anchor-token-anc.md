@@ -38,35 +38,52 @@ ANC token deposits of Anchor governance polls that have failed to reach the requ
 
 ## Anchor Token Supply
 
-There are planned to be a total of **1,000,000,000 ANC** tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
+{% hint style="info" %}
+The below token distribution schedules were drawn assuming the maximum borrower ANC emission rate \(`Emission Cap`\). In practice, it is highly likely that the borrower ANC distribution rate will be lower than the below distribution schedule.
+{% endhint %}
 
-### Cumulative Allocation Schedule
+There are planned to be a total of **1,000,000,000 ANC** tokens to be distributed over a period of at least 4 years. Beyond that, there will be no more new ANC tokens introduced to the supply.
+
+### Cumulative Distribution Schedule \(in millions\)
 
 |  | Genesis | Year 1 | Year 2 | Year 3 | Year 4 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Luna staking airdrop |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-| **Token Supply** |  |  |  |  |  |
-| Annual Inflation \(%\) | nil |  |  |  |  |
+| Investors | 0 | 50 | 100 | 100 | 100 |
+| Team | 0 | 25 | 50 | 75 | 100 |
+| Luna Staking Airdrop | 50 | 50 | 50 | 50 | 50 |
+| Luna Staking Rewards | 0 | 50 | 100 | 100 | 100 |
+| Borrower Incentives | 0 | 100 | 200 | 300 | 400 |
+| ANC LP Incentives | 0 | 50 | 50 | 50 | 50 |
+| Community Fund | 100 | 125 | 150 | 175 | 200 |
+| **Token Supply** | 150 | 450 | 700 | 850 | 1,000 |
+| Annual Inflation \(%\) | nil | 200.00% | 55.56% | 21.43% | 17.65% |
 
-### Genesis Token Allocation
+### Genesis Token Distribution
 
-///// Diagram of Token Distribution at Genesis ///// 
+![](../.gitbook/assets/genesis-token-distribution.png)
 
+A total of 150M ANC tokens are released at the genesis of Anchor Protocol. The initial distribution of ANC will be:
 
+* **LUNA staking airdrop**: 50M \(33.3%\) tokens will be airdropped to LUNA stakers.
+* **Community fund**: 100M \(66.7%\) tokens will be reserved for the Anchor Community Fund.
 
-### Final Token Allocation
+### Final Token Distribution
 
-///// Diagram of Token Distribution Post-Distribution /////
+![](../.gitbook/assets/final-token-distribution.png)
 
+Further ANC tokens are set to be released over a period of at least 4 years. The total ANC supply increases until it reaches **1B**. The final distribution structure will be:
 
+* **Investors**: 100M \(10%\) tokens are allocated to investors of Anchor, with a 6-month lockup period. Afterwards, a 1-year linear vesting schedule is applied.
+* **Team**: 100M \(10%\) tokens are allocated to the creators of Anchor, with a 4-year vesting period. Tokens will be released at every end-of-year.
+* **LUNA staking airdrop**: 50M \(5%\) tokens are airdropped to LUNA stakers.
+* **LUNA staking rewards**: 100M \(10%\) tokens are linearly distributed to LUNA stakers over a period of 2 years.
+* **Borrower incentives**: 400M \(40%\) tokens are linearly released to be used as borrower incentives over a period of 4 years.
+* **ANC LP staking rewards**: 50M \(5%\) tokens are linearly distributed to the ANC-UST LP token staking pool over a period of 1 year.
+* **Community fund**: 200M \(20%\) of all ANC tokens will be reserved for the Anchor Community Fund. On top of the 100M ANC at genesis, 100M additional tokens are linearly released to the community fund over a period of 4 years.
 
 #### Inflation Rate
 
-Inflation rate of ANC tokens are designed to gradually decrease every year, until it reaches **1B** at the end of year 4. After the end of year 4, no more ANC tokens will be minted through inflation.
+Inflation rate of ANC tokens are designed to gradually decrease every year, until it eventually reaches a supply of **1B**.
 
 ## Distribution to Borrowers
 
