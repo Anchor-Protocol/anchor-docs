@@ -4,17 +4,17 @@
 It is recommended to first start a community discussion at the Anchor Protocol Forum before submitting a poll.
 {% endhint %}
 
-Development and maturization of Anchor Protocol is driven by the Anchor community thorough democratic governance. Anchor does not contain any admin keys and all changes or upgrades in the protocol are decided and executed by Anchor governance.
+Development and maturization of Anchor Protocol is driven by the Anchor community through democratic governance. Anchor does not contain any admin keys with privileged access. Anchor governance is configured to be the sole authority allowed to apply protocol changes or upgrades.
 
-Following the initial deployment of Anchor smart contracts, the Anchor [Gov contract](../../smart-contracts/anchor-token/gov.md) is set as the owner of all [Anchor Protocol contracts](../../smart-contracts/deployed-contracts.md). Further modifications  and improvements to Anchor contracts can only be made through the [governance poll creation process](./#poll-lifecycle).
+Following the initial deployment of Anchor smart contracts, the Anchor [Gov contract](../../smart-contracts/anchor-token/gov.md) is set as the owner of all [Anchor Protocol contracts](../../smart-contracts/deployed-contracts.md). Further modifications and improvements to Anchor contracts can only always be made through the [governance poll creation process](./#poll-lifecycle).
 
 ## Anchor Governance Token \(ANC\)
 
 {% hint style="info" %}
-Although a user receives 1 vote per staked MIR for every poll, voting in polls does not have any effect on the user's current staking balance.
+Although a user receives 1 vote per staked ANC for every poll, voting in polls does not have any effect on the user's current staking balance.
 {% endhint %}
 
-Governance over Anchor is managed by stakers of Anchor Tokens \(ANC\). ANC acts as Anchor Protocol's governance token and is used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
+Governance over Anchor is managed by stakers of Anchor Tokens \(ANC\). ANC acts as Anchor Protocol's governance token, used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
 
 ## Polls
 
@@ -36,6 +36,6 @@ Governance polls in Anchor follow the below procedure:
 2. The poll enters the voting phase, where it can voted for by anybody with a staked ANC position. Users can vote `yes` or `no`, and can assign how many of their staked ANC to use for voting.
 3. The total amount of staked ANC can be snapshotted to the poll within a time window of `Snapshot Period` before the poll's end. This value is used to calculate the poll's quorum.
 4. The voting period ends after `Voting Period` has passed.
-5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC, value snapshotted at step 3.\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
+5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC, value snapshotted at step 3. used in calculation\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
 6. If the poll passes, its contents can be executed after `Timelock Period` blocks have passed. The poll must be executed prior to the `Timelock Period`, otherwise it will automatically expire and no longer be considered valid.
 

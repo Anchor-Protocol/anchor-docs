@@ -43,8 +43,8 @@ To be eligible for bug bounty reward consideration, you must:
 * Include sufficient detail in your disclosure to enable our engineers to quickly reproduce, understand, and fix the vulnerability.
 * Be at least 18 years of age.
 * Be reporting in an individual capacity, or if employed by a company, reporting with the company’s written approval to submit a disclosure to Anchor.
-* ~~Not be subject to US sanctions or reside in a US-embargoed country.~~
-* ~~Not be a current or former Anchor employee, vendor, contractor, or employee of an Anchor vendor or contractor.~~
+* Not be subject to US sanctions or reside in a US-embargoed country.
+* Not be a current or former Anchor employee, vendor, contractor, or employee of an Anchor vendor or contractor.
 
 To encourage vulnerability research and to avoid any confusion between good-faith hacking and malicious attack, we require that you:
 

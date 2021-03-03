@@ -11,7 +11,7 @@ The Mirror web app requires [Google Chrome](https://www.google.com/chrome/) and 
 ## Terra Station Extension
 
 {% hint style="warning" %}
-As of February 16th, 2021, Station Extension is only available for Chromium-based web browsers.
+As of March 12th, 2021, Station Extension is only available for Chromium-based web browsers.
 {% endhint %}
 
 Station Extension is a Chrome extension that lets you interact with smart contract web frontends with a wallet embedded in your browser. When interacting with Anchor Protocol through the WebApp, the application will generate a transaction for you in the proper format that encodes your desired interaction. Station Extension will detect and prompt you to sign and broadcast it to actually execute the operation.
@@ -90,7 +90,7 @@ To access hardware ledger wallet from Terra Station Extension, please follow the
 * Memo is optional
 
 {% hint style="info" %}
-Station Extension also support cross-chain transfer to Ethereum addresses through [Shuttle](https://github.com/terra-project/shuttle) bridge. 
+Station Extension also support cross-chain transfer to Ethereum addresses through the [Shuttle](https://github.com/terra-project/shuttle) bridge. 
 {% endhint %}
 
 ![](../.gitbook/assets/picture-8.png)
@@ -112,7 +112,7 @@ There are several ways to obtain Terra stablecoins:
 * Swapping Luna for Terra stablecoins
 * Purchasing Terra stablecoins from an exchange
 
-### Swapping Luna to Terra Stablecoins
+### Swapping Luna for Terra Stablecoins
 
 If you have a Terra account with a balance of Luna or other stablecoins such as KRT, or SDT, you can turn them into UST through the Terra blockchain's native swap functionality. For instance, on [Terra Station](https://station.terra.money), the official Terra desktop wallet, you can access the swap feature through the "Swap" page.
 
@@ -138,4 +138,8 @@ Terra stablecoins can be obtained by directly purchasing them from cryptocurrenc
 | :--- | :--- |
 | [Bittrex](https://bittrex.com/) | [USDT](https://global.bittrex.com/Market/Index?MarketName=USDT-UST), [BTC](https://global.bittrex.com/Market/Index?MarketName=BTC-UST) |
 | [Kucoin](https://kucoin.com/) | [USDT](https://trade.kucoin.com/USDT-UST), [USDC](https://trade.kucoin.com/USDC-UST), [BTC](https://trade.kucoin.com/BTC-UST), [ETH](https://trade.kucoin.com/ETH-UST), [DOT](https://trade.kucoin.com/DOT-UST), [ATOM](https://trade.kucoin.com/ATOM-UST), [SNX](https://trade.kucoin.com/SNX-UST), [AAVE](https://trade.kucoin.com/AAVE-UST), [YFI](https://trade.kucoin.com/YFI-UST) |
+
+## Obtaining Luna
+
+
 

@@ -3,7 +3,7 @@
 The **BOND** page enables users to easily interact with bAsset tokens. Through this page, users can mint bAssets, burn bAsset to redeem the underlying Asset, and claim bAsset rewards.
 
 {% hint style="info" %}
-As of February 18th, 2021, Anchor only supports bonded Luna \(bLuna\) as providable collateral.
+As of March 12th, 2021, Anchor only supports bonded Luna \(bLuna\) as providable collateral.
 {% endhint %}
 
 ## Minting bLuna
@@ -52,7 +52,7 @@ As of February 18th, 2021, Anchor only supports bonded Luna \(bLuna\) as provida
 5. Burn complete. In the case of **BURN**, redeemed Luna can be withdrawn at the **CLAIM** tab after a unbonding period of at least 21 days.
 
 {% hint style="info" %}
-bLuna burn requests currently in the unbonding period can be viewed at the **CLAIM** tab.
+bLuna burn requests currently in the unbonding period can be viewed at the [**CLAIM**](basset.md#withdrawing-luna-from-burnt-luna) tab.
 {% endhint %}
 
 ### Withdrawing Luna from burnt Luna
@@ -96,4 +96,6 @@ bLuna rewards only accrue only if the user is currently holding bLuna tokens. Us
 
 
 4. Reward claim complete.
+
+
 

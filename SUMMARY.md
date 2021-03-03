@@ -38,18 +38,21 @@
 * [Loan Liquidation](protocol/liquidations.md)
 * [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
 
-## Developers
+## Developers - Terra
 
-* [Anchor CLI](developers/anchor-cli.md)
-* [Anchor API](developers/anchor-api.md)
-* [Anchor.js](developers/anchor.js.md)
-* [EthAnchor](developers/ethereum-side-integration/README.md)
-  * [Integration Flow](developers/ethereum-side-integration/integration-flow.md)
-  * [Ethereum Wrapper Contract](developers/ethereum-side-integration/ethereum-wrapper-contract.md)
-  * [HTTP API Endpoints](developers/ethereum-side-integration/ethanchor-http-interface/README.md)
-    * [Getting market information](developers/ethereum-side-integration/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
-    * [Depositing Stablecoins](developers/ethereum-side-integration/ethanchor-http-interface/depositing-stablecoins.md)
-    * [Redeeming Stablecoins](developers/ethereum-side-integration/ethanchor-http-interface/redeeming-stablecoins.md)
+* [Anchor CLI](developers-terra/anchor-cli.md)
+* [Anchor API](developers-terra/anchor-api.md)
+* [Anchor.js](developers-terra/anchor.js.md)
+
+## Developers - Ethereum
+
+* [EthAnchor](developers-ethereum/ethereum-side-integration/README.md)
+  * [Ethereum Wrapper Contract](developers-ethereum/ethereum-side-integration/ethereum-wrapper-contract.md)
+  * [HTTP API Endpoints](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/README.md)
+    * [Getting market information](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
+    * [Depositing Stablecoins](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/depositing-stablecoins.md)
+    * [Redeeming Stablecoins](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/redeeming-stablecoins.md)
+* [Integration Flow](developers-ethereum/integration-flow.md)
 
 ## Smart Contracts
 

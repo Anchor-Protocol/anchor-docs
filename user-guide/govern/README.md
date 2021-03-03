@@ -8,5 +8,3 @@ The **GOVERN** page displays operations related to providing exchange liquidity 
 | **Rewards** | [Claiming ANC rewards](claiming-anc-rewards.md) |
 | **Polls** | [Creating and voting on proposals](governance-proposals.md) |
 
-
-

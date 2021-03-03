@@ -8,6 +8,7 @@ The Distribution Model contract manages the calculation of the ANC emission rate
 | :--- | :--- | :--- |
 | `owner` | HumanAddr | Address of contract owner |
 | `emission_cap` | Decimal256 | Maximum per-block ANC emission rate |
+| `emission_floor` | Decimal256 | Minimum per-block ANC emission rate |
 | `increment_multiplier` | Decimal256 | Rate multiplier when increasing emission |
 | `decrement_multiplier` | Decimal256 | Rate multiplier when decreasing emission |
 
@@ -20,6 +21,7 @@ The Distribution Model contract manages the calculation of the ANC emission rate
 pub struct InitMsg {
     pub owner: HumanAddr,
     pub emission_cap: Decimal256,
+    pub emission_floor: Decimal256, 
     pub increment_multiplier: Decimal256,
     pub decrement_multiplier: Decimal256,
 }
@@ -30,7 +32,8 @@ pub struct InitMsg {
 ```javascript
 {
   "owner": "terra1...", 
-  "emission_cap": "0.1", 
+  "emission_cap": "10000", 
+  "emission_floor": "1000", 
   "increment_multiplier": "2.0", 
   "decrement_multiplier": "0.9" 
 }
@@ -42,6 +45,7 @@ pub struct InitMsg {
 | :--- | :--- | :--- |
 | `owner` | HumanAddr | Address of contract owner |
 | `emission_cap` | Decimal256 | Maximum per-block ANC emission rate |
+| `emission_floor` | Decimal256 | Minimum per-block ANC emission rate |
 | `increment_multiplier` | Decimal256 | Rate multiplier when increasing emission |
 | `decrement_multiplier` | Decimal256 | Rate multiplier when decreasing emission |
 
@@ -60,6 +64,7 @@ pub enum HandleMsg {
     UpdateConfig {
         owner: Option<HumanAddr>,
         emission_cap: Option<Decimal256>,
+        emission_floor: Option<Decimal256>, 
         increment_multiplier: Option<Decimal256>,
         decrement_multiplier: Option<Decimal256>,
     }
@@ -72,7 +77,8 @@ pub enum HandleMsg {
 {
   "update_config": {
     "owner": "terra1...", 
-    "emission_cap": "0.1", 
+    "emission_cap": "10000", 
+    "emission_floor": "1000", 
     "increment_multiplier": "2.0", 
     "decrement_multiplier": "0.9" 
   }
@@ -85,6 +91,7 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `owner`\* | HumanAddr | Address of new owner |
 | `emission_cap`\* | Decimal256 | New maximum per-block ANC emission rate |
+| `emission_floor`\* | Decimal256 | New minimum per-block ANC emission rate |
 | `increment_multiplier`\* | Decimal256 | New rate multiplier when increasing emission |
 | `decrement_multiplier`\* | Decimal256 | New rate multiplier when decreasing emission |
 
@@ -129,6 +136,7 @@ pub enum QueryMsg {
 pub struct ConfigResponse {
     pub owner: HumanAddr,
     pub emission_cap: Decimal256,
+    pub emission_floor: Decimal256, 
     pub increment_multiplier: Decimal256,
     pub decrement_multiplier: Decimal256,
 }
@@ -139,7 +147,8 @@ pub struct ConfigResponse {
 ```javascript
 {
   "owner": "terra1...", 
-  "emission_cap": "0.1", 
+  "emission_cap": "10000", 
+  "emission_floor": "1000", 
   "increment_multiplier": "2.0", 
   "decrement_multiplier": "0.9" 
 }
@@ -151,6 +160,7 @@ pub struct ConfigResponse {
 | :--- | :--- | :--- |
 | `owner` | HumanAddr | Address of contract owner |
 | `emission_cap` | Decimal256 | Maximum per-block ANC emission rate |
+| `emission_floor` | Decimal256 | Minimum per-block ANC emission rate |
 | `increment_multiplier` | Decimal256 | Rate multiplier when increasing emission |
 | `decrement_multiplier` | Decimal256 | Rate multiplier when decreasing emission |
 
@@ -179,7 +189,7 @@ pub enum QueryMsg {
   "anc_emission_rate": {
     "deposit_rate": "0.0001", 
     "target_deposit_rate": "0.00015", 
-    "current_emission_rate": "0.05" 
+    "current_emission_rate": "5000" 
   }
 }
 ```
@@ -207,7 +217,7 @@ pub struct ANCEmissionRateResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-  "emission_rate": "0.1"
+  "emission_rate": "10000"
 }
 ```
 {% endtab %}

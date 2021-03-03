@@ -14,7 +14,7 @@ An ideal bAsset collateral has:
 
 bAssets should be made fungible across all staking positions, regardless of their underlying validator and their properties. Having multiple bAsset types for a single blockchain leads to fragmented liquidity, drastically decreasing their attractiveness as a collateral.
 
-As fungible resources, each unit of bAsset must have the same risk and reward profile. Underlying assets lost from slashing and rewards gained from staking should be shared pro-rata to bAsset tokens.
+As fungible resources, each unit of bAsset must have the same risk and reward profile. Underlying assets lost from slashing and rewards gained from staking should be shared pro-rata to all bAsset tokens.
 
 ### Default 1:1 Conversion
 

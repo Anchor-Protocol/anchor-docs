@@ -10,9 +10,9 @@ Through the **Modify Collateral Attributes** poll, the Anchor community is able 
 
 ## Genesis Values
 
-| Collateral Name | Parameter Name | Value |
-| :--- | :--- | :--- |
-| Bonded Luna \(bLuna\) | `Max LTV` | 50% |
+| Collateral Ticker | Collateral Name | Parameter Name | Value |
+| :--- | :--- | :--- | :--- |
+| **bLUNA** | Bonded Luna | `Max LTV` | 50% |
 
 ## Poll Format
 

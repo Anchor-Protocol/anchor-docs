@@ -12,11 +12,9 @@ ANC is also used as incentives to bootstrap borrow demand. ANC is distributed ev
 ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
 {% endhint %}
 
-![ANC Token Structure](../.gitbook/assets/anc_incentive_diagram%20%281%29.png)
+![ANC Value Flow](../.gitbook/assets/screen-shot-2021-03-02-at-10.44.32-pm.png)
 
-ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap.
-
-A part of the ANC tokens purchased from protocol fees are recollected as future borrower ANC incentives, enabling borrower incentivization to continue even after full expenditure of their initial ANC allocation.
+ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap, which are then distributed as staking rewards to ANC stakers.
 
 ### Protocol Fees
 
@@ -30,17 +28,17 @@ Anchor applies a 5% commission to accrued deposit interest, set aside as ANC pur
 
 #### Collateral Liquidation Fees
 
-Whenever a loan is liquidated, 1% of the liquidated collateral value is sent the interest buffer, which a portion of which is used to purchase ANC. This fee is applied separately to a bid's [premium](liquidations.md#premium-rate).
+Whenever a loan is liquidated, 1% of the liquidated collateral value is sent the interest buffer, which a portion of which is used to purchase ANC. This fee is applied separate from [bid premiums](liquidations.md#premium-rate).
 
 
 
 ### Governance Fees
 
-ANC token deposits of Anchor governance polls that have failed to reach the required quorum are redistributed ANC stakers.
+ANC token deposits of Anchor governance polls that have failed to reach the required quorum are redistributed ANC stakers as staking rewards.
 
 ## Anchor Token Supply
 
-There are planned to be a total of **1,000,000 ANC** tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
+There are planned to be a total of **1,000,000,000 ANC** tokens to be distributed over a 4-year period. Beyond that, there will be no more new ANC tokens introduced to the supply.
 
 ### Cumulative Allocation Schedule
 
@@ -68,7 +66,7 @@ There are planned to be a total of **1,000,000 ANC** tokens to be distributed ov
 
 #### Inflation Rate
 
-Inflation rate of ANC tokens are designed to gradually decrease every year, until it reaches **1M** at the end of year 4. After the end of year 4, no more ANC tokens will be minted through inflation.
+Inflation rate of ANC tokens are designed to gradually decrease every year, until it reaches **1B** at the end of year 4. After the end of year 4, no more ANC tokens will be minted through inflation.
 
 ## Distribution to Borrowers
 

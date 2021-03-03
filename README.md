@@ -16,7 +16,7 @@ Deposited stablecoins are represented by [Anchor Terra \(aTerra\)](protocol/mone
 * **Instant withdrawals** through [pooled lending](protocol/money-market/#depositing-terra-stablecoins) of stablecoin deposits
 * **Principal protection** via [liquidation](protocol/liquidations.md) of loans in risk of undercollateralization
 
-Anchor is an open, permissionless protocol, meaning that any third-party application is free to connect and earn interest without restrictions. Through [Anchor.js](developers/anchor.js.md), developers can interact with Anchor using just a few lines of code.
+Anchor is an open, permissionless protocol, meaning that any third-party application is free to connect and earn interest without restrictions. Through [Anchor.js](developers-terra/anchor.js.md), developers can interact with Anchor using just a few lines of code.
 
 Further documentation of Anchor Protocol is provided in the following pages.
 
@@ -26,9 +26,9 @@ Learn more about Anchor Protocol, its core smart contracts, and Javascript SDK.
 
 * [Protocol Overview](protocol/overview.md)
 * [Smart Contracts](smart-contracts/deployed-contracts.md)
-* [Anchor.js](developers/anchor.js.md)
+* [Anchor.js](developers-terra/anchor.js.md)
 
-## Further Reading
+## Further Reads
 
 * [Read the Anchor whitepaper](https://anchorprotocol.com/docs/anchor-v1.1.pdf)
 * [Read the bAsset whitepaper](https://anchorprotocol.com/docs/The_bAsset_Protocol.pdf)
@@ -36,7 +36,7 @@ Learn more about Anchor Protocol, its core smart contracts, and Javascript SDK.
 ### Developer Resources
 
 * [Read the core smart contracts](https://github.com/Anchor-Protocol)
-* [Integrate Anchor to your App](developers/anchor.js.md)
+* [Integrate Anchor to your App](developers-terra/anchor.js.md)
 
 ### Community
 
