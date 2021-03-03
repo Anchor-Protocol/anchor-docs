@@ -46,12 +46,12 @@
 
 ## Developers - Ethereum
 
-* [EthAnchor](developers-ethereum/ethereum-side-integration/README.md)
-  * [Ethereum Wrapper Contract](developers-ethereum/ethereum-side-integration/ethereum-wrapper-contract.md)
-  * [HTTP API Endpoints](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/README.md)
-    * [Getting market information](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
-    * [Depositing Stablecoins](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/depositing-stablecoins.md)
-    * [Redeeming Stablecoins](developers-ethereum/ethereum-side-integration/ethanchor-http-interface/redeeming-stablecoins.md)
+* [EthAnchor](developers-ethereum/ethereum-side-integration.md)
+* [Ethereum Wrapper Contract](developers-ethereum/ethereum-wrapper-contract.md)
+* [HTTP API Endpoints](developers-ethereum/ethanchor-http-interface/README.md)
+  * [Getting market information](developers-ethereum/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
+  * [Depositing Stablecoins](developers-ethereum/ethanchor-http-interface/depositing-stablecoins.md)
+  * [Redeeming Stablecoins](developers-ethereum/ethanchor-http-interface/redeeming-stablecoins.md)
 * [Integration Flow](developers-ethereum/integration-flow.md)
 
 ## Smart Contracts

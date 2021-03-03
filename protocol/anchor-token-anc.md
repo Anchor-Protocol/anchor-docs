@@ -22,10 +22,6 @@ ANC is designed to generate a buying pressure which increases proportionally wit
 
 A portion of rewards from deposited bAsset collaterals are used to purchase ANC, with the remainder used to replenish the interest buffer. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the interest buffer's inventory rises to a sufficient level.
 
-#### Deposit Rate Commission
-
-Anchor applies a 5% commission to accrued deposit interest, set aside as ANC purchase [reserves](money-market/#anchor-tokens-atokens). This allows ANC value to scale with the deposit AUM.
-
 #### Collateral Liquidation Fees
 
 Whenever a loan is liquidated, 1% of the liquidated collateral value is sent the interest buffer, which a portion of which is used to purchase ANC. This fee is applied separate from [bid premiums](liquidations.md#premium-rate).
@@ -85,9 +81,15 @@ Further ANC tokens are set to be released over a period of at least 4 years. The
 
 Inflation rate of ANC tokens are designed to gradually decrease every year, until it eventually reaches a supply of **1B**.
 
-## Distribution to Borrowers
+## Distribution
+
+### Distribution to Borrowers
 
 ANC tokens allocated for borrower incentives are gradually distributed to borrowers through the [ANC emission control algorithm](money-market/deposit-rate-subsidization.md#anc-emission-feedback-control). This is further distributed to individual borrowers pro-rata to their amount of accrued borrow interest. 
 
 ANC incentives fuel a self-reinforcing adoption cycle, where they incentivize more borrowers to deposit bAsset collaterals, bringing further buying pressure to ANC, further increasing borrow incentives.
+
+### Distribution to ANC Liquidity Providers
+
+
 
