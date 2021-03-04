@@ -47,7 +47,8 @@
 ## Developers - Ethereum
 
 * [EthAnchor](developers-ethereum/ethereum-side-integration.md)
-* [Ethereum Wrapper Contract](developers-ethereum/ethereum-wrapper-contract.md)
+* [EthAnchor Contracts](developers-ethereum/ethereum-wrapper-contract/README.md)
+  * [Untitled](developers-ethereum/ethereum-wrapper-contract/untitled.md)
 * [HTTP API Endpoints](developers-ethereum/ethanchor-http-interface/README.md)
   * [Getting market information](developers-ethereum/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
   * [Depositing Stablecoins](developers-ethereum/ethanchor-http-interface/depositing-stablecoins.md)
@@ -81,7 +82,6 @@
 
 * [Collateral Whitelisting](wip/collateral-whitelisting/README.md)
   * [bAsset Collaterals](wip/collateral-whitelisting/basset-collaterals.md)
-* [Untitled](wip/untitled.md)
 
 ## External Resources
 

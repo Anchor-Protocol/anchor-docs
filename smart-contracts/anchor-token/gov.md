@@ -763,6 +763,7 @@ pub struct PollResponse {
     pub execute_data: Option<ExecuteMsg>,
     pub yes_votes: Uint128, // balance
     pub no_votes: Uint128,  // balance
+    pub staked_amount: Option<Uint128>, 
     pub total_balance_at_end_poll: Option<Uint128>,
 }
 
@@ -811,6 +812,7 @@ pub struct ExecuteMsg {
   ], 
   "yes_votes": "100000000", 
   "no_votes": "100000000", 
+  "staked_amount": "100000000", 
   "total_balance_at_end_poll": "100000000" 
 }
 ```
@@ -830,7 +832,8 @@ pub struct ExecuteMsg {
 | `execute_data`\* | `Vec<ExecuteMsg>` | List of governance messages to be issued upon poll execution |
 | `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
 | `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
-| `total_balance_at_end_poll`\* | Uint128 | Poll's total votes \(staked ANC amount\) at the end of the poll |
+| `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
+| `total_balance_at_end_poll`\* | Uint128 | Total staked ANC amount at the end of this poll |
 
 | Name | Description |
 | :--- | :--- |
@@ -944,6 +947,7 @@ pub struct PollResponse {
     pub execute_data: Option<ExecuteMsg>,
     pub yes_votes: Uint128, // balance
     pub no_votes: Uint128,  // balance
+    pub staked_amount: Option<Uint128>, 
     pub total_balance_at_end_poll: Option<Uint128>,
 }
 
@@ -992,6 +996,7 @@ pub struct ExecuteMsg {
       ], 
       "yes_votes": "100000000", 
       "no_votes": "100000000", 
+      "staked_amount": "100000000", 
       "total_balance_at_end_poll": "100000000" 
     }, 
     {
@@ -1017,6 +1022,7 @@ pub struct ExecuteMsg {
       ], 
       "yes_votes": "100000000", 
       "no_votes": "100000000", 
+      "staked_amount": "100000000", 
       "total_balance_at_end_poll": "100000000" 
     }
   ]
@@ -1042,7 +1048,8 @@ pub struct ExecuteMsg {
 | `execute_data`\* | Vec&lt;ExecuteMsg&gt; | List of governance messages to be issued upon poll execution |
 | `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
 | `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
-| `total_balance_at_end_poll`\* | Uint128 | Poll's total votes \(staked ANC amount\) at the end of the poll |
+| `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
+| `total_balance_at_end_poll`\* | Uint128 | Total staked ANC amount at the end of this poll |
 
 | Name | Description |
 | :--- | :--- |

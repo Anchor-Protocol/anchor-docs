@@ -6,7 +6,7 @@ EthAnchor is currently in private beta and only supports wrapped UST deposits an
 
 This section outlines a brief integration guide of EthAnchor, a gateway to interact with Anchor Protocol using wrapped Terra USD \(UST\) -- a wrapped ERC20 UST token on transferred to the Ethereum blockchain.
 
-Instead of depositing native Terra-side UST to acquire Anchor UST \(aUST\), interest-accruing proof-of-UST-deposits, clients can deposit wrapped UST to Anchor's [Ethereum Wrapper Contract](ethereum-wrapper-contract.md) to receive wrapped aUST \(ERC20 aUST token on Ethereum\). By holding on to wrapped aUST, clients can accrue the interest generated on their wrapped UST deposits.
+Instead of depositing native Terra-side UST to acquire Anchor UST \(aUST\), interest-accruing proof-of-UST-deposits, clients can deposit wrapped UST to Anchor's [Ethereum Wrapper Contract](ethereum-wrapper-contract/) to receive wrapped aUST \(ERC20 aUST token on Ethereum\). By holding on to wrapped aUST, clients can accrue the interest generated on their wrapped UST deposits.
 
 ![](../.gitbook/assets/ethanchor-diagram%20%281%29.png)
 
@@ -18,7 +18,7 @@ EthAnchor largely consists of 2 components:
 
 | Component | Description |
 | :--- | :--- |
-| [Ethereum Wrapper Contract](ethereum-wrapper-contract.md) | Ethereum-side smart contracts that facilitate client's Anchor operations |
+| [Ethereum Wrapper Contract](ethereum-wrapper-contract/) | Ethereum-side smart contracts that facilitate client's Anchor operations |
 | [HTTP API Endpoints](ethanchor-http-interface/) | Language-agnostic API endpoint for the fabrication of unsigned Anchor Tx payloads |
 
 ## Integration
