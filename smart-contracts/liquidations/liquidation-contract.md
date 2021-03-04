@@ -10,7 +10,7 @@ Price data from the Oracle contract are only valid for 60 seconds \(`price_timef
 
 ## Config
 
-| Key | Type |  |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner` | HumanAddr | Address of contract owner that can update config |
 | `oracle_contract` | HumanAddr | Contract address of Oracle |

@@ -8,7 +8,7 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 
 ## Config
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner` | CanonicalAddr | Address of contract owner |
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
@@ -55,7 +55,7 @@ pub struct InitMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
@@ -100,13 +100,45 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `amount` | Uint128 | Amount of tokens received |
 | `sender` | HumanAddr | Sender of token transfer |
 | `msg`\* | Binary | Base64-encoded JSON of [Receive Hook](gov.md#receive-hooks) |
 
 \* = optional
+
+### `RegisterAnchorToken`
+
+Registers the contract address of Anchor Token \(ANC\) to Gov.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg {
+    RegisterAnchorToken {
+        anchor_token: HumanAddr, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "register_anchor_token": {
+    "anchor_token": "terra1...", 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 
 ### `UpdateConfig`
 
@@ -150,7 +182,7 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner`\* | HumanAddr | New address of contract owner |
 | `quorum`\* | Decimal | New percentage of participation \(of total staked ANC\) required for a poll to pass |
@@ -202,7 +234,7 @@ pub enum VoteOption {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 | `vote` | VoteOption | Can be `yes` or `no` |
@@ -236,7 +268,7 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `amount`\* | Uint128 | Amount of ANC tokens to withdraw |
 
@@ -270,7 +302,7 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
@@ -302,7 +334,7 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
@@ -334,7 +366,7 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
@@ -366,7 +398,7 @@ pub enum HandleMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
@@ -402,7 +434,7 @@ pub enum Cw20HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 |  |  |  |
 
@@ -459,14 +491,14 @@ pub struct ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
 | `execute_msgs`\* | `Vec<ExecuteMsg>` | List of governance messages to be issued by Gov contract upon poll execution |
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `order` | u64 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
@@ -500,7 +532,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 |  |  |  |
 
@@ -541,7 +573,7 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner` | CanonicalAddr | Address of contract owner |
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
@@ -577,7 +609,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 |  |  |  |
 
@@ -606,7 +638,7 @@ pub struct StateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_count` | u64 | Total number of created polls |
 | `total_share` | Uint128 | Current total number of voting shares |
@@ -640,7 +672,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `address` | HumanAddr | Address of staker |
 
@@ -697,7 +729,7 @@ pub enum VoteOption {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `balance` | Uint128 | Amount of ANC staked by staker |
 | `share` | Uint128 | Total voting shares owned by staker |
@@ -741,7 +773,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
@@ -819,7 +851,7 @@ pub struct ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `id` | u64 | Poll ID |
 | `creator` | HumanAddr | Poll creator |
@@ -835,7 +867,7 @@ pub struct ExecuteMsg {
 | `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
 | `total_balance_at_end_poll`\* | Uint128 | Total staked ANC amount at the end of this poll |
 
-| Name | Description |
+| Key | Description |
 | :--- | :--- |
 | `InProgress` | Voting for this poll is currently in progress |
 | `Passed` | This poll has been passed by governance |
@@ -843,7 +875,7 @@ pub struct ExecuteMsg {
 | `Executed` | This poll has been passed by governance and executed |
 | `Expired` | This poll has been expired after rejection / execution |
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `order` | u64 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
@@ -902,14 +934,14 @@ pub enum OrderBy {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `filter`\* | PollStatus | Poll statuses to search for |
 | `start_after`\* | u64 | Poll ID to start query at |
 | `limit`\* | u32 | Maximum number of query entries |
 | `order_by`\* | OrderBy | Order to make query |
 
-| Name | Description |
+| Key | Description |
 | :--- | :--- |
 | `InProgress` | Poll is currently in voting period |
 | `Passed` | Poll has been passed by governance |
@@ -917,7 +949,7 @@ pub enum OrderBy {
 | `Executed` | Poll has been passed and executed by governance |
 | `Expired` | Poll has expired |
 
-| Name | Description |
+| Key | Description |
 | :--- | :--- |
 | `Asc` | Make query in ascending order |
 | `Desc` | Make query in descending order |
@@ -1031,11 +1063,11 @@ pub struct ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `polls` | Vec&lt;PollResponse&gt; | List of poll information |
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `id` | u64 | Poll ID |
 | `creator` | HumanAddr | Poll creator |
@@ -1051,7 +1083,7 @@ pub struct ExecuteMsg {
 | `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
 | `total_balance_at_end_poll`\* | Uint128 | Total staked ANC amount at the end of this poll |
 
-| Name | Description |
+| Key | Description |
 | :--- | :--- |
 | `InProgress` | Voting for this poll is currently in progress |
 | `Passed` | This poll has been passed by governance |
@@ -1059,7 +1091,7 @@ pub struct ExecuteMsg {
 | `Executed` | This poll has been passed by governance and executed |
 | `Expired` | This poll has been expired after rejection / execution |
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `order` | u64 | Order sequence of message |
 | `contract` | HumanAddr | Contract address of governance message recipient |
@@ -1101,14 +1133,14 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | ID of poll to query voters |
 | `start_after`\* | HumanAddr | Address of voter to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 | `order_by`\* | OrderBy | Order to make query |
 
-| Name | Description |
+| Key | Description |
 | :--- | :--- |
 | `Asc` | Make query in ascending order |
 | `Desc` | Make query in descending order |
@@ -1161,17 +1193,17 @@ pub enum VoteOption {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `voters` | Vec&lt;VotersResponseItem&gt; | List of voter information |
 
-| Name | Type | Description |
+| Key | Type | Description |
 | :--- | :--- | :--- |
 | `voter` | HumanAddr | Address of voter |
 | `vote` | VoteOption | Vote type made by voter |
 | `balance` | Uint128 | Amount of staked ANC locked to vote this poll |
 
-| Name | Description |
+| Key | Description |
 | :--- | :--- |
 | `yes` | Voter has voted for the proposal |
 | `no` | Voter has voted against the proposal |
