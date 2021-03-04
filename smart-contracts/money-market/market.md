@@ -15,7 +15,7 @@ The Market contract acts as the point of interaction for all lending and borrowi
 | `distribution_model` | CanonicalAddr | Contract address of Distribution Model |
 | `overseer_contract` | CanonicalAddr | Contract address of Overseer |
 | `collector_contract` | CanonicalAddr | Contract address of Collector |
-| `faucet_contract` | CanonicalAddr | Contract address of Faucet |
+| `distributor_contract` | CanonicalAddr | Contract address of Distributor |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `reserve_factor` | Decimal256 | Percentage of borrower interest set aside as ANC purchase reserves |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
@@ -120,7 +120,7 @@ pub enum HandleMsg {
         interest_model: HumanAddr, 
         distribution_model: HumanAddr, 
         collector_contract: HumanAddr, 
-        faucet_contract: HumanAddr, 
+        distributor_contract: HumanAddr, 
     }
 }
 ```
@@ -134,7 +134,7 @@ pub enum HandleMsg {
     "interest_model": "terra1...", 
     "distribution_model": "terra1...", 
     "collector_contract": "terra1...", 
-    "faucet_contract": "terra1..." 
+    "distributor_contract": "terra1..." 
   }
 }
 ```
@@ -147,7 +147,7 @@ pub enum HandleMsg {
 | `interest_model` | HumanAddr | Contract address of Interest Model |
 | `distribution_model` | HumanAddr | Contract address of Distribution Model |
 | `collector_contract` | HumanAddr | Contract address of Collector |
-| `faucet_contract` | HumanAddr | Contract address of Faucet |
+| `distributor_contract` | HumanAddr | Contract address of Distributor |
 
 ### `[Internal] RegisterATerra`
 
@@ -493,7 +493,7 @@ pub struct ConfigResponse {
     pub distribution_model: HumanAddr, 
     pub overseer_contract: HumanAddr, 
     pub collector_contract: HumanAddr, 
-    pub faucet_contract: HumanAddr, 
+    pub distributor_contract: HumanAddr, 
     pub stable_denom: String, 
     pub reserve_factor: Decimal256, 
     pub max_borrow_factor: Decimal256, 
@@ -510,7 +510,7 @@ pub struct ConfigResponse {
   "distribution_model": "terra1...", 
   "overseer_contract": "terra1...", 
   "collector_contract": "terra1...", 
-  "faucet_contract": "terra1...", 
+  "distributor_contract": "terra1...", 
   "stable_denom": "uusd", 
   "reserve_factor": "0.1", 
   "max_borrow_factor": "1.0" 
@@ -527,7 +527,7 @@ pub struct ConfigResponse {
 | `distribution_model` | HumanAddr | Contract address of Distribution Model |
 | `overseer_contract` | HumanAddr | Contract address of Overseer |
 | `collector_contract` | HumanAddr | Contract address of Collector |
-| `faucet_contract` | HumanAddr | Contract address of Faucet |
+| `distributor_contract` | HumanAddr | Contract address of Distributor |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `reserve_factor` | Decimal256 | Portion of borrower interest set aside as reserves |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |

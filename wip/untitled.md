@@ -1,83 +1,613 @@
-# Untitled
+# Token
 
-## ~~\[DEPRECATED\] Interacting through the Gnosis Safe proxy contract~~
+## Config
 
-Under certain cases, such as depending on an external custodian to store and control UST assets, interacting through a separate proxy contract may be essential - as Anchor depends on tokenized forms of deposit positions \(aUST\) to process withdrawals. This is especially true when the said custodian has not yet implemented support for aUST, which is required to initiate a `transfer` of such assets to the contract for redemption.
+| Key | Type | Description |
+| :--- | :--- | :--- |
+|  |  |  |
 
-For such cases, we recommend setting up a [Gnosis Safe proxy contract](https://docs.gnosis.io/safe/) for interacting with Anchor contracts. This will add additional contract calls for depositing to and withdrawing from the proxy contract for UST assets, but allows the client to not hold any aUST tokens directly.
+## InitMsg
 
-### Setup Guide
-
-For general information around the Gnosis Safe contracts and detailed execution instructions through the Gnosis proxy, please refer to the [Gnosis Docs](https://docs.gnosis.io/safe/docs/contracts_tx_execution/). This guide only covers setup and execution instructions that are specific to Anchor Ethereum smart contracts.
-
-**Contract Deployment**
-
-Deployment code and instructions are available [here](https://github.com/gnosis/safe-contracts). In most cases, the Anchor Protocol team will deploy relevant contracts alongside with necessary Ethereum Wrapper contracts on the client's behalf.
-
-**Contract Initialization**
-
-Under `GnosisSafe.sol`, there is a `setup()` function defined as
-
-```text
-function setup(
-        address[] calldata _owners,
-        uint256 _threshold,
-        address to,
-        bytes calldata data,
-        address fallbackHandler,
-        address paymentToken,
-        uint256 payment,
-        address payable paymentReceiver
-    )
-        external
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, JsonSchema)]
+pub struct TokenInitMsg { 
+    pub name: String, 
+    pub symbol: String, 
+    pub decimals: u8, 
+    pub initial_balances: Vec<Cw20CoinHuman>, 
+    pub mint: Option<MinterResponse>, 
+    pub init_hook: Option<TokenInitHook>, 
+    pub owner: CanonicalAddr, 
+}
 ```
+{% endtab %}
 
-call this function with the following parameters:
-
-`gnosisSafeMastercopy.setup([account_address], 1, 0, "0x", 0, 0, 0)`
-
-where `gnosisSafeMastercopy` is the "mastercopy" of all proxy contracts, each being linked to one wallet address. `account_address` is the Ethereum address that UST deposits will be originated from \(i.e. the custodial address\). **This should be done for every account that will be used for interaction with the Anchor smart contracts.**
-
-Please be sure to store the proxy contract address for `account_address` .
-
-Note **NOT** to use `delegatecall`, as that will result in aUST being returned to the **custodial address** instead of the safe proxy contract.
-
-**Contract Interaction**
-
-Interacting with Ethereum Anchor contracts through the Gnosis Safe proxy involve one function call: `execTransaction()`. This creates a standard function call initiated from the proxy contract \(excluding cases where a `delegatecall` operation mode is specified\), regardless of the actual caller of the `execTransaction()` function.
-
-To call `initDepositStable()`, the following operations should be performed in sequence:
-
-1. Transfer `amount` UST from the custodial address to the proxy contract. 
-2. Construct an **unsigned transaction payload**  for `initDepositStable(uint256 amount)` -- Contract ABI for all the contracts will be required. The Anchor Protocol team will provide all necessary contract source code and ABI specifications for this.
-3. Create a **signature payload** of the intended contract call transaction signed with the custodial address. More specifically, using the [transaction construction API](https://app.bitgo.com/docs/#operation/v2.wallet.tx.build) provided by the custodian \(such as BitGo\), generate and sign a transaction that calls `initDepositStable(uint256 amount)` . Provided that the unsigned transaction payload is already built, signing the transaction is relatively trivial.
-4. **Estimate gas** -- run the following. a transaction will be executed and then immediately be reverted, with the results of the `revert(string(abi.encodePacked(requiredGas)))` statement being the gas requirement for the following function call. As this uses the EVM `REVERT` opcode, no gas is _actually_ consumed - only simulated.
-
-```text
-proxyContract.requiredTxGas(
-    ETHANCHOR_SUBCONTRACT_ADDRESS, // to
-    0, // Ether value - as we don't need any Ether this is set to 0
-    data, // unsigned transaction payload
-    CALL // set mode as normal contract call - avoid delegatecall
-)
+{% tab title="JSON" %}
+```javascript
+{
+  "name": "bluna", 
+  "symbol": "BLUNA", 
+  "decimals": 6, 
+  "initial_balances": , 
+  "mint": "", 
+  "init_hook": "", 
+  "owner": "" 
+}
 ```
+{% endtab %}
+{% endtabs %}
 
-1. **Transaction execution** -- using `requiredGas`, run `execTransaction` with the following parameters
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `name` | String |  |
+| `symbol` | String |  |
+| `decimals` | u8 |  |
+| `initial_balances` | Cw20CoinHuman |  |
+| `mint` | MinterResponse |  |
+| `init_hook` | TokenInitHook |  |
+| `owner` | CanonicalAddr |  |
 
-```text
-proxyContract.execTransaction(
-    ETHANCHOR_SUBCONTRACT_ADDRESS, // to
-    0, // Ether value - as we don't need any Ether this is set to 0
-    data, // unsigned transaction payload
-    CALL, // set mode as normal contract call - avoid delegatecall
-    0,
-    0,
-    0,
-    0,
-    0,
-    SIGNATURE_PAYLOAD // signed transaction payload - EIP-1271
-)
+
+
+## HandleMsg
+
+### `Transfer`
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    Transfer { 
+        recipient: HumanAddr, 
+        amount: Uint128, 
+    }
+}
 ```
+{% endtab %}
 
-in cases of UST withdrawals with `finishRedeemStable()`, the same procedure applies - although a separate ERC-20 `transfer()` call needs to be made to `account_address` with another `execTransaction()` call.
+{% tab title="JSON" %}
+```javascript
+{
+  "tranfer": {
+    "recipient": "terra1...", 
+    "amount": "23986423" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `recipient` | HumanAddr |  |
+| `amount` | Uint128 |  |
+
+### `Burn`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    Burn { 
+        amount: Uint128, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "burn": {
+    "amount": "23089745" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `amount` | Uint128 |  |
+
+### `Send`
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    Send { 
+        contract: HumanAddr, 
+        amount: Uint128, 
+        msg: Option<Binary>, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "send": {
+    "contract": "terra1...", 
+    "amount": "98242134", 
+    "msg": "1234erwfaffaesfaef=" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `contract` | HumanAddr |  |
+| `amount` | Uint128 |  |
+| `msg` | Binary |  |
+
+\* = optional
+
+### `Mint`
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    Mint { 
+        recipient: HumanAddr, 
+        amount: Uint128, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "mint": {
+    "recipient": "terra1...", 
+    "amount": "987231204" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `recipient` | HumanAddr |  |
+| `amount` | Uint128 |  |
+
+### `IncreaseAllowance`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    IncreaseAllowance { 
+        spender: HumanAddr, 
+        amount: Uint128, 
+        expires: Option<Expiration>, 
+    }
+}
+
+pub enum Expiration {
+    AtHeight {
+        height: u64, 
+    }, 
+    AtTime {
+        time: u64, 
+    }, 
+    Never {}, 
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "increase_allowance": {
+    "spender": "terra1...", 
+    "amount": "78420524", 
+    "expires": {
+      "at_height": "82976541" 
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `spender` | HumanAddr |  |
+| `amount` | Uint128 |  |
+| `expires`\* | Expiration |  |
+
+\* = optional
+
+### `DecreaseAllowance`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    DecreaseAllowance { 
+        spender: HumanAddr, 
+        amount: Uint128, 
+        expires: Option<Expiration>, 
+    }
+}
+
+pub enum Expiration {
+    AtHeight {
+        height: u64, 
+    }, 
+    AtTime {
+        time: u64, 
+    }, 
+    Never {}, 
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "decrease_allowance": {
+    "spender": "terra1...", 
+    "amount": "78420524", 
+    "expires": {
+      "at_height": "82976541" 
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `spender` | HumanAddr |  |
+| `amount` | Uint128 |  |
+| `expires`\* | Expiration |  |
+
+\* = optional
+
+### `TransferFrom`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    TransferFrom { 
+        owner: HumanAddr, 
+        recipient: HumanAddr, 
+        amount: Uint128, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "transfer_from": {
+    "owner": "terra1...", 
+    "recipient": "terra1...", 
+    "amount": "81249236" 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `owner` | HumanAddr |  |
+| `recipient` | HumanAddr |  |
+| `amount` | Uint128 |  |
+
+### `SendFrom`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    SendFrom { 
+        owner: HumanAddr, 
+        contract: HumanAddr, 
+        amount: Uint128, 
+        msg: Option<Binary>, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "send_from": {
+    "owner": "terra1...", 
+    "contract": "terra1...", 
+    "amount": "13845792", 
+    "msg": "1234erwfaffaesfaef="
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `owner` | HumanAddr |  |
+| `contract` | HumanAddr |  |
+| `amount` | Uint128 |  |
+| `msg`\* | Binary |  |
+
+\* = optional
+
+### `BurnFrom`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum HandleMsg { 
+    BurnFrom { 
+        owner: HumanAddr, 
+        amount: Uint128, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "burn_from": {
+    "owner": "terra1...", 
+    "amount": "129075232", 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `owner` | HumanAddr |  |
+| `amount` | Uint128 |  |
+
+## QueryMsg
+
+### `Balance`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg { 
+    Balance { 
+        owner: HumanAddr, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "balance": {
+    "owner": "terra1..." 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `owner` | HumanAddr |  |
+
+### `TokenInfo`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg { 
+    TokenInfo {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "token_info": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+|  |  |  |
+
+### `Minter`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg { 
+    Minter {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "minter": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+|  |  |  |
+
+### `Allowance`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg { 
+    Allowance { 
+        owner: HumanAddr, 
+        spender: HumanAddr, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "allowance": {
+    "owner": "terra1...", 
+    "spender": "terra1...", 
+  }
+{
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `owner` | HumanAddr |  |
+| `spender` | HumanAddr |  |
+
+### `AllAllowances`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg { 
+    AllAllowances { 
+        owner: HumanAddr, 
+        start_after: Option<HumanAddr>, 
+        limit: Option<u32>, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "all_allowances": {
+    "owner": "terra1...", 
+    "start_after": "terra1...", 
+    "limit": 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `owner` | HumanAddr |  |
+| `start_after`\* | HumanAddr |  |
+| `limit`\* | u32 |  |
+
+\* = optional
+
+### `AllAccounts`
+
+
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum QueryMsg { 
+    AllAccounts { 
+        start_after: Option<HumanAddr>, 
+        limit: Option<u32>, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "all_accounts": {
+    "start_after": "terra1...", 
+    "limit": 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `start_after`\* | HumanAddr |  |
+| `limit`\* | u32 |  |
+
+\* = optional
 

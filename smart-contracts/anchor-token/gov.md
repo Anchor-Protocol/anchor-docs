@@ -27,7 +27,6 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InitMsg {
-    pub anchor_token: HumanAddr,
     pub quorum: Decimal,
     pub threshold: Decimal,
     pub voting_period: u64,
@@ -42,7 +41,6 @@ pub struct InitMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "anchor_token": "terra1...", 
   "quorum": "0.1", 
   "threshold": "0.5", 
   "voting_period": 123456, 
@@ -57,7 +55,6 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
 | `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
@@ -108,9 +105,9 @@ pub enum HandleMsg {
 
 \* = optional
 
-### `RegisterAnchorToken`
+### `RegisterContracts`
 
-Registers the contract address of Anchor Token \(ANC\) to Gov.
+Registers the contract addresses \(i.e. Anchor Token, ANC\) to Gov.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -118,7 +115,7 @@ Registers the contract address of Anchor Token \(ANC\) to Gov.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    RegisterAnchorToken {
+    RegisterContracts {
         anchor_token: HumanAddr, 
     }
 }
@@ -128,7 +125,7 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "register_anchor_token": {
+  "register_contracts": {
     "anchor_token": "terra1...", 
   }
 }
@@ -496,7 +493,7 @@ pub struct ExecuteMsg {
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
-| `execute_msgs`\* | `Vec<ExecuteMsg>` | List of governance messages to be issued by Gov contract upon poll execution |
+| `execute_msgs`\* | Vec&lt;ExecuteMsg&gt; | List of governance messages to be issued by Gov contract upon poll execution |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |

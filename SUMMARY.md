@@ -76,12 +76,13 @@
   * [Staking](smart-contracts/anchor-token/staking.md)
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
-  * [Faucet](smart-contracts/anchor-token/dripper.md)
+  * [Distributor](smart-contracts/anchor-token/dripper.md)
 
 ## WIP
 
 * [Collateral Whitelisting](wip/collateral-whitelisting/README.md)
   * [bAsset Collaterals](wip/collateral-whitelisting/basset-collaterals.md)
+* [Token](wip/untitled.md)
 
 ## External Resources
 

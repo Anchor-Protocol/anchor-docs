@@ -1,13 +1,13 @@
 # Staking
 
-The Staking Contract contains the logic for LP Token staking and reward distribution. ANC tokens allocated for as liquidity incentives are distributed pro-rata to stakers of the ANC &lt;&gt; UST Terraswap pair LP token. 
+The Staking Contract contains the logic for LP Token staking and reward distribution. ANC tokens allocated for as liquidity incentives are distributed pro-rata to stakers of the ANC-UST Terraswap pair LP token. 
 
 ## Config
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
-| `staking_token` | CanonicalAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
+| `staking_token` | CanonicalAddr | Contract address of ANC-UST Terraswap pair LP token |
 
 ## InitMsg
 
@@ -40,7 +40,7 @@ pub struct InitMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
-| `staking_token` | HumanAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
+| `staking_token` | HumanAddr | Contract address of ANC-UST Terraswap pair LP token |
 | `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, amount\) |
 
 ## HandleMsg
@@ -87,7 +87,7 @@ pub enum HandleMsg {
 
 ### `Unbond`
 
-Unbonds specified amount of ANC &lt;&gt; UST Terraswap LP tokens and transfers them to the message sender.
+Unbonds specified amount of ANC-UST Terraswap LP tokens and transfers them to the message sender.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -155,7 +155,7 @@ pub enum HandleMsg {
 Sending LP tokens to the Staking contract without issuing this hook will lead to **PERMANENT LOSS OF FUNDS**.
 {% endhint %}
 
-Bonds LP tokens of the ANC &lt;&gt; UST Terraswap pair.
+Bonds LP tokens of the ANC-UST Terraswap pair.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -242,7 +242,7 @@ pub struct ConfigResponse {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
-| `staking_token` | HumanAddr | Contract address of ANC &lt;&gt; UST Terraswap pair LP token |
+| `staking_token` | HumanAddr | Contract address of ANC-UST Terraswap pair LP token |
 | `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, amount\) |
 
 ### `State`

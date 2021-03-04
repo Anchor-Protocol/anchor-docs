@@ -9,7 +9,7 @@ ANC is also used as incentives to bootstrap borrow demand. ANC is distributed ev
 ## Value Accrual
 
 {% hint style="info" %}
-ANC rewards can also be earned by staking LP tokens of the ANC &lt;&gt; UST Terraswap Pair.
+ANC rewards can also be earned by staking LP tokens of the ANC - UST Terraswap Pair.
 {% endhint %}
 
 ![ANC Value Flow](../.gitbook/assets/screen-shot-2021-03-02-at-10.44.32-pm.png)

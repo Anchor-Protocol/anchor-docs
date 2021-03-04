@@ -1,4 +1,4 @@
-# Faucet
+# Distributor
 
 ## Config
 
@@ -6,7 +6,7 @@
 | :--- | :--- | :--- |
 | `gov_contract` | CanonicalAddr | Contract address of Gov |
 | `anchor_token` | CanonicalAddr | Contract address of ANC token |
-| `whitelist` | Vec&lt;CanonicalAddr&gt; | List of addresses permissioned to spend ANC in Faucet |
+| `whitelist` | Vec&lt;CanonicalAddr&gt; | List of addresses permissioned to spend ANC in Distributor |
 | `spend_limit` | Uint128 | Maximum amount of ANC spendable per spend event |
 
 ## InitMsg
@@ -18,7 +18,7 @@
 pub struct InitMsg {
     pub gov_contract: HumanAddr,   // anchor gov contract
     pub anchor_token: HumanAddr,   // anchor token address
-    pub whitelist: Vec<HumanAddr>, // whitelisted contract addresses to spend faucet
+    pub whitelist: Vec<HumanAddr>, // whitelisted contract addresses allowed to spend from distributor 
     pub spend_limit: Uint128,      // spend limit per each `spend` request
 }
 ```
@@ -44,14 +44,14 @@ pub struct InitMsg {
 | :--- | :--- | :--- |
 | `gov_contract` | HumanAddr | Contract address of Gov |
 | `anchor_token` | HumanAddr | Contract address of ANC token |
-| `whitelist` | Vec&lt;HumanAddr&gt; | List of addresses permissioned to spend ANC in Faucet |
+| `whitelist` | Vec&lt;HumanAddr&gt; | List of addresses permissioned to spend ANC in Distributor |
 | `spend_limit` | Uint128 | Maximum amount of ANC spendable per spend event |
 
 ## HandleMsg
 
 ### `UpdateConfig`
 
-Updates the Faucet contract configuration. Can only be issued by the Gov contract.
+Updates the Distributor contract configuration. Can only be issued by the Gov contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -85,7 +85,7 @@ pub enum HandleMsg {
 
 ### `Spend`
 
-Spends ANC in Faucet. Can only be issued by whitelisted addresses.
+Spends ANC in Distributor. Can only be issued by whitelisted addresses.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -186,7 +186,7 @@ pub enum HandleMsg {
 
 ### `Config`
 
-Gets the Faucet contract configuration.
+Gets the Distributor contract configuration.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -247,6 +247,6 @@ pub struct ConfigResponse {
 | :--- | :--- | :--- |
 | `gov_contract` | HumanAddr | Contract address of Gov |
 | `anchor_token` | HumanAddr | Contract address of ANC Token |
-| `whitelist` | Vec&lt;HumanAddr&gt; | List of addresses permissioned to spend ANC in Faucet |
+| `whitelist` | Vec&lt;HumanAddr&gt; | List of addresses permissioned to spend ANC in Distributor |
 | `spend_limit` | Uint128 | Maximum amount of ANC spendable per spend event |
 
