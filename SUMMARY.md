@@ -8,7 +8,7 @@
 * [Anchor WebApp](user-guide/anchor-webapp.md)
 * [EARN](user-guide/earn.md)
 * [BORROW](user-guide/borrow.md)
-* [BOND](user-guide/basset.md)
+* [BOND](user-guide/bond.md)
 * [GOVERN](user-guide/govern/README.md)
   * [ANC - UST LP](user-guide/govern/anc-ust-lp.md)
   * [Anchor Governance Staking](user-guide/govern/claim-anc-rewards.md)
@@ -40,20 +40,19 @@
 
 ## Developers - Terra
 
+* [Anchor.js](developers-terra/anchor.js.md)
 * [Anchor CLI](developers-terra/anchor-cli.md)
 * [Anchor API](developers-terra/anchor-api.md)
-* [Anchor.js](developers-terra/anchor.js.md)
 
 ## Developers - Ethereum
 
-* [EthAnchor](developers-ethereum/ethereum-side-integration.md)
-* [EthAnchor Contracts](developers-ethereum/ethereum-wrapper-contract/README.md)
-  * [Untitled](developers-ethereum/ethereum-wrapper-contract/untitled.md)
-* [HTTP API Endpoints](developers-ethereum/ethanchor-http-interface/README.md)
-  * [Getting market information](developers-ethereum/ethanchor-http-interface/get-check-moneymarket-stablecoin-info.md)
-  * [Depositing Stablecoins](developers-ethereum/ethanchor-http-interface/depositing-stablecoins.md)
-  * [Redeeming Stablecoins](developers-ethereum/ethanchor-http-interface/redeeming-stablecoins.md)
-* [Integration Flow](developers-ethereum/integration-flow.md)
+* [EthAnchor](developers-ethereum/ethanchor.md)
+* [EthAnchor Account Contract](developers-ethereum/ethanchor-account-contract.md)
+* [EthAnchor API](developers-ethereum/ethanchor-api/README.md)
+  * [Getting Market Information](developers-ethereum/ethanchor-api/getting-market-information.md)
+  * [Depositing Stablecoins](developers-ethereum/ethanchor-api/depositing-stablecoins.md)
+  * [Redeeming Stablecoins](developers-ethereum/ethanchor-api/redeeming-stablecoins.md)
+* [Fees](developers-ethereum/fees.md)
 
 ## Smart Contracts
 

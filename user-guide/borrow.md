@@ -22,7 +22,7 @@ The **BORROW** page displays:
 ## Providing bAsset collateral
 
 {% hint style="info" %}
-Users should first obtain bAsset tokens in order to utilize them as loan collateral. bAsset minting can be done at the [**BOND**](basset.md) page in Anchor WebApp.
+Users should first obtain bAsset tokens in order to utilize them as loan collateral. bAsset minting can be done at the [**BOND**](bond.md) page in Anchor WebApp.
 {% endhint %}
 
 1. Navigate to the **BORROW** page.
@@ -92,7 +92,7 @@ Users should first obtain bAsset tokens in order to utilize them as loan collate
 ## Withdrawing bAsset collateral
 
 {% hint style="info" %}
-Withdrawn bAsset collaterals can be redeemed to its underlying asset via the Anchor WebApp's [**BOND**](basset.md) page.
+Withdrawn bAsset collaterals can be redeemed to its underlying asset via the Anchor WebApp's [**BOND**](bond.md) page.
 {% endhint %}
 
 1. Navigate to the **BORROW** page.
