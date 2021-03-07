@@ -42,7 +42,6 @@
 
 * [Anchor.js](developers-terra/anchor.js.md)
 * [Anchor CLI](developers-terra/anchor-cli.md)
-* [Anchor API](developers-terra/anchor-api.md)
 
 ## Developers - Ethereum
 
