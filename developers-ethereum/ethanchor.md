@@ -41,7 +41,7 @@ Additionally, a single EthAnchor Account contract can only process requests in s
 
 ![Flow for depositing wrapped stablecoins via EthAnchor](../.gitbook/assets/ethanchor-depositstable%20%281%29.png)
 
-Following a successful `init` operation, the resulting wrapped tokens \(aUST for deposit, UST for redeem\) are held by the user's EthAnchor Account contract. A `finish` operation then sends back the tokens to `msg.sender`, in which they can be potentially utilized with other Ethereum DeFi applications.
+Following a successful `init` operation, the resulting wrapped tokens \(aUST for deposit, UST for redeem\) will be held by the user's EthAnchor Account contract. A `finish` operation then sends back the tokens to `msg.sender`, in which they can be potentially utilized with other Ethereum DeFi applications.
 
 As endpoints and core logic exist on two separate blockchains, operation validity should be partially validated off-chain. In most cases EthAnchor will make appropriate RPC calls to both Ethereum and Terra to verify state on the user level, but this does not guarantee, nor enforce **automatic state integrity** for all blockchains. It is up to the **user** to resolve potential state clashes on different blockchains \(Ethereum and Terra\), and reject transactions if deemed necessary.
 

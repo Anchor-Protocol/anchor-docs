@@ -6,13 +6,17 @@ General information about a stablecoin [market](../../protocol/money-market/#dep
 | :--- | :--- | :--- |
 | [`stablecoin_info`](getting-market-information.md#get-stablecoin-information) | GET | Gets information about the specified stablecoin market |
 
-{% api-method method="get" host="https://api.anchorprotocol.com" path="/v1/stablecoin\_info/{stable\_denom}" %}
+{% hint style="warning" %}
+Due to the asynchronous nature of EthAnchor, the actual aTerra exchange rate applied **will be different** to the exchange rate returned by `stablecoin_info`. The expected receive amount calculated using this value **WILL NOT** match the actual receive amount.
+{% endhint %}
+
+{% api-method method="get" host="https://api.anchorprotocol.com" path="/api/v1/stablecoin\_info/{stable\_denom}" %}
 {% api-method-summary %}
 Get stablecoin information
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`GET /v1/stablecoin_info/{stable_denom}` allows you to query the current status of money market with `stable_denom` as the quote.
+`GET /api/v1/stablecoin_info/{stable_denom}` allows you to query the current status of money market with `stable_denom` as the quote.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -77,6 +81,7 @@ Money market of the provided denom could not be found.
 {
     "error": "money market not found"
 }
+
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}

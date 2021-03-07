@@ -8,13 +8,13 @@ ERC20 aTerra tokens \(e.g. aUST\) can be redeemed to ERC20 stablecoins using the
 | [`finish_redeem_stable`](redeeming-stablecoins.md#finish-stablecoin-redemption) | POST | Claims redeemed ERC20 stablecoins |
 | [`redeem_stable_status`](redeeming-stablecoins.md#check-stablecoin-redemption-status) | GET | Gets status of an ongoing stablecoin redemption request |
 
-{% api-method method="post" host="https://api.anchorprotocol.com" path="/v1/init\_redeem\_stable" %}
+{% api-method method="post" host="https://api.anchorprotocol.com" path="/api/v1/init\_redeem\_stable" %}
 {% api-method-summary %}
 Initiate stablecoin redemption
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`init_redeem_stable` allows you to fabricate an unsigned Ethereum Tx payload that initiates a stablecoin redemption request. The client can sign and broadcast the resulting Tx payload with their Ethereum account key, or use a custodian API that supports the signing of a raw Tx payload.  
+`POST /api/v1/init_redeem_stable` allows you to fabricate an unsigned Ethereum Tx payload that initiates a stablecoin redemption request. The client can sign and broadcast the resulting Tx payload with their Ethereum account key, or use a custodian API that supports the signing of a raw Tx payload.  
   
 Note that only **one** `init_redeem_stable` operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the EthAnchor Account contract will block any subsequent operations until an ongoing stablecoin redemption is finished with `finish_redeem_stable`.
 {% endapi-method-description %}
@@ -72,13 +72,15 @@ You are not authorized to call this endpoint; client not registered.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.anchorprotocol.com" path="/v1/finish\_redeem\_stable" %}
+{% api-method method="post" host="https://api.anchorprotocol.com" path="/api/v1/finish\_redeem\_stable" %}
 {% api-method-summary %}
 Finish stablecoin redemption
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`finish_redeem_stable` allows you to finish a previously requested `redeem_stable` operation.This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
+`POST /api/v1/finish_redeem_stable` allows you to finish a previously requested `redeem_stable` operation.  
+  
+This endpoint returns an unsigned Ethereum transaction payload. You can sign this transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -121,15 +123,17 @@ You are not authorized to call this endpoint; client not registered.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.anchorprotocol.com" path="/v1/redeem\_stable\_status" %}
+{% api-method method="get" host="https://api.anchorprotocol.com" path="/api/v1/redeem\_stable\_status" %}
 {% api-method-summary %}
 Check stablecoin redemption status
 {% endapi-method-summary %}
 
 {% api-method-description %}
-`GET /v1/redeem_stable_status` allows you to check the status of an ongoing `redeem_stable` operation.You may want to periodically check the progress of your `redeem_stable` request, since an operation may take up to minutes to finish due to congestion on either side of the networks.  
+`GET /api/v1/redeem_stable_status` allows you to check the status of an ongoing `redeem_stable` operation.  
   
-Note that status being `"finished"` does **NOT** mean you have run a full cycle of `redeem_stable` operation; you still need to send another transaction from `POST /v1/finish_redeem_stable` to finalize your operation.This endpoint responds with HTTP 204 when there is no ongoing operation.
+You may want to periodically check the progress of your `redeem_stable` request, since an operation may take up to minutes to finish due to congestion on either side of the networks.  
+  
+Note that status being `"finished"` does **NOT** mean you have run a full cycle of `redeem_stable` operation; you still need to send another transaction from `POST /api/v1/finish_redeem_stable` to finalize your operation.This endpoint responds with HTTP 204 when there is no ongoing operation.
 {% endapi-method-description %}
 
 {% api-method-spec %}
