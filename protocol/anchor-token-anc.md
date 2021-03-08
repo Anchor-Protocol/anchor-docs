@@ -1,5 +1,11 @@
 # Anchor Token \(ANC\)
 
+
+
+![](../.gitbook/assets/anc_300x300.png)
+
+
+
 The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC tokens can be deposited to create new governance polls, which can be voted on by users that have staked ANC.
 
 ANC tokens accrue value from protocol fees, which are distributed pro-rata to ANC stakers. The ANC token is designed to benefit its stakers as adoption of Anchor Protocol increases -- stakers of ANC are incentivized to vote for proposals that further merit the protocol.
@@ -12,7 +18,7 @@ ANC is also used as incentives to bootstrap borrow demand. ANC is distributed ev
 ANC rewards can also be earned by staking LP tokens of the ANC - UST Terraswap Pair.
 {% endhint %}
 
-![ANC Value Flow](../.gitbook/assets/screen-shot-2021-03-02-at-10.44.32-pm.png)
+![ANC Value Flow](../.gitbook/assets/anc-flow.png)
 
 ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap, which are then distributed as staking rewards to ANC stakers.
 

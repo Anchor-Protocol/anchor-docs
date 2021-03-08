@@ -14,7 +14,7 @@ Following the initial deployment of Anchor smart contracts, the Anchor [Gov cont
 Although a user receives 1 vote per staked ANC for every poll, voting in polls does not have any effect on the user's current staking balance.
 {% endhint %}
 
-Governance over Anchor is managed by stakers of Anchor Tokens \(ANC\). ANC acts as Anchor Protocol's governance token, used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
+Governance over Anchor is managed by stakers of [Anchor Tokens \(ANC\)](../../protocol/anchor-token-anc.md). ANC acts as Anchor Protocol's governance token, used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
 
 ## Polls
 
@@ -25,7 +25,7 @@ Polls consist of a text description of the proposition \(with an optional URL to
 Once submitted, a poll can be voted on by the community until its voting period has concluded. If the poll passes quorum and threshold conditions \(defined below\), it is ratified and its contents can automatically be applied after a set period of time. These changes take effect without requiring updates to the core Anchor Protocol contracts.
 
 {% hint style="danger" %}
-Staked ANC tokens utilized in on-going polls **cannot be withdrawn** until the poll completes. In addition, the number of ANC used in a proposal **cannot be modified** after the vote has been submitted.
+Staked ANC tokens utilized in on-going polls **cannot be withdrawn** until the poll completes. In addition, the number of ANC used in a poll vote **cannot be modified** after the vote has been submitted.
 {% endhint %}
 
 ## Poll Lifecycle
@@ -38,4 +38,18 @@ Governance polls in Anchor follow the below procedure:
 4. The voting period ends after `Voting Period` has passed.
 5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC, value snapshotted at step 3. used in calculation\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
 6. If the poll passes, its contents can be executed after `Timelock Period` blocks have passed. The poll must be executed prior to the `Timelock Period`, otherwise it will automatically expire and no longer be considered valid.
+
+## Poll Types
+
+| Poll Type | Description |
+| :--- | :--- |
+| [Modify Collateral Attributes](modify-collateral-parameters.md) | Propose for changes in the Max LTV of a whitelisted collateral |
+| [Modify Market Parameters](modify-market-parameters.md) | Propose for parameter changes in Anchor money market |
+| [Modify Liquidation Parameters](modify-liquidation-parameters.md) | Propose for parameter changes in Anchor's [Liquidation Contract](../../protocol/liquidations.md) |
+| [Modify ANC Parameters](modify-anc-parameters.md) | Propose for parameter changes in the [Anchor Token](../../protocol/anchor-token-anc.md) |
+| [Modify Governance Parameters](modify-governance-parameters.md) | Propose for parameter changes in [Anchor Governance](./) |
+| [Modify Borrow Interest](modify-the-interest-model.md) | Propose for changes in the stablecoin [borrow interest formula](../../protocol/money-market/#borrow-rate-model) |
+| [Modify ANC Distribution](modify-the-distribution-model.md) | Propose for changes related to the distribution of Anchor tokens |
+| [Community Grants](spend-community-pool.md) | Propose for Anchor community funded development work |
+| [Text Proposal](text-proposal.md) | Submit a text proposal |
 

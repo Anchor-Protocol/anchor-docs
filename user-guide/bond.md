@@ -3,7 +3,7 @@
 The **BOND** page enables users to easily interact with bAsset tokens. Through this page, users can mint bAssets, burn bAsset to redeem the underlying Asset, and claim bAsset rewards.
 
 {% hint style="info" %}
-As of March 12th, 2021, Anchor only supports bonded Luna \(bLuna\) as providable collateral.
+As of March 17th, 2021, Anchor only supports [Bonded Luna \(bLuna\)](../protocol/bonded-assets-bassets/bonded-luna-bluna.md) as providable collateral.
 {% endhint %}
 
 ## Minting bLuna
@@ -37,7 +37,7 @@ As of March 12th, 2021, Anchor only supports bonded Luna \(bLuna\) as providable
 2. Select a burn method. **BURN** and **INSTANT BURN** each correspond to:
 
 * **BURN**: Burn bLuna through the bLuna protocol and redeem Luna. Redeemed Luna can be withdrawn after the Terra blockchain's unbonding period. Redemption is done with the current bLuna exchange rate but requires at least 21 days and the redemption amount may be affected by validator slashing. 
-* **INSTANT BURN**: Swap bLuna to Luna through Terraswap. This process is instant but may suffer from trade slippage and Terraswap commissions.
+* **INSTANT BURN**: Swap bLuna for Luna through [Terraswap](https://terraswap.io/), an [Uniswap](https://uniswap.org)-like automated market marker \(AMM\) protocol on Terra. This process is instant but may suffer from trade slippage and Terraswap commissions.
 
 
 

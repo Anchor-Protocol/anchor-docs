@@ -2,25 +2,25 @@
 
 **The Anchor WebApp is the official web frontend for interacting with Anchor Protocol on the Terra network. The WebApp can be accessed at** [**https://app.anchorprotocol.com**](https://app.anchorprotocol.com/)**.**
 
-The Anchor WebApp offers a graphical user interface for accessing Anchor's core user operations, such as depositing & redeeming Terra stablecoins, minting bAsset tokens, borrowing Terra stablecoins with bAssets as collateral, and participating in Anchor governance.
+The **Anchor WebApp** offers a graphical user interface for accessing Anchor's core user operations, such as depositing & redeeming Terra stablecoins, minting bAsset tokens, borrowing Terra stablecoins with bAssets as collateral, and participating in Anchor governance.
 
 {% hint style="warning" %}
-The Mirror web app requires [Google Chrome](https://www.google.com/chrome/) and [Station Extension](https://chrome.google.com/webstore/detail/terra-station/aiifbnbfobpmeekipheeijimdpnlpgpp) to be installed. Please follow the instructions below to set up your browser to be able to access the WebApp.
+The Anchor web app requires [Google Chrome](https://www.google.com/chrome/) and [Station Extension](https://chrome.google.com/webstore/detail/terra-station/aiifbnbfobpmeekipheeijimdpnlpgpp) to be installed. Please follow the instructions below to set up your browser to be able to access the WebApp.
 {% endhint %}
 
 ## Terra Station Extension
 
 {% hint style="warning" %}
-As of March 12th, 2021, Station Extension is only available for Chromium-based web browsers.
+As of March 17th, 2021, Station Extension is only available for Chromium-based web browsers.
 {% endhint %}
 
-Station Extension is a Chrome extension that lets you interact with smart contract web frontends with a wallet embedded in your browser. When interacting with Anchor Protocol through the WebApp, the application will generate a transaction for you in the proper format that encodes your desired interaction. Station Extension will detect and prompt you to sign and broadcast it to actually execute the operation.
+Station Extension is a Chrome extension that lets users interact with smart contract web frontends with an embedded in-browser wallet. When interacting with Anchor Protocol through the WebApp, the application will generate a transaction in the proper format that encodes the user's desired interaction. Station Extension will detect and prompt the user to sign and broadcast it to actually execute the operation.
 
 ### Installing Station Extension
 
 1. Run [Google Chrome](https://www.google.com/chrome/). Station Extension is only available for Chromium-based web browsers.   
 2. Install Station Extension [here](https://chrome.google.com/webstore/detail/terra-station/aiifbnbfobpmeekipheeijimdpnlpgpp?hl=en). 
-3. **Terra Station** should now be visible on your extensions tray. 
+3. **Terra Station** should now be visible on the extensions tray. 
 
 ### Creating a new wallet
 
@@ -46,7 +46,7 @@ Station Extension is a Chrome extension that lets you interact with smart contra
 
 To use a hardware Ledger wallet on to sign transactions on Terra Station Extension, user must meet the conditions below:
 
-* Install Terra application using [Ledger Live](https://www.ledger.com/ledger-live/download/) application. Make sure that you have enabled Developer Mode on Ledger Live application from Settings &gt; Experimental Features to install Terra application. 
+* Install Terra application using [Ledger Live](https://www.ledger.com/ledger-live/download/) application. Make sure to enable the Developer Mode on Ledger Live application from Settings &gt; Experimental Features to install Terra application. 
 * Both Ledger Nano S and X are supported, but the device must be connected to the computer via USB cable. **Bluetooth connection is not supported** by Station Extension
 
 To access hardware ledger wallet from Terra Station Extension, please follow the steps below: 
@@ -114,32 +114,30 @@ There are several ways to obtain Terra stablecoins:
 
 ### Swapping Luna for Terra Stablecoins
 
-If you have a Terra account with a balance of Luna or other stablecoins such as KRT, or SDT, you can turn them into UST through the Terra blockchain's native swap functionality. For instance, on [Terra Station](https://station.terra.money), the official Terra desktop wallet, you can access the swap feature through the "Swap" page.
+Users can swap Luna or Terra stablecoins such as TerraKRW \(KRT\), or TerraSDR \(SDT\) for the desired Terra stablecoin through the Terra blockchain's native swap functionality. The swap feature can be accessed at the "Swap" page of [Terra Station](https://station.terra.money/), the official Terra desktop wallet.
 
-1. Navigate to the "Swap" page by clicking it on the sidebar. You should see a similar page:
+1. Navigate to the "Swap" page by clicking it on the sidebar. It should display a page similar to:
 
 ![](../.gitbook/assets/picture-11.png)
 
-2. There is a section near the bottom of the page titled "Swap coins". There, you can select the type of coins you want to swap into UST, based on the current "Terra exchange rate".
+2. Select the coin denomination to swap and the coin denomination to receive in the "Swap coins" section, found at the bottom of the page. The swap will be conducted based on the current "Terra exchange rate".
 
 {% hint style="info" %}
-The approximate spread and fee for swapping Luna to UST or other stablecoins to UST will be shown to you. The rules for determining the fees are covered in [Terra Docs](https://docs.terra.money/dev/spec-market).
+The approximate spread and fee for performing the swap will be shown. The rules for determining the fees are covered in [Terra Docs](https://docs.terra.money/dev/spec-market).
 {% endhint %}
 
 3. Click **\[Next\]** and sign the transaction to complete the swap. 
+
+
 
 ### Purchasing Terra Stablecoins From Exchanges
 
 Terra stablecoins can be obtained by directly purchasing them from cryptocurrency exchanges. Trading pairs of Terra stablecoins are available at various exchanges.
 
-### Terra USD \(UST\) Trading Pairs
+### TerraUSD \(UST\) Trading Pairs
 
 | Exchange | Trading Pairs |
 | :--- | :--- |
 | [Bittrex](https://bittrex.com/) | [USDT](https://global.bittrex.com/Market/Index?MarketName=USDT-UST), [BTC](https://global.bittrex.com/Market/Index?MarketName=BTC-UST) |
 | [Kucoin](https://kucoin.com/) | [USDT](https://trade.kucoin.com/USDT-UST), [USDC](https://trade.kucoin.com/USDC-UST), [BTC](https://trade.kucoin.com/BTC-UST), [ETH](https://trade.kucoin.com/ETH-UST), [DOT](https://trade.kucoin.com/DOT-UST), [ATOM](https://trade.kucoin.com/ATOM-UST), [SNX](https://trade.kucoin.com/SNX-UST), [AAVE](https://trade.kucoin.com/AAVE-UST), [YFI](https://trade.kucoin.com/YFI-UST) |
-
-## Obtaining Luna
-
-
 

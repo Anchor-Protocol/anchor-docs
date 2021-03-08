@@ -8,8 +8,7 @@ We believe that size, visibility, and time are the true test for the security of
 
 ## Audits
 
-* Cryptonics
-* ~~Quantstamp~~
+* [Anchor Protocol Smart Contracts - Audit Report](https://null.com) by [Cryptonics](https://cryptonics.consulting/)
 
 ## Anchor Bug Bounty Program
 
@@ -19,7 +18,7 @@ Anchor encourages the community to audit our contracts and security; we also enc
 
 ### **Rewards**
 
-Anchor offers substantial rewards for discoveries that can prevent the loss of assets, the freezing of assets, or harm to a user, commensurate with the severity and exploitability of the vulnerability. Anchor will pay a reward of ~~_**$500 to $150,000**_~~ for eligible discoveries according to the terms and conditions provided below.
+Anchor offers substantial rewards for discoveries that can prevent the loss of assets, the freezing of assets, or harm to a user, commensurate with the severity and exploitability of the vulnerability. Anchor will pay a reward of $500 to $150,000 for eligible discoveries according to the terms and conditions provided below.
 
 ### **Scope**
 

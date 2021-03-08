@@ -41,7 +41,7 @@
 ## Developers - Terra
 
 * [Anchor.js](developers-terra/anchor.js.md)
-* [Anchor CLI](developers-terra/anchor-cli.md)
+* [AnchorCLI](developers-terra/anchor-cli.md)
 
 ## Developers - Ethereum
 
@@ -75,12 +75,6 @@
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Distributor](smart-contracts/anchor-token/dripper.md)
-
-## WIP
-
-* [Collateral Whitelisting](wip/collateral-whitelisting/README.md)
-  * [bAsset Collaterals](wip/collateral-whitelisting/basset-collaterals.md)
-* [Token](wip/untitled.md)
 
 ## External Resources
 

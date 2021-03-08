@@ -26,7 +26,7 @@ The protocol applies a fee of **0.1%** to bLuna mints and burns whenever the exc
 
 The bLuna contract keeps a whitelist of validators, only permitting delegations to those included in the whitelist. This is crucial since all bLuna tokens equally share slashing risks, and delegations to low-performing validators could negatively affect all holders.
 
-The initial whitelist includes the below validators: **\(for reference, subject to change\)**
+The initial whitelist includes the below validators: **\(REFERENCE LIST, FINAL LIST TO BE SUPPLIED BY LIDO BY MARCH 10TH\)**
 
 | Name | Address |
 | :--- | :--- |

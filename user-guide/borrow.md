@@ -5,7 +5,7 @@ The **BORROW** page can be used to borrow Terra stablecoins from Anchor. The pro
 Borrows can be made until the loan's loan-to-value \(LTV\) ratio reaches the MAX LTV, calculated based on collateral types, their prices, and deposit amount. Loans with a LTV ratio higher than MAX LTV can be liquidated, and thus it is important for borrowers to closely maintain their LTV ratios as changes in collateral prices may occur.
 
 {% hint style="info" %}
-As of February 18th, 2021, Anchor only supports Terra USD as the base currency.
+As of March 17th, 2021, Anchor only supports Terra USD as the base currency.
 {% endhint %}
 
 The **BORROW** page displays:
@@ -13,9 +13,15 @@ The **BORROW** page displays:
 * **Collateral Value**: Total USD-denominated value of all collaterals provided by user. 
 * **Borrowed Value**: Total USD-denominated value of Terra stablecoins borrowed by user. 
   * **Borrowed**: Total amount of Terra stablecoins borrowed by user.
-* **APR**: Current borrow annualized percentage rate \(APR\). 
-  * **Accrued**: Amount of Terra stablecoins accrued as borrow interest. 
-* **Linear Graph**: Displays the liquidation riskiness of user's loan position. 
+* **Net APY**: Net annualized percentage yield \(APY\) on borrows from both Borrow APR and Distribution APY
+
+
+
+  * **Borrow APR**: Current annualized percentage rate \(APR\) of borrow interest.
+
+  * **Distribution APY**: Current APY of ANC distribution to borrowers 
+
+* **Linear Graph**: Displays the [risk ratio](../protocol/liquidations.md#collateral-liquidation) of user's loan position. 
   * **Borrow Limit**: Maximum USD value borrowable by user based on provided collaterals. 
   * **Borrowed Value / Borrow Limit Ratio**: Ratio value that signals user loan position's liquidation riskiness. Calculated by dividing user's borrowed value with their borrow limit.
 
@@ -92,7 +98,7 @@ Users should first obtain bAsset tokens in order to utilize them as loan collate
 ## Withdrawing bAsset collateral
 
 {% hint style="info" %}
-Withdrawn bAsset collaterals can be redeemed to its underlying asset via the Anchor WebApp's [**BOND**](bond.md) page.
+Withdrawn bAsset collaterals can be redeemed for their underlying assets at the Anchor WebApp's [**BOND**](bond.md) page.
 {% endhint %}
 
 1. Navigate to the **BORROW** page.

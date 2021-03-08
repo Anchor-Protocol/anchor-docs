@@ -6,6 +6,10 @@ Anchor periodically distributes portion of ANC tokens purchased from protocol fe
 Unlike ANC rewards from UST borrowing or ANC - UST LP staking, rewards from governance staking do not have a separate claiming procedure but instead automatically claimed when a user unstakes.
 {% endhint %}
 
+The **Anchor Governance Staking** section of the **GOVERN** page displays:
+
+* **APY**: Annualized percentage yield \(APY\) of staking rewards given to ANC stakers.
+
 ## Trading ANC
 
 The Anchor WebApp provides an interface for users to trade ANC tokens with Terra USD, supported by Terraswap's ANC &lt;&gt; UST exchange pair.
@@ -30,6 +34,8 @@ The Anchor WebApp provides an interface for users to trade ANC tokens with Terra
 {% hint style="warning" %}
 The displayed amount of the counterparty token is an estimate value, calculated at the time of user interaction. The final amount received may be different \(but always above **Minimum Received**\) due the time required for transaction acceptance.
 {% endhint %}
+
+
 
 5. Station Extension should prompt you to sign a transaction that contains the buy /sell operation. Confirm the details presented and enter your password to sign.
 
