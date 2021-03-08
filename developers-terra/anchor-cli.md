@@ -71,22 +71,30 @@ Each address configuration should point to the correct Anchor core contract addr
 
 ```javascript
 {
- "contracts": {
-    "bLunaHub": "terra1kzx23xs8v9yggf6lqpwgerg455e8xzsv0s0glf",
-    "bAssetToken": "terra12kz7ehjh9m2aexmyumlt29qjuc9j5mjcdp0d5k",
-    "bAssetReward": "terra1pjpzktukkd20amfwc0d8mahjg5na2pgu3swdu4",
-    "mmInterest": "terra16f3lv77yu4ga4w8m7jl0xg2xkavqe347dz30v9",
-    "mmOracle": "terra1enud48d754pau5rce79xsdx9gfschw2eelwcuj",
-    "mmMarket": "terra1r8vmgf3mf5m5gcp09fnj2ewsyaqppr6ke50mf2",
-    "mmOverseer": "terra1t6zjqmqjvsfrszr65cppug4gd4xkqm33vugwl2",
-    "mmCustody": "terra1usycpap7j0mz4ynrgmtv7jc7uwqka345ushknz",
-    "mmLiquidation": "terra14pdcpx6szzfvhz4g6dfddkx82f5ssf8llmzpw4",
-    "anchorToken": "terra10c0q6qyk2634tfx2nw9v4gxqlm7a0luk9huhy8",
-    "terraswapFactory": "terra1mtvsarza55hehpmyjgw7edqwvxpq5qquvttz9n",
-    "terraswapPair": "terra1w6qcjvcwe8ljafp2859kmmcfern35ap9sngm3q",
-    "blunaBurn": {
-      "uluna": "terra12y3emkv22ug94wnq5zpmhws6fgtr929rtaq6je"
-    }
+  "contracts": {
+    "bLunaHub": "terra1zdu9ph3429dtstv57ve3sfzr2vz2fclvmhn6td",
+    "blunaToken": "terra1wq9f8p8f7gldztpdc4v3awngupfkap8wpxhtjr",
+    "blunaReward": "terra16rjk255rjc6vt2qg7h8ntfdykrzfkt0e5wykus",
+    "blunaAirdrop": "terra1093jc6g8gcuxp0vvfuzkk26rvnz38du886c88m",
+    "mmInterestModel": "terra1rrutuqshjkgfh22n5eau8jac0vn4hsyhcz3ju2",
+    "mmOracle": "terra1rz5chzn0g07hp5jx63srpkhv8hd7x8pss20w2e",
+    "mmMarket": "terra1shmnertem9ujjxys2vxy2x92h0jzhctkjdv956",
+    "mmOverseer": "terra174dcdqlkdwvsxqpkt47f9cy3anlv56ge5c05ex",
+    "mmCustody": "terra1urn8z5uqukjzr8sqdjdryj6nt5v3qttfta2zwn",
+    "mmLiquidation": "terra1sm76ssl55vnwnu96d00t8jl8pzwg5nvm02m5k7",
+    "mmDistributionModel": "terra1ajawq49hutlsytxstys2x58464dy06rlzphmvy",
+    "aTerra": "terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu",
+    "terraswapblunaLunaPair": "terra1ykeemrj3nj6jlx5jxatmxkmjg894q3ftwnxn6k",
+    "terraswapblunaLunaLPToken": "terra1uhf9u4a6vtkvnwn4cw6hmzaxm5zzzn6ukmjq2g",
+    "terraswapAncUstPair": "terra10lkkzutjesqpphugfuzdzy5995u37tmc72a255",
+    "terraswapAncUstLPToken": "terra1usrmk383nc6vjqq9sahkaca0p9k6cu0arvys43",
+    "gov": "terra1dakqt3s8dywea9advxz4duxkuvglz3a34yczw9",
+    "distributor": "terra1ytyge2vqtl9kcj8amrx9pxjypmw00244e7l3ye",
+    "collector": "terra1hz6wk7psk5d0sh3u3vwtjrawvrk8hkt6vgnemm",
+    "community": "terra15l0pep3ww9k4aa50jmf2dnj68ak9tc2s30m2d3",
+    "staking": "terra1tcmhs005clcakqtquk58j3s5z0gkjm4c7wkzhu",
+    "ANC": "terra1800p00qlxh0nmt0r0u9hv7m4lg042fnafng2t6",
+    "airdrop": "terra18vlmtqhxgdp49vsfsk6pwvye8rg33nc2x92alr"
   }
 }
 ```

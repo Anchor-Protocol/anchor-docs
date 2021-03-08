@@ -25,8 +25,6 @@ Users must have a balance of both ANC and UST tokens in order to provide liquidi
 
 2. Select the **\[POOL\]** tab.
 
-
-
 3. Select the **\[Provide\]** tab.
 
 

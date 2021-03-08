@@ -1,8 +1,8 @@
 # Airdrop Registry
 
-The Airdrop Registry contract manages the fabrication of messages relevant to claiming and swapping tokens airdropped to Luna delegators. Airdropped tokens to the bLuna Hub contract is swapped for Terra USD and distributed as bLuna rewards.
+The Airdrop Registry contract manages the fabrication of messages relevant to claiming and swapping tokens airdropped to Luna delegators. Airdropped tokens to the [bLuna Hub](hub-1.md) contract is swapped for Terra USD and distributed as bLuna rewards.
 
-The Airdrop Registry is initially registered to support the airdrop of [ANC](../../protocol/anchor-token-anc.md) and [Mirror Protocol](https://mirror.finance)'s governance token, [MIR](https://docs.mirror.finance/protocol/mirror-token-mir). When a new airdrop is distributed to Luna stakers, a new Airdrop Registry contract that includes the message interface for claiming and swapping the airdrop token can be deployed and its address newly registered to the bLuna Hub contract.
+The Airdrop Registry is initially configured to support airdrops of [ANC](../../protocol/anchor-token-anc.md) and [Mirror Protocol](https://mirror.finance)'s governance token, [MIR](https://docs.mirror.finance/protocol/mirror-token-mir). When a new airdrop is distributed to Luna stakers, a new Airdrop Registry contract that includes the message interface for claiming and swapping the airdrop token can be deployed and its address newly registered to the bLuna Hub contract.
 
 ## Config
 
@@ -137,9 +137,9 @@ pub struct AirdropInfo {
 | :--- | :--- | :--- |
 | `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
 | `airdrop_contract` | HumanAddr | Contract address of airdrop contract to claim airdrop token |
-| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
-| `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to Terra USD. |
-| `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to Terra USD. |
+| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to TerraUSD \(e.g. Terraswap Pair\) |
+| `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to TerraUSD. |
+| `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to TerraUSD. |
 
 \* = optional
 
@@ -197,9 +197,9 @@ pub struct AirdropInfo {
 | :--- | :--- | :--- |
 | `airdrop_token_contract` | HumanAddr | New contract address of airdrop token's Cw20 token contract |
 | `airdrop_contract` | HumanAddr | New contract address of airdrop contract to claim airdrop token |
-| `airdrop_swap_contract` | HumanAddr | New contract address of swap contract to convert airdrop token to Terra USD |
-| `swap_belief_price`\* | Decimal | New expected conversion rate when swapping airdropped token to Terra USD |
-| `swap_max_spread`\* | Decimal | New maximum allowed spread when swapping airdropped token to Terra USD |
+| `airdrop_swap_contract` | HumanAddr | New contract address of swap contract to convert airdrop token to TerraUSD |
+| `swap_belief_price`\* | Decimal | New expected conversion rate when swapping airdropped token to TerraUSD |
+| `swap_max_spread`\* | Decimal | New maximum allowed spread when swapping airdropped token to TerraUSD |
 
 \* = optional
 
@@ -489,9 +489,9 @@ pub struct AirdropInfo {
 | :--- | :--- | :--- |
 | `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
 | `airdrop_contract` | HumanAddr | Contract address of airdrop contract to claim airdrop token |
-| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to Terra USD |
-| `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to Terra USD |
-| `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to Terra USD |
+| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to TerraUSD |
+| `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to TerraUSD |
+| `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to TerraUSD |
 
 \* = optional
 

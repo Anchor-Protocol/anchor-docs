@@ -1,6 +1,6 @@
 # Reward
 
-The Reward contract contains logic for distributing Luna delegation rewards to holders of bLuna. After the Hub contract withdraws Luna delegation rewards to the Reward contract, the Hub contract can request all rewards to be swapped to Terra USD, which is then distributed to bLuna holders. Holders of bLuna can then send a request to this contract to claim their accrued rewards.
+The Reward contract contains logic for distributing Luna delegation rewards to holders of bLuna. After the Hub contract withdraws Luna delegation rewards to the Reward contract, the Hub contract can request all rewards to be swapped to TerraUSD, which is then distributed to bLuna holders. Holders of bLuna can then send a request to this contract to claim their accrued rewards.
 
 The Reward contract also stores the balance and reward index values for all bLuna holders, which is used to calculate the amount of bLuna rewards that a specific holder has accrued.
 
@@ -315,7 +315,7 @@ pub struct StateResponse {
 | :--- | :--- | :--- |
 | `global_index` | Decimal | Current global reward index of bLuna |
 | `total_balance` | Uint128 | Total bLuna balance of all holders |
-| `prev_reward_balance` | Uint128 | Terra USD balance of Reward contract at the end of last [`UpdateGlobalIndex`](reward.md#internal-updateglobalindex)\`\` |
+| `prev_reward_balance` | Uint128 | TerraUSD balance of Reward contract at the end of last [`UpdateGlobalIndex`](reward.md#internal-updateglobalindex)\`\` |
 
 ### `AccruedRewards`
 

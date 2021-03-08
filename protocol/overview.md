@@ -33,6 +33,8 @@ Depositors receive newly minted [Anchor Terra \(aTerra\)](money-market/#anchor-t
 
 By borrowing, users can gain access to liquidity without losing price exposure to their bAsset collateral. Borrowers are recommended to keep a close eye on their loan position's LTV ratio, as loans with LTV ratios over the set maximum are subject to liquidation.
 
+Anchor Protocol distributes [Anchor Tokens](anchor-token-anc.md) as incentives for borrowers. Further details on borrower ANC distribution can be found [here](money-market/deposit-rate-subsidization.md#borrower-anc-incentives).
+
 
 
 ### Liquidator
@@ -45,7 +47,7 @@ Collaterals are liquidated by executing bids in the Liquidation Contract. Only b
 
 ### ANC Liquidity Provider
 
-**ANC Liquidity Providers** are entities that provide liquidity to the ANC - UST Terraswap Pair. They manage the initial bootstrapping of the exchange liquidity between ANC tokens and UST. ANC exchange liquidity is critical as Anchor distributes ANC tokens as borrower incentives to calibrate the stablecoin deposit rate. Further details on borrower ANC distribution can be found [here](money-market/deposit-rate-subsidization.md#borrower-anc-incentives).
+**ANC Liquidity Providers** are entities that provide liquidity to the ANC-UST Terraswap Pair. They manage the initial bootstrapping of the exchange liquidity between ANC tokens and UST. ANC exchange liquidity is critical as ANC tokens are distributed as borrower incentives, used to calibrate the stablecoin deposit rate.
 
 
 

@@ -17,35 +17,37 @@ The **EARN** page displays the following data:
 
 ## Depositing Terra stablecoins
 
-1. Navigate to the **EARN** page. 
+1. Navigate to the **EARN** page and click the **\[Deposit\]** button. 
 
-
+![](../.gitbook/assets/earn-deposit-1.png)
 
 2. Enter the amount of stablecoins to deposit and click the **\[Proceed\]** button to confirm.
 
-
+![](../.gitbook/assets/earn-deposit-2.png)
 
 3. Station Extension should prompt you to sign a transaction that contains the deposit operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/earn-deposit-3.png)
 
 4. Deposit complete.
 
-
+![](../.gitbook/assets/earn-deposit-4.png)
 
 ## Withdrawing Terra stablecoins
 
-1. Navigate to the **EARN** page. 
+1. Navigate to the **EARN** page and click the **\[Withdraw\]** button. 
 
-
+![](../.gitbook/assets/earn-withdraw-1.png)
 
 2. Enter the withdraw amount and click the **\[Proceed\]** button to confirm.
 
-
+![](../.gitbook/assets/earn-withdraw-2.png)
 
 3. Station Extension should prompt you to sign a transaction that contains the withdraw operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/earn-withdraw-3.png)
 
 4. Withdraw complete.
+
+![](../.gitbook/assets/earn-withdraw-4.png)
 

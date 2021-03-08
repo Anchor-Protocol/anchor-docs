@@ -73,7 +73,7 @@ pub struct InitMsg {
 
 ### `Receive`
 
-Can be called during a CW20 token transfer when the Hub contract is the recipient. Allows the token transfer to execute a [Receive Hook](hub-1.md#receive-hooks) as a subsequent action within the same transaction.
+Can be called during a Cw20 token transfer when the Hub contract is the recipient. Allows the token transfer to execute a [Receive Hook](hub-1.md#receive-hooks) as a subsequent action within the same transaction.
 
 {% tabs %}
 {% tab title="Rust" %}

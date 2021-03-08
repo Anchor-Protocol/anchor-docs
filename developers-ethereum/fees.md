@@ -1,6 +1,6 @@
 # Fees
 
-EthAnchor is built on top of various blockchain infrastructure, which charges fees on their usage. Using EthAnchor incurs fees that are calculated based on the deposit / redeem amount. Fees listed at this section are applied independent of gas spent on Ethereum transactions.
+EthAnchor is built using various blockchain infrastructure, which charges fees on their usage. Using EthAnchor incurs fees that are calculated based on the deposit / redeem amount. Fees listed at this section are applied independent of gas spent on Ethereum transactions.
 
 | Operation | \# of Shuttle Fee | \# of Terra Tax |
 | :--- | :--- | :--- |
