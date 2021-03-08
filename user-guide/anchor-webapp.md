@@ -14,7 +14,7 @@ The Anchor web app requires [Google Chrome](https://www.google.com/chrome/) and 
 As of March 17th, 2021, Station Extension is only available for Chromium-based web browsers.
 {% endhint %}
 
-Station Extension is a Chrome extension that lets users interact with smart contract web frontends with an embedded in-browser wallet. When interacting with Anchor Protocol through the WebApp, the application will generate a transaction in the proper format that encodes the user's desired interaction. Station Extension will detect and prompt the user to sign and broadcast it to actually execute the operation.
+Station Extension is a Chrome extension that lets users interact with smart contract web frontends with an embedded in-browser wallet. When a user makes an interaction on Anchor WebApp, the WebApp will generate a transaction in the proper format that encodes the user's desired operation. Station Extension will detect and prompt the user to sign and broadcast the transaction to actually execute the operation.
 
 ### Installing Station Extension
 
@@ -30,11 +30,11 @@ Station Extension is a Chrome extension that lets users interact with smart cont
 
 ![](../.gitbook/assets/picture-1%20%282%29.png)
 
-3. Set wallet name and password. **Make sure to record 24 word seed phrase somewhere safe.** Select **\[Next\]** to proceed.
+3. Set a wallet name and password. **Make sure to record the created 24 word seed phrase in a secure storage**. Select **\[Next\]** to proceed.
 
 ![](../.gitbook/assets/picture-2.png)
 
-4. Confirm your seed phrase by inputting the correct words.
+4. Confirm the created seed phrase by inputting the correct words.
 
 ![](../.gitbook/assets/picture-3.png)
 
@@ -42,28 +42,32 @@ Station Extension is a Chrome extension that lets users interact with smart cont
 
 ![](../.gitbook/assets/picture-4.png)
 
-### Using Hardware Ledger
 
-To use a hardware Ledger wallet on to sign transactions on Terra Station Extension, user must meet the conditions below:
 
-* Install Terra application using [Ledger Live](https://www.ledger.com/ledger-live/download/) application. Make sure to enable the Developer Mode on Ledger Live application from Settings &gt; Experimental Features to install Terra application. 
-* Both Ledger Nano S and X are supported, but the device must be connected to the computer via USB cable. **Bluetooth connection is not supported** by Station Extension
+### Accessing with the Ledger Hardware Wallet
 
-To access hardware ledger wallet from Terra Station Extension, please follow the steps below: 
+Terra Station Extension allows users to connect and sign transactions with their Ledger Nano S or Nano X. To access Ledger from Station Extension, users should: 
+
+* Install Terra application using [Ledger Live](https://www.ledger.com/ledger-live/download/) application. The Developer Mode on Ledger Live application from Settings &gt; Experimental Features must be enabled to install Terra application.  
+* The Ledger device must be connected to the user's computer via USB. Station Extension **does not support connecting with Bluetooth**.
+
+To access Ledger from Terra Station Extension, the following steps are required: 
 
 1. Connect and unlock your Ledger device
 
-2. Open Terra application from the Ledger device
+2. Open Terra application from Ledger
 
 3. Select **\[Access with ledger\]** on Terra Station Extension menu
 
 ![](../.gitbook/assets/picture-5.png)
 
-4. Once the Ledger device is connected to Terra Station Extension successfully, user can start signing transactions with their device. 
+4. Once Ledger has been successfully connected with Terra Station Extension, transactions can be signed with Ledger.
 
 ![](https://gblobscdn.gitbook.com/assets%2F-MLRzugf7mxc4ryNhTuq%2F-MMsz0hiKUhlI7K6Hu4t%2F-MMt82XaR7Sxw6v-WBj-%2Fimage.png?alt=media&token=0ae3faab-111c-4d95-b69d-4adee41f877d)
 
-### Wallet Recovery
+
+
+### Recovering an Existing Wallet
 
 1. Select **\[Recover existing wallet\]**
 
@@ -86,26 +90,26 @@ To access hardware ledger wallet from Terra Station Extension, please follow the
 2. Input the information below and select **\[Next\]**:
 
 * Address of the recipient
-* Amount of token to send
-* Memo is optional
+* Amount of tokens to send
+* Memo \(optional\)
 
 {% hint style="info" %}
-Station Extension also support cross-chain transfer to Ethereum addresses through the [Shuttle](https://github.com/terra-project/shuttle) bridge. 
+Station Extension also support cross-chain token transfers to Ethereum addresses through the [Shuttle](https://github.com/terra-project/shuttle) bridge. 
 {% endhint %}
 
 ![](../.gitbook/assets/picture-8.png)
 
-3. Select **\[Send\]** after setting the type and amount of tokens pay as transaction fee and entering the password. 
+3. Set the denomination and amount of tokens to pay as transaction fees. Enter the password and click **\[Send\]**.
 
 ![](../.gitbook/assets/picture-9.png)
 
-4. Station Extension will display the result of the transaction. Select **\[Ok\]** to return to the main page. 
+4. Station Extension will display the transaction result. Select **\[Ok\]** to return to the main page. 
 
 ![](../.gitbook/assets/picture-10.png)
 
 ## Obtaining Terra Stablecoins
 
-Anchor's money market uses Terra stablecoins as their base denomination. Users must have a balance of Terra stablecoins before they can perform stablecoin deposits to Anchor.
+Anchor's money market uses Terra stablecoins as their base denomination. Users must have a balance of Terra stablecoins before they can interact with Anchor.
 
 There are several ways to obtain Terra stablecoins:
 
@@ -130,7 +134,7 @@ The approximate spread and fee for performing the swap will be shown. The rules 
 
 
 
-### Purchasing Terra Stablecoins From Exchanges
+### Purchasing Terra Stablecoins From an Exchange
 
 Terra stablecoins can be obtained by directly purchasing them from cryptocurrency exchanges. Trading pairs of Terra stablecoins are available at various exchanges.
 

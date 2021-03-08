@@ -18,7 +18,7 @@ The Overseer halts borrow-related operations if the Oracle's price data is older
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `epoch_period` | u64 | Minimum time delay between epoch operations **\[blocks\]** |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
-| `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
+| `target_deposit_rate` | Decimal256 | Target per-block stablecoin deposit rate of Anchor |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
@@ -77,7 +77,7 @@ pub struct InitMsg {
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `epoch_period` | u64 | Minimum time delay between epoch operations **\[blocks\]** |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate to trigger interest buffer distribution |
-| `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
+| `target_deposit_rate` | Decimal256 | Target per-block stablecoin deposit rate of Anchor |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
@@ -134,7 +134,7 @@ pub enum HandleMsg {
 | `oracle_contract`\* | HumanAddr | Contract address of new Oracle |
 | `liquidation_contract`\* | HumanAddr | Contract address of new Liquidation Contract |
 | `threshold_deposit_rate`\* | Decimal256 | New threshold per-block deposit rate to trigger interest buffer distribution |
-| `target_deposit_rate`\* | Decimal256 | New maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
+| `target_deposit_rate`\* | Decimal256 | New target per-block stablecoin deposit rate of Anchor |
 | `buffer_distribution_factor`\* | Decimal256 | New maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor`\* | Decimal256 | New portion of bAsset rewards used to purchase ANC |
 | `epoch_period`\* | u64 | New minimum time delay between epoch operations **\[blocks\]** |
@@ -477,7 +477,7 @@ pub struct ConfigResponse {
 | `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
 | `collector_contract` | HumanAddr | Contract address of Collector |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
-| `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
+| `target_deposit_rate` | Decimal256 | Target per-block stablecoin deposit rate of Anchor |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `stable_denom` | String | Native token denomination for stablecoin |
@@ -861,7 +861,7 @@ pub struct DistributionParamsResponse {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `deposit_rate` | Decimal256 | Average per-block deposit rate during the last epoch |
-| `target_deposit_rate` | Decimal256 | Maximum per-block deposit rate before a portion of rewards are set aside as interest buffer |
+| `target_deposit_rate` | Decimal256 | Target per-block stablecoin deposit rate of Anchor |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
 
 ### `BorrowLimit`

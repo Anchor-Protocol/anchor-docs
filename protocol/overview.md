@@ -61,7 +61,7 @@ As an entity crucial for protocol operation, Anchor's oracle feeder is initially
 
 | Name | Type | Function |
 | :--- | :--- | :--- |
-| Terra USD \(UST\) | Native Terra Token | Stablecoin |
+| TerraUSD \(UST\) | Native Terra Token | Stablecoin |
 | [Bonded Assets \(bAssets\)](bonded-assets-bassets/) | Cw20 Token | Loan collateral for Anchor money market |
 | [Anchor Terra \(aTerra\)](money-market/#anchor-terra-aterra) | Cw20 Token | Deposit receipt for Anchor money market |
 | [Anchor Token \(ANC\)](anchor-token-anc.md) | Cw20 Token | Governance token for Anchor Protocol |

@@ -52,7 +52,7 @@ A message fabricator contains functions for generating proper `MsgExecuteContrac
 import { LCDClient, Wallet, MnemonicKey, StdFee} from '@terra-money/terra.js';
 
 const anchor = new LCDClient({ URL: 'https://tequila-lcd.terra.dev', chainID:'tequila-0004' });
-const owner = new MnemonicKey({ mnemonic: "...."});
+const owner = new MnemonicKey({ mnemonic: "..."});
 const wallet = new Wallet(anchor, owner);
 
 

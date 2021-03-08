@@ -12,7 +12,7 @@ The money market is configured to be somewhat resilient to price oracle downtime
 
 | Parameter Name | Description |
 | :--- | :--- |
-| `Target Yield` | Target stablecoin deposit APY of Anchor Protocol |
+| `Target Deposit Rate` | Target stablecoin deposit APY of Anchor Protocol |
 | `Threshold Deposit Rate` | Threshold deposit APY to trigger interest buffer distribution |
 | `Buffer Distribution Factor` | Maximum portion of interest buffer that can be distributed per deposit rate subsidization event |
 | `Max Borrow Factor` | Maximum portion of money market's stablecoin liquidity available for borrows |
@@ -22,10 +22,10 @@ The money market is configured to be somewhat resilient to price oracle downtime
 
 | Parameter Name | Value |
 | :--- | :--- |
-| `Target Yield` | 20% APY |
-| `Threshold Deposit Rate` | 10% APY |
+| `Target Deposit Rate` | 20% APY |
+| `Threshold Deposit Rate` | 20% APY |
 | `Buffer Distribution Factor` | 10% |
-| `Max Borrow Factor` | 100% |
+| `Max Borrow Factor` | 95% |
 | `Valid Price Timeframe` | 60 seconds |
 
 ## Poll Format
