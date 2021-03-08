@@ -23,7 +23,7 @@
   * [Modify Liquidation Parameters](governance/anchor-governance/modify-liquidation-parameters.md)
   * [Modify ANC Parameters](governance/anchor-governance/modify-anc-parameters.md)
   * [Modify Governance Parameters](governance/anchor-governance/modify-governance-parameters.md)
-  * [Modify Borrow Interest](governance/anchor-governance/modify-the-interest-model.md)
+  * [Modify Interest Model](governance/anchor-governance/modify-the-interest-model.md)
   * [Modify ANC Distribution](governance/anchor-governance/modify-the-distribution-model.md)
   * [Community Grants](governance/anchor-governance/spend-community-pool.md)
   * [Text Proposal](governance/anchor-governance/text-proposal.md)
