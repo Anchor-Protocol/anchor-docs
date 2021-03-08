@@ -52,6 +52,10 @@ Money market state successfully retrieved.
     // LastUpdated
     // Unix timestamp at which the last update to this response has been made
     "last_updated": 1608710761,
+    
+    // Current APY
+    // Yearly yield on anchor deposits
+    "current_apy": "0.19993179664890999"
 
     // ##################################################
     // # Below fields are borrower-related information. #
