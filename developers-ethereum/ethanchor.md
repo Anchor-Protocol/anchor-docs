@@ -8,7 +8,7 @@ EthAnchor is currently in private beta and only supports wrapped UST. For inquir
 
 Users can deposit wrapped UST to their [EthAnchor Account Contract](ethanchor-account-contract.md) to receive wrapped Anchor UST \(aUST\), an ERC20 aUST token on Ethereum. By holding on to wrapped aUST, users accrue the interest generated on their wrapped UST deposits.
 
-![](../.gitbook/assets/ethanchor-overview%20%281%29.png)
+![](../.gitbook/assets/ethanchor_overview.png)
 
 EthAnchor is designed to be language-agnostic and provides [HTTP API endpoints](ethanchor-api/) for the fabrication of unsigned Ethereum transaction \(Tx\) payloads. Users can then sign the fabricated Tx payload with their Ethereum account key, which can then be broadcasted to the Ethereum network to conduct the desired Anchor operation.
 
@@ -39,7 +39,7 @@ Interactions with EthAnchor are processed with an `init` - `finish` architecture
 
 Additionally, a single EthAnchor Account contract can only process requests in series, allowing an additional request to be made only after the finish operation for the previous request was successfully executed.
 
-![Flow for depositing wrapped stablecoins via EthAnchor](../.gitbook/assets/ethanchor-depositstable%20%281%29.png)
+![Flow for deposit wrapped UST via EthAnchor](../.gitbook/assets/ethanchor-depositstable%20%284%29.png)
 
 Following a successful `init` operation, the resulting wrapped tokens \(aUST for deposit, UST for redeem\) will be held by the user's EthAnchor Account contract. A `finish` operation then sends back the tokens to `msg.sender`, in which they can be potentially utilized with other Ethereum DeFi applications.
 

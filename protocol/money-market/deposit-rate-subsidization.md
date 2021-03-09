@@ -23,5 +23,5 @@ $$
 
 As an additional layer of safety, the protocol directly subsidizes the deposit rate if it is below the threshold rate \($$r_{current}<r_{threshold}$$\), funded from the interest buffer's stockpiled stablecoins. 
 
-An amount required to raise the deposit rate to the threshold is distributed to depositors, which is limited to 5% of the interest buffer's balance per subsidization to prevent excessive drainage. Distributed subsidies are added to the money market’s liquidity, increasing the aTerra exchange rate and appreciating the value of aTerra.
+An amount required to raise the deposit rate to the threshold is distributed to depositors, which is limited to 10% of the interest buffer's balance per subsidization to prevent excessive drainage. Distributed subsidies are added to the money market’s liquidity, increasing the aTerra exchange rate and appreciating the value of aTerra.
 
