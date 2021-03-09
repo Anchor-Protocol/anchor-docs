@@ -8,9 +8,9 @@
 
 The **Anchor Token** \(**ANC**\) is Anchor Protocol's governance token. ANC tokens can be deposited to create new governance polls, which can be voted on by users that have staked ANC.
 
-ANC tokens accrue value from protocol fees, which are distributed pro-rata to ANC stakers. The ANC token is designed to benefit its stakers as adoption of Anchor Protocol increases -- stakers of ANC are incentivized to vote for proposals that further merit the protocol.
+ANC is designed to **capture a portion of Anchor's yield**, allowing its **value to scale linearly with Anchor's assets under management \(AUM\)**. Anchor distributes protocol fees to ANC stakers pro-rata to their stake, benefitting stakers as adoption of Anchor increases -- stakers of ANC are incentivized to propose, discuss, and vote for proposals that further merit the protocol.
 
-ANC is also used as incentives to bootstrap borrow demand. ANC is distributed every block to stablecoin borrowers, proportional to the amount of their accrued borrow interest.
+ANC is also used as incentives to bootstrap borrow demand and initial deposit rate stability. The protocol distributes ANC tokens every block to stablecoin borrowers, proportional to the amount borrowed.
 
 ## Value Accrual
 
@@ -20,7 +20,7 @@ ANC rewards can also be earned by staking LP tokens of the ANC - UST Terraswap P
 
 ![ANC Value Flow](../.gitbook/assets/anc-flow.png)
 
-ANC is designed to generate a buying pressure which increases proportionally with Anchor's assets under management \(AUM\). Terra stablecoins from below sources are used to purchase ANC tokens from Terraswap, which are then distributed as staking rewards to ANC stakers.
+ANC tokens generate a buying pressure that increases proportionally with Anchor's AUM. Protocol fees are used to purchase ANC tokens from Terraswap, which are then distributed as staking rewards to ANC stakers.
 
 ### Protocol Fees
 
@@ -41,7 +41,7 @@ ANC token deposits of Anchor governance polls that have failed to reach the requ
 ## Anchor Token Supply
 
 {% hint style="info" %}
-The below token distribution schedules were drawn assuming the maximum borrower ANC emission rate \(`Emission Cap`\). In practice, it is highly likely that the borrower ANC distribution rate will be lower than the below distribution schedule.
+The below token distribution schedules were drawn assuming the maximum borrower ANC emission rate \(`Emission Cap`\). In practice, it is highly likely that the rate of ANC distribution to borrowers will be lower than the values outlined in the below distribution schedule.
 {% endhint %}
 
 There are planned to be a total of **1,000,000,000 ANC** tokens to be distributed over a period of at least 4 years. Beyond that, there will be no more new ANC tokens introduced to the supply.
@@ -64,7 +64,7 @@ There are planned to be a total of **1,000,000,000 ANC** tokens to be distribute
 
 ![](../.gitbook/assets/genesis-token-distribution.png)
 
-A total of 150M ANC tokens are released at the genesis of Anchor Protocol. The initial distribution of ANC will be:
+A total of **150M ANC** tokens are released at the genesis of Anchor Protocol. The initial distribution of ANC is given to:
 
 * **LUNA staking airdrop**: 50M \(33.3%\) tokens will be airdropped to LUNA stakers.
 * **Community fund**: 100M \(66.7%\) tokens will be reserved for the Anchor Community Fund.
@@ -73,21 +73,21 @@ A total of 150M ANC tokens are released at the genesis of Anchor Protocol. The i
 
 ![](../.gitbook/assets/final-token-distribution.png)
 
-Further ANC tokens are set to be released over a period of at least 4 years. The total ANC supply increases until it reaches **1B**. The final distribution structure will be:
+Further ANC tokens are set to be released over a period of at least 4 years, increasing total supply until it reaches **1B**. The final distribution structure will be:
 
 * **Investors**: 100M \(10%\) tokens are allocated to investors of Anchor, with a 6-month lockup period. Afterwards, a 1-year linear vesting schedule is applied.
-* **Team**: 100M \(10%\) tokens are allocated to the creators of Anchor, with a 4-year vesting period. Tokens will be released at every end-of-year.
-* **LUNA staking airdrop**: 50M \(5%\) tokens are airdropped to LUNA stakers.
+* **Team**: 100M \(10%\) tokens are allocated to the creators of Anchor, with a 4-year vesting period. Tokens are to be released at every end-of-year.
+* **LUNA staking airdrop**: 50M \(5%\) tokens are airdropped to LUNA stakers on launch.
 * **LUNA staking rewards**: 100M \(10%\) tokens are linearly distributed to LUNA stakers over a period of 2 years.
 * **Borrower incentives**: 400M \(40%\) tokens are linearly released to be used as borrower incentives over a period of 4 years.
-* **ANC LP staking rewards**: 50M \(5%\) tokens are linearly distributed to the ANC-UST LP token staking pool over a period of 1 year.
+* **ANC LP staking rewards**: 50M \(5%\) tokens are linearly distributed to the ANC-UST pair liquidity providers over a period of 1 year.
 * **Community fund**: 200M \(20%\) of all ANC tokens will be reserved for the Anchor Community Fund. On top of the 100M ANC at genesis, 100M additional tokens are linearly released to the community fund over a period of 4 years.
 
 #### Inflation Rate
 
 Inflation rate of ANC tokens are designed to gradually decrease every year, until it eventually reaches a supply of **1B**.
 
-## Distribution
+## Distribution to Ecosystem Participants
 
 ### Distribution to Borrowers
 
@@ -97,5 +97,7 @@ ANC incentives fuel a self-reinforcing adoption cycle, where they incentivize mo
 
 ### Distribution to ANC Liquidity Providers
 
+Since ANC tokens are used borrower incentives to stimulate initial borrow demand and deposit rate stability, high exchange liquidity for ANC is crucial for maintaining a constant incentive flow.
 
+To incentivize initial exchange liquidity of ANC, newly minted ANC is also distributed to those that provide liquidity to ANC, specifically on the ANC-UST Terraswap pair. Tokens are given to stakers of the ANC-UST Terraswap pair LP tokens.
 
