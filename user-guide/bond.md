@@ -86,19 +86,19 @@ This subsection is only applicable for those that have burnt Luna through **BURN
 
 1. Navigate to the **CLAIM** tab in the **BOND** page.
 
-
+![](../.gitbook/assets/bond-burn-burn-withdraw-1.png)
 
 2. Check the amount of redeemed Luna available for withdrawal \(**Withdrawable Amount**\). Click the **\[Withdraw\]** button to withdraw redeemed Luna.
 
-
+![](../.gitbook/assets/bond-burn-burn-withdraw-2.png)
 
 3. Station Extension should prompt you to sign a transaction that contains the Luna withdraw operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/bond-burn-burn-withdraw-3.png)
 
 4. Withdraw complete.
 
-
+![](../.gitbook/assets/bond-burn-burn-withdraw-4.png)
 
 ## Claiming accrued bLuna rewards
 
@@ -108,17 +108,17 @@ bLuna rewards only accrue only if the user is currently holding bLuna tokens. Us
 
 1. Navigate to the **CLAIM** tab in the **BOND** page.
 
-
+![](../.gitbook/assets/bond-claim-1.png)
 
 2. Check the amount of accrued bLuna rewards \(**Claimable Rewards**\). Click the **\[Claim\]** button to claim accrued rewards.
 
-
+![](../.gitbook/assets/bond-claim-2%20%281%29.png)
 
 3. Station Extension should prompt you to sign a transaction that contains the reward claim operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/bond-claim-3.png)
 
 4. Reward claim complete.
 
-
+![](../.gitbook/assets/bond-claim-4%20%281%29.png)
 
