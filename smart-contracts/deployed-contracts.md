@@ -47,7 +47,7 @@ For money market and liquidations, a separate set of contracts are to be deploye
 {% endtab %}
 {% endtabs %}
 
-### ANC-related Smart Contracts
+### ANC-Related Smart Contracts
 
 {% tabs %}
 {% tab title="Mainnet" %}
@@ -116,7 +116,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor UST \(aUST\) | [terra1...](https://finder.terra.money/) |
+| Anchor Terra USD \(aUST\) | [terra1...](https://finder.terra.money/) |
 {% endtab %}
 
 {% tab title="Testnet" %}
@@ -135,7 +135,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor UST \(aUST\) | [terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu](https://finder.terra.money/tequila-0004/address/terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu) |
+| Anchor Terra USD \(aUST\) | [terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu](https://finder.terra.money/tequila-0004/address/terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu) |
 {% endtab %}
 {% endtabs %}
 

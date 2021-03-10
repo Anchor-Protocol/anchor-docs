@@ -534,7 +534,7 @@ pub struct ConfigResponse {
 
 ### `State`
 
-Gets information related to the overall state of `Market`.
+Gets state information of Market. Returns an interest-accrued value if `block_height` field is filled. Returns the stored \(no interest accrued\) state if not filled.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -542,7 +542,9 @@ Gets information related to the overall state of `Market`.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    State {}
+    State {
+        block_height: Option<u64>, 
+    }
 }
 ```
 {% endtab %}
@@ -550,7 +552,9 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "state": {}
+  "state": {
+    "block_height": 123456, 
+  }
 }
 ```
 {% endtab %}
@@ -558,7 +562,9 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-|  |  |  |
+| `block_height` | u64 | Block number to use in query |
+
+\* = optional
 
 ### `StateResponse`
 
@@ -633,7 +639,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `block_height`\* | u64 | Current block number |
+| `block_height`\* | u64 | Block number to use in query |
 
 \* = optional
 

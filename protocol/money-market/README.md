@@ -106,7 +106,7 @@ $$
 \text{utilizationRatio} = \frac{\text{stablecoinsLent}}{\text{stablecoinsDeposited}}
 $$
 
-where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both interest-accrued values.268
+where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both interest-accrued values.
 
 #### Borrow Rate Model
 

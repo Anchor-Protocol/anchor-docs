@@ -39,7 +39,7 @@ Interactions with EthAnchor are processed with an `init` - `finish` architecture
 
 Additionally, a single EthAnchor Account contract can only process requests in series, allowing an additional request to be made only after the finish operation for the previous request was successfully executed.
 
-![Flow for deposit wrapped UST via EthAnchor](../.gitbook/assets/ethanchor-depositstable%20%284%29.png)
+![Flow for depositing wrapped UST via EthAnchor](../.gitbook/assets/ethanchor-depositstable%20%286%29.png)
 
 Following a successful `init` operation, the resulting wrapped tokens \(aUST for deposit, UST for redeem\) will be held by the user's EthAnchor Account contract. A `finish` operation then sends back the tokens to `msg.sender`, in which they can be potentially utilized with other Ethereum DeFi applications.
 
