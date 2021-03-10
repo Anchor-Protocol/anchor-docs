@@ -2,8 +2,6 @@
 
 The Market contract acts as the point of interaction for all lending and borrowing related activities. New stablecoin deposits are added to this contract's balance, while borrows are subtracted from the contract balance.
 
-**10%** of accrued borrow interest \(`reserve_factor`\) is set aside as ANC purchase reserves, used to purchase ANC tokens via the Collector.
-
 ## Config
 
 | Key | Type | Description |

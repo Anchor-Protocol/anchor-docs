@@ -33,67 +33,67 @@ Users should first obtain bAsset tokens in order to utilize them as loan collate
 
 1. Navigate to the **BORROW** page.
 
-
+![](../.gitbook/assets/borrow-provide-1.png)
 
 2. Decide a bAsset collateral to deposit and click **\[Provide\]**.
 
+![](../.gitbook/assets/borrow-provide-2.png)
 
+3. Enter the amount of collateral to provide. If the user already has a loan position, the provide amount can also be specified by selecting the loan's target LTV ratio via the slider bar. Click the **\[Proceed\]** button to confirm.
 
-3. Enter the amount of collateral to provide. The provide amount can also be specified by selecting the loan's target LTV ratio via the slider bar. Click the **\[Proceed\]** button to confirm.
-
-
+![](../.gitbook/assets/borrow-provide-3.png)
 
 4. Station Extension should prompt you to sign a transaction that contains the collateral provide operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/borrow-provide-4.png)
 
 5. Collateral provide complete.
 
-
+![](../.gitbook/assets/borrow-provide-5.png)
 
 ## Borrowing Terra stablecoins
 
 1. Navigate to the **BORROW** page.
 
-
+![](../.gitbook/assets/borrow-borrow-1.png)
 
 2. Click **\[Borrow\]**.
 
-
+![](../.gitbook/assets/borrow-borrow-2.png)
 
 3. Enter the amount of stablecoins to borrow. The borrow amount can also be specified by selecting the loan's target LTV ratio via the slider bar. Click the **\[Proceed\]** button to confirm.
 
-
+![](../.gitbook/assets/borrow-borrow-3.png)
 
 4. Station Extension should prompt you to sign a transaction that contains the borrow operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/borrow-borrow-4.png)
 
 5. Borrow complete.
 
-
+![](../.gitbook/assets/borrow-borrow-5.png)
 
 ## Repaying borrowed Terra stablecoins
 
 1. Navigate to the **BORROW** page.
 
-
+![](../.gitbook/assets/borrow-repay-1.png)
 
 2. Click **\[Repay\]**.
 
-
+![](../.gitbook/assets/borrow-repay-2.png)
 
 3. Enter the amount of stablecoins to repay. The repay amount can also be specified by selecting the loan's target LTV ratio via the slider bar. Click the **\[Proceed\]** button to confirm.
 
-
+![](../.gitbook/assets/borrow-repay-3.png)
 
 4. Station Extension should prompt you to sign a transaction that contains the repay operation. Confirm the details presented and enter your password to sign.
 
-
+![](../.gitbook/assets/borrow-repay-4.png)
 
 5. Repay complete.
 
-
+![](../.gitbook/assets/borrow-repay-5.png)
 
 ## Withdrawing bAsset collateral
 

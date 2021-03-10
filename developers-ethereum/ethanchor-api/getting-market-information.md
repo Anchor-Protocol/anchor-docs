@@ -85,7 +85,6 @@ Money market of the provided denom could not be found.
 {
     "error": "money market not found"
 }
-
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
