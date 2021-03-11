@@ -8,14 +8,21 @@ If the current deposit rate is calculated to be below the target, the borrower A
 
 To prevent the emission rate from spiking and having an excessively high rate, the emission rate is capped to the `Borrower Emission Cap`. The emission rate also has a minimum rate of `Borrower Emission Floor` to allow a minimum baseline of ANC incentives for borrowers.
 
-## Genesis Values
-
 | Parameter Name | Value |
 | :--- | :--- |
 | `Borrower Emission Cap` | Maximum per-block ANC emission rate to borrowers |
 | `Borrower Emission Floor` | Minimum per-block ANC emission rate to borrowers |
 | `Increment Multiplier` | Emission rate multiplier when increasing ANC emission |
 | `Decrement Multiplier` | Emission rate multiplier when decreasing ANC emission |
+
+## Genesis Values
+
+| Parameter Name | Value |
+| :--- | :--- |
+| `Borrower Emission Cap` | 20381363.851572310123647620 |
+| `Borrower Emission Floor` | 6793787.950524103374549206 |
+| `Increment Multiplier` | 1.007266723782294841 |
+| `Decrement Multiplier` | 0.997102083349256160 |
 
 ## Poll Format
 

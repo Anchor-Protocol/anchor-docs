@@ -22,7 +22,7 @@ The `ANC Purchase Factor` determines the portion of bAsset rewards and collatera
 | Parameter Name | Value |
 | :--- | :--- |
 | `Epoch Period` | 1 day |
-| `ANC Purchase Factor` | 50% |
+| `ANC Purchase Factor` | 10% |
 | `Reserve Factor` | 5% |
 | `Staking Reward Factor` | 100% |
 

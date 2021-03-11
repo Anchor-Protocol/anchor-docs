@@ -103,21 +103,23 @@ Withdrawn bAsset collaterals can be redeemed for their underlying assets at the 
 
 1. Navigate to the **BORROW** page.
 
-
+![](../.gitbook/assets/borrow-withdraw-1.png)
 
 2. Decide a bAsset collateral to withdraw and click **\[Withdraw\]**.
 
-
+![](../.gitbook/assets/borrow-withdraw-2.png)
 
 3. Enter the amount of collateral to withdraw. The withdraw amount can also be specified by selecting the loan's target LTV ratio via the slider bar. Click the **\[Proceed\]** button to confirm.
 
-
+![](../.gitbook/assets/borrow-withdraw-3%20%281%29.png)
 
 4. Station Extension should prompt you to sign a transaction that contains the collateral withdraw operation. Confirm the details presented and enter your password to sign.
+
+![](../.gitbook/assets/borrow-withdraw-4%20%281%29.png)
 
 
 
 5. Collateral withdraw complete.
 
-
+![](../.gitbook/assets/borrow-withdraw-5.png)
 

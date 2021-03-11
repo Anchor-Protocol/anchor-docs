@@ -1,6 +1,6 @@
 # Modify Market Parameters
 
-The mechanism behind Anchor's money market is controlled by a set of carefully determined parameters, which are `Target Yield`, `Threshold Deposit Rate`, `Buffer Distribution Factor`, `Max Borrow Factor`, and `Valid Price Timeframe`. The **Modify Market Parameters** poll allows users to submit governance polls that adjust parameters that effectively control the Anchor money market.
+The mechanism behind Anchor's money market is controlled by a set of carefully determined parameters, which are `Target Deposit Rate`, `Threshold Deposit Rate`, `Buffer Distribution Factor`, `Max Borrow Factor`, and `Valid Price Timeframe`. The **Modify Market Parameters** poll allows users to submit governance polls that adjust parameters that effectively control the Anchor money market.
 
 Modifying the `Target Deposit Rate` adjusts Anchor's target deposit APY, which the protocol attempts to achieve by constantly controlling the ANC emission rate as borrower incentives.
 
@@ -23,7 +23,7 @@ The money market is configured to be somewhat resilient to price oracle downtime
 | Parameter Name | Value |
 | :--- | :--- |
 | `Target Deposit Rate` | 20% APY |
-| `Threshold Deposit Rate` | 20% APY |
+| `Threshold Deposit Rate` | 15% APY |
 | `Buffer Distribution Factor` | 10% |
 | `Max Borrow Factor` | 95% |
 | `Valid Price Timeframe` | 60 seconds |
