@@ -35,15 +35,15 @@ For money market and liquidations, a separate set of contracts are to be deploye
 
 | Contract | Address |
 | :--- | :--- |
-| Hub | [terra1zdu9ph3429dtstv57ve3sfzr2vz2fclvmhn6td](https://finder.terra.money/tequila-0004/address/terra1zdu9ph3429dtstv57ve3sfzr2vz2fclvmhn6td) |
-| Reward | [terra16rjk255rjc6vt2qg7h8ntfdykrzfkt0e5wykus](https://finder.terra.money/tequila-0004/address/terra16rjk255rjc6vt2qg7h8ntfdykrzfkt0e5wykus) |
-| Airdrop Registry | [terra1093jc6g8gcuxp0vvfuzkk26rvnz38du886c88m](https://finder.terra.money/tequila-0004/address/terra1093jc6g8gcuxp0vvfuzkk26rvnz38du886c88m) |
+| Hub | [terra1fflas6wv4snv8lsda9knvq2w0cyt493r8puh2e](https://finder.terra.money/tequila-0004/address/terra1fflas6wv4snv8lsda9knvq2w0cyt493r8puh2e) |
+| Reward | [terra1ac24j6pdxh53czqyrkr6ygphdeftg7u3958tl2](https://finder.terra.money/tequila-0004/address/terra1ac24j6pdxh53czqyrkr6ygphdeftg7u3958tl2) |
+| Airdrop Registry | [terra1334h20c9ewxguw9p9vdxzmr8994qj4qu77ux6q](https://finder.terra.money/tequila-0004/address/terra1334h20c9ewxguw9p9vdxzmr8994qj4qu77ux6q) |
 
 #### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
-| Bonded LUNA \(bLUNA\) | [terra1wq9f8p8f7gldztpdc4v3awngupfkap8wpxhtjr](https://finder.terra.money/tequila-0004/address/terra1wq9f8p8f7gldztpdc4v3awngupfkap8wpxhtjr) |
+| Bonded LUNA \(bLUNA\) | [terra1u0t35drzyy0mujj8rkdyzhe264uls4ug3wdp3x](https://finder.terra.money/tequila-0004/address/terra1u0t35drzyy0mujj8rkdyzhe264uls4ug3wdp3x) |
 {% endtab %}
 {% endtabs %}
 
@@ -73,17 +73,17 @@ For money market and liquidations, a separate set of contracts are to be deploye
 
 | Contract | Address |
 | :--- | :--- |
-| Gov | [terra1dakqt3s8dywea9advxz4duxkuvglz3a34yczw9](https://finder.terra.money/tequila-0004/address/terra1dakqt3s8dywea9advxz4duxkuvglz3a34yczw9) |
-| Staking | [terra1tcmhs005clcakqtquk58j3s5z0gkjm4c7wkzhu](https://finder.terra.money/tequila-0004/address/terra1tcmhs005clcakqtquk58j3s5z0gkjm4c7wkzhu) |
-| Community | [terra15l0pep3ww9k4aa50jmf2dnj68ak9tc2s30m2d3](https://finder.terra.money/tequila-0004/address/terra15l0pep3ww9k4aa50jmf2dnj68ak9tc2s30m2d3) |
-| Collector | [terra1hz6wk7psk5d0sh3u3vwtjrawvrk8hkt6vgnemm](https://finder.terra.money/tequila-0004/address/terra1hz6wk7psk5d0sh3u3vwtjrawvrk8hkt6vgnemm) |
-| Distributor | [terra1ytyge2vqtl9kcj8amrx9pxjypmw00244e7l3ye](https://finder.terra.money/tequila-0004/address/terra1ytyge2vqtl9kcj8amrx9pxjypmw00244e7l3ye) |
+| Gov | [terra16ckeuu7c6ggu52a8se005mg5c0kd2kmuun63cu](https://finder.terra.money/tequila-0004/address/terra16ckeuu7c6ggu52a8se005mg5c0kd2kmuun63cu) |
+| Staking | [terra19nxz35c8f7t3ghdxrxherym20tux8eccar0c3k](https://finder.terra.money/tequila-0004/address/terra19nxz35c8f7t3ghdxrxherym20tux8eccar0c3k) |
+| Community | [terra17g577z0pqt6tejhceh06y3lyeudfs3v90mzduy](https://finder.terra.money/tequila-0004/address/terra17g577z0pqt6tejhceh06y3lyeudfs3v90mzduy) |
+| Collector | [terra1hlctcrrhcl2azxzcsns467le876cfuzam6jty4](https://finder.terra.money/tequila-0004/address/terra1hlctcrrhcl2azxzcsns467le876cfuzam6jty4) |
+| Distributor | [terra1z7nxemcnm8kp7fs33cs7ge4wfuld307v80gypj](https://finder.terra.money/tequila-0004/address/terra1z7nxemcnm8kp7fs33cs7ge4wfuld307v80gypj) |
 
 #### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor Token \(ANC\) | [terra1800p00qlxh0nmt0r0u9hv7m4lg042fnafng2t6](https://finder.terra.money/tequila-0004/address/terra1800p00qlxh0nmt0r0u9hv7m4lg042fnafng2t6) |
+| Anchor Token \(ANC\) | [terra1747mad58h0w4y589y3sk84r5efqdev9q4r02pc](https://finder.terra.money/tequila-0004/address/terra1747mad58h0w4y589y3sk84r5efqdev9q4r02pc) |
 {% endtab %}
 {% endtabs %}
 
@@ -124,18 +124,18 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Overseer | [terra174dcdqlkdwvsxqpkt47f9cy3anlv56ge5c05ex](https://finder.terra.money/tequila-0004/address/terra174dcdqlkdwvsxqpkt47f9cy3anlv56ge5c05ex) |
-| Market | [terra1shmnertem9ujjxys2vxy2x92h0jzhctkjdv956](https://finder.terra.money/tequila-0004/address/terra1shmnertem9ujjxys2vxy2x92h0jzhctkjdv956) |
-| bLuna Custody | [terra1urn8z5uqukjzr8sqdjdryj6nt5v3qttfta2zwn](https://finder.terra.money/tequila-0004/address/terra1urn8z5uqukjzr8sqdjdryj6nt5v3qttfta2zwn) |
-| Interest Model | [terra1rrutuqshjkgfh22n5eau8jac0vn4hsyhcz3ju2](https://finder.terra.money/tequila-0004/address/terra1rrutuqshjkgfh22n5eau8jac0vn4hsyhcz3ju2) |
-| Distribution Model | [terra1ajawq49hutlsytxstys2x58464dy06rlzphmvy](https://finder.terra.money/tequila-0004/address/terra1ajawq49hutlsytxstys2x58464dy06rlzphmvy) |
-| Oracle | [terra1rz5chzn0g07hp5jx63srpkhv8hd7x8pss20w2e](https://finder.terra.money/tequila-0004/address/terra1rz5chzn0g07hp5jx63srpkhv8hd7x8pss20w2e) |
+| Overseer | [terra1qljxd0y3j3gk97025qvl3lgq8ygup4gsksvaxv](https://finder.terra.money/tequila-0004/address/terra1qljxd0y3j3gk97025qvl3lgq8ygup4gsksvaxv) |
+| Market | [terra15dwd5mj8v59wpj0wvt233mf5efdff808c5tkal](https://finder.terra.money/tequila-0004/address/terra15dwd5mj8v59wpj0wvt233mf5efdff808c5tkal) |
+| bLuna Custody | [terra1ltnkx0mv7lf2rca9f8w740ashu93ujughy4s7p](https://finder.terra.money/tequila-0004/address/terra1ltnkx0mv7lf2rca9f8w740ashu93ujughy4s7p) |
+| Interest Model | [terra1m25aqupscdw2kw4tnq5ql6hexgr34mr76azh5x](https://finder.terra.money/tequila-0004/address/terra1m25aqupscdw2kw4tnq5ql6hexgr34mr76azh5x) |
+| Distribution Model | [terra1u64cezah94sq3ye8y0ung28x3pxc37tv8fth7h](https://finder.terra.money/tequila-0004/address/terra1u64cezah94sq3ye8y0ung28x3pxc37tv8fth7h) |
+| Oracle | [terra1p4gg3p2ue6qy2qfuxtrmgv2ec3f4jmgqtazum8](https://finder.terra.money/tequila-0004/address/terra1p4gg3p2ue6qy2qfuxtrmgv2ec3f4jmgqtazum8) |
 
 #### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor Terra USD \(aUST\) | [terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu](https://finder.terra.money/tequila-0004/address/terra1xhxx7tgth24d8f9pz6vkjmvulp88xh9vl9kmxu) |
+| Anchor Terra USD \(aUST\) | [terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl](https://finder.terra.money/tequila-0004/address/terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl) |
 {% endtab %}
 {% endtabs %}
 
@@ -155,7 +155,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Liquidation Contract | [terra1sm76ssl55vnwnu96d00t8jl8pzwg5nvm02m5k7](https://finder.terra.money/tequila-0004/address/terra1sm76ssl55vnwnu96d00t8jl8pzwg5nvm02m5k7) |
+| Liquidation Contract | [terra16vc4v9hhntswzkuunqhncs9yy30mqql3gxlqfe](https://finder.terra.money/tequila-0004/address/terra16vc4v9hhntswzkuunqhncs9yy30mqql3gxlqfe) |
 {% endtab %}
 {% endtabs %}
 
