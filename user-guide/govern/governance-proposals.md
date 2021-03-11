@@ -18,53 +18,59 @@ The **Polls** section of the **GOVERN** page displays:
 
 1. Navigate to the **GOVERN** page.
 
-
+![](../../.gitbook/assets/govern-proposal-create-1.png)
 
 2. Click the **\[Create Poll\]** button.
 
-
+![](../../.gitbook/assets/govern-proposal-create-2.png)
 
 3. Select a type of proposal to create. Available options are:
 
 * **Modify Governance Parameters**: Propose a parameter change in Anchor Governance.
 * **Spend Community Pool**: Request a grant from the community pool.
-* **Submit Text Proposal**: Proposal a text-based proposal.
+* **Submit Text Proposal**: Submit a text proposal.
 
+![](../../.gitbook/assets/govern-proposal-create-3.png)
 
+4. After inputting proposed values, click **\[Submit\]**.
 
-4. After inputting proposed values, click **\[Propose\]**.
-
-
+![](../../.gitbook/assets/govern-proposal-create-4.png)
 
 5. Station Extension should prompt you to sign a transaction that contains the poll creation operation. Confirm the details presented and enter your password to sign.
 
-
+![](../../.gitbook/assets/govern-proposal-create-5.png)
 
 6. Poll creation complete.
 
-
+![](../../.gitbook/assets/govern-proposal-create-6.png)
 
 ## Voting on a Poll
 
 1. Navigate to the **GOVERN** page.
 
-
+![](../../.gitbook/assets/govern-proposal-vote-1.png)
 
 2. Click on the poll to vote on. The poll's status must be **IN PROGRESS**.
 
-
+![](../../.gitbook/assets/govern-proposal-vote-2.png)
 
 3. Click **\[Vote\]**.
 
-
+![](../../.gitbook/assets/govern-proposal-vote-3.png)
 
 4. Select whether to vote for \(**YES**\) or against \(**NO**\) the proposal.
 
+![](../../.gitbook/assets/screen-shot-2021-03-11-at-2.43.23-pm.png)
 
+5. Click **\[Submit\]**.
 
-5. Station Extension should prompt you to sign a transaction that contains the vote operation. Confirm the details presented and enter your password to sign.
+![](../../.gitbook/assets/screen-shot-2021-03-11-at-2.43.37-pm.png)
 
+6. Station Extension should prompt you to sign a transaction that contains the vote operation. Confirm the details presented and enter your password to sign.
 
+![](../../.gitbook/assets/govern-proposal-vote-6.png)
 
-6. Vote complete.
+7. Vote complete.
+
+![](../../.gitbook/assets/govern-proposal-vote-7.png)
 

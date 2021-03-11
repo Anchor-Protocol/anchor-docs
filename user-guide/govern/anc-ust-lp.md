@@ -21,27 +21,27 @@ Users must have a balance of both ANC and UST tokens in order to provide liquidi
 
 1. Navigate to the **GOVERN** page and click on **\[ANC - UST LP\]**.
 
-
+![](../../.gitbook/assets/govern-lp-provide-1.png)
 
 2. Select the **\[POOL\]** tab.
 
-
+![](../../.gitbook/assets/govern-lp-provide-2.png)
 
 3. Select the **\[Provide\]** tab.
 
+![](../../.gitbook/assets/govern-lp-provide-3.png)
 
+4. Enter the amount of ANC tokens to provide liquidity. The WebApp will automatically calculate the amount of UST required. Click **\[Add Liquidity\]**.
 
-4. Enter the amount of ANC tokens to provide liquidity. The WebApp will automatically calculate the amount of UST required. Click **\[Proceed\]**.
-
-
+![](../../.gitbook/assets/govern-lp-provide-4.png)
 
 5. Station Extension should prompt you to sign a transaction that contains the liquidity provide operation. Confirm the details presented and enter your password to sign.
 
-
+![](../../.gitbook/assets/govern-lp-provide-5.png)
 
 6. Liquidity provide complete. LP tokens are minted to the user.
 
-
+![](../../.gitbook/assets/govern-lp-provide-6.png)
 
 {% hint style="warning" %}
 LP tokens minted from provided liquidity must be staked to receive LP staking rewards.
@@ -51,53 +51,51 @@ LP tokens minted from provided liquidity must be staked to receive LP staking re
 
 1. Navigate to the **GOVERN** page and click on **\[ANC - UST LP\]**.
 
-
+![](../../.gitbook/assets/govern-lp-withdraw-1.png)
 
 2. Select the **\[POOL\]** tab.
 
-
+![](../../.gitbook/assets/govern-lp-withdraw-2.png)
 
 3. Select the **\[Withdraw\]** tab.
 
+![](../../.gitbook/assets/govern-lp-withdraw-3.png)
 
+4. Enter the amount of LP tokens to burn. The WebApp will display the estimated amount of ANC and UST tokens the user will receive. Click **\[Remove Liquidity\]**.
 
-4. Enter the amount of LP tokens to burn. The WebApp will display the estimated amount of ANC and UST tokens the user will receive. Click **\[Proceed\]**.
-
-
+![](../../.gitbook/assets/govern-lp-withdraw-4.png)
 
 5. Station Extension should prompt you to sign a transaction that contains the liquidity withdraw operation. Confirm the details presented and enter your password to sign.
 
-
+![](../../.gitbook/assets/govern-lp-withdraw-5.png)
 
 6. Liquidity withdraw complete.
 
-
+![](../../.gitbook/assets/govern-lp-withdraw-6.png)
 
 ## Staking / unstaking ANC-UST pair LP tokens.
 
-
-
 1. Navigate to the **GOVERN** page and click on **\[ANC - UST LP\]**.
 
-
+![](../../.gitbook/assets/govern-lp-stake-1.png)
 
 2. Select the **\[STAKE\]** tab.
 
-
+![](../../.gitbook/assets/govern-lp-stake-2.png)
 
 3. Select whether to stake or unstake.
 
+![](../../.gitbook/assets/govern-lp-stake-3.png)
 
+4. Enter amount to stake / unstake and click **\[Stake**\] / **\[Unstake\]**.
 
-4. Enter amount to stake / unstake and click **\[Proceed**\].
-
-
+![](../../.gitbook/assets/govern-lp-stake-4.png)
 
 5. Station Extension should prompt you to sign a transaction that contains the stake / unstake operation. Confirm the details presented and enter your password to sign.
 
-
+![](../../.gitbook/assets/govern-lp-stake-5.png)
 
 6. Stake / unstake complete.
 
-
+![](../../.gitbook/assets/govern-lp-stake-6.png)
 
