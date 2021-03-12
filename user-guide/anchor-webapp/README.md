@@ -1,4 +1,4 @@
-# Anchor WebApp
+# WebApp
 
 **The Anchor WebApp is the official web frontend for interacting with Anchor Protocol on the Terra network. The WebApp can be accessed at** [**https://app.anchorprotocol.com**](https://app.anchorprotocol.com/)**.**
 
@@ -28,19 +28,19 @@ Station Extension is a Chrome extension that lets users interact with smart cont
 
 2. Select **New Wallet**
 
-![](../.gitbook/assets/picture-1%20%282%29.png)
+![](../../.gitbook/assets/picture-1%20%282%29.png)
 
 3. Set a wallet name and password. **Make sure to record the created 24 word seed phrase in a secure storage**. Select **\[Next\]** to proceed.
 
-![](../.gitbook/assets/picture-2.png)
+![](../../.gitbook/assets/picture-2.png)
 
 4. Confirm the created seed phrase by inputting the correct words.
 
-![](../.gitbook/assets/picture-3.png)
+![](../../.gitbook/assets/picture-3.png)
 
 5. Select **\[Create a wallet\]** to finish.
 
-![](../.gitbook/assets/picture-4.png)
+![](../../.gitbook/assets/picture-4.png)
 
 
 
@@ -59,7 +59,7 @@ To access Ledger from Terra Station Extension, the following steps are required:
 
 3. Select **\[Access with ledger\]** on Terra Station Extension menu
 
-![](../.gitbook/assets/picture-5.png)
+![](../../.gitbook/assets/picture-5.png)
 
 4. Once Ledger has been successfully connected with Terra Station Extension, transactions can be signed with Ledger.
 
@@ -71,11 +71,11 @@ To access Ledger from Terra Station Extension, the following steps are required:
 
 1. Select **\[Recover existing wallet\]**
 
-![](../.gitbook/assets/picture-6.png)
+![](../../.gitbook/assets/picture-6.png)
 
 2. Enter a new wallet name and password.
 
-![](../.gitbook/assets/screen-shot-2021-02-16-at-10.46.49-pm.png)
+![](../../.gitbook/assets/screen-shot-2021-02-16-at-10.46.49-pm.png)
 
 3. Enter the 24 word seed phrase of the wallet to recover and select **\[Next\]** to finish.
 
@@ -85,7 +85,7 @@ To access Ledger from Terra Station Extension, the following steps are required:
 
 1. Select **\[Send\]** button aligned to the tokens to send.
 
-![](../.gitbook/assets/picture-7.png)
+![](../../.gitbook/assets/picture-7.png)
 
 2. Input the information below and select **\[Next\]**:
 
@@ -97,15 +97,15 @@ To access Ledger from Terra Station Extension, the following steps are required:
 Station Extension also support cross-chain token transfers to Ethereum addresses through the [Shuttle](https://github.com/terra-project/shuttle) bridge. 
 {% endhint %}
 
-![](../.gitbook/assets/picture-8.png)
+![](../../.gitbook/assets/picture-8.png)
 
 3. Set the denomination and amount of tokens to pay as transaction fees. Enter the password and click **\[Send\]**.
 
-![](../.gitbook/assets/picture-9.png)
+![](../../.gitbook/assets/picture-9.png)
 
 4. Station Extension will display the transaction result. Select **\[Ok\]** to return to the main page. 
 
-![](../.gitbook/assets/picture-10.png)
+![](../../.gitbook/assets/picture-10.png)
 
 ## Obtaining Terra Stablecoins
 
@@ -122,7 +122,7 @@ Users can swap Luna or Terra stablecoins such as TerraKRW \(KRT\), or TerraSDR \
 
 1. Navigate to the "Swap" page by clicking it on the sidebar. It should display a page similar to:
 
-![](../.gitbook/assets/picture-11.png)
+![](../../.gitbook/assets/picture-11.png)
 
 2. Select the coin denomination to swap and the coin denomination to receive in the "Swap coins" section, found at the bottom of the page. The swap will be conducted based on the current "Terra exchange rate".
 

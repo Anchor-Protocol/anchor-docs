@@ -2,13 +2,17 @@
 description: Welcome to the Anchor documentation site.
 ---
 
-# Introduction
+# Home
+
+You can access Anchor through the official [Web App](user-guide/anchor-webapp/).
+
+Welcome to the Anchor documentation site.
 
 ## What is Anchor?
 
-**Anchor** is a decentralized finance \(DeFi\) protocol on the Terra blockchain that offers stable and attractive yields on stablecoin deposits, powered by steadily-generated staking rewards of various proof-of-stake \(PoS\) blockchains. PoS staking rewards are brought to Anchor via [Bonded Assets](protocol/bonded-assets-bassets/) \(bAssets\); tokenized representations of assets bonded in PoS with generated staking rewards distributed to its holders.
+**Anchor** is a savings protocol offering low-volatile yields on Terra stablecoin deposits. The Anchor rate is powered by a diversified stream of staking rewards from major proof-of-stake blockchains, and therefore can be expected to be much more stable than money market funding rates. We believe that a stable, reliable source of yield in Anchor has the opportunity to become the reference interest rate in crypto. 
 
-Any user that wishes to gain extra leverage on their portfolio can borrow stablecoins from Anchor by providing bAssets as collateral. Rewards generated from provided bAsset collaterals are used to subsidize the stablecoin deposit rate.
+The Anchor protocol defines a money market between a **lender**, looking to earn stable yields on their stablecoins, and a **borrower**, looking to borrow stablecoins on stakeable assets. To borrow stablecoins, the borrower locks up [Bonded Assets](protocol/bonded-assets-bassets/) \(bAssets\) as collateral, and borrows stablecoins below the protocol-defined LTV ratio. The diversified stream of staking rewards accruing to the global pool of collateral then gets converted to stablecoin, and then conferred to the lender in the form of a stable yield. 
 
 Deposited stablecoins are represented by [Anchor Terra \(aTerra\)](protocol/money-market/#anchor-terra-aterra). aTerra tokens are redeemable for the initial deposit along with accrued interest, allowing interest collection to be done just by holding on to them. Anchor is structured to provide depositors with:
 
@@ -24,23 +28,13 @@ Further documentation of Anchor Protocol is provided in the following pages.
 
 Learn more about Anchor Protocol, its core smart contracts, and Javascript SDK.
 
-* [Protocol Overview](protocol/overview.md)
-* [Smart Contracts](smart-contracts/deployed-contracts.md)
-* [Anchor.js](developers-terra/anchor.js.md)
+* Learn more about the [Protocol](protocol/overview.md).
+* Read up on the specifications for the [Anchor Protocol](https://anchorprotocol.com/docs/anchor-v1.1.pdf) and [bAssets](https://anchorprotocol.com/docs/The_bAsset_Protocol.pdf). 
+* Check out the [Smart Contracts](smart-contracts/deployed-contracts.md).
+* Build apps using [Anchor.js](developers-terra/anchor.js.md)
+* Cross chain apps on Ethereum using [EthAnchor](developers-ethereum/ethanchor.md) 
 
-## Further Reads
-
-* [Read the Anchor whitepaper](https://anchorprotocol.com/docs/anchor-v1.1.pdf)
-* [Read the bAsset whitepaper](https://anchorprotocol.com/docs/The_bAsset_Protocol.pdf)
-
-### Developer Resources
-
-* Interact with Anchor using [AnchorCLI](developers-terra/anchor-cli.md)
-* Integrate Anchor to your App
-  * Terra developers: [Anchor.js](developers-terra/anchor.js.md)
-  * Ethereum developers: [EthAnchor](developers-ethereum/ethanchor.md) \(private beta, inquiries to [info@anchorprotocol.com](mailto:info@anchorprotocol.com)\)
-
-### Community
+## Community
 
 * [Telegram](https://t.me/anchor_official)
 * [Twitter](https://twitter.com/anchor_protocol)

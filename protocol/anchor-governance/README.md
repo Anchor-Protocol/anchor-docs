@@ -14,7 +14,7 @@ Following the initial deployment of Anchor smart contracts, the Anchor [Gov cont
 Although a user receives 1 vote per staked ANC for every poll, voting in polls does not have any effect on the user's current staking balance.
 {% endhint %}
 
-Governance over Anchor is managed by stakers of [Anchor Tokens \(ANC\)](../../protocol/anchor-token-anc.md). ANC acts as Anchor Protocol's governance token, used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
+Governance over Anchor is managed by stakers of [Anchor Tokens \(ANC\)](../anchor-token-anc.md). ANC acts as Anchor Protocol's governance token, used to vote on polls. Voting power is given proportional to the vote's amount of staked ANC. Voters are able to allocate a specific amount of voting power in staked ANC, capped by their total amount of ANC staked. Voters with a higher ANC stake are therefore given a greater degree of influence in deciding whether to apply the changes listed in a governance poll.
 
 ## Polls
 
@@ -45,10 +45,10 @@ Governance polls in Anchor follow the below procedure:
 | :--- | :--- |
 | [Modify Collateral Attributes](modify-collateral-parameters.md) | Propose for changes in the Max LTV of a whitelisted collateral |
 | [Modify Market Parameters](modify-market-parameters.md) | Propose for parameter changes in Anchor money market |
-| [Modify Liquidation Parameters](modify-liquidation-parameters.md) | Propose for parameter changes in Anchor's [Liquidation Contract](../../protocol/liquidations.md) |
-| [Modify ANC Parameters](modify-anc-parameters.md) | Propose for parameter changes in the [Anchor Token](../../protocol/anchor-token-anc.md) |
+| [Modify Liquidation Parameters](modify-liquidation-parameters.md) | Propose for parameter changes in Anchor's [Liquidation Contract](../liquidations.md) |
+| [Modify ANC Parameters](modify-anc-parameters.md) | Propose for parameter changes in the [Anchor Token](../anchor-token-anc.md) |
 | [Modify Governance Parameters](modify-governance-parameters.md) | Propose for parameter changes in [Anchor Governance](./) |
-| [Modify Borrow Interest](modify-the-interest-model.md) | Propose for changes in the stablecoin [borrow interest formula](../../protocol/money-market/#borrow-rate-model) |
+| [Modify Borrow Interest](modify-the-interest-model.md) | Propose for changes in the stablecoin [borrow interest formula](../money-market/#borrow-rate-model) |
 | [Modify ANC Distribution](modify-the-distribution-model.md) | Propose for changes related to Anchor token distribution |
 | [Community Grants](spend-community-pool.md) | Propose for Anchor community funded development work |
 | [Text Proposal](text-proposal.md) | Submit a text proposal |

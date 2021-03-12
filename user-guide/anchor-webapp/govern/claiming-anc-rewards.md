@@ -6,70 +6,70 @@ The **Claiming ANC Rewards** section of the **GOVERN** page displays:
 
 * **Total Rewards**: Total amount of ANC earned by the user as rewards. ****
 * **Total Reward Value**: Total UST-denominated value of ANC rewards earned by user. 
-* **ANC-UST LP**: Displays data about ANC-UST LP token staking rewards of user. 
-  * **APY**: Annualized percentage yield \(APY\) of ANC-UST LP token staking rewards. 
-  * **Staked**: Amount of ANC-UST LP tokens staked by user. 
-  * **Stakable**: Amount of non-staked ANC-UST LP tokens held by user. 
+* **ANC-UST LP**: Displays data about ANC-UST LP token staking rewards of user.
+  * **APY**: Annualized percentage yield \(APY\) of ANC-UST LP token staking rewards.
+  * **Staked**: Amount of ANC-UST LP tokens staked by user.
+  * **Stakable**: Amount of non-staked ANC-UST LP tokens held by user.
   * **Rewards**: Amount of user's rewards earned from ANC-UST LP token staking. ****
-* **ANC Governance**: Displays data about ANC staking rewards of user. 
-  * **APY**: APY of ANC staking rewards. 
-  * **Staked**: Amount of ANC tokens staked by user. 
+* **ANC Governance**: Displays data about ANC staking rewards of user.
+  * **APY**: APY of ANC staking rewards.
+  * **Staked**: Amount of ANC tokens staked by user.
   * **Stakable**: Amount of non-staked ANC tokens held by user.
-* **UST Borrow**: Displays data about UST borrow ANC rewards of user. 
-  * **APY**: APY of ANC rewards given to UST borrowers. 
+* **UST Borrow**: Displays data about UST borrow ANC rewards of user.
+  * **APY**: APY of ANC rewards given to UST borrowers.
   * **Rewards**: Amount of user's rewards earned from UST borrowing.
 
 ## Claiming borrower ANC rewards
 
 1. Navigate to the **Rewards** section in the **GOVERN** page.
 
-![](../../.gitbook/assets/govern-claim-borrower-1.png)
+![](../../../.gitbook/assets/govern-claim-borrower-1.png)
 
 2. Click the actions button in the **UST borrow** row.
 
-![](../../.gitbook/assets/govern-claim-borrower-2.png)
+![](../../../.gitbook/assets/govern-claim-borrower-2.png)
 
 3. Select **\[Claim\]**.
 
-![](../../.gitbook/assets/govern-claim-borrower-3.png)
+![](../../../.gitbook/assets/govern-claim-borrower-3.png)
 
 4. Click **\[Claim\]**.
 
-![](../../.gitbook/assets/govern-claim-borrower-4.png)
+![](../../../.gitbook/assets/govern-claim-borrower-4.png)
 
 5. Station Extension should prompt you to sign a transaction that contains the reward claim operation. Confirm the details presented and enter your password to sign.
 
-![](../../.gitbook/assets/govern-claim-borrower-5.png)
+![](../../../.gitbook/assets/govern-claim-borrower-5.png)
 
 6. Reward claim complete.
 
-![](../../.gitbook/assets/govern-claim-borrower-6.png)
+![](../../../.gitbook/assets/govern-claim-borrower-6.png)
 
 ## Claiming LP staking rewards
 
 1. Navigate to the **Rewards** section in the **GOVERN** page.
 
-![](../../.gitbook/assets/govern-claim-lp-1.png)
+![](../../../.gitbook/assets/govern-claim-lp-1.png)
 
 2. Click the actions button in the **ANC-UST LP** row.
 
-![](../../.gitbook/assets/govern-claim-lp-2.png)
+![](../../../.gitbook/assets/govern-claim-lp-2.png)
 
 3. Select **\[Claim\]**.
 
-![](../../.gitbook/assets/govern-claim-lp-3.png)
+![](../../../.gitbook/assets/govern-claim-lp-3.png)
 
 4. Click **\[Claim\]**.
 
-![](../../.gitbook/assets/govern-claim-lp-4.png)
+![](../../../.gitbook/assets/govern-claim-lp-4.png)
 
 5. Station Extension should prompt you to sign a transaction that contains the reward claim operation. Confirm the details presented and enter your password to sign.
 
-![](../../.gitbook/assets/govern-claim-lp-5.png)
+![](../../../.gitbook/assets/govern-claim-lp-5.png)
 
 6. Reward claim complete.
 
-![](../../.gitbook/assets/govern-claim-lp-6.png)
+![](../../../.gitbook/assets/govern-claim-lp-6.png)
 
 ## Claiming all ANC rewards
 
@@ -77,21 +77,21 @@ For users with various types of staking rewards accrued, all outlying rewards ca
 
 1. Navigate to the **Rewards** section in the **GOVERN** page.
 
-![](../../.gitbook/assets/govern-claim-all-1.png)
+![](../../../.gitbook/assets/govern-claim-all-1.png)
 
 2. Click **\[Claim All Rewards\]**.
 
-![](../../.gitbook/assets/govern-claim-all-2.png)
+![](../../../.gitbook/assets/govern-claim-all-2.png)
 
 3. Click **\[Claim\]**.
 
-![](../../.gitbook/assets/govern-claim-all-3.png)
+![](../../../.gitbook/assets/govern-claim-all-3.png)
 
 4. Station Extension should prompt you to sign a transaction that contains the reward claim operation. Confirm the details presented and enter your password to sign.
 
-![](../../.gitbook/assets/govern-claim-all-4.png)
+![](../../../.gitbook/assets/govern-claim-all-4.png)
 
 5. Reward claim complete.
 
-![](../../.gitbook/assets/govern-claim-alll-5.png)
+![](../../../.gitbook/assets/govern-claim-alll-5.png)
 

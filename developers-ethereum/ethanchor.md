@@ -1,10 +1,10 @@
 # EthAnchor
 
+**EthAnchor** provides a gateway for Ethereum users to interact with Anchor using wrapped TerraUSD \(UST\) -- a wrapped ERC20 UST token on the Ethereum blockchain.
+
 {% hint style="warning" %}
 EthAnchor is currently in private beta and only supports wrapped UST. For inquiries on integrations, please contact [info@anchorprotocol.com](mailto:info@anchorprotocol.com).
 {% endhint %}
-
-**EthAnchor** provides a gateway for Ethereum users to interact with Anchor using wrapped TerraUSD \(UST\) -- a wrapped ERC20 UST token on the Ethereum blockchain.
 
 Users can deposit wrapped UST to their [EthAnchor Account Contract](ethanchor-account-contract.md) to receive wrapped Anchor UST \(aUST\), an ERC20 aUST token on Ethereum. By holding on to wrapped aUST, users accrue the interest generated on their wrapped UST deposits.
 

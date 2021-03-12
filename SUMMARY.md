@@ -1,32 +1,7 @@
 # Table of contents
 
-* [Introduction](README.md)
+* [Home](README.md)
 * [Security](security.md)
-
-## User Guide
-
-* [Anchor WebApp](user-guide/anchor-webapp.md)
-* [EARN](user-guide/earn.md)
-* [BORROW](user-guide/borrow.md)
-* [BOND](user-guide/bond.md)
-* [GOVERN](user-guide/govern/README.md)
-  * [ANC - UST LP Staking](user-guide/govern/anc-ust-lp.md)
-  * [Anchor Governance Staking](user-guide/govern/claim-anc-rewards.md)
-  * [Claiming ANC Rewards](user-guide/govern/claiming-anc-rewards.md)
-  * [Governance Proposals](user-guide/govern/governance-proposals.md)
-
-## Governance
-
-* [Anchor Governance](governance/anchor-governance/README.md)
-  * [Modify Collateral Attributes](governance/anchor-governance/modify-collateral-parameters.md)
-  * [Modify Market Parameters](governance/anchor-governance/modify-market-parameters.md)
-  * [Modify Liquidation Parameters](governance/anchor-governance/modify-liquidation-parameters.md)
-  * [Modify ANC Parameters](governance/anchor-governance/modify-anc-parameters.md)
-  * [Modify Governance Parameters](governance/anchor-governance/modify-governance-parameters.md)
-  * [Modify Borrow Interest](governance/anchor-governance/modify-the-interest-model.md)
-  * [Modify ANC Distribution](governance/anchor-governance/modify-the-distribution-model.md)
-  * [Community Grants](governance/anchor-governance/spend-community-pool.md)
-  * [Text Proposal](governance/anchor-governance/text-proposal.md)
 
 ## Protocol
 
@@ -37,6 +12,28 @@
   * [Deposit Rate Subsidization](protocol/money-market/deposit-rate-subsidization.md)
 * [Loan Liquidation](protocol/liquidations.md)
 * [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
+* [Anchor Governance](protocol/anchor-governance/README.md)
+  * [Modify Collateral Attributes](protocol/anchor-governance/modify-collateral-parameters.md)
+  * [Modify Market Parameters](protocol/anchor-governance/modify-market-parameters.md)
+  * [Modify Liquidation Parameters](protocol/anchor-governance/modify-liquidation-parameters.md)
+  * [Modify ANC Parameters](protocol/anchor-governance/modify-anc-parameters.md)
+  * [Modify Governance Parameters](protocol/anchor-governance/modify-governance-parameters.md)
+  * [Modify Borrow Interest](protocol/anchor-governance/modify-the-interest-model.md)
+  * [Modify ANC Distribution](protocol/anchor-governance/modify-the-distribution-model.md)
+  * [Community Grants](protocol/anchor-governance/spend-community-pool.md)
+  * [Text Proposal](protocol/anchor-governance/text-proposal.md)
+
+## User Guide
+
+* [WebApp](user-guide/anchor-webapp/README.md)
+  * [EARN](user-guide/anchor-webapp/earn.md)
+  * [BORROW](user-guide/anchor-webapp/borrow.md)
+  * [BOND](user-guide/anchor-webapp/bond.md)
+  * [GOVERN](user-guide/anchor-webapp/govern/README.md)
+    * [ANC - UST LP Staking](user-guide/anchor-webapp/govern/anc-ust-lp.md)
+    * [Anchor Governance Staking](user-guide/anchor-webapp/govern/claim-anc-rewards.md)
+    * [Claiming ANC Rewards](user-guide/anchor-webapp/govern/claiming-anc-rewards.md)
+    * [Creating and voting on proposals](user-guide/anchor-webapp/govern/governance-proposals.md)
 
 ## Developers - Terra
 
@@ -80,5 +77,5 @@
 
 * [Anchor WebApp](https://app.anchorprotocol.com/)
 * [Anchor Protocol GitHub](https://github.com/Anchor-Protocol)
-* [Terra Blockchain](https://terra.money/)
+* [Terra Blockchain](https://docs.terra.money/)
 
