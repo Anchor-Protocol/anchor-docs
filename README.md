@@ -6,8 +6,6 @@ description: Welcome to the Anchor documentation site.
 
 ## What is Anchor?
 
-
-
 **Anchor** is a decentralized finance \(DeFi\) protocol on the Terra blockchain that offers stable and attractive yields on stablecoin deposits, powered by steadily-generated staking rewards of various proof-of-stake \(PoS\) blockchains. PoS staking rewards are brought to Anchor via [Bonded Assets](protocol/bonded-assets-bassets/) \(bAssets\); tokenized representations of assets bonded in PoS with generated staking rewards distributed to its holders.
 
 Any user that wishes to gain extra leverage on their portfolio can borrow stablecoins from Anchor by providing bAssets as collateral. Rewards generated from provided bAsset collaterals are used to subsidize the stablecoin deposit rate.

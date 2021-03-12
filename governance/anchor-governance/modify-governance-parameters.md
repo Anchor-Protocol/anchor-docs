@@ -36,8 +36,6 @@ All poll submissions require a minimum ANC deposit of `Proposal Deposit`, used t
 
 ## Poll Format
 
-///// Screenshot Image /////
-
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

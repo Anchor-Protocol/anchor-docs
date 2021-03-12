@@ -28,8 +28,6 @@ The `ANC Purchase Factor` determines the portion of bAsset rewards and collatera
 
 ## Poll Format
 
-///// Screenshot Image /////
-
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

@@ -6,8 +6,6 @@ Given that the text poll smart contract only supports short descriptions \(limit
 
 ## Poll Format
 
-///// Screenshot image of WebApp -- Text Proposal /////
-
 | Title | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

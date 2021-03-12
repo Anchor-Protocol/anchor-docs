@@ -1,4 +1,4 @@
-# ANC - UST LP
+# ANC - UST LP Staking
 
 High exchange liquidity of ANC tokens is crucial for retaining strong deposit rate stability via ANC-incentivized borrowing. It is also critical for Anchor Governance, as a low ANC exchange liquidity enables malicious entities to gain a sufficient supply of ANC and manipulate governance poll results.
 
@@ -41,13 +41,13 @@ Users must have a balance of both ANC and UST tokens in order to provide liquidi
 
 6. Liquidity provide complete. LP tokens are minted to the user.
 
-![](../../.gitbook/assets/govern-lp-provide-6.png)
-
 {% hint style="warning" %}
 LP tokens minted from provided liquidity must be staked to receive LP staking rewards.
 {% endhint %}
 
-## Withdrawing Liquidity from the ANC-UST pair
+![](../../.gitbook/assets/govern-lp-provide-6.png)
+
+## Withdrawing liquidity from the ANC-UST pair
 
 1. Navigate to the **GOVERN** page and click on **\[ANC - UST LP\]**.
 

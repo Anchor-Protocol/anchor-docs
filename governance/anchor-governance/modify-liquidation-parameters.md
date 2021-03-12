@@ -32,8 +32,6 @@ The `Max Premium Rate` is the maximum rate of premium that bidders can submit.
 
 ## Poll Format
 
-///// Screenshot Image /////
-
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

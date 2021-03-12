@@ -117,8 +117,6 @@ Withdrawn bAsset collaterals can be redeemed for their underlying assets at the 
 
 ![](../.gitbook/assets/borrow-withdraw-4%20%281%29.png)
 
-
-
 5. Collateral withdraw complete.
 
 ![](../.gitbook/assets/borrow-withdraw-5.png)

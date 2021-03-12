@@ -30,8 +30,6 @@ The money market is configured to be somewhat resilient to price oracle downtime
 
 ## Poll Format
 
-///// Screenshot Image /////
-
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

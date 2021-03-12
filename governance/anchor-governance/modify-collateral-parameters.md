@@ -16,8 +16,6 @@ Through the **Modify Collateral Attributes** poll, the Anchor community is able 
 
 ## Poll Format
 
-///// Screenshot Image /////
-
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

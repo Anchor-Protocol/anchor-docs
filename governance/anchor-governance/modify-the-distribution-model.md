@@ -26,8 +26,6 @@ To prevent the emission rate from spiking and having an excessively high rate, t
 
 ## Poll Format
 
-///// Screenshot Image ///// 
-
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |

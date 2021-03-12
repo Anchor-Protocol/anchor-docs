@@ -1,6 +1,6 @@
-# Modify Interest Model
+# Modify Borrow Interest
 
-The **Modify Interest Model** poll type allows users to create polls that update borrow-interest-related parameters.
+The **Modify Borrow Interest** poll type allows users to create polls that update borrow-interest-related parameters.
 
 The `Base Borrow Rate` is the minimum base interest rate that is applied to borrows. The borrow rate proportionally increases as the utilization ratio increases, with a multiplier of `Interest Multiplier`.
 
@@ -17,8 +17,6 @@ The `Base Borrow Rate` is the minimum base interest rate that is applied to borr
 | `Interest Multiplier` | 0.42 |
 
 ## Poll Format
-
-///// Screenshot Image /////
 
 | Field | Description | Optionality |
 | :--- | :--- | :--- |

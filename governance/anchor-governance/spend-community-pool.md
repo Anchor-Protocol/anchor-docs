@@ -6,8 +6,6 @@ The purpose of the grant is to empower ecosystem teams to build necessary tools 
 
 ## Poll Format
 
-///// Screenshot image of WebApp -- Community Grant Proposal /////
-
 | Title | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
