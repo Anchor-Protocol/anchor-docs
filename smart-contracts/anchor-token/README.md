@@ -14,7 +14,7 @@ Even with a thorough understanding of Anchor Protocol, it is highly recommended 
 | [Staking](staking.md) | Handles ANC-UST pair LP token staking |
 | [Community](community.md) | Manages ANC community grants |
 | [Collector](collector.md) | Accumulates protocol fees, converts them to ANC and distributes to ANC stakers |
-| [Distributor](dripper.md) | Holds ANC tokens which are to be used as borrower incentives |
+| [Distributor](distributor.md) | Holds ANC tokens which are to be used as borrower incentives |
 
 
 

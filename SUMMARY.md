@@ -71,7 +71,7 @@
   * [Staking](smart-contracts/anchor-token/staking.md)
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
-  * [Distributor](smart-contracts/anchor-token/dripper.md)
+  * [Distributor](smart-contracts/anchor-token/distributor.md)
 
 ## External Resources
 
