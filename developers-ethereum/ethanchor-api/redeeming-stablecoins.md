@@ -8,7 +8,7 @@ ERC20 aTerra tokens \(e.g. aUST\) can be redeemed to ERC20 stablecoins using the
 | [`finish_redeem_stable`](redeeming-stablecoins.md#finish-stablecoin-redemption) | POST | Claims redeemed ERC20 stablecoins |
 | [`redeem_stable_status`](redeeming-stablecoins.md#check-stablecoin-redemption-status) | GET | Gets status of an ongoing stablecoin redemption request |
 
-{% api-method method="post" host="https://api.anchorprotocol.com" path="/api/v1/init\_redeem\_stable" %}
+{% api-method method="post" host="https://eth-api.anchorprotocol.com" path="/api/v1/init\_redeem\_stable" %}
 {% api-method-summary %}
 Initiate stablecoin redemption
 {% endapi-method-summary %}
@@ -72,7 +72,7 @@ You are not authorized to call this endpoint; client not registered.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.anchorprotocol.com" path="/api/v1/finish\_redeem\_stable" %}
+{% api-method method="post" host="https://eth-api.anchorprotocol.com" path="/api/v1/finish\_redeem\_stable" %}
 {% api-method-summary %}
 Finish stablecoin redemption
 {% endapi-method-summary %}
@@ -123,7 +123,7 @@ You are not authorized to call this endpoint; client not registered.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.anchorprotocol.com" path="/api/v1/redeem\_stable\_status" %}
+{% api-method method="get" host="https://eth-api.anchorprotocol.com" path="/api/v1/redeem\_stable\_status" %}
 {% api-method-summary %}
 Check stablecoin redemption status
 {% endapi-method-summary %}

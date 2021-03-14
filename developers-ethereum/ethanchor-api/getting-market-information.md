@@ -10,7 +10,7 @@ General information about a stablecoin [market](../../protocol/money-market/#dep
 Due to the asynchronous nature of EthAnchor, the actual aTerra exchange rate applied **will be different** to the exchange rate returned by `stablecoin_info`. The expected receive amount calculated using this value **WILL NOT** match the actual receive amount.
 {% endhint %}
 
-{% api-method method="get" host="https://api.anchorprotocol.com" path="/api/v1/stablecoin\_info/{stable\_denom}" %}
+{% api-method method="get" host="https://eth-api.anchorprotocol.com" path="/api/v1/stablecoin\_info/{stable\_denom}" %}
 {% api-method-summary %}
 Get stablecoin information
 {% endapi-method-summary %}

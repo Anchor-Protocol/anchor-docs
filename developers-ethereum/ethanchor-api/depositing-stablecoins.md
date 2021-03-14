@@ -8,7 +8,7 @@ ERC20 stablecoins \(e.g. UST\) can be redeemed to receive ERC20 aTerra using the
 | [`finish_deposit_stable`](depositing-stablecoins.md#finish-stablecoin-deposit) | POST | Claims minted ERC20 aTerra |
 | [`deposit_stable_status`](depositing-stablecoins.md#get-stablecoin-deposit-status) | GET | Gets status of an ongoing stablecoin deposit request |
 
-{% api-method method="post" host="https://api.anchorprotocol.com" path="/api/v1/init\_deposit\_stable" %}
+{% api-method method="post" host="https://eth-api.anchorprotocol.com" path="/api/v1/init\_deposit\_stable" %}
 {% api-method-summary %}
 Initiate stablecoin deposit
 {% endapi-method-summary %}
@@ -72,7 +72,7 @@ You are not authorized to call this endpoint; client not registered.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.anchorprotocol.com" path="/api/v1/finish\_deposit\_stable" %}
+{% api-method method="post" host="https://eth-api.anchorprotocol.com" path="/api/v1/finish\_deposit\_stable" %}
 {% api-method-summary %}
 Finish stablecoin deposit
 {% endapi-method-summary %}
@@ -123,7 +123,7 @@ You are not authorized to call this endpoint; client not registered
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.anchorprotocol.com" path="/api/v1/deposit\_stable\_status" %}
+{% api-method method="get" host="https://eth-api.anchorprotocol.com" path="/api/v1/deposit\_stable\_status" %}
 {% api-method-summary %}
 Check stablecoin deposit status
 {% endapi-method-summary %}
