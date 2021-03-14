@@ -72,6 +72,7 @@
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Distributor](smart-contracts/anchor-token/distributor.md)
+  * [Vesting](smart-contracts/anchor-token/vesting.md)
 
 ## External Resources
 
