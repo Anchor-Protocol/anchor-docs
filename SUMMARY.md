@@ -25,15 +25,15 @@
 
 ## User Guide
 
-* [WebApp](user-guide/anchor-webapp/README.md)
-  * [EARN](user-guide/anchor-webapp/earn.md)
-  * [BORROW](user-guide/anchor-webapp/borrow.md)
-  * [BOND](user-guide/anchor-webapp/bond.md)
-  * [GOVERN](user-guide/anchor-webapp/govern/README.md)
-    * [ANC - UST LP Staking](user-guide/anchor-webapp/govern/anc-ust-lp.md)
-    * [Anchor Governance Staking](user-guide/anchor-webapp/govern/claim-anc-rewards.md)
-    * [Claiming ANC Rewards](user-guide/anchor-webapp/govern/claiming-anc-rewards.md)
-    * [Creating and voting on proposals](user-guide/anchor-webapp/govern/governance-proposals.md)
+* [WebApp](user-guide/webapp/README.md)
+  * [EARN](user-guide/webapp/earn.md)
+  * [BORROW](user-guide/webapp/borrow.md)
+  * [BOND](user-guide/webapp/bond.md)
+  * [GOVERN](user-guide/webapp/govern/README.md)
+    * [ANC - UST LP Staking](user-guide/webapp/govern/anc-ust-lp.md)
+    * [Anchor Governance Staking](user-guide/webapp/govern/claim-anc-rewards.md)
+    * [Claiming ANC Rewards](user-guide/webapp/govern/claiming-anc-rewards.md)
+    * [Creating and voting on proposals](user-guide/webapp/govern/governance-proposals.md)
 
 ## Developers - Terra
 

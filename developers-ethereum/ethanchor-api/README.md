@@ -8,7 +8,7 @@ The EthAnchor API is available at both the Ethereum mainnet and the Ropsten test
 
 |  | Network | Chain ID | URL |
 | :--- | :--- | :--- | :--- |
-| Mainnet | Ethereum Mainnet | 1 | [https://eth-api.anchorprotocol.com/](https://ropsten.eth-api.anchorprotocol.com/) |
+| Mainnet | Ethereum Mainnet | 1 | [https://eth-api.anchorprotocol.com/](https://eth-api.anchorprotocol.com/) |
 | Testnet | Ropsten | 3 | [https://ropsten.eth-api.anchorprotocol.com/](https://ropsten.eth-api.anchorprotocol.com/) |
 
 ## Usage

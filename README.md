@@ -4,7 +4,7 @@ description: Welcome to the Anchor documentation site.
 
 # Home
 
-You can access Anchor through the official [Web App](user-guide/anchor-webapp/).
+You can access Anchor through the official [Web App](user-guide/webapp/).
 
 Welcome to the Anchor documentation site.
 
