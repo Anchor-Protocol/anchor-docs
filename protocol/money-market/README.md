@@ -50,7 +50,7 @@ After the user's liability is updated to an interest-accrued value, the user's i
 
 The money market aggregates stablecoin deposits with matching denominations into a pool, called **markets**. Borrows are proceeded from this pool, and interest gained from them is equally shared among all unit of stablecoin deposits.
 
-This pooling of deposits enable markets to have high liquidity. Deposits can be withdrawn anytime, unless every stablecoin in a market are borrowed.
+This pooling of deposits enable markets to have high liquidity. Deposits can be withdrawn anytime, unless every stablecoin in a market is borrowed.
 
 Deposit interest is distributed through the value appreciation of Anchor Terra \(aTerra\), which are minted to depositors as a deposit receipt.
 

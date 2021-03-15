@@ -64,12 +64,12 @@ When a batch is undelegated, `withdraw_rate` is stored as the bLuna exchange rat
 
 Later when users withdraw undelegated Luna, the contract first checks for newly undelegated batches by comparing the current time with the `time` of recent batches. Batches that are older than 21 days are considered undelegated, and are marked by updating `released` as `true`.
 
-The `withdraw_rate`, which determines the amount of Luna withdrawable per unbonded bLuna, is also updated to account for slashing events that happened during batch undelegation. The amount of slashed Luna, calculated by comparing the Luna amount initially undelegated and the Luna amount actually received, is deducted pro-rata from the newly undelegated batches by updating their `withdraw_rate`s to a decreased value.
+The `withdraw_rate`, which determines the amount of Luna withdrawable per unbonded bLuna, is also updated to account for slashing events that happened during batch undelegation. The amount of slashed Luna, calculated by comparing the Luna amount initially undelegated and the Luna amount actually received, is deducted pro-rata from the newly undelegated batches by updating the corresponding `withdraw_rate` to the new decreased value.
 
 ## Usage
 
 {% hint style="info" %}
-A fixed peg recovery fee of **0.1%** is applied to bLuna minting and redeeming when the bLuna exchange rate is lower than 1.
+A peg recovery fee of **0.1%** is applied to bLuna minting and redeeming when the bLuna exchange rate is lower than 1.
 {% endhint %}
 
 ### Minting bLuna
