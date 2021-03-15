@@ -60,6 +60,8 @@ For money market and liquidations, a separate set of contracts are to be deploye
 | Community | [terra1...](https://finder.terra.money/) |
 | Collector | [terra1...](https://finder.terra.money/) |
 | Distributor | [terra1...](https://finder.terra.money/) |
+| Team Vesting | [terra1...](https://finder.terra.money/) |
+| Investor Vesting | [terra1...](https://finder.terra.money/) |
 
 #### Cw20-Compliant Token Contracts
 
