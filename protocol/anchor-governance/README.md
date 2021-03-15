@@ -1,7 +1,7 @@
 # Anchor Governance
 
 {% hint style="info" %}
-It is recommended to first start a community discussion at the Anchor Protocol Forum before submitting a poll.
+It is recommended to first start a community discussion at the [Anchor Protocol Forum](https://forum.anchorprotocol.com) before submitting a poll.
 {% endhint %}
 
 Development and maturization of Anchor Protocol is driven by the Anchor community through democratic governance. Anchor does not contain any admin keys with privileged access. Anchor governance is configured to be the sole authority allowed to apply protocol changes or upgrades.
