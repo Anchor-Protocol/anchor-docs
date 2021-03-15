@@ -26,13 +26,19 @@ The protocol applies a fee of **0.1%** to bLuna mints and burns whenever the exc
 
 The bLuna contract keeps a whitelist of validators, only permitting delegations to those included in the whitelist. This is crucial since all bLuna tokens equally share slashing risks, and delegations to low-performing validators could negatively affect all holders.
 
-The initial whitelist includes the below validators: **\(REFERENCE LIST, FINAL LIST TO BE SUPPLIED BY LIDO BY MARCH 10TH\)**
+The initial whitelist includes the below validators:
 
-| Name | Address |
+| Name | Operator Address |
 | :--- | :--- |
-| [hashed](https://hashed.com) | [terravaloper1p54hc4yy2ajg67j645dn73w3378j6k05vmx9r9](https://finder.terra.money/columbus-4/validator/terravaloper1p54hc4yy2ajg67j645dn73w3378j6k05vmx9r9) |
-| [Terran One](https://terran.one) | [terravaloper1krj7amhhagjnyg2tkkuh6l0550y733jnjnnlzy](https://finder.terra.money/columbus-4/validator/terravaloper1krj7amhhagjnyg2tkkuh6l0550y733jnjnnlzy) |
-| [DSRV - CHAISCAN.com](https://www.chaiscan.com/) | [terravaloper175hhkyxmkp8hf2zrzka7cnn7lk6mudtv4uuu64](https://station.terra.money/validator/terravaloper175hhkyxmkp8hf2zrzka7cnn7lk6mudtv4uuu64) |
+| P2P.ORG - P2P Validator | [terravaloper144l7c3uph5a7h62xd8u5et3rqvj3dqtvvka2fu](https://finder.terra.money/columbus-4/validator/terravaloper144l7c3uph5a7h62xd8u5et3rqvj3dqtvvka2fu) |
+| B-Harvest | [terravaloper15zcjduavxc5mkp8qcqs9eyhwlqwdlrzy6jln3m](https://finder.terra.money/columbus-4/validator/terravaloper15zcjduavxc5mkp8qcqs9eyhwlqwdlrzy6jln3m) |
+| DokiaCapital | [terravaloper1v5hrqlv8dqgzvy0pwzqzg0gxy899rm4kdur03x](https://finder.terra.money/columbus-4/validator/terravaloper1v5hrqlv8dqgzvy0pwzqzg0gxy899rm4kdur03x) |
+| DSRV - CHAISCAN.com | [terravaloper175hhkyxmkp8hf2zrzka7cnn7lk6mudtv4uuu64](https://finder.terra.money/columbus-4/validator/terravaloper175hhkyxmkp8hf2zrzka7cnn7lk6mudtv4uuu64) |
+| Certus One | [terravaloper1kprce6kc08a6l03gzzh99hfpazfjeczfpzkkau](https://finder.terra.money/columbus-4/validator/terravaloper1kprce6kc08a6l03gzzh99hfpazfjeczfpzkkau) |
+| Chorus One | [terravaloper15urq2dtp9qce4fyc85m6upwm9xul30496sgk37](https://finder.terra.money/columbus-4/validator/terravaloper15urq2dtp9qce4fyc85m6upwm9xul30496sgk37) |
+| Staking Fund | [terravaloper123gn6j23lmexu0qx5qhmgxgunmjcqsx8gmsyse](https://finder.terra.money/columbus-4/validator/terravaloper123gn6j23lmexu0qx5qhmgxgunmjcqsx8gmsyse) |
+| StakeWith.Us | [terravaloper1c9ye54e3pzwm3e0zpdlel6pnavrj9qqvq89r3r](https://finder.terra.money/columbus-4/validator/terravaloper1c9ye54e3pzwm3e0zpdlel6pnavrj9qqvq89r3r) |
+| Forbole | [terravaloper1jkqr2vfg4krfd4zwmsf7elfj07cjuzss30ux8g](https://finder.terra.money/columbus-4/validator/terravaloper1jkqr2vfg4krfd4zwmsf7elfj07cjuzss30ux8g) |
 
 #### Registration
 

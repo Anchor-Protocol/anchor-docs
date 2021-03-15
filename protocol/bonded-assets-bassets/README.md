@@ -8,7 +8,7 @@ bAsset tokens are an entitlement of the underlying staked asset position, where 
 
 While bAssets may have varying characteristics across implementations, they should include certain attributes to be implemented as a valid collateral in Anchor.
 
-An ideal bAsset collateral has:
+An ideal bAsset to be used as a collateral has the following properties listed below.
 
 ### Fungibility
 
