@@ -18,7 +18,7 @@ ANC is also used as incentives to bootstrap borrow demand and initial deposit ra
 ANC rewards can also be earned by staking LP tokens of the ANC-UST Terraswap Pair.
 {% endhint %}
 
-![ANC Value Flow](../.gitbook/assets/anc-flow.png)
+![ANC Value Flow](../.gitbook/assets/screen-shot-2021-03-16-at-3.08.15-pm.png)
 
 ANC tokens generate a buying pressure that increases proportionally with Anchor's AUM. Protocol fees are used to purchase ANC tokens from Terraswap, which are then distributed as staking rewards to ANC stakers.
 
