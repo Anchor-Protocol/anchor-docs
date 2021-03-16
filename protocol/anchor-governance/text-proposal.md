@@ -9,6 +9,6 @@ Given that the text poll smart contract only supports short descriptions \(limit
 | Title | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Description | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | Information Link | External URL for further information | Optional |
 

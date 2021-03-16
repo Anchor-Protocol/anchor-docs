@@ -29,7 +29,7 @@ To prevent the emission rate from spiking and having an excessively high rate, t
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Rationale | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | External Link | External URL for further information | Optional |
 | Borrower Emission Cap | Proposed maximum per-block ANC emission rate to borrowers | Optional |
 | Borrower Emission Floor | Proposed minimum per-block ANC emission rate to borrowers | Optional |

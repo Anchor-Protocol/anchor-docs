@@ -1,6 +1,10 @@
 # Modify ANC Parameters
 
-The **Modify ANC Parameters** polls enables users to submit governance polls that adjust parameter values that affect the Anchor Token \(ANC\).
+{% hint style="warning" %}
+This poll type is yet to be supported by the official Anchor WebApp.
+{% endhint %}
+
+The **Modify ANC Parameters** poll enables users to submit governance polls that adjust parameter values that affect the Anchor Token \(ANC\).
 
  `Epoch Period` is the the minimum time delay required between subsidization events, which handle reward claiming of bAsset collaterals, direct deposit rate subsidization, and readjusting the ANC emission rate based on the current deposit rate.
 
@@ -21,9 +25,9 @@ The `ANC Purchase Factor` determines the portion of bAsset rewards and collatera
 
 | Parameter Name | Value |
 | :--- | :--- |
-| `Epoch Period` | 1 day |
+| `Epoch Period` | 3 hours |
 | `ANC Purchase Factor` | 10% |
-| `Reserve Factor` | 5% |
+| `Reserve Factor` | 0% |
 | `Staking Reward Factor` | 100% |
 
 ## Poll Format
@@ -31,7 +35,7 @@ The `ANC Purchase Factor` determines the portion of bAsset rewards and collatera
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Rationale | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | Information Link | External URL for further information | Optional |
 | Epoch Period | Proposed minimum time between operations for bAsset reward collection, deposit rate subsidization, and ANC emission rate adjustment | Optional |
 | ANC Purchase Factor | Proposed portion of bAsset rewards and collateral liquidation fees \(bid fee\) used to purchase ANC | Optional |

@@ -1,14 +1,16 @@
 # Community Grants
 
-The Anchor Community Fund is a reserve of ANC tokens owned by governance. The Anchor governance can create proposals of ANC token grants to fund community developments and contributors in the Anchor ecosystem.
+The **Anchor Community Fund** is a reserve of ANC tokens owned by governance. The Anchor governance can create proposals of ANC token grants to fund community developments and contributors in the Anchor ecosystem.
 
-The purpose of the grant is to empower ecosystem teams to build necessary tools and infrastructure that are not provided at the launch of the protocol. Projects that are value additive to the protocol and/or make user experience better such as the creation of new smart contract applications that enable greater access across more markets or dashboards and other tools for managing their assets on the Anchor Protocol are eligible for community grant funding. Any proposal for funding that is deemed acceptable by the community and passes a vote can receive funding from the community pool. 
+The purpose of grants are to empower ecosystem teams to build necessary tools and infrastructure that helps Anchor Protocol to further mature. Projects that are value additive to Anchor and/or improve user experience are eligible for community grant funding. Great examples of eligible grants include, but not limited to: the creation of new smart contract applications that enable greater access to Anchor, or dashboards and other tools for managing assets on Anchor Protocol. Any grant proposal that passes a governance poll can receive funding from the community fund. 
 
 ## Poll Format
 
 | Title | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Description | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | Information Link | External URL for further information | Optional |
+| Recipient | Recipient terra address of grant | Required |
+| Amount | Grant size in ANC | Required |
 

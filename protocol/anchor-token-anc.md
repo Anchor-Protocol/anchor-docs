@@ -15,7 +15,7 @@ ANC is also used as incentives to bootstrap borrow demand and initial deposit ra
 ## Value Accrual
 
 {% hint style="info" %}
-ANC rewards can also be earned by staking LP tokens of the ANC - UST Terraswap Pair.
+ANC rewards can also be earned by staking LP tokens of the ANC-UST Terraswap Pair.
 {% endhint %}
 
 ![ANC Value Flow](../.gitbook/assets/anc-flow.png)
@@ -26,11 +26,11 @@ ANC tokens generate a buying pressure that increases proportionally with Anchor'
 
 #### bAsset Rewards
 
-A portion of rewards from deposited bAsset collaterals are used to purchase ANC, with the remainder used to replenish the interest buffer. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the interest buffer's inventory rises to a sufficient level.
+A portion of rewards from deposited bAsset collaterals are used to purchase ANC, with the remainder used to replenish the yield reserve. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the yield reserve's inventory rises to a sufficient level.
 
 #### Collateral Liquidation Fees
 
-Whenever a loan is liquidated, 1% of the liquidated collateral value is sent the interest buffer, which a portion of which is used to purchase ANC. This fee is applied separate from [bid premiums](liquidations.md#premium-rate).
+Whenever a loan is liquidated, 1% of the liquidated collateral value is sent to the yield reserve, which a portion of which is used to purchase ANC. This fee is applied separate from [bid premiums](liquidations.md#premium-rate).
 
 
 
@@ -66,7 +66,7 @@ There are planned to be a total of **1,000,000,000 ANC** tokens to be distribute
 
 A total of **150M ANC** tokens are released at the genesis of Anchor Protocol. The initial distribution of ANC is given to:
 
-* **LUNA staking airdrop**: 50M \(33.3%\) tokens will be airdropped to LUNA stakers.
+* **LUNA staking airdrop**: 50M \(33.3%\) tokens will be airdropped to LUNA stakers, with staked amounts snapshotted at block **2179600**.
 * **Community fund**: 100M \(66.7%\) tokens will be reserved for the Anchor Community Fund.
 
 ### Final Token Distribution
@@ -78,7 +78,7 @@ Further ANC tokens are set to be released over a period of at least 4 years, inc
 * **Investors**: 200M \(20%\) tokens are allocated to investors of Anchor, with a 6-month lockup period. Afterwards, a 1-year linear vesting schedule is applied.
 * **Team**: 100M \(10%\) tokens are allocated to the creators of Anchor, with a 4-year vesting period. Tokens are to be released at every end-of-year.
 * **LUNA staking airdrop**: 50M \(5%\) tokens are airdropped to LUNA stakers on launch.
-* **LUNA staking rewards**: 100M \(10%\) tokens are linearly distributed to LUNA stakers over a period of 2 years.
+* **LUNA staking rewards**: 100M \(10%\) tokens are linearly distributed to LUNA stakers over a period of 2 years. Tokens will be distributed every 100,000 blocks \(approximately every week\) starting from block **2179600**. Snapshots are taken every 100,000 blocks to determine distribution eligibility.
 * **Borrower incentives**: 400M \(40%\) tokens are linearly released to be used as borrower incentives over a period of 4 years.
 * **ANC LP staking rewards**: 50M \(5%\) tokens are linearly distributed to the ANC-UST pair liquidity providers over a period of 1 year.
 * **Community fund**: 100M \(10%\) tokens will be reserved for the Anchor Community Fund.

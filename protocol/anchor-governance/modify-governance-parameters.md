@@ -1,5 +1,9 @@
 # Modify Governance Parameters
 
+{% hint style="warning" %}
+This poll type is yet to be supported by the official Anchor WebApp.
+{% endhint %}
+
 The **Modify Governance Parameters** poll types allows for the creation of polls that alter Anchor governance-related parameters.
 
 In order for a poll to pass, the poll must reach the `Quorum` and `Vote Threshold`. `Quorum` is the required minimum voter turnout for this poll, where more than `Quorum` portion of all staked ANC should have voted for this poll, whether the vote is `yes` or `no`. `Vote Threshold` is the required minimum percentage of `yes` votes required for the poll to pass.
@@ -30,16 +34,16 @@ All poll submissions require a minimum ANC deposit of `Proposal Deposit`, used t
 | `Vote Threshold` | 50% |
 | `Voting Period` | 7 days |
 | `Snapshot Period` | 1 day |
-| `Expiration Period` |  |
+| `Expiration Period` | 1 day |
 | `Timelock Period` | 3 days |
-| `Proposal Deposit` | 100 ANC |
+| `Proposal Deposit` | 1,000 ANC |
 
 ## Poll Format
 
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Rationale | Short description of poll | Required |
+| Proposale Rationale | Short description of poll rationale | Required |
 | External Link | External URL for further information | Optional |
 | Quorum | Proposed minimum voter turnout required for a poll to pass | Optional |
 | Vote Threshold | Proposed minimum percentage of yes votes required for a poll to pass | Optional |

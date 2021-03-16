@@ -61,16 +61,16 @@ aTerra balances represent a depositor's share in the market. The exchange rate w
 The aTerra exchange rate is defined as:
 
 $$
-\text{aTerraExchangeRate} = \frac{\text{liquidity} + \text{liabilities} - \text{reserves}}{\text{aTerraSupply}}
+\text{aTerraExchangeRate} = \frac{\text{liquidity} + \text{liabilities}}{\text{aTerraSupply}}
 $$
 
-where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount of deposited stablecoins that are yet to be lent out, and the interest-accrued amount of lent out stablecoins. In addition, $$\text{reserves}$$ are protocol fees funded by setting aside 5% of collected borrow interest. Interest to reserves are not distributed to depositors but instead used for [ANC value appreciation](../anchor-token-anc.md#deposit-rate-commission).
+where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount of deposited stablecoins that are yet to be lent out, and the interest-accrued amount of lent out stablecoins.
 
-#### Interest Buffer Collection
+#### Yield Reserve Collection
 
-Every epoch, rewards of deposited bAsset collaterals are collected by the money market. Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **interest buffer** pool. 
+Every epoch, rewards of deposited bAsset collaterals are collected by the money market. Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **yield reserve** pool. 
 
-This process can only be triggered at most once in a 24-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate readjustment](deposit-rate-subsidization.md#borrower-anc-incentives) and [interest buffer distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
+This process can only be triggered at most once in a 24-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate readjustment](deposit-rate-subsidization.md#borrower-anc-incentives) and [yield reserve distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
 
 
 
@@ -110,7 +110,7 @@ where $$\text{stablecoinsLent}$$ and $$\text{stablecoinsDeposited}$$ are both in
 
 #### Borrow Rate Model
 
-The stablecoin borrow rate increases proportionally with the utilization ratio. Parameter values of the equation are initially configured to accrue a **10%** annualized borrow rate when the utilization ratio is at **50%**, with a minimum base borrow rate of **2%**.
+The stablecoin borrow rate increases proportionally with the utilization ratio. Parameter values of the equation are initially configured to accrue a **30%** annualized borrow rate when the utilization ratio is at **66.7%**, with a minimum base borrow rate of **2%**.
 
 $$
 \text{borrowRate} = \text{utilizationRatio} \cdot \text{interestMultiplier} + \text{baseRate}

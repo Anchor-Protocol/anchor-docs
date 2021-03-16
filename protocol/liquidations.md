@@ -28,7 +28,7 @@ The **size** of a bid is the amount of Terra stablecoins that were put up upon b
 
 #### Premium Rate
 
-The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **10%**.
+The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **30%**.
 
 ### Bid Submission / Retraction
 
@@ -44,7 +44,7 @@ A submitted bid can be retracted at any time, provided that the bid has not been
 
 Bids can be executed when a user desires to convert their Cw20 assets for Terra stablecoins. Bid executors should specify a bidder to execute on, from which the specified bidder's bid is executed. The bidder receives the Cw20 asset sent by the user, and the user receives the bidder's stablecoin, minus the bidder premium. Executors are allowed to designate a different account to receive the converted stablecoins \(optional\).
 
-For external contracts \(e.g. money market\) interacting with the Liquidation Contract, a fee address can be set to receive **0.5%** of the executed bid's stablecoins.
+For external contracts \(e.g. money market\) interacting with the Liquidation Contract, a fee address can be set to receive **1%** of the executed bid's stablecoins.
 
 ## Collateral Liquidation
 
@@ -56,7 +56,7 @@ $$
 
 ### Partial Liquidation
 
-Loans with a total collateral value of above **200 UST** are partially liquidated, with only a portion of collateral liquidated instead of liquidating the full amount. Locked collaterals are fully liquidated for loans with a total collateral value below 200 UST.
+Loans with a total collateral value of above **500 UST** are partially liquidated, with only a portion of collateral liquidated instead of liquidating the full amount. Locked collaterals are fully liquidated for loans with a total collateral value below 500 UST.
 
 Partially liquidating loan positions are liquidated until the position reaches below the **safe risk ratio** of **0.8**; loan positions with a risk ratio of 0.8 or below are considered safe from undercollateralization. Collaterals are liquidated proportionally to their locked amounts and the position's liquidation factor:
 
@@ -82,5 +82,5 @@ Note that $$\text{feeDeductor}$$ uses the maximum rate of fees that can be appli
 
 Collaterals locked to a liquidated loan position are converted to Terra stablecoins through bid execution. The money market executes bids that were submitted by the loan liquidator, and stablecoins received from execution are used to repay the liquidated borrower's loan.
 
-The money market sets the execution fee address to its interest buffer, transferring **5%** of the bid value to the interest buffer.
+The money market sets the execution fee address to its yield reserve, transferring **1%** of the bid value to the yield reserve.
 

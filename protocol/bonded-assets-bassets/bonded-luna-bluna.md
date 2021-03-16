@@ -104,7 +104,7 @@ Users that previously made a request to unbond bLuna can later withdraw the unde
 
 ### bLuna Rewards
 
-bLuna tokens accrue **Terra USD** rewards, generated from delegation rewards of underlying Luna delegations. Delegation rewards, collected in various native token denominations \(Terra USD, Terra SDR, Luna, etc.\), are swapped for Terra USD. Swapped Terra USD is then distributed pro-rata to bLuna holders.
+bLuna tokens accrue **TerraUSD** rewards, generated from delegation rewards of underlying Luna delegations. Delegation rewards, collected in various native token denominations \(TerraUSD, TerraSDR, Luna, etc.\), are swapped for TerraUSD. Swapped TerraUSD is then distributed pro-rata to bLuna holders.
 
 #### Claiming Rewards
 

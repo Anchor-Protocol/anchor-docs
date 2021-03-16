@@ -19,7 +19,7 @@ Through the **Modify Collateral Attributes** poll, the Anchor community is able 
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Rationale | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | Information Link | External URL for further information | Optional |
 | Collateral | Ticker of collateral to modify parameter | Required |
 | Max LTV | Proposed new `Max LTV` value for collateral | Required |

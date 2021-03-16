@@ -1,5 +1,9 @@
 # Modify Liquidation Parameters
 
+{% hint style="warning" %}
+This poll type is yet to be supported by the official Anchor WebApp.
+{% endhint %}
+
 The **Modify Liquidation Parameters** poll type allows Anchor governance to calibrate parameter values that control the mechanics of collateral liquidation. 5 parameters `Safe Ratio`, `Bid Fee`, `Max Premium Rate`, `Partial Liquidation Threshold`, and `Valid Price Timeframe` constitute the control mechanism of liquidating collaterals.
 
 The `Safe Ratio` is the target risk ratio of a liquidated loan position, defined as the ratio of \(Borrow Amount\) to \(Borrow Limit\). A low `Safe Ratio` value allows for the fast liquidation of collaterals while incurring a high price impact for the collateral, while a low `Safe Ratio` value enforces liquidations with lower collateral price impact, albeit with slower collateral liquidation.
@@ -26,8 +30,8 @@ The `Max Premium Rate` is the maximum rate of premium that bidders can submit.
 | :--- | :--- |
 | `Safe Ratio` | 80% |
 | `Bid Fee` | 1% |
-| `Max Premium Rate` | 10% |
-| `Partial Liquidation Threshold` | 200 UST |
+| `Max Premium Rate` | 30% |
+| `Partial Liquidation Threshold` | 500 UST |
 | `Valid Price Timeframe` | 60 seconds |
 
 ## Poll Format
@@ -35,7 +39,7 @@ The `Max Premium Rate` is the maximum rate of premium that bidders can submit.
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Rationale | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | Information Link | External URL for further information | Optional |
 | Safe Ratio | Proposed risk ratio target for a liquidated loan | Optional |
 | Bid Fee | Proposed protocol commission on executed bids used to purchase ANC | Optional |

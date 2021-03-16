@@ -21,7 +21,7 @@ The `Base Borrow Rate` is the minimum base interest rate that is applied to borr
 | Field | Description | Optionality |
 | :--- | :--- | :--- |
 | Title | Poll title | Required |
-| Rationale | Short description of poll | Required |
+| Proposal Rationale | Short description of poll rationale | Required |
 | External Link | External URL for further information | Optional |
 | Base Borrow Rate | Proposed minimum annualized borrow interest | Optional |
 | Interest Multiplier | Proposed multiplier between market utilization ratio and annual borrow interest | Optional |

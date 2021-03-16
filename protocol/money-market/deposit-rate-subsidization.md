@@ -1,6 +1,6 @@
 # Deposit Rate Subsidization
 
-Anchor Protocol's deposit rate stability is supported by borrow demand from borrower ANC distribution and direct subsidization. Anchor defines a target deposit rate \($$r_{target}$$\) and a threshold deposit rate \($$r_{threshold}$$\) and constantly attempts to retain a deposit rate close to $$r_{target}$$ and always above $$r_{threshold}$$.
+Anchor Protocol's deposit rate stability is supported by borrow demand from borrower ANC distribution and direct subsidization. Anchor defines a target deposit rate \($$r_{target}$$\), and a threshold deposit rate \($$r_{threshold}$$\) and constantly attempts to retain a deposit rate close to $$r_{target}$$ and always above $$r_{threshold}$$.
 
 Every epoch, the average deposit rate during the last epoch \($$r_{current}$$\) is calculated and compared with the target and threshold rates. Appropriate measures are then made to readjust the deposit rate.
 
@@ -16,12 +16,14 @@ $$
 e_{n+1} = k \cdot e_n
 $$
 
-* If observed deposit rate is below the target \($$r_{current} < r_{target}$$\), double the emission rate \($$k = 2$$\)
-* If observed deposit rate exceeds the target \($$r_{current} > r_{target}$$\), reduce emission to 90% \($$k = 0.9$$\)
+* If deposit rate is below the target \($$r_{current} < r_{target}$$\), increase emission by 0.7% \($$k \approx 1.007$$\)
+* If deposit rate exceeds the target \($$r_{current} > r_{target}$$\), reduce emission by 0.3% \($$k \approx 0.997$$\)
+
+where the set $$k$$ values result in a 50% emission increase over a week-long period or a 15% decrease over a week-long period.
 
 ## Direct Subsidization
 
-As an additional layer of safety, the protocol directly subsidizes the deposit rate if it is below the threshold rate \($$r_{current}<r_{threshold}$$\), funded from the interest buffer's stockpiled stablecoins. 
+As an additional layer of safety, the protocol directly subsidizes the deposit rate if it is below the threshold rate \($$r_{current}<r_{threshold}$$\), funded from the yield reserve's stockpiled stablecoins. 
 
-An amount required to raise the deposit rate to the threshold is distributed to depositors, which is limited to 10% of the interest buffer's balance per subsidization to prevent excessive drainage. Distributed subsidies are added to the money market’s liquidity, increasing the aTerra exchange rate and appreciating the value of aTerra.
+An amount required to raise the deposit rate to the threshold is distributed to depositors, which is limited to 10% of the yield reserve's balance per subsidization to prevent excessive drainage. Distributed subsidies are added to the money market’s liquidity, increasing the aTerra exchange rate and appreciating the value of aTerra.
 
