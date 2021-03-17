@@ -19,15 +19,15 @@ For money market and liquidations, a separate set of contracts are to be deploye
 
 | Contract | Address |
 | :--- | :--- |
-| Hub | TBD |
-| Reward | TBD |
-| Airdrop Registry | TBD |
+| Hub | [terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts](https://finder.terra.money/columbus-4/address/terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts) |
+| Reward | [terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0](https://finder.terra.money/columbus-4/address/terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0) |
+| Airdrop Registry | [terra199t7hg7w5vymehhg834r6799pju2q3a0ya7ae9](https://finder.terra.money/columbus-4/address/terra199t7hg7w5vymehhg834r6799pju2q3a0ya7ae9) |
 
 #### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
-| Bonded LUNA \(bLUNA\) | TBD |
+| Bonded LUNA \(bLUNA\) | [terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp](https://finder.terra.money/columbus-4/address/terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp) |
 {% endtab %}
 
 {% tab title="Testnet" %}
@@ -55,19 +55,17 @@ For money market and liquidations, a separate set of contracts are to be deploye
 
 | Contract | Address |
 | :--- | :--- |
-| Gov | TBD |
-| Staking | TBD |
-| Community | TBD |
-| Collector | TBD |
-| Distributor | TBD |
-| Team Vesting | TBD |
-| Investor Vesting | TBD |
+| Gov | [terra1f32xyep306hhcxxxf7mlyh0ucggc00rm2s9da5](https://finder.terra.money/columbus-4/address/terra1f32xyep306hhcxxxf7mlyh0ucggc00rm2s9da5) |
+| Staking | [terra1897an2xux840p9lrh6py3ryankc6mspw49xse3](https://finder.terra.money/columbus-4/address/terra1897an2xux840p9lrh6py3ryankc6mspw49xse3) |
+| Community | [terra12wk8dey0kffwp27l5ucfumczlsc9aned8rqueg](https://finder.terra.money/columbus-4/address/terra12wk8dey0kffwp27l5ucfumczlsc9aned8rqueg) |
+| Collector | [terra14ku9pgw5ld90dexlyju02u4rn6frheexr5f96h](https://finder.terra.money/columbus-4/address/terra14ku9pgw5ld90dexlyju02u4rn6frheexr5f96h) |
+| Distributor | [terra1mxf7d5updqxfgvchd7lv6575ehhm8qfdttuqzz](https://finder.terra.money/columbus-4/address/terra1mxf7d5updqxfgvchd7lv6575ehhm8qfdttuqzz) |
 
 #### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor Token \(ANC\) | TBD |
+| Anchor Token \(ANC\) | [terra14z56l0fp2lsf86zy3hty2z47ezkhnthtr9yq76](https://finder.terra.money/columbus-4/address/terra14z56l0fp2lsf86zy3hty2z47ezkhnthtr9yq76) |
 {% endtab %}
 
 {% tab title="Testnet" %}
@@ -107,18 +105,18 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Overseer | TBD |
-| Market | TBD |
-| bLuna Custody | TBD |
-| Interest Model | TBD |
-| Distribution Model | TBD |
-| Oracle | TBD |
+| Overseer | [terra1tmnqgvg567ypvsvk6rwsga3srp7e3lg6u0elp8](https://finder.terra.money/columbus-4/address/terra1tmnqgvg567ypvsvk6rwsga3srp7e3lg6u0elp8) |
+| Market | [terra1sepfj7s0aeg5967uxnfk4thzlerrsktkpelm5s](https://finder.terra.money/columbus-4/address/terra1sepfj7s0aeg5967uxnfk4thzlerrsktkpelm5s) |
+| bLuna Custody | [terra1ptjp2vfjrwh0j0faj9r6katm640kgjxnwwq9kn](https://finder.terra.money/columbus-4/address/terra1ptjp2vfjrwh0j0faj9r6katm640kgjxnwwq9kn) |
+| Interest Model | [terra1kq8zzq5hufas9t0kjsjc62t2kucfnx8txf547n](https://finder.terra.money/columbus-4/address/terra1kq8zzq5hufas9t0kjsjc62t2kucfnx8txf547n) |
+| Distribution Model | [terra14mufqpr5mevdfn92p4jchpkxp7xr46uyknqjwq](https://finder.terra.money/columbus-4/address/terra14mufqpr5mevdfn92p4jchpkxp7xr46uyknqjwq) |
+| Oracle | [terra1cgg6yef7qcdm070qftghfulaxmllgmvk77nc7t](https://finder.terra.money/columbus-4/address/terra1cgg6yef7qcdm070qftghfulaxmllgmvk77nc7t) |
 
 #### Cw20-Compliant Token Contracts
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor Terra USD \(aUST\) | TBD |
+| Anchor Terra USD \(aUST\) | [terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu](https://finder.terra.money/columbus-4/address/terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu) |
 {% endtab %}
 
 {% tab title="Testnet" %}
@@ -149,7 +147,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Liquidation Contract | TBD |
+| Liquidation Contract | [terra1w9ky73v4g7v98zzdqpqgf3kjmusnx4d4mvnac6](https://finder.terra.money/columbus-4/address/terra1w9ky73v4g7v98zzdqpqgf3kjmusnx4d4mvnac6) |
 {% endtab %}
 
 {% tab title="Testnet" %}
