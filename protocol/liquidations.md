@@ -1,6 +1,6 @@
 # Loan Liquidation
 
-To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquidators to observe and liquidate loans with an LTV ratio below the allowed maximum. The Liquidation Contract is used to convert collaterals of a liquidating loan to Terra stablecoins, which are then used to repay the loan.
+To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquidators to observe and liquidate loans with an LTV ratio above the allowed maximum. The Liquidation Contract is used to convert collaterals of a liquidating loan to Terra stablecoins, which are then used to repay the loan.
 
 The Liquidation Contract acts as an over-the-counter \(OTC\) exchange between Cw20-compliant collateral tokens and Terra stablecoins. Using Anchor's Oracle Contract as a price feed, conversions between any arbitrary Cw20 token-based assets and Terra stablecoins are facilitated.
 
