@@ -69,7 +69,7 @@ The `withdraw_rate`, which determines the amount of Luna withdrawable per unbond
 ## Usage
 
 {% hint style="info" %}
-A peg recovery fee of **0.1%** is applied to bLuna minting and redeeming when the bLuna exchange rate is lower than 1.
+A peg recovery fee of **0.5%** is applied to bLuna minting and redeeming when the bLuna exchange rate is lower than 1.
 {% endhint %}
 
 ### Minting bLuna

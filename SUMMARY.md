@@ -25,6 +25,7 @@
 
 ## User Guide
 
+* [Interchain Transfers](user-guide/interchain-transfers.md)
 * [WebApp](user-guide/webapp/README.md)
   * [EARN](user-guide/webapp/earn.md)
   * [BORROW](user-guide/webapp/borrow.md)
