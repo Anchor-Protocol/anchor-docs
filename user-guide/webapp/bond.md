@@ -38,6 +38,10 @@ As of March 17th, 2021, Anchor only supports [Bonded Luna \(bLuna\)](../../proto
 
 * **BURN**: Burn bLuna through the bLuna protocol and redeem Luna. Redeemed Luna can be withdrawn after the Terra blockchain's unbonding period. Redemption is done with the current bLuna exchange rate but requires at least 21 days and the redemption amount may be affected by validator slashing.
 
+{% hint style="warning" %}
+Burn requests are processed in 3-day batches. Burn requests that are yet to be included in a batch are marked as **pending** in the **CLAIM** page.
+{% endhint %}
+
 ![](../../.gitbook/assets/bond-burn-burn.png)
 
 * **INSTANT BURN**: Swap bLuna for Luna through [Terraswap](https://terraswap.io/), an [Uniswap](https://uniswap.org)-like automated market marker \(AMM\) protocol on Terra. This process is instant but may suffer from trade slippage and Terraswap commissions.
