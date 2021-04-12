@@ -7,7 +7,7 @@ Using diversified staking yields, money markets and the ANC token incentives and
 1. **Governance sets the “Anchor Rate”** … the “Anchor Rate” is the target APY anchor seeks to pay out to depositors. A quorum of ANC gov token holders vote to set the \`Anchor Rate\` parameter. 
 2. **Staking rewards make up the “real yield”** … underneath the hood, Anchor implements the classical money market, with the caveat that whitelisted collateral is reserved for liquid staking derivatives of major PoS protocols. The collateral earns staking rewards, making up the real yield. 
 3. **The "real yield" is stabilized around the "Anchor Rate"**  … reserves and borrowing incentives help the real yield to converge to the Anchor Rate. 
-   1. If real yield &gt; Anchor Rate, the excess staking rewards are stored in a UST denominated “yield reserve”. ANC incentives to borrowers drop by 15% every epoch \(week\). 
+   1. If real yield &gt; Anchor Rate, the excess yield is stored in a UST denominated “yield reserve”. ANC incentives to borrowers drop by 15% every epoch \(week\). 
    2. If real yield &lt; Anchor Rate, the yield shortfall is drawn down from the yield reserve until it is depleted. Additionally, ANC incentives to borrowers increase by 50% every epoch \(week\) until the real yield converges to the Anchor Rate.
 
 ## Components

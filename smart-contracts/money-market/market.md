@@ -15,7 +15,6 @@ The Market contract acts as the point of interaction for all lending and borrowi
 | `collector_contract` | CanonicalAddr | Contract address of Collector |
 | `distributor_contract` | CanonicalAddr | Contract address of Distributor |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `reserve_factor` | Decimal256 | Percentage of borrower interest set aside as ANC purchase reserves |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
 ## InitMsg
@@ -30,7 +29,6 @@ Instantiates the money market Market contract. Requires the owner to make an ini
 pub struct InitMsg {
     pub owner_addr: HumanAddr, 
     pub stable_denom: String, 
-    pub reserve_factor: Decimal256, 
     pub aterra_code_id: u64, 
     pub anc_emission_rate: Decimal256, 
     pub max_borrow_factor: Decimal256, 
@@ -43,7 +41,6 @@ pub struct InitMsg {
 {
   "owner_addr": "terra1...", 
   "stable_denom": "uusd", // Terra USD
-  "reserve_factor": "0.1", 
   "aterra_code_id": 5, 
   "anc_emission_rate": "0.05", 
   "max_borrow_factor": "0.95" 
@@ -56,7 +53,6 @@ pub struct InitMsg {
 | :--- | :--- | :--- |
 | `owner_addr` | HumanAddr | Address of contract owner |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `reserve_factor` | Decimal256 | Portion of borrower interest set aside as reserves |
 | `aterra_code_id` | u64 | Code ID for aTerra contract |
 | `anc_emission_rate` | Decimal256 | Initial per-block ANC emission rate to borrowers |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
@@ -187,7 +183,6 @@ Updates the configuration of the contract. Can be only issued by the owner.
 pub enum HandleMsg {
     UpdateConfig {
         owner_addr: Option<HumanAddr>, 
-        reserve_factor: Option<Decimal256>, 
         max_borrow_factor: Option<Decimal256>, 
         interest_model: Option<HumanAddr>, 
         distribution_model: Option<HumanAddr>, 
@@ -201,7 +196,6 @@ pub enum HandleMsg {
 {
   "update_config": {
     "owner_addr": "terra1...", 
-    "reserve_factor": "0.1", 
     "max_borrow_factor": "0.95", 
     "interest_model": "terra1...", 
     "distribution_model": "terra1..." 
@@ -214,7 +208,6 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner_addr`\* | HumanAddr | Address of new owner |
-| `reserve_factor`\* | Decimal256 | New portion of borrower interest set aside as reserves |
 | `max_borrow_factor`\* | Decimal256 | New maximum portion of stablecoin liquidity available for borrows |
 | `interest_model`\* | HumanAddr | New interest model contract address |
 | `distribution_model`\* | HumanAddr | New contract address of Distribution Model |
@@ -258,7 +251,7 @@ pub enum HandleMsg {
 
 ### `[Internal] ExecuteEpochOperations`
 
-Adjusts the borrower ANC emission rate and sends accumulated ANC purchase reserves to Collector. Can only be issued by Overseer
+Adjusts the borrower ANC emission rate and sends accumulated ANC excess yield reserves to Overseer. Can only be issued by Overseer.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -267,8 +260,10 @@ Adjusts the borrower ANC emission rate and sends accumulated ANC purchase reserv
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
     ExecuteEpochOperations {
-        target_deposit_rate: Decimal256, 
         deposit_rate: Decimal256, 
+        target_deposit_rate: Decimal256, 
+        threshold_deposit_rate: Decimal256, 
+        distributed_interest: Uint256, 
     }
 }
 ```
@@ -278,8 +273,10 @@ pub enum HandleMsg {
 ```javascript
 {
   "execute_epoch_operations": {
-    "target_deposit_rate": "0.000000001", 
-    "deposit_rate": "0.000000002" 
+    "deposit_rate": "0.000000002", 
+    "target_deposit_rate": "0.000000002", 
+    "threshold_deposit_rate": "0.000000001", 
+    "distributed_interest": "100000000" 
   }
 }
 ```
@@ -288,12 +285,14 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `target_deposit_rate` | Decimal256 | Target per-block deposit rate of Anchor |
 | `deposit_rate` | Decimal256 | Calculated per-block deposit of the last epoch |
+| `target_deposit_rate` | Decimal256 | Target per-block deposit rate of Anchor |
+| `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate of Anchor |
+| `distributed_interest` | Uint256 | Amount of depositor subsidies distributed in this epoch |
 
 ### `DepositStable`
 
-Deposits stablecoins to Anchor. Requires stablecoins to be sent beforehand.
+Deposits stablecoins to Anchor. Requires stablecoins to be sent with the message.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -358,7 +357,7 @@ pub enum HandleMsg {
 
 ### `RepayStable`
 
-Repays previous stablecoin liability. Requires stablecoins to be sent beforehand.
+Repays previous stablecoin liability. Requires stablecoins to be sent with the message.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -493,7 +492,6 @@ pub struct ConfigResponse {
     pub collector_contract: HumanAddr, 
     pub distributor_contract: HumanAddr, 
     pub stable_denom: String, 
-    pub reserve_factor: Decimal256, 
     pub max_borrow_factor: Decimal256, 
 }
 ```
@@ -510,7 +508,6 @@ pub struct ConfigResponse {
   "collector_contract": "terra1...", 
   "distributor_contract": "terra1...", 
   "stable_denom": "uusd", 
-  "reserve_factor": "0.1", 
   "max_borrow_factor": "1.0" 
 }
 ```
@@ -527,7 +524,6 @@ pub struct ConfigResponse {
 | `collector_contract` | HumanAddr | Contract address of Collector |
 | `distributor_contract` | HumanAddr | Contract address of Distributor |
 | `stable_denom` | String | Native token denomination for stablecoin |
-| `reserve_factor` | Decimal256 | Portion of borrower interest set aside as reserves |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
 ### `State`
@@ -578,6 +574,8 @@ pub struct State {
     pub global_interest_index: Decimal256, 
     pub global_reward_index: Decimal256, 
     pub anc_emission_rate: Decimal256, 
+    pub prev_aterra_supply: Uint256, 
+    pub prev_exchange_rate: Decimal256, 
 }
 ```
 {% endtab %}
@@ -591,7 +589,9 @@ pub struct State {
   "last_reward_updated": 123456789, 
   "global_interest_index": "1.23456789", 
   "global_reward_index": "123456.789", 
-  "anc_emission_rate": "0.05"
+  "anc_emission_rate": "0.05", 
+  "prev_aterra_supply": "100000000", 
+  "prev_exchange_rate": "1.23456789" 
 }
 ```
 {% endtab %}
@@ -606,6 +606,8 @@ pub struct State {
 | `global_interest_index` | Decimal256 | Current global interest index |
 | `global_reward_index` | Decimal256 | Current ANC global reward index |
 | `anc_emission_rate` | Decimal256 | Current per-block ANC emission rate to borrowers |
+| `prev_aterra_supply` | Uint256 | aTerra supply when interest was last accrued |
+| `prev_exchange_rate` | Decimal256 | aTerra exchange rate when interest was last accrued |
 
 ### `EpochState`
 
@@ -619,6 +621,7 @@ Gets state information related to epoch operations. Returns an interest-accrued 
 pub enum QueryMsg {
     EpochState {
         block_height: Option<u64>, 
+        distributed_interest: Option<Uint256>, 
     }
 }
 ```
@@ -628,7 +631,8 @@ pub enum QueryMsg {
 ```javascript
 {
   "epoch_state": {
-    "block_height": 123456 
+    "block_height": 123456, 
+    "distributed_interest": "100000000" 
   }
 }
 ```
@@ -638,6 +642,7 @@ pub enum QueryMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `block_height`\* | u64 | Block number to use in query |
+| `distributed_interest`\* | Uint256 | Amount of depositor subsidies distributed in this epoch |
 
 \* = optional
 

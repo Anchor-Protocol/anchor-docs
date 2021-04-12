@@ -264,7 +264,10 @@ Updates state related to epoch operations. Can only be issued by `Overseer`.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    UpdateEpochState {}
+    UpdateEpochState {
+        interest_buffer: Uint256, 
+        distributed_interest: Uint256, 
+    }
 }
 ```
 {% endtab %}
@@ -272,7 +275,10 @@ pub enum HandleMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-  "update_epoch_state": {}
+  "update_epoch_state": {
+    "interest_buffer": "100000000", 
+    "distributed_interest": "100000000" 
+  }
 }
 ```
 {% endtab %}
@@ -280,7 +286,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-|  |  |  |
+| `interest_buffer` | Uint256 | Amount of yield reserve left after distributing subsidies |
+| `distributed_interest` | Uint256 | Amount of depositor subsidies distributed in this epoch |
 
 ### `LockCollateral`
 
@@ -522,6 +529,7 @@ pub struct EpochState {
     pub deposit_rate: Decimal256, 
     pub prev_aterra_supply: Uint256, 
     pub prev_exchange_rate: Decimal256, 
+    pub prev_interest_buffer: Uint256, 
     pub last_executed_height: u64, 
 }
 ```
@@ -533,6 +541,7 @@ pub struct EpochState {
   "deposit_rate": "0.13", 
   "prev_aterra_supply": "100000000", 
   "prev_exchange_rate": "1.2", 
+  "prev_interest_buffer": "100000000", 
   "last_executed_height": 123456 
 }
 ```
@@ -544,6 +553,7 @@ pub struct EpochState {
 | `deposit_rate` | Decimal256 | Average per-block deposit rate during the last epoch |
 | `prev_aterra_supply` | Uint256 | Total aTerra supply at when epoch operations were last executed |
 | `prev_exchange_rate` | Decimal256 | aTerra exchange rate when epoch operations were last executed |
+| `prev_interest_buffer` | Uint256 | Amount of yield reserves when epoch operations were last executed |
 | `last_executed_height` | u64 | Block number when epoch operations were last executed |
 
 ### `Whitelist`
@@ -804,65 +814,6 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Contract address of collateral token, Locked amount\) |
-
-### `DistributionParams`
-
-Gets parameter information related to reward distribution.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
-    DistributionParams {}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "distribution_params": {}
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
-
-### `DistributionParamsResponse`
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct DistributionParamsResponse {
-    pub deposit_rate: Decimal256, 
-    pub target_deposit_rate: Decimal256, 
-    pub threshold_deposit_rate: Decimal256, 
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "deposit_rate": "0.0000000013", 
-  "target_deposit_rate": "0.0000000015", 
-  "threshold_deposit_rate": "0.000000001" 
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `deposit_rate` | Decimal256 | Average per-block deposit rate during the last epoch |
-| `target_deposit_rate` | Decimal256 | Target per-block stablecoin deposit rate of Anchor |
-| `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
 
 ### `BorrowLimit`
 

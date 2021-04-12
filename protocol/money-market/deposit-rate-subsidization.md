@@ -16,8 +16,14 @@ $$
 e_{n+1} = k \cdot e_n
 $$
 
-* If deposit rate is below the target \($$r_{current} < r_{target}$$\), increase emission by 0.7% \($$k \approx 1.007$$\)
-* If deposit rate exceeds the target \($$r_{current} > r_{target}$$\), reduce emission by 0.3% \($$k \approx 0.997$$\)
+The feedback control algorithm adjusts incentives with $$r_{average}$$ - the average of $$r_{target}$$ and $$r_{threshold}$$ - as the reference point:
+
+$$
+r_{average}=\frac{r_{target}+r_{threshold}}{2}
+$$
+
+* If deposit rate is approaching the threshold \($$r_{current} < \frac{r_{threshold}+r_{average}}{2}$$\), increase emission by 0.7% \($$k \approx 1.007$$\)
+* If deposit rate approaches the target \($$r_{current} > \frac{r_{target}+r_{average}}{2}$$\), reduce emission by 0.3% \($$k \approx 0.997$$\)
 
 where the set $$k$$ values result in a 50% emission increase over a week-long period or a 15% decrease over a week-long period.
 

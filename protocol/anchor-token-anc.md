@@ -24,9 +24,15 @@ ANC tokens generate a buying pressure that increases proportionally with Anchor'
 
 ### Protocol Fees
 
+ANC captures protocol fees generated from Anchor, where 10% of value flowing into the yield reserve used for the value accrual of ANC tokens. Anchor's protocol fees are sourced from bAsset rewards, excess yield, and collateral liquidation fees.
+
 #### bAsset Rewards
 
 A portion of rewards from deposited bAsset collaterals are used to purchase ANC, with the remainder used to replenish the yield reserve. The ratio of bAsset rewards used for ANC purchases can be adjusted thorough governance if the yield reserve's inventory rises to a sufficient level.
+
+#### Excess Yield
+
+Deposit yields in excess of the target deposit rate is accumulated to the yield reserve, with a portion used to purchase ANC. Purchased ANC tokens are then redistributed to ANC stakers.
 
 #### Collateral Liquidation Fees
 

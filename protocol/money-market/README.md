@@ -70,7 +70,7 @@ where $$\text{liquidity}$$ and $$\text{liabilities}$$ each refer to the amount o
 
 Every epoch, rewards of deposited bAsset collaterals are collected by the money market. Claimed bAsset rewards, which are likely to be in a non-stablecoin denomination, are converted to Terra stablecoins and stockpiled separately in the market's **yield reserve** pool. 
 
-This process can only be triggered at most once in a 24-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate readjustment](deposit-rate-subsidization.md#borrower-anc-incentives) and [yield reserve distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
+This process can only be triggered at most once in a 3-hour period. Markets wait for bAsset rewards to be transferred to the Terra blockchain as reward claims of bAssets \(excluding bLuna\) involve a cross-chain transaction. Auxiliary operations such as [ANC emission rate readjustment](deposit-rate-subsidization.md#borrower-anc-incentives) and [yield reserve distribution](deposit-rate-subsidization.md#direct-subsidization) are also conducted during this time.
 
 
 

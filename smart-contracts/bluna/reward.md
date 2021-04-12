@@ -305,7 +305,8 @@ pub struct StateResponse {
 ```javascript
 {
   "global_index": "1000.0", 
-  "total_balance": "100000000" 
+  "total_balance": "100000000", 
+  "prev_reward_balance": "100000000" 
 }
 ```
 {% endtab %}
@@ -356,7 +357,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct AccruedRewardsResponse {
-    pub amount: Uint128, 
+    pub rewards: Uint128, 
 }
 ```
 {% endtab %}
@@ -364,7 +365,7 @@ pub struct AccruedRewardsResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-  "amount": "100000000" 
+  "rewards": "100000000" 
 }
 ```
 {% endtab %}
@@ -372,7 +373,7 @@ pub struct AccruedRewardsResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `amount` | Uint128 | Amount of `reward_denom` rewards accrued |
+| `rewards` | Uint128 | Amount of `reward_denom` rewards accrued |
 
 ### `Holder`
 

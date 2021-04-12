@@ -57,10 +57,11 @@ The bLuna contract processes Luna undelegations in batches, creating them in epo
 * `batch_id`: incrementally-increasing unique identifier of the undelegation batch
 * `amount`: total amount of fee deducted bLuna unbonded in this batch
 * `time`: time of batch undelegation
+* `applied_exchange_rate`: bLuna exchange rate at the time of undelegation
 * `withdraw_rate`: rate applied when later withdrawing undelegated Luna from this batch
 * `released`: indicator on whether the unbonding period is over for this batch
 
-When a batch is undelegated, `withdraw_rate` is stored as the bLuna exchange rate at the time of undelegation, and `released` is stored as `false`.
+When a batch is undelegated, `applied_exchange_rate` is stored as the bLuna exchange rate at the time of undelegation, and `released` is stored as `false`.
 
 Later when users withdraw undelegated Luna, the contract first checks for newly undelegated batches by comparing the current time with the `time` of recent batches. Batches that are older than 21 days are considered undelegated, and are marked by updating `released` as `true`.
 
