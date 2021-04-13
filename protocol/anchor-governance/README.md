@@ -45,7 +45,7 @@ Governance polls in Anchor follow the below procedure:
 | :--- | :--- |
 | [Modify Collateral Attributes](modify-collateral-parameters.md) | Propose for changes in the Max LTV of a whitelisted collateral |
 | [Modify Market Parameters](modify-market-parameters.md) | Propose for parameter changes in Anchor money market |
-| [Modify Liquidation Parameters](modify-liquidation-parameters.md) | Propose for parameter changes in Anchor's [Liquidation Contract](../liquidations.md) |
+| [Modify Liquidation Parameters](modify-liquidation-parameters.md) | Propose for parameter changes in Anchor's [Liquidation Contract](../loan-liquidation.md) |
 | [Modify ANC Parameters](modify-anc-parameters.md) | Propose for parameter changes in the [Anchor Token](../anchor-token-anc.md) |
 | [Modify Governance Parameters](modify-governance-parameters.md) | Propose for parameter changes in [Anchor Governance](./) |
 | [Modify Borrow Interest](modify-the-interest-model.md) | Propose for changes in the stablecoin [borrow interest formula](../money-market/#borrow-rate-model) |

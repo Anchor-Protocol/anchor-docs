@@ -1,6 +1,6 @@
 # Liquidation Contract
 
-The Liquidation Contract enable users to submit Terra stablecoin bids for a Cw20-compliant token. Bidders can specify the rate of premium they will receive on bid execution, and the maximum premium rate is set at 30%.
+The Liquidation Contract enables users to submit Terra stablecoin bids for a Cw20-compliant token. Bidders can specify the rate of premium they will receive on bid execution, and the maximum premium rate is set at 30%.
 
 Upon execution of a bid, Cw20 tokens are sent to the bidder, while the bidder's Terra stablecoins are sent to the repay address \(if not specified, sent to message sender\). The oracle contract is responsible for providing the relevant Cw20 token prices.
 

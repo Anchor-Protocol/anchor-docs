@@ -16,7 +16,7 @@ The **BORROW** page displays:
 * **Net APY**: Net annualized percentage yield \(APY\) on borrows from both Borrow APR and Distribution APY
   * **Borrow APR**: Current annualized percentage rate \(APR\) of borrow interest.
   * **Distribution APY**: Current APY of ANC distribution to borrowers 
-* **Loan Position Graph**: Displays the [risk ratio](../../protocol/liquidations.md#collateral-liquidation) of user's loan position.
+* **Loan Position Graph**: Displays the [risk ratio](../../protocol/loan-liquidation.md#collateral-liquidation) of user's loan position.
   * **Borrow Limit**: Maximum USD value borrowable by user based on provided collaterals.
   * **Borrowed Value / Borrow Limit Ratio**: Ratio value that signals user loan position's liquidation riskiness. Calculated by dividing user's borrowed value with their borrow limit.
 

@@ -4,7 +4,7 @@ To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquid
 
 The Liquidation Contract acts as an over-the-counter \(OTC\) exchange between Cw20-compliant collateral tokens and Terra stablecoins. Using Anchor's Oracle Contract as a price feed, conversions between any arbitrary Cw20 token-based assets and Terra stablecoins are facilitated.
 
-In addition to collateral liquidation, the Liquidation Contract handles calculations of collateral liquidation amounts in cases of [partial collateral liquidation](liquidations.md#partial-liquidation).
+In addition to collateral liquidation, the Liquidation Contract handles calculations of collateral liquidation amounts in cases of [partial collateral liquidation](loan-liquidation.md#partial-liquidation).
 
 ## Bids
 

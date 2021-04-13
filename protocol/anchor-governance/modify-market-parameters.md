@@ -23,7 +23,7 @@ The money market is configured to be somewhat resilient to price oracle downtime
 | Parameter Name | Value |
 | :--- | :--- |
 | `Target Deposit Rate` | 20% APY |
-| `Threshold Deposit Rate` | 15% APY |
+| `Threshold Deposit Rate` | 18% APY |
 | `Buffer Distribution Factor` | 10% |
 | `Max Borrow Factor` | 95% |
 | `Valid Price Timeframe` | 60 seconds |

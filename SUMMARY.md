@@ -10,7 +10,7 @@
   * [Bonded Luna \(bLuna\)](protocol/bonded-assets-bassets/bonded-luna-bluna.md)
 * [Money Market](protocol/money-market/README.md)
   * [Deposit Rate Subsidization](protocol/money-market/deposit-rate-subsidization.md)
-* [Loan Liquidation](protocol/liquidations.md)
+* [Loan Liquidation](protocol/loan-liquidation.md)
 * [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
 * [Anchor Governance](protocol/anchor-governance/README.md)
   * [Modify Collateral Attributes](protocol/anchor-governance/modify-collateral-parameters.md)

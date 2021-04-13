@@ -88,7 +88,7 @@ $$
 \text{borrowLimit} = \sum \text{amountLocked} \cdot \text{bAssetPrice} \cdot \text{maxLTV}
 $$
 
-One should observe that the borrow limit fluctuates with the oracle-reported bAsset price. Loan positions with a liability higher than their borrow limit are subject to [liquidation](../liquidations.md), where their collaterals are converted to stablecoins to repay their liabilities.
+One should observe that the borrow limit fluctuates with the oracle-reported bAsset price. Loan positions with a liability higher than their borrow limit are subject to [liquidation](../loan-liquidation.md), where their collaterals are converted to stablecoins to repay their liabilities.
 
 To prevent liquidation, borrowers can lock additional collateral to their position and increase their borrow limit. Collaterals can also be unlocked and withdrawn from a loan position, as long as the borrower's liability does not exceed the position's borrow limit.
 

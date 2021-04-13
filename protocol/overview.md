@@ -18,7 +18,7 @@ Anchor Protocol can be subdivided to the below components:
 | :--- | :--- |
 | [Bonded Assets \(bAssets\)](bonded-assets-bassets/) | Tokenized representations of bonded PoS assets |
 | [Money Market](money-market/) | Handles lending and borrowing of Terra stablecoins, with borrows collateralized by bAssets |
-| [Liquidation Contract](liquidations.md) | Manages collateral liquidations of loans at risk of undercollateralization |
+| [Liquidation Contract](loan-liquidation.md) | Manages collateral liquidations of loans at risk of undercollateralization |
 | [Anchor Token \(ANC\) Contracts](../smart-contracts/anchor-token/) | Handles ANC-related operations and Anchor governance |
 
 ## Protocol Participants
