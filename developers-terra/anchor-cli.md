@@ -17,7 +17,7 @@ This section provides a brief guide on how to interact with Anchor Protocol via 
 `anchorcli` can be installed through NPM:
 
 ```text
-$ npm install -g @anchor-protocol/cli
+$ npm install -g @anchor-protocol/anchorcli
 ```
 
 The entrypoint `anchorcli` should then be available in your `path`:
