@@ -177,6 +177,7 @@ pub enum QueryMsg {
     ANCEmissionRate {
         deposit_rate: Decimal256, 
         target_deposit_rate: Decimal256, 
+        threshold_deposit_rate: Decimal256, 
         current_emission_rate: Decimal256, 
     }
 }
@@ -189,6 +190,7 @@ pub enum QueryMsg {
   "anc_emission_rate": {
     "deposit_rate": "0.0001", 
     "target_deposit_rate": "0.00015", 
+    "threshol_deposit_rate": "0.00010", 
     "current_emission_rate": "5000" 
   }
 }
@@ -200,6 +202,7 @@ pub enum QueryMsg {
 | :--- | :--- | :--- |
 | `deposit_rate` | Decimal256 | Average per-block deposit rate during the last epoch |
 | `target_deposit_rate` | Decimal256 | Target per-block deposit rate of Anchor |
+| `threshold_deposit_rate` | Decimal256 | Minimum per-block deposit rate supported by Anchor |
 | `current_emission_rate` | Decimal256 | Current per-block ANC emission rate |
 
 ### `ANCEmissionRateResponse`
