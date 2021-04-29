@@ -20,7 +20,7 @@ $$
 
 bLuna tokens equally share all losses from slashing events of whitelisted validators. Slashing events decrease the bLuna exchange rate, lowering the calculated value of a bLuna token.
 
-The protocol applies a fee of **0.1%** to bLuna mints and burns whenever the exchange rate is below 1, targeting a gradual recovery to a one-to-one peg.
+The protocol applies a fee of **0.5%** to bLuna mints and burns whenever the exchange rate is below 1, targeting a gradual recovery to a one-to-one peg.
 
 ### Validator Whitelist
 

@@ -22,7 +22,7 @@ As the price of bAssets determine whether a loan is liquidated or not, borrowers
 
 Exceptional occurrences such as slashing may cause the peg to break. bAsset implementations however, should possess mechanisms to recover the one-to-one peg. Example mechanisms include the peg recovery fee and the slashing insurance pool:
 
-* **Peg recovery fee**: slashed assets are recovered by a fee is attached to further bAsset minting and burning.
+* **Peg recovery fee**: slashed assets are recovered by a fee that is attached to further bAsset minting and burning.
 * **Slashing insurance pool**: slashed assets are covered from a separately-kept reserve pool.
 
 Via the peg recovery mechanism, redeeming bAssets at its default state should result in an equal amount of underlying assets and vice versa.
