@@ -12,6 +12,8 @@ Anchor Earn is designed with interchain access in mind. Further releases of Anch
 
 A complete list of supported blockchains and stablecoins are outlined in the [appendix section](appendix.md).
 
+For those interested in reading the code, please refer to the [Anchor Earn repository](https://github.com/Anchor-Protocol/anchor-earn).
+
 ## Installation
 
 {% hint style="info" %}
