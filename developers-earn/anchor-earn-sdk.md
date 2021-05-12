@@ -465,7 +465,7 @@ Use `anchorEarn.send` to send tokens \(stablecoins or their aTerra counterpart\)
 
 ```javascript
 const sendUst = await anchorEarn.send({
-  currency: DENOMS.UST
+  currency: DENOMS.UST, 
   recipient: 'terra1...', 
   amount: '12.345', // 12.345 UST or 12345000 uusd
 });
