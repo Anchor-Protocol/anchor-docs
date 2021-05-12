@@ -20,7 +20,7 @@ Deposited stablecoins are represented by [Anchor Terra \(aTerra\)](protocol/mone
 * **Instant withdrawals** through [pooled lending](protocol/money-market/#depositing-terra-stablecoins) of stablecoin deposits
 * **Principal protection** via [liquidation](protocol/loan-liquidation.md) of loans in risk of undercollateralization
 
-Anchor is an open, permissionless savings protocol, meaning that any third-party application is free to connect and earn interest without restrictions. Through [Anchor.js](developers-terra/anchor.js.md) or [EthAnchor](developers-ethereum/ethanchor.md), developers can interact with Anchor using just a few lines of code.
+Anchor is an open, permissionless savings protocol, meaning that any third-party application is free to connect and earn interest without restrictions. Through [Anchor Earn](developers-earn/anchor-earn-sdk.md), [Anchor.js](developers-terra/anchor.js.md) or [EthAnchor](developers-ethereum/ethanchor.md), developers can interact with Anchor using just a few lines of code.
 
 Further documentation of Anchor Protocol is provided in the following pages.
 
@@ -31,7 +31,8 @@ Learn more about Anchor Protocol, its core smart contracts, and Javascript SDK.
 * Learn more about the [Protocol](protocol/overview.md).
 * Read up on the specifications for the [Anchor Protocol](https://anchorprotocol.com/docs/anchor-v1.1.pdf) and [bAssets](https://anchorprotocol.com/docs/The_bAsset_Protocol.pdf). 
 * Check out the [Smart Contracts](smart-contracts/deployed-contracts.md).
-* Build apps using [Anchor.js](developers-terra/anchor.js.md)
+* Build savings apps with [Anchor Earn](developers-earn/anchor-earn-sdk.md).
+* Build apps using [Anchor.js](developers-terra/anchor.js.md).
 * Cross chain apps on Ethereum using [EthAnchor](developers-ethereum/ethanchor.md) 
 
 ## Community

@@ -36,6 +36,12 @@
     * [Claiming ANC Rewards](user-guide/webapp/govern/claiming-anc-rewards.md)
     * [Creating and voting on proposals](user-guide/webapp/govern/governance-proposals.md)
 
+## Developers - Earn
+
+* [Anchor Earn SDK](developers-earn/anchor-earn-sdk.md)
+* [Example Usage](developers-earn/example-usage.md)
+* [Appendix](developers-earn/appendix.md)
+
 ## Developers - Terra
 
 * [Anchor.js](developers-terra/anchor.js.md)
