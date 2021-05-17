@@ -55,7 +55,7 @@ While Anchor Earn by default handles transaction signing and broadcasting, these
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>chain</code>   </b>(CHAINS)<b> </b><em><b>  Required</b></em>
+        <p><b><code>chain</code>   </b>(<a href="anchor-earn-sdk.md#chains">CHAINS</a>)<b> </b><em><b>  Required</b></em>
         </p>
         <p>Blockchain to interact from.</p>
         <p></p>
@@ -65,7 +65,7 @@ While Anchor Earn by default handles transaction signing and broadcasting, these
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>network</code></b> (NETWORKS) <em><b>Required</b></em>
+        <p><b><code>network</code></b> (<a href="anchor-earn-sdk.md#networks">NETWORKS</a>) <em><b>Required</b></em>
         </p>
         <p>Network to interact in.</p>
       </td>
@@ -91,7 +91,10 @@ While Anchor Earn by default handles transaction signing and broadcasting, these
         <p>Account address.</p>
         <p></p>
         <p>Required if transactions are to be signed / broadcasted remotely with
-          the use of <code>customSigner</code> or <code>customBroadcaster</code>.</p>
+          the use of <a href="anchor-earn-sdk.md#customsigner"><code>customSigner</code></a> or
+          <a
+          href="anchor-earn-sdk.md#custombroadcaster"><code>customBroadcaster</code>
+            </a>.</p>
       </td>
     </tr>
   </tbody>
@@ -115,6 +118,10 @@ const anchorEarn = new AnchorEarn({
 
 Creating an instance of the `Account` object generates a new blockchain account.
 
+{% hint style="info" %}
+Tokens for testnet environments \(e.g. Tequila\) can be acquired using faucets, outlined in the [appendix](appendix.md#testnet-faucets) section.
+{% endhint %}
+
 **Method Parameters**
 
 <table>
@@ -126,7 +133,7 @@ Creating an instance of the `Account` object generates a new blockchain account.
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>chain</code></b> (CHAINS) <em><b>Required</b></em>
+        <p><b><code>chain</code></b> (<a href="anchor-earn-sdk.md#chains">CHAINS</a>) <em><b>Required</b></em>
         </p>
         <p>Blockchain to generate account on.</p>
       </td>
@@ -249,7 +256,7 @@ This method deposits the specified amount of stablecoins to Anchor.
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>currency</code></b> (DENOMS) <em><b>Required</b></em>
+        <p><b><code>currency</code></b> (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
         </p>
         <p>Currency of stablecoin to deposit.</p>
       </td>
@@ -295,7 +302,7 @@ This method deposits the specified amount of stablecoins to Anchor.
 
 **Returns**
 
-`anchorEarn.deposit` will return a `Promise` which resolves with either a `OperationError` or `TxOutput` object which implements the `Output` interface.
+`anchorEarn.deposit` will return a `Promise` which resolves with either a [`OperationError`](anchor-earn-sdk.md#operationerror) or `TxOutput` object which implements the [`Output`](anchor-earn-sdk.md#output) interface.
 
 **Example**
 
@@ -330,7 +337,7 @@ Note that the actual amount of stablecoins withdrawn will be smaller due to tran
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>currency</code></b> (DENOMS) <em><b>Required</b></em>
+        <p><b><code>currency</code></b> (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
         </p>
         <p>Currency of stablecoin to withdraw or their aTerra counterpart.</p>
       </td>
@@ -376,7 +383,7 @@ Note that the actual amount of stablecoins withdrawn will be smaller due to tran
 
 **Returns**
 
-`anchorEarn.withdraw` will return a `Promise` which resolves with either a `OperationError` or `TxOutput` object which implements the `Output` interface.
+`anchorEarn.withdraw` will return a `Promise` which resolves with either a [`OperationError`](anchor-earn-sdk.md#operationerror) or `TxOutput` object which implements the [`Output`](anchor-earn-sdk.md#output) interface.
 
 **Example**
 
@@ -406,7 +413,7 @@ Use `anchorEarn.send` to send tokens \(stablecoins or their aTerra counterpart\)
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>currency</code></b> (DENOMS) <em><b>Required</b></em>
+        <p><b><code>currency</code></b> (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
         </p>
         <p>Currency of token (stablecoins or their aTerra counterpart) to send.</p>
       </td>
@@ -459,7 +466,7 @@ Use `anchorEarn.send` to send tokens \(stablecoins or their aTerra counterpart\)
 
 **Returns**
 
-`anchorEarn.send` will return a `Promise` which resolves with either a `OperationError` or `TxOutput` object which implements the `Output` interface.
+`anchorEarn.send` will return a `Promise` which resolves with either a [`OperationError`](anchor-earn-sdk.md#operationerror) or `TxOutput` object which implements the [`Output`](anchor-earn-sdk.md#output) interface.
 
 **Example**
 
@@ -490,7 +497,7 @@ This method retrieves balance information for the specified stablecoins.
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>currencies</code></b> (array of DENOMS) <em><b>Required</b></em>
+        <p><b><code>currencies</code></b> (array of <a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
         </p>
         <p>List of currencies to retrieve balances.</p>
       </td>
@@ -500,7 +507,7 @@ This method retrieves balance information for the specified stablecoins.
 
 **Returns**
 
-`anchorEarn.balance` will return a `Promise` which resolves with a `BalanceOutput` object.
+`anchorEarn.balance` will return a `Promise` which resolves with a [`BalanceOutput`](anchor-earn-sdk.md#balanceoutput) object.
 
 **Example**
 
@@ -531,7 +538,7 @@ This method retrieves market information for the specified stablecoins.
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>currencies</code></b> (array of DENOMS) <em><b>Required</b></em>
+        <p><b><code>currencies</code></b> (array of <a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
         </p>
         <p>List of stablecoins to retrieve information about their markets.</p>
       </td>
@@ -541,7 +548,7 @@ This method retrieves market information for the specified stablecoins.
 
 **Returns**
 
-`anchorEarn.market` will return a `Promise` which resolves with a `MarketOutput` object.
+`anchorEarn.market` will return a `Promise` which resolves with a [`MarketOutput`](anchor-earn-sdk.md#marketoutput) object.
 
 **Example**
 
@@ -662,19 +669,19 @@ export interface OperationError {
   <tbody>
     <tr>
       <td style="text-align:left">
-        <p><b><code>chain</code></b> (CHAINS)</p>
+        <p><b><code>chain</code></b> (<a href="anchor-earn-sdk.md#chains">CHAINS</a>)</p>
         <p>Blockchain from which the request was made.</p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>network</code></b> (NETWORKS)</p>
+        <p><b><code>network</code></b> (<a href="anchor-earn-sdk.md#networks">NETWORKS</a>)</p>
         <p>Network from which the request was made.</p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>status</code></b> (STATUS)</p>
+        <p><b><code>status</code></b> (<a href="anchor-earn-sdk.md#status">STATUS</a>)</p>
         <p>Request status.
           <br />
           <br />Should display <code>UNSUCCESSFUL</code> as the request encountered an error.</p>
@@ -682,7 +689,7 @@ export interface OperationError {
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>type</code></b> (TxType)</p>
+        <p><b><code>type</code></b> (<a href="anchor-earn-sdk.md#txtype">TxType</a>)</p>
         <p>Request type. Can be either of:</p>
         <p></p>
         <ul>
@@ -747,7 +754,7 @@ export interface Output {
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>status</code></b> (STATUS)</p>
+        <p><b><code>status</code></b> (<a href="anchor-earn-sdk.md#status">STATUS</a>)</p>
         <p>Request status. Can be either of:
           <br />
         </p>
@@ -760,7 +767,7 @@ export interface Output {
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>type</code></b> (TxType)</p>
+        <p><b><code>type</code></b> (<a href="anchor-earn-sdk.md#txtype">TxType</a>)</p>
         <p>Request type. Can be either of:</p>
         <p></p>
         <ul>
@@ -787,7 +794,7 @@ export interface Output {
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>txDetails</code></b> (array of TxDetails)</p>
+        <p><b><code>txDetails</code></b> (array of <a href="anchor-earn-sdk.md#txdetails">TxDetails</a>)</p>
         <p>Transaction details.</p>
       </td>
     </tr>
@@ -811,8 +818,8 @@ export interface Output {
           <li>Stablecoin Swap Fees - value lost as fees / slippage during conversion.</li>
         </ul>
         <p></p>
-        <p>Applies only for withdrawals on Terra, and deposits / withdrawals to/from
-          outside the Terra blockchain (e.g. Ethereum).</p>
+        <p>Applies only for withdrawals on Terra, and deposits / withdrawals to /
+          from outside the Terra blockchain (e.g. Ethereum).</p>
       </td>
     </tr>
   </tbody>
@@ -968,7 +975,7 @@ export interface BalanceOutput {
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>balances</code></b> (array of BalanceEntry)</p>
+        <p><b><code>balances</code></b> (array of <a href="anchor-earn-sdk.md#balanceentry">BalanceEntry</a>)</p>
         <p>Balance information.</p>
       </td>
     </tr>
@@ -1082,7 +1089,7 @@ export interface MarketOutput {
     </tr>
     <tr>
       <td style="text-align:left">
-        <p><b><code>markets</code></b> (Array of MarketEntry)</p>
+        <p><b><code>markets</code></b> (Array of <a href="anchor-earn-sdk.md#marketentry">MarketEntry</a>)</p>
         <p>Market information.</p>
       </td>
     </tr>
@@ -1172,7 +1179,7 @@ export interface CustomBroadcaster<T, K> {
 | Generic Type Notation | Type | Description |
 | :--- | :--- | :--- |
 | `T` \(Argument\) | Msg\[ \] | Terra message array used to create an unsigned transaction |
-| `K` \(Expected Output\) | string | Hash of broadcasted transacti |
+| `K` \(Expected Output\) | string | Hash of broadcasted transaction |
 {% endtab %}
 {% endtabs %}
 
@@ -1192,7 +1199,7 @@ export interface Loggable<T> {
 {% tab title="Terra" %}
 | Generic Type Notation | Type | Description |
 | :--- | :--- | :--- |
-| `T` \(Argument\) | `Output` | Transaction progress data |
+| `T` \(Argument\) | \`\`[Output](anchor-earn-sdk.md#output) | Transaction progress data |
 | `K` \(Expected Output\) | void | nil |
 {% endtab %}
 {% endtabs %}

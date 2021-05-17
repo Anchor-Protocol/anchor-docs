@@ -32,7 +32,7 @@ Finally, test contracts \(Tequila and other testnets\) and staging servers are o
 
 ### **Disclosure**
 
-Submit all bug bounty disclosures to [**info@anchorprotocol.com**](mailto:info@anchorprotocol.com). The disclosure must include clear and concise steps to reproduce the discovered vulnerability in either written or video format. Anchor will follow up promptly with acknowledgement of the disclosure.
+Submit all bug bounty disclosures to [**security@anchorprotocol.com**](mailto:security@anchorprotocol.com). The disclosure must include clear and concise steps to reproduce the discovered vulnerability in either written or video format. Anchor will follow up promptly with acknowledgement of the disclosure.
 
 ### **Terms and Conditions**
 
@@ -50,7 +50,7 @@ To encourage vulnerability research and to avoid any confusion between good-fait
 * Play by the rules, including following the terms and conditions of this program and any other relevant agreements. If there is any inconsistency between this program and any other relevant agreements, the terms of this program will prevail.
 * Report any vulnerability you’ve discovered promptly.
 * Avoid violating the privacy of others, disrupting our systems, destroying data, or harming user experience.
-* Use only [**info@anchorprotocol.com**](mailto:info@anchorprotocol.com) to discuss vulnerabilities with us.
+* Use only [**security@anchorprotocol.com**](mailto:security@anchorprotocol.com) to discuss vulnerabilities with us.
 * Keep the details of any discovered vulnerabilities confidential until they are fixed.
 * Perform testing only on in-scope systems, and respect systems and activities which are out-of-scope.
 * Only interact with accounts you own or with explicit permission from the account holder.
