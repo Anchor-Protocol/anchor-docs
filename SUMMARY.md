@@ -36,6 +36,16 @@
     * [Claiming ANC Rewards](user-guide/webapp/govern/claiming-anc-rewards.md)
     * [Creating and voting on proposals](user-guide/webapp/govern/governance-proposals.md)
 
+## EthAnchor
+
+* [EthAnchor](ethanchor/ethanchor.md)
+* [EthAnchor Contracts](ethanchor/ethanchor-contracts/README.md)
+  * [Deployed Contracts](ethanchor/ethanchor-contracts/deployed-contracts.md)
+  * [Router](ethanchor/ethanchor-contracts/router.md)
+  * [ConversionPool](ethanchor/ethanchor-contracts/conversionpool.md)
+  * [ExchangeRateFeeder](ethanchor/ethanchor-contracts/exchangeratefeeder.md)
+* [Fees](ethanchor/fees.md)
+
 ## Developers - Earn
 
 * [Anchor Earn SDK](developers-earn/anchor-earn-sdk.md)
@@ -46,16 +56,6 @@
 
 * [Anchor.js](developers-terra/anchor.js.md)
 * [AnchorCLI](developers-terra/anchor-cli.md)
-
-## Developers - Ethereum
-
-* [EthAnchor](developers-ethereum/ethanchor.md)
-* [EthAnchor Account Contract](developers-ethereum/ethanchor-account-contract.md)
-* [EthAnchor API](developers-ethereum/ethanchor-api/README.md)
-  * [Getting Market Information](developers-ethereum/ethanchor-api/getting-market-information.md)
-  * [Depositing Stablecoins](developers-ethereum/ethanchor-api/depositing-stablecoins.md)
-  * [Redeeming Stablecoins](developers-ethereum/ethanchor-api/redeeming-stablecoins.md)
-* [Fees](developers-ethereum/fees.md)
 
 ## Smart Contracts
 
@@ -80,6 +80,16 @@
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Distributor](smart-contracts/anchor-token/distributor.md)
   * [Vesting](smart-contracts/anchor-token/vesting.md)
+
+## Developers - Ethereum \[Legacy\] <a id="developers-ethereum"></a>
+
+* [EthAnchor](developers-ethereum/ethanchor.md)
+* [EthAnchor Account Contract](developers-ethereum/ethanchor-account-contract.md)
+* [EthAnchor API](developers-ethereum/ethanchor-api/README.md)
+  * [Getting Market Information](developers-ethereum/ethanchor-api/getting-market-information.md)
+  * [Depositing Stablecoins](developers-ethereum/ethanchor-api/depositing-stablecoins.md)
+  * [Redeeming Stablecoins](developers-ethereum/ethanchor-api/redeeming-stablecoins.md)
+* [Fees](developers-ethereum/fees.md)
 
 ## External Resources
 

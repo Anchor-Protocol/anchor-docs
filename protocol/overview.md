@@ -23,7 +23,7 @@ Anchor Protocol can be subdivided to the below components:
 
 ## Protocol Participants
 
-Three types of users exist in the Anchor ecosystem: **depositors** \(lenders\), **borrowers**, **liquidators**, and **ANC liquidity providers**. Anchor also requires **oracle feeders**, critical for providing the necessary infrastructure.
+Four types of users exist in the Anchor ecosystem: **depositors** \(lenders\), **borrowers**, **liquidators**, and **ANC liquidity providers**. Anchor also requires **oracle feeders**, critical for providing the necessary infrastructure.
 
 In Anchor Protocol, depositors are incentivized to lend Terra stablecoins to Anchor's money market, which is borrowed out by borrowers through bAsset collateralized loans. Interest paid by borrowers are given to depositors, along with subsidies generated from rewards of deposited bAsset collaterals. In addition, the protocol prevents borrowers from forming liabilities in excess of collateral value by incentivizing liquidators to observe and liquidate loans at risk of undercollateralization.
 
