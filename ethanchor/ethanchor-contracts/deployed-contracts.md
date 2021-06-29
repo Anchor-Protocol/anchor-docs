@@ -57,5 +57,46 @@ EthAnchor core contracts have a proxy contract layer on top. Below are addresses
 | Anchor USDC Token | aUSDC | 18 | [0x94eAd8f528A3aF425de14cfdDA727B218915687C](https://etherscan.io/token/0x94eAd8f528A3aF425de14cfdDA727B218915687C) |
 | Anchor BUSD Token | aBUSD | 18 | [0x5A6a33117EcBc6EA38B3a140F3E20245052CC647](https://etherscan.io/token/0x5A6a33117EcBc6EA38B3a140F3E20245052CC647) |
 {% endtab %}
+
+{% tab title="Testnet" %}
+{% hint style="info" %}
+Testnet EthAnchor contracts use [Uniswap V2](https://app.uniswap.org/#/swap?use=V2) for swapping stablecoins.
+{% endhint %}
+
+#### Core Contracts
+
+{% hint style="info" %}
+EthAnchor core contracts have a proxy contract layer on top. Below are addresses of the proxy contracts \(excluding ExchangeRateFeeder\).
+{% endhint %}
+
+| Contract | Address |
+| :--- | :--- |
+| Router | [0x7537aC093cE1315BCE08bBF0bf6f9b86B7475008](https://ropsten.etherscan.io/address/0x7537aC093cE1315BCE08bBF0bf6f9b86B7475008) |
+| ExchangeRateFeeder | [0x79E0d9bD65196Ead00EE75aB78733B8489E8C1fA](https://ropsten.etherscan.io/address/0x79E0d9bD65196Ead00EE75aB78733B8489E8C1fA) |
+| ConversionPool - DAI | [0xb4f818c2BCC3f6c50E1286Ac4f094C4Cffd8F0CC](https://ropsten.etherscan.io/address/0xb4f818c2BCC3f6c50E1286Ac4f094C4Cffd8F0CC) |
+| ConversionPool - USDT | [0x8BCd9F372daf4546034124077d3A6da3Fd552Cf4](https://ropsten.etherscan.io/address/0x8BCd9F372daf4546034124077d3A6da3Fd552Cf4) |
+| ConversionPool - USDC | [0x92E68C8C24a0267fa962470618d2ffd21f9b6a95](https://ropsten.etherscan.io/address/0x92E68C8C24a0267fa962470618d2ffd21f9b6a95) |
+| ConversionPool - BUSD | [0x228D40cCF7b7CE880d72801E2E776D38CA7E647D](https://ropsten.etherscan.io/address/0x228D40cCF7b7CE880d72801E2E776D38CA7E647D) |
+
+#### ERC20-Compliant Token Contracts \(Stablecoins\)
+
+| Token Name | Symbol | Decimals | Contract Address |
+| :--- | :--- | :--- | :--- |
+| Wrapped UST Token | UST | 18 | [0x6cA13a4ab78dd7D657226b155873A04DB929A3A4](https://ropsten.etherscan.io/token/0x6cA13a4ab78dd7D657226b155873A04DB929A3A4) |
+| Dai Stablecoin | DAI | 18 | [0x6bb59e3f447222b3fcf2847111700723153f625a](https://ropsten.etherscan.io/token/0x6bb59e3f447222b3fcf2847111700723153f625a) |
+| Tether USD | USDT | 6 | [0x6af27a81ceb61073ccca401ca6b43064f369dc02](https://ropsten.etherscan.io/token/0x6af27a81ceb61073ccca401ca6b43064f369dc02) |
+| USD Coin | USDC | 6 | [0xe015fd30cce08bc10344d934bdb2292b1ec4bbbd](https://ropsten.etherscan.io/token/0xe015fd30cce08bc10344d934bdb2292b1ec4bbbd) |
+| Binance USD | BUSD | 18 | [0xaae6df09ae0d322a666edc63e6a69e4b0fab6f5d](https://ropsten.etherscan.io/token/0xaae6df09ae0d322a666edc63e6a69e4b0fab6f5d) |
+
+#### ERC20-Compliant Token Contracts \(aTerra\)
+
+| Token Name | Symbol | Decimals | Contract Address |
+| :--- | :--- | :--- | :--- |
+| Wrapped Anchor UST Token | aUST | 18 | [0x006479f75D6622AE6a21BE17C7F555B94c672342](https://ropsten.etherscan.io/token/0x006479f75d6622ae6a21be17c7f555b94c672342) |
+| Anchor DAI Token | aDAI | 18 | [0x4f454a080497e2FE74dB59e0B311614321D7D706](https://ropsten.etherscan.io/token/0x4f454a080497e2FE74dB59e0B311614321D7D706) |
+| Anchor USDT Token | aUSDT | 18 | [0xb15E56E966e2e2F4e54EbF6f5e8159Ea4f400478](https://ropsten.etherscan.io/token/0xb15E56E966e2e2F4e54EbF6f5e8159Ea4f400478) |
+| Anchor USDC Token | aUSDC | 18 | [0xFff8fb0C13314c90805a808F48c7DFF37e95Eb16](https://ropsten.etherscan.io/token/0xFff8fb0C13314c90805a808F48c7DFF37e95Eb16) |
+| Anchor BUSD Token | aBUSD | 18 | [0x314f64d1344dd8F2B7Aa373BA9e285aBB0aFAB65](https://ropsten.etherscan.io/token/0x314f64d1344dd8F2B7Aa373BA9e285aBB0aFAB65) |
+{% endtab %}
 {% endtabs %}
 
