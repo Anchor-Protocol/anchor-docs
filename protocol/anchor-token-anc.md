@@ -32,7 +32,7 @@ Rewards from deposited bAsset collaterals are used to replenish the yield reserv
 
 #### Excess Yield
 
-Excess yield over the target deposit rate from borrow interest payment is accumulated in the yield reserve.
+Excess yield over the target deposit rate from borrower interest payments is accumulated in the yield reserve.
 
 #### Collateral Liquidation Fees
 
