@@ -24,7 +24,7 @@ ANC tokens generate a buying pressure that increases proportionally with Anchor'
 
 ### Protocol Fees
 
-ANC captures protocol fees generated from Anchor, where `ANC Purchase Factor` (currently 10%) of the value flowing into the yield reserve is used to purchase ANC tokens. These ANC are then redistributed to ANC stakers. This value of fees used to purchace ANC can be adjusted through governance. Anchor's protocol fees are sourced the flow into the yield reserve which come from bAsset rewards, excess yield, and collateral liquidation fees.
+ANC captures protocol fees generated from Anchor, where `ANC Purchase Factor` (currently 10%) of the value flowing into the yield reserve is used to purchase ANC tokens. These ANC are then redistributed to ANC stakers. This value of fees used to purchace ANC can be adjusted through governance. Anchor's protocol fees are sourced from the flow into the yield reserve which comes from bAsset rewards, excess yield, and collateral liquidation fees.
 
 #### bAsset Rewards
 
