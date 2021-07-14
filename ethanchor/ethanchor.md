@@ -32,9 +32,9 @@ Note that additional fees may be applied from WebApp implementations, resulting 
 
 | Stablecoin Name | Symbol | APY |
 | :--- | :--- | :--- |
-| Wrapped UST | UST | 18%~20% |
-| Dai Stablecoin | DAI | 15% |
-| Tether USD | USDT | 15% |
-| USD Coin | USDC | 15% |
-| Binance USD | BUSD | 15% |
+| Wrapped UST | UST | 19.5%~20.5% |
+| Dai Stablecoin | DAI | 16.5% |
+| Tether USD | USDT | 16.5% |
+| USD Coin | USDC | 16.5% |
+| Binance USD | BUSD | 16.5% |
 
