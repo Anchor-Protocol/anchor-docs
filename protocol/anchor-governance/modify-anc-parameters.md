@@ -8,14 +8,14 @@ The **Modify ANC Parameters** poll enables users to submit governance polls that
 
  `Epoch Period` is the the minimum time delay required between subsidization events, which handle reward claiming of bAsset collaterals, direct deposit rate subsidization, and readjusting the ANC emission rate based on the current deposit rate.
 
-The `ANC Purchase Factor` determines the portion of bAsset rewards and collateral liquidation fees \(bid fee\) that is used to purchase ANC tokens.
+The `ANC Purchase Factor` determines the portion of flow into the yield reserve (from bAsset rewards, liquidation fees \(bid fee\), and excess yield) that is used to purchase ANC tokens.
 
 `Staking Reward Factor` defines the portion of purchase ANC tokens that are distributed as staking rewards to stakers of ANC.
 
 | Parameter Name | Description |
 | :--- | :--- |
 | `Epoch Period` | Minimum time between operations for bAsset reward collection, deposit rate subsidization, and ANC emission rate adjustment |
-| `ANC Purchase Factor` | Portion of bAsset rewards and collateral liquidation fees \(bid fee\) used to purchase ANC |
+| `ANC Purchase Factor` | Portion of flow into the yield reserve used to purchase ANC |
 | `Staking Reward Factor` | Portion of purchased ANC distributed as staking rewards to ANC stakers |
 
 ## Genesis Values
