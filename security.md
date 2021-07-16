@@ -8,7 +8,9 @@ We believe that size, visibility, and time are the true test for the security of
 
 ## Audits
 
-* [Anchor Protocol Smart Contracts - Audit Report](https://docsend.com/view/mdekyk7k24c46r7f) by [Cryptonics](https://cryptonics.consulting/)
+* [Anchor Protocol Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20[20210308].pdf) by [Cryptonics](https://cryptonics.consulting/)
+* [Anchor Token and Distributions Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20[20210406].pdf) by [Cryptonics](https://cryptonics.consulting/)
+* [EthAnchor - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20EthAnchor%20[09.07.2021].pdf) by [Solidified](https://solidified.io/)
 
 ## Anchor Bug Bounty Program
 
