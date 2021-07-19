@@ -37,7 +37,7 @@ Governance polls in Anchor follow the below procedure:
 3. The total amount of staked ANC can be snapshotted to the poll within a time window of `Snapshot Period` before the poll's end. This value is used to calculate the poll's quorum.
 4. The voting period ends after `Voting Period` has passed.
 5. The poll's votes a tallied. The poll passes if both quorum \(minimum participation of all staked ANC, value snapshotted at step 3. used in calculation\) and threshold \(minimum ratio of `yes` to `no` votes\) are met.
-6. If the poll passes, its contents can be executed after `Timelock Period` blocks have passed. The poll must be executed prior to the `Timelock Period`, otherwise it will automatically expire and no longer be considered valid.
+6. If the poll passes, its contents can be executed after `Timelock Period` blocks have passed. The poll must be executed prior to the `Expiration Period`, otherwise it will automatically expire and no longer be considered valid.
 
 ## Poll Types
 
