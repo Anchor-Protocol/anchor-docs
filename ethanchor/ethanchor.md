@@ -37,4 +37,5 @@ Note that additional fees may be applied from WebApp implementations, resulting 
 | Tether USD | USDT | 16.5% |
 | USD Coin | USDC | 16.5% |
 | Binance USD | BUSD | 16.5% |
+| Frax | FRAX | 16.5% |
 
