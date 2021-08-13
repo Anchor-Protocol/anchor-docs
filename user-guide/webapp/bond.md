@@ -1,10 +1,6 @@
-# BOND
+# BOND \[bLuna\]
 
 The **BOND** page enables users to easily interact with bAsset tokens. Through this page, users can mint bAssets, burn bAsset to redeem the underlying Asset, and claim bAsset rewards.
-
-{% hint style="info" %}
-As of March 17th, 2021, Anchor only supports [Bonded Luna \(bLuna\)](../../protocol/bonded-assets-bassets/bonded-luna-bluna.md) as providable collateral. Other bAssets will soon be added to the protocol. 
-{% endhint %}
 
 ## Minting bLuna
 

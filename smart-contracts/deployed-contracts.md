@@ -47,6 +47,73 @@ For money market and liquidations, a separate set of contracts are to be deploye
 {% endtab %}
 {% endtabs %}
 
+### bETH Smart Contracts
+
+{% tabs %}
+{% tab title="Mainnet" %}
+#### Core Contracts on Ethereum
+
+| Contract | Address |
+| :--- | :--- |
+| AnchorVault | [0xA2F987A546D4CD1c607Ee8141276876C26b72Bdf](https://etherscan.io/address/0xA2F987A546D4CD1c607Ee8141276876C26b72Bdf) |
+| BridgeConnectorShuttle | [0x513251faB2542532753972B8FE9A7b60621affaD](https://etherscan.io/address/0x513251faB2542532753972B8FE9A7b60621affaD) |
+| RewardsLiquidator | [0xdb99Fdb42FEc8Ba414ea60b3a189208bBdbfa321](https://etherscan.io/address/0xdb99Fdb42FEc8Ba414ea60b3a189208bBdbfa321) |
+| InsuranceConnector | [0x2BDfD3De0fF23373B621CDAD0aD3dF1580efE701](https://etherscan.io/address/0x2BDfD3De0fF23373B621CDAD0aD3dF1580efE701) |
+| bETH ShuttleVault | [0xF9dcf31EE6EB94AB732A43c2FbA1dC6179c98965](https://etherscan.io/address/0xF9dcf31EE6EB94AB732A43c2FbA1dC6179c98965) |
+
+#### ERC20-Compliant Token Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| stETH | [0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84](https://etherscan.io/token/0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84) |
+| bETH | [0x707F9118e33A9B8998beA41dd0d46f38bb963FC8](https://etherscan.io/token/0x707F9118e33A9B8998beA41dd0d46f38bb963FC8) |
+
+#### Core Contracts on Terra
+
+| Contract | Address |
+| :--- | :--- |
+| bETH Reward | [terra1939tzfn4hn960ychpcsjshu8jds3zdwlp8jed9](https://finder.terra.money/columbus-4/address/terra1939tzfn4hn960ychpcsjshu8jds3zdwlp8jed9) |
+
+#### CW20-Compliant Token Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| Bonded ETH \(bETH\) | [terra1dzhzukyezv0etz22ud940z7adyv7xgcjkahuun](https://finder.terra.money/columbus-4/address/terra1dzhzukyezv0etz22ud940z7adyv7xgcjkahuun) |
+{% endtab %}
+
+{% tab title="Testnet" %}
+#### Core Contracts on Ethereum
+
+| Contract | Address |
+| :--- | :--- |
+| AnchorVault | [0xf72B5bC0a05f15CaDB6731e59C7D99C1bFbB2FAb](https://ropsten.etherscan.io/address/0xf72B5bC0a05f15CaDB6731e59C7D99C1bFbB2FAb) |
+| BridgeConnectorShuttle | [0x0f49D26b45D0a9880431D33eAf7CCCb1Ebd67961](https://ropsten.etherscan.io/address/0x0f49D26b45D0a9880431D33eAf7CCCb1Ebd67961) |
+| RopstenRewardsLiquidator | [0x81c73492380eC87B464b2E53f7e7f9dD30c7ded9](https://ropsten.etherscan.io/address/0x81c73492380eC87B464b2E53f7e7f9dD30c7ded9) |
+| bETH ShuttleVault | [0xDD7e8f8047D78bB103FAb4bAc1259Da207Da3861](https://ropsten.etherscan.io/address/0xDD7e8f8047D78bB103FAb4bAc1259Da207Da3861) |
+
+#### ERC20-Compliant Token Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| stETH | [0xd40EefCFaB888C9159a61221def03bF77773FC19](https://ropsten.etherscan.io/token/0xd40EefCFaB888C9159a61221def03bF77773FC19) |
+| bETH | [0xA60100d5e12E9F83c1B04997314cf11685A618fF](https://ropsten.etherscan.io/token/0xA60100d5e12E9F83c1B04997314cf11685A618fF) |
+
+#### Core Contracts on Terra
+
+| Contract | Address |
+| :--- | :--- |
+| bETH Reward | [terra1ja3snkedk4t0zp7z3ljd064hcln8dsv5x004na](https://finder.terra.money/tequila-0004/address/terra1ja3snkedk4t0zp7z3ljd064hcln8dsv5x004na) |
+
+#### CW20-Compliant Token Contracts
+
+| Contract | Address |
+| :--- | :--- |
+| Bonded ETH \(bETH\) | [terra19mkj9nec6e3y5754tlnuz4vem7lzh4n0lc2s3l](https://finder.terra.money/tequila-0004/address/terra19mkj9nec6e3y5754tlnuz4vem7lzh4n0lc2s3l) |
+{% endtab %}
+{% endtabs %}
+
+
+
 ### ANC-Related Smart Contracts
 
 {% tabs %}
@@ -108,6 +175,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 | Overseer | [terra1tmnqgvg567ypvsvk6rwsga3srp7e3lg6u0elp8](https://finder.terra.money/columbus-4/address/terra1tmnqgvg567ypvsvk6rwsga3srp7e3lg6u0elp8) |
 | Market | [terra1sepfj7s0aeg5967uxnfk4thzlerrsktkpelm5s](https://finder.terra.money/columbus-4/address/terra1sepfj7s0aeg5967uxnfk4thzlerrsktkpelm5s) |
 | bLuna Custody | [terra1ptjp2vfjrwh0j0faj9r6katm640kgjxnwwq9kn](https://finder.terra.money/columbus-4/address/terra1ptjp2vfjrwh0j0faj9r6katm640kgjxnwwq9kn) |
+| bETH Custody | [terra10cxuzggyvvv44magvrh3thpdnk9cmlgk93gmx2](https://finder.terra.money/columbus-4/address/terra10cxuzggyvvv44magvrh3thpdnk9cmlgk93gmx2) |
 | Interest Model | [terra1kq8zzq5hufas9t0kjsjc62t2kucfnx8txf547n](https://finder.terra.money/columbus-4/address/terra1kq8zzq5hufas9t0kjsjc62t2kucfnx8txf547n) |
 | Distribution Model | [terra14mufqpr5mevdfn92p4jchpkxp7xr46uyknqjwq](https://finder.terra.money/columbus-4/address/terra14mufqpr5mevdfn92p4jchpkxp7xr46uyknqjwq) |
 | Oracle | [terra1cgg6yef7qcdm070qftghfulaxmllgmvk77nc7t](https://finder.terra.money/columbus-4/address/terra1cgg6yef7qcdm070qftghfulaxmllgmvk77nc7t) |
@@ -127,6 +195,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 | Overseer | [terra1qljxd0y3j3gk97025qvl3lgq8ygup4gsksvaxv](https://finder.terra.money/tequila-0004/address/terra1qljxd0y3j3gk97025qvl3lgq8ygup4gsksvaxv) |
 | Market | [terra15dwd5mj8v59wpj0wvt233mf5efdff808c5tkal](https://finder.terra.money/tequila-0004/address/terra15dwd5mj8v59wpj0wvt233mf5efdff808c5tkal) |
 | bLuna Custody | [terra1ltnkx0mv7lf2rca9f8w740ashu93ujughy4s7p](https://finder.terra.money/tequila-0004/address/terra1ltnkx0mv7lf2rca9f8w740ashu93ujughy4s7p) |
+| bETH Custody | [terra1j6fey5tl70k9fvrv7mea7ahfr8u2yv7l23w5e6](https://finder.terra.money/tequila-0004/account/terra1j6fey5tl70k9fvrv7mea7ahfr8u2yv7l23w5e6) |
 | Interest Model | [terra1m25aqupscdw2kw4tnq5ql6hexgr34mr76azh5x](https://finder.terra.money/tequila-0004/address/terra1m25aqupscdw2kw4tnq5ql6hexgr34mr76azh5x) |
 | Distribution Model | [terra1u64cezah94sq3ye8y0ung28x3pxc37tv8fth7h](https://finder.terra.money/tequila-0004/address/terra1u64cezah94sq3ye8y0ung28x3pxc37tv8fth7h) |
 | Oracle | [terra1p4gg3p2ue6qy2qfuxtrmgv2ec3f4jmgqtazum8](https://finder.terra.money/tequila-0004/address/terra1p4gg3p2ue6qy2qfuxtrmgv2ec3f4jmgqtazum8) |
