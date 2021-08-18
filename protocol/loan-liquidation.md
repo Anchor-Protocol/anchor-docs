@@ -78,6 +78,16 @@ $$
 
 Note that $$\text{feeDeductor}$$ uses the maximum rate of fees that can be applied during liquidation, liquidating slightly more collateral than the minimum required \(to reach the safe risk ratio\).
 
+### Multicollateral Liquidation
+
+Liquidation also applies for multicollateral loans, which are loans that are backed with two or more collaterals. When liquidated, all of the locked collateral types are liquidated accordingly until the multicollateral loan meets the safe risk ratio \(if partial liquidation is applicable\).
+
+During liquidation, collaterals in a multicollateral loan are liquidated proportional to each collateral's collateral value.
+
+$$
+\text{liquidationAmount}_\text{collateral}\propto \frac{\text{collateralValue}_\text{collateral}}{\Sigma\, \text{collateralValue}}
+$$
+
 ### Bid Execution
 
 Collaterals locked to a liquidated loan position are converted to Terra stablecoins through bid execution. The money market executes bids that were submitted by the loan liquidator, and stablecoins received from execution are used to repay the liquidated borrower's loan.
