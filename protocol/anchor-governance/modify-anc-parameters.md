@@ -18,13 +18,23 @@ The `ANC Purchase Factor` determines the portion of bAsset rewards and collatera
 | `ANC Purchase Factor` | Portion of bAsset rewards and collateral liquidation fees \(bid fee\) used to purchase ANC |
 | `Staking Reward Factor` | Portion of purchased ANC distributed as staking rewards to ANC stakers |
 
-## Genesis Values
+## Parameter Values
 
-| Parameter Name | Value |
-| :--- | :--- |
-| `Epoch Period` | 3 hours |
-| `ANC Purchase Factor` | 10% |
-| `Staking Reward Factor` | 100% |
+### Up-To-Date
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Epoch Period` | 3 hours | 1681 \(blocks\) |
+| `ANC Purchase Factor` | 10% | 0.1 |
+| `Staking Reward Factor` | 100% | 1 |
+
+### At Protocol Genesis
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Epoch Period` | 3 hours | 1681 \(blocks\) |
+| `ANC Purchase Factor` | 10% | 0.1 |
+| `Staking Reward Factor` | 100% | 1 |
 
 ## Poll Format
 

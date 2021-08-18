@@ -15,14 +15,25 @@ To prevent the emission rate from spiking and having an excessively high rate, t
 | `Increment Multiplier` | Emission rate multiplier when increasing ANC emission |
 | `Decrement Multiplier` | Emission rate multiplier when decreasing ANC emission |
 
-## Genesis Values
+## Parameter Values
 
-| Parameter Name | Value |
-| :--- | :--- |
-| `Borrower Emission Cap` | 20381363.851572310123647620 |
-| `Borrower Emission Floor` | 6793787.950524103374549206 |
-| `Increment Multiplier` | 1.007266723782294841 |
-| `Decrement Multiplier` | 0.997102083349256160 |
+### Up-To-Date
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Borrower Emission Cap` | ~20 ANC / block | 20381363.851572310123647620 |
+| `Borrower Emission Floor` | ~6.8 ANC / block | 6793787.950524103374549206 |
+| `Increment Multiplier` | 50% increment / week | 1.007266723782294841 |
+| `Decrement Multiplier` | 15% decrement / week | 0.997102083349256160 |
+
+### At Protocol Genesis
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Borrower Emission Cap` | ~20 ANC / block | 20381363.851572310123647620 |
+| `Borrower Emission Floor` | ~6.8 ANC / block | 6793787.950524103374549206 |
+| `Increment Multiplier` | 50% increment / week | 1.007266723782294841 |
+| `Decrement Multiplier` | 15% decrement / week | 0.997102083349256160 |
 
 ## Poll Format
 

@@ -18,15 +18,27 @@ The money market is configured to be somewhat resilient to price oracle downtime
 | `Max Borrow Factor` | Maximum portion of money market's stablecoin liquidity available for borrows |
 | `Valid Price Timeframe` | Time window before the money market considers oracle price data invalid |
 
-## Genesis Values
+## Parameter Values
 
-| Parameter Name | Value |
-| :--- | :--- |
-| `Target Deposit Rate` | 20% APY |
-| `Threshold Deposit Rate` | 18% APY |
-| `Buffer Distribution Factor` | 10% |
-| `Max Borrow Factor` | 95% |
-| `Valid Price Timeframe` | 60 seconds |
+### Up-To-Date
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Target Deposit Rate` | 20.5% APY | 0.000000044021551233 \(per-block rate\) |
+| `Threshold Deposit Rate` | 19.5% APY | 0.000000041874158490 \(per-block rate\) |
+| `Buffer Distribution Factor` | 10% | 0.1 |
+| `Max Borrow Factor` | 95% | 0.95 |
+| `Valid Price Timeframe` | 60 seconds | 60 |
+
+### At Protocol Genesis
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Target Deposit Rate` | 20% APY | 0.000000030572045778 \(per-block rate\) |
+| `Threshold Deposit Rate` | 18% APY | 0.000000040762727704 \(per-block rate\) |
+| `Buffer Distribution Factor` | 10% | 0.1 |
+| `Max Borrow Factor` | 95% | 0.95 |
+| `Valid Price Timeframe` | 60 seconds | 60 |
 
 ## Poll Format
 

@@ -24,15 +24,27 @@ The `Max Premium Rate` is the maximum rate of premium that bidders can submit.
 | `Partial Liquidation Threshold` | Threshold total collateral value to trigger partial collateral liquidations |
 | `Valid Price Timeframe` | Time window before the Liquidation Contract considers oracle price data invalid |
 
-## Genesis Values
+## Parameter Values
 
-| Parameter Name | Value |
-| :--- | :--- |
-| `Safe Ratio` | 80% |
-| `Bid Fee` | 1% |
-| `Max Premium Rate` | 30% |
-| `Partial Liquidation Threshold` | 500 UST |
-| `Valid Price Timeframe` | 60 seconds |
+### Up-To-Date
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Safe Ratio` | 80% | 0.8 |
+| `Bid Fee` | 1% | 0.01 |
+| `Max Premium Rate` | 15% | 0.15 |
+| `Partial Liquidation Threshold` | 2,000 UST | 2000000000 \(uusd\) |
+| `Valid Price Timeframe` | 60 seconds | 60 |
+
+### At Protocol Genesis
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Safe Ratio` | 80% | 0.8 |
+| `Bid Fee` | 1% | 0.01 |
+| `Max Premium Rate` | 30% | 0.3 |
+| `Partial Liquidation Threshold` | 500 UST | 500000000 \(uusd\) |
+| `Valid Price Timeframe` | 60 seconds | 60 |
 
 ## Poll Format
 

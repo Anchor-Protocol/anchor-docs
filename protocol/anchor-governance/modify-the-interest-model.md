@@ -9,12 +9,21 @@ The `Base Borrow Rate` is the minimum base interest rate that is applied to borr
 | `Base Borrow Rate` | Minimum annualized borrow interest |
 | `Interest Multiplier` | Multiplier between market utilization ratio and annual borrow interest |
 
-## Genesis Values
+## Parameter Values
 
-| Parameter Name | Value |
-| :--- | :--- |
-| `Base Borrow Rate` | 2% APR |
-| `Interest Multiplier` | 0.42 |
+### Up-To-Date
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Base Borrow Rate` | 2% APR | 0.000000004076272770 \(per-block rate\) |
+| `Interest Multiplier` | 0.42 \(annualized value\) | 0.000000085601728176 |
+
+### At Protocol Genesis
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Base Borrow Rate` | 2% APR | 0.000000004076272770 \(per-block rate\) |
+| `Interest Multiplier` | 0.42 \(annualized value\) | 0.000000085601728176 |
 
 ## Poll Format
 

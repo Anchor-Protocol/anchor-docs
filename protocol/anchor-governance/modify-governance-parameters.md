@@ -26,17 +26,31 @@ All poll submissions require a minimum ANC deposit of `Proposal Deposit`, used t
 | `Timelock Period` | Number of blocks required after a poll pass before executing changes |
 | `Proposal Deposit` | Minimum ANC deposit required for submitting a new poll |
 
-## Genesis Values
+## Parameter Values
 
-| Parameter Name | Value |
-| :--- | :--- |
-| `Quorum` | 10% |
-| `Vote Threshold` | 50% |
-| `Voting Period` | 7 days |
-| `Snapshot Period` | 1 day |
-| `Expiration Period` | 1 day |
-| `Timelock Period` | 3 days |
-| `Proposal Deposit` | 1,000 ANC |
+### Up-To-Date
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Quorum` | 10% | 0.1 |
+| `Vote Threshold` | 50% | 0.5 |
+| `Voting Period` | 7 days | 94097 \(blocks\) |
+| `Snapshot Period` | 1 day | 13443 \(blocks\) |
+| `Expiration Period` | 1 day | 13443 \(blocks\) |
+| `Timelock Period` | 3 days | 40327 \(blocks\) |
+| `Proposal Deposit` | 1,000 ANC | 1000000000 \(uANC\) |
+
+### At Protocol Genesis
+
+| Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- |
+| `Quorum` | 10% | 0.1 |
+| `Vote Threshold` | 50% | 0.5 |
+| `Voting Period` | 7 days | 94097 \(blocks\) |
+| `Snapshot Period` | 1 day | 13443 \(blocks\) |
+| `Expiration Period` | 1 day | 13443 \(blocks\) |
+| `Timelock Period` | 3 days | 40327 \(blocks\) |
+| `Proposal Deposit` | 1,000 ANC | 1000000000 \(uANC\) |
 
 ## Poll Format
 

@@ -8,11 +8,20 @@ Through the **Modify Collateral Attributes** poll, the Anchor community is able 
 | :--- | :--- |
 | `Max LTV` | Maximum portion of collateral value that can be borrowed |
 
-## Genesis Values
+## Parameter Values
 
-| Collateral Ticker | Collateral Name | Parameter Name | Value |
-| :--- | :--- | :--- | :--- |
-| **bLUNA** | Bonded Luna | `Max LTV` | 50% |
+### Up-To-Date
+
+| Collateral Ticker | Collateral Name | Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- | :--- | :--- |
+| **bLUNA** | Bonded Luna | `Max LTV` | 60% | 0.6 |
+| **bETH** | Bonded ETH | `Max LTV` | 60% | 0.6 |
+
+### At Protocol Genesis
+
+| Collateral Ticker | Collateral Name | Parameter Name | Human-Readable Value | Raw Value \(In Contract State\) |
+| :--- | :--- | :--- | :--- | :--- |
+| **bLUNA** | Bonded Luna | `Max LTV` | 50% | 0.5 |
 
 ## Poll Format
 
