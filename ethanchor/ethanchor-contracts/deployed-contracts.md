@@ -1,5 +1,9 @@
 # Deployed Contracts
 
+{% hint style="danger" %}
+**Testnet EthAnchor is currently disabled due to a testnet network upgrade from `tequila-0004` to `bombay-10`.**
+{% endhint %}
+
 ## Contract Addresses
 
 Smart contracts that power EthAnchor are deployed to the [Ethereum blockchain](https://ethereum.org/en/), and can be found at the below networks:
