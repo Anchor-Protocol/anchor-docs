@@ -28,7 +28,7 @@ The **size** of a bid is the amount of Terra stablecoins that were put up upon b
 
 #### Premium Rate
 
-The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **30%**.
+The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **15%**.
 
 ### Bid Submission / Retraction
 
@@ -56,7 +56,7 @@ $$
 
 ### Partial Liquidation
 
-Loans with a total collateral value of above **500 UST** are partially liquidated, with only a portion of collateral liquidated instead of liquidating the full amount. Locked collaterals are fully liquidated for loans with a total collateral value below 500 UST.
+Loans with a total collateral value of above **2,000 UST** are partially liquidated, with only a portion of collateral liquidated instead of liquidating the full amount. Locked collaterals are fully liquidated for loans with a total collateral value below 2,000 UST.
 
 Partially liquidating loan positions are liquidated until the position reaches below the **safe risk ratio** of **0.8**; loan positions with a risk ratio of 0.8 or below are considered safe from undercollateralization. Collaterals are liquidated proportionally to their locked amounts and the position's liquidation factor:
 
