@@ -35,7 +35,7 @@ EthAnchor core contracts have a proxy contract layer on top. Below are addresses
 | Contract | Contract Address |
 | :--- | :--- |
 | Router | [0xcEF9E167d3f8806771e9bac1d4a0d568c39a9388](https://etherscan.io/address/0xcEF9E167d3f8806771e9bac1d4a0d568c39a9388) |
-| ExchangeRateFeeder | [0xd7c4f5903De8A256a1f535AC71CeCe5750d5197a](https://etherscan.io/address/0xd7c4f5903De8A256a1f535AC71CeCe5750d5197a) |
+| ExchangeRateFeeder | [0xB12B8247bD1749CC271c55Bb93f6BD2B485C94A7](https://etherscan.io/address/0xB12B8247bD1749CC271c55Bb93f6BD2B485C94A7) |
 | ConversionPool - DAI | [0x83dd0a8E6F3A51c4cCA6c3f95721f9926DD9e7E7](https://etherscan.io/address/0x83dd0a8E6F3A51c4cCA6c3f95721f9926DD9e7E7) |
 | ConversionPool - USDT | [0xEd8C41774E71f9BF0c2C223d3a3554F496656D16](https://etherscan.io/address/0xEd8C41774E71f9BF0c2C223d3a3554F496656D16) |
 | ConversionPool - USDC | [0x53fD7e8fEc0ac80cf93aA872026EadF50cB925f3](https://etherscan.io/address/0x53fD7e8fEc0ac80cf93aA872026EadF50cB925f3) |
