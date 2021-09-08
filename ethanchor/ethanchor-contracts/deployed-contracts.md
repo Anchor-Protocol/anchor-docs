@@ -1,9 +1,5 @@
 # Deployed Contracts
 
-{% hint style="danger" %}
-**Testnet EthAnchor is currently disabled due to a testnet network upgrade from `tequila-0004` to `bombay-10`.**
-{% endhint %}
-
 ## Contract Addresses
 
 Smart contracts that power EthAnchor are deployed to the [Ethereum blockchain](https://ethereum.org/en/), and can be found at the below networks:
@@ -18,7 +14,7 @@ Deposits and withdrawal requests made through supported Ethereum networks are ea
 | Network Classification | Chain ID |
 | :--- | :--- |
 | Mainnet | `columbus-4` |
-| Testnet | `tequila-0004` |
+| Testnet | `bombay-10` |
 
 {% tabs %}
 {% tab title="Mainnet" %}
@@ -29,7 +25,7 @@ Mainnet EthAnchor contracts use [Curve](https://curve.fi/) for swapping stableco
 #### Core Contracts
 
 {% hint style="info" %}
-EthAnchor core contracts have a proxy contract layer on top. Below are addresses of the proxy contracts \(excluding ExchangeRateFeeder\).
+EthAnchor core contracts have a proxy contract layer on top. Below are addresses of the proxy contracts \(excluding ExchangeRateFeeder\). Please note that the contract address of ExchangeRateFeeder may change as adjustments occur.
 {% endhint %}
 
 | Contract | Contract Address |
@@ -73,7 +69,7 @@ Testnet EthAnchor contracts use [Uniswap V2](https://app.uniswap.org/#/swap?use=
 #### Core Contracts
 
 {% hint style="info" %}
-EthAnchor core contracts have a proxy contract layer on top. Below are addresses of the proxy contracts \(excluding ExchangeRateFeeder\).
+EthAnchor core contracts have a proxy contract layer on top. Below are addresses of the proxy contracts \(excluding ExchangeRateFeeder\). Please note that the contract address of ExchangeRateFeeder may change as adjustments occur.
 {% endhint %}
 
 | Contract | Address |
