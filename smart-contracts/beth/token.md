@@ -51,19 +51,19 @@ pub struct MinterData {
 
 \* = not stored until value registered
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, JsonSchema)]
-pub struct TokenInitMsg {
+pub struct TokenInstantiateMsg {
     pub name: String,
     pub symbol: String,
     pub decimals: u8,
     pub initial_balances: Vec<Cw20CoinHuman>,
     pub mint: Option<MinterResponse>,
-    pub reward_contract: HumanAddr,
+    pub reward_contract: String,
 }
 ```
 {% endtab %}
@@ -91,12 +91,12 @@ pub struct TokenInitMsg {
 | `symbol` | String | Symbol of bETH token |
 | `decimals` | u8 | Number of decimals of bETH |
 | `total_supply` | Uint128 | Total minted supply of bETH |
-| `mint`\* | MinterData | Minter information of bETH |
-| `reward_contract` | HumanAddr | Contract address of bETH Reward |
+| `mint`\* | MinterResponse | Minter information of bETH |
+| `reward_contract` | String | Contract address of bETH Reward |
 
 \* = optional
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Transfer`
 
@@ -107,9 +107,9 @@ Transfers tokens to the specified address.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     Transfer {
-        recipient: HumanAddr, 
+        recipient: String, 
         amount: Uint128, 
     }
 }
@@ -130,7 +130,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `recipient` | HumanAddr | Recipient address of token transfer |
+| `recipient` | String | Recipient address of token transfer |
 | `amount` | Uint128 | Amount of tokens to transfer |
 
 ### `Burn`
@@ -142,7 +142,7 @@ Burns the specified amount of tokens.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     Burn {
         amount: Uint128, 
     }
@@ -174,11 +174,11 @@ Sends tokens to the specified contract address along with a message.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     Send {
-        contract: HumanAddr, 
+        contract: String, 
         amount: Uint128, 
-        msg: Option<Binary>, 
+        msg: Binary, 
     }
 }
 ```
@@ -199,11 +199,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `contract` | HumanAddr | Contract address to send tokens to |
+| `contract` | String | Contract address to send tokens to |
 | `amount` | Uint128 | Amount of tokens to send |
-| `msg`\* | Binary | Base64-encoded JSON of receive hook message |
-
-\* = optional
+| `msg` | Binary | Base64-encoded JSON of receive hook message |
 
 ### Mint
 
@@ -214,9 +212,9 @@ Mints tokens to the specified address. Can only be issued by the minter.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     Mint {
-        recipient: HumanAddr, 
+        recipient: String, 
         amount: Uint128, 
     }
 }
@@ -237,7 +235,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `recipient` | HumanAddr | Address to mint tokens to |
+| `recipient` | String | Address to mint tokens to |
 | `amount` | Uint128 | Amount of tokens to mint |
 
 ### `IncreaseAllowance`
@@ -249,9 +247,9 @@ Increases allowance for the specified spender address.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     IncreaseAllowance {
-        spender: HumanAddr, 
+        spender: String, 
         amount: Uint128, 
         expires: Option<Expiration>, 
     }
@@ -288,7 +286,7 @@ pub enum Expiration {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `spender` | HumanAddr | Address of spender |
+| `spender` | String | Address of spender |
 | `amount` | Uint128 | Amount of tokens to increase allowance for spender |
 | `expires`\* | Expiration | Information on when this allowance expires |
 
@@ -309,9 +307,9 @@ Decreases allowance for the specified spender address.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     DecreaseAllowance {
-        spender: HumanAddr, 
+        spender: String, 
         amount: Uint128, 
         expires: Option<Expiration>, 
     }
@@ -348,7 +346,7 @@ pub enum Expiration {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `spender` | HumanAddr | Address of spender |
+| `spender` | String | Address of spender |
 | `amount` | Uint128 | Amount of tokens to decrease allowance for spender |
 | `expires`\* | Expiration | Information on when this allowance expires |
 
@@ -367,10 +365,10 @@ Transfers tokens from the specified owner to the specified recipient. Requires u
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     TransferFrom {
-        owner: HumanAddr, 
-        recipient: HumanAddr, 
+        owner: String, 
+        recipient: String, 
         amount: Uint128, 
     }
 }
@@ -392,8 +390,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address to transfer tokens from |
-| `recipient` | HumanAddr | Address to transfer tokens to |
+| `owner` | String | Address to transfer tokens from |
+| `recipient` | String | Address to transfer tokens to |
 | `amount` | Uint128 | Amount of tokens to transfer |
 
 ### `SendFrom`
@@ -405,12 +403,12 @@ Sends tokens from the specified owner to the specified contract, along with a me
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     SendFrom {
-        owner: HumanAddr, 
-        contract: HumanAddr, 
+        owner: String, 
+        contract: String, 
         amount: Uint128, 
-        msg: Option<Binary>, 
+        msg: Binary, 
     }
 }
 ```
@@ -432,12 +430,10 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address to send tokens from |
-| `contract` | HumanAddr | Address to send tokens to |
+| `owner` | String | Address to send tokens from |
+| `contract` | String | Address to send tokens to |
 | `amount` | Uint128 | Amount of tokens to send |
-| `msg`\* | Binary | Base64-encoded JSON of receive hook msg |
-
-\* = optional
+| `msg` | Binary | Base64-encoded JSON of receive hook msg |
 
 ### `BurnFrom`
 
@@ -448,9 +444,9 @@ Burns tokens from the specified owner. Requires unexpired allowance to be set be
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum Cw20ExecuteMsg {
     BurnFrom {
-        owner: HumanAddr, 
+        owner: String, 
         amount: Uint128, 
     }
 }
@@ -471,7 +467,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address to burn tokens from |
+| `owner` | String | Address to burn tokens from |
 | `amount` | Uint128 | Amount of tokens to burn |
 
 ## QueryMsg
@@ -487,16 +483,16 @@ Gets the balance for the specified address.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
+pub enum Cw20QueryMsg {
     Balance {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of holder to get balance |
+| `address` | String | Address of holder to get balance |
 
 #### Response
 
@@ -525,7 +521,7 @@ pub struct BalanceResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of holder to get balance |
+| `address` | String | Address of holder to get balance |
 
 #### Response
 
@@ -552,7 +548,7 @@ Gets information for the token.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
+pub enum Cw20QueryMsg {
     TokenInfo {}
 }
 ```
@@ -625,7 +621,7 @@ Gets information for the token minter.
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 #[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
+pub enum Cw20QueryMsg {
     Minter {}
 }
 ```
@@ -690,18 +686,18 @@ Gets allowance information for the specified owner and spender.
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 #[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
+pub enum Cw20QueryMsg {
     Allowance {
-        owner: HumanAddr, 
-        spender: HumanAddr, 
+        owner: String, 
+        spender: String, 
     }
 }
 ```
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of owner |
-| `spender` | HumanAddr | Address of spender |
+| `owner` | String | Address of owner |
+| `spender` | String | Address of spender |
 
 #### Response
 
@@ -747,8 +743,8 @@ pub enum Expiration {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of owner |
-| `spender` | HumanAddr | Address of spender |
+| `owner` | String | Address of owner |
+| `spender` | String | Address of spender |
 
 #### Response
 
@@ -789,10 +785,10 @@ Gets all allowance information for the specified owner.
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 #[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
+pub enum Cw20QueryMsg {
     AllAllowances {
-        owner: HumanAddr, 
-        start_after: Option<HumanAddr>, 
+        owner: String, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -800,8 +796,8 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of owner |
-| `start_after`\* | HumanAddr | Address of spender to start query |
+| `owner` | String | Address of owner |
+| `start_after`\* | String | Address of spender to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -816,7 +812,7 @@ pub struct AllAllowancesResponse {
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 pub struct AllowanceInfo {
-    pub spender: HumanAddr,
+    pub spender: String,
     pub allowance: Uint128,
     pub expires: Expiration,
 }
@@ -836,7 +832,7 @@ pub enum Expiration {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `spender` | HumanAddr | Address of spender |
+| `spender` | String | Address of spender |
 | `allowance` | String | Amount of owner's tokens spender is allowed to spend |
 | `expires` | Expiration | Information on when this allowance expires |
 
@@ -862,8 +858,8 @@ pub enum Expiration {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of owner |
-| `start_from`\* | HumanAddr | Address of spender to start query |
+| `owner` | String | Address of owner |
+| `start_from`\* | String | Address of spender to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -905,7 +901,7 @@ pub enum Expiration {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `spender` | HumanAddr | Address of spender |
+| `spender` | String | Address of spender |
 | `allowance` | String | Amount of owner's tokens spender is allowed to spend |
 | `expires` | Expiration | Information on when this allowance expires |
 
@@ -928,9 +924,9 @@ Gets account information for all holders.
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 #[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
+pub enum Cw20QueryMsg {
     AllAccounts {
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -938,7 +934,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `start_after`\* | HumanAddr | Address of holder to start query |
+| `start_after`\* | String | Address of holder to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -948,13 +944,49 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug, Default)]
 pub struct AllAccountsResponse {
-    pub accounts: Vec<HumanAddr>,
+    pub accounts: Vec<String>,
 }
 ```
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `accounts` | Vec&lt;HumanAddr&gt; | List of holder addresses |
+| `accounts` | Vec&lt;String&gt; | List of holder addresses |
+{% endtab %}
+
+{% tab title="JSON" %}
+#### Request
+
+```rust
+{
+  "all_accounts": {
+    "start_after": "terra1...", 
+    "limit": 8 
+  }
+}
+```
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `start_after`\* | String | Address of holder to start query |
+| `limit`\* | u32 | Maximum number of query entries |
+
+\* = optional
+
+#### Response
+
+```rust
+{
+  "accounts": [
+    "terra1...", 
+    "terra1...", 
+    "terra1..." 
+  ]
+}
+```
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `accounts` | Vec&lt;String&gt; | List of holder addresses |
 {% endtab %}
 {% endtabs %}
 

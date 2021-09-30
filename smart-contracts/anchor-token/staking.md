@@ -8,16 +8,17 @@ The Staking Contract contains the logic for LP Token staking and reward distribu
 | :--- | :--- | :--- |
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
 | `staking_token` | CanonicalAddr | Contract address of ANC-UST Terraswap pair LP token |
+| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, distribution amount\) |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub anchor_token: HumanAddr,
-    pub staking_token: HumanAddr,
+pub struct InstantiateMsg {
+    pub anchor_token: String,
+    pub staking_token: String,
     pub distribution_schedule: Vec<(u64, u64, Uint128)>, 
 }
 ```
@@ -39,11 +40,11 @@ pub struct InitMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
-| `staking_token` | HumanAddr | Contract address of ANC-UST Terraswap pair LP token |
-| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, amount\) |
+| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
+| `staking_token` | String | Contract address of ANC-UST Terraswap pair LP token |
+| `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, distribution amount\) |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Receive`
 
@@ -54,11 +55,11 @@ Can be called during a CW20 token transfer when the Staking contract is the reci
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Receive {
+        sender: String, 
         amount: Uint128, 
-        sender: HumanAddr, 
-        msg: Option<Binary>, 
+        msg: Binary, 
     }
 }
 ```
@@ -79,11 +80,9 @@ pub enum HandleMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| `sender` | String | Sender of the token transfer |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of the token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](staking.md#receive-hooks) |
-
-\* = optional
+| `msg` | Binary | Base64-encoded string of JSON of [Receive Hook](staking.md#receive-hooks) |
 
 ### `Unbond`
 
@@ -94,7 +93,7 @@ Unbonds specified amount of ANC-UST Terraswap LP tokens and transfers them to th
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Unbond {
         amount: Uint128, 
     }
@@ -126,7 +125,7 @@ Withdraws user's accrued LP token staking rewards.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Withdraw {}
 }
 ```
@@ -144,6 +143,38 @@ pub enum HandleMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 |  |  |  |
+
+### `MigrateStaking`
+
+Migrates ANC LP incentives to a new LP token staking contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum ExecuteMsg {
+    MigrateStaking {
+        new_staking_contract: String, 
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "migrate_staking": {
+    "new_staking_contract": "terra1...", 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `new_staking_contract` | String | Contract address of new LP staking contract |
 
 ## Receive Hooks
 
@@ -218,8 +249,8 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub anchor_token: HumanAddr,
-    pub staking_token: HumanAddr,
+    pub anchor_token: String,
+    pub staking_token: String,
     pub distribution_schedule: Vec<(u64, u64, Uin128)>, 
 }
 ```
@@ -241,8 +272,8 @@ pub struct ConfigResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
-| `staking_token` | HumanAddr | Contract address of ANC-UST Terraswap pair LP token |
+| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
+| `staking_token` | String | Contract address of ANC-UST Terraswap pair LP token |
 | `distribution_schedule` | Vec&lt;\(u64, u64, Uint128\)&gt; | ANC distribution schedule for LP token stakers \(start block **\[block\]**, end block **\[block\]**, amount\) |
 
 ### `State`
@@ -321,7 +352,7 @@ Gets reward information for the specified LP token staker.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     StakerInfo {
-        staker: HumanAddr, 
+        staker: String, 
         block_height: Option<u64>, 
     }
 }
@@ -342,7 +373,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `staker` | HumanAddr | Address of LP token staker |
+| `staker` | String | Address of LP token staker |
 | `block_height`\* | u64 | Current block number **\[block\]** |
 
 \* = optional
@@ -354,7 +385,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct StakerInfoResponse {
-    pub staker: HumanAddr,
+    pub staker: String,
     pub reward_index: Decimal,
     pub bond_amount: Uint128,
     pub pending_reward: Uint128,
@@ -376,7 +407,7 @@ pub struct StakerInfoResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `staker` | HumanAddr | Address of LP token staker |
+| `staker` | String | Address of LP token staker |
 | `reward_index` | Decimal | Reward index of staker |
 | `bond_amount` | Uint128 | Amount of LP tokens bonded by staker |
 | `pending_rewards` | Uint128 | Amount of pending rewards of staker |

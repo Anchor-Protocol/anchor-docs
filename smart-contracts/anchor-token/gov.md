@@ -20,13 +20,13 @@ The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers 
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
 | `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
+pub struct InstantiateMsg {
     pub quorum: Decimal,
     pub threshold: Decimal,
     pub voting_period: u64,
@@ -63,7 +63,7 @@ pub struct InitMsg {
 | `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
 | `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Receive`
 
@@ -74,11 +74,11 @@ Can be called during a CW20 token transfer when the Gov contract is the recipien
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Receive {
+        sender: String,
         amount: Uint128,
-        sender: HumanAddr,
-        msg: Option<Binary>,
+        msg: Binary,
     }
 }
 ```
@@ -99,11 +99,41 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `sender` | String | Sender of token transfer |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of token transfer |
-| `msg`\* | Binary | Base64-encoded JSON of [Receive Hook](gov.md#receive-hooks) |
+| `msg` | Binary | Base64-encoded JSON of [Receive Hook](gov.md#receive-hooks) |
 
-\* = optional
+### `[Internal] ExecutePollMsgs`
+
+Executes messages in a passed poll. Can only by issued by `Gov`.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum ExecuteMsg {
+    ExecutePollMsgs {
+        poll_id: u64,     
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "execute_poll_msgs": {
+    "poll_id": 8 
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `poll_id` | u64 | Poll ID |
 
 ### `RegisterContracts`
 
@@ -114,9 +144,9 @@ Registers the contract addresses \(i.e. Anchor Token, ANC\) to Gov.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RegisterContracts {
-        anchor_token: HumanAddr, 
+        anchor_token: String, 
     }
 }
 ```
@@ -135,7 +165,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
+| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
 
 ### `UpdateConfig`
 
@@ -146,9 +176,9 @@ Updates the configuration of the Gov contract.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>, 
+        owner: Option<String>, 
         quorum: Option<Decimal>, 
         threshold: Option<Decimal>, 
         voting_period: Option<u64>, 
@@ -181,7 +211,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | New address of contract owner |
+| `owner`\* | String | New address of contract owner |
 | `quorum`\* | Decimal | New percentage of participation \(of total staked ANC\) required for a poll to pass |
 | `threshold`\* | Decimal | New percentage of `yes` votes required for a poll to pass |
 | `voting_period`\* | u64 | New number of blocks during which votes for a poll can be cast after it has finished its deposit **\[blocks\]** |
@@ -201,7 +231,7 @@ Submits a user's vote for an active poll. Once a user has voted, they cannot cha
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     CastVote {
         poll_id: u64, 
         vote: VoteOption, 
@@ -246,7 +276,7 @@ Removes specified amount of staked ANC tokens from a staking position and return
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     WithdrawVotingTokens {
         amount: Option<Uint128>, 
     }
@@ -280,7 +310,7 @@ Can be issued by anyone to end the voting for an active poll. Triggers tally the
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     EndPoll {
         poll_id: u64, 
     }
@@ -312,7 +342,7 @@ Can be issued by anyone to implement into action the contents of a passed poll. 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ExecutePoll {
         poll_id: u64, 
     }
@@ -335,38 +365,6 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `poll_id` | u64 | Poll ID |
 
-### `ExpirePoll`
-
-Can be issued by anyone to expire a poll. Requires the poll to be neither be a text proposal nor passed. The current block height must be more than the expiration period from the poll's end height.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
-    ExpirePoll {
-        poll_id: u64, 
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "expire_poll": {
-    "poll_id": 8 
-  }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
-
 ### `SnapshotPoll`
 
 Snapshots the total amount of staked ANC and stores the number to the specified poll. This staked ANC amount is used to determine the degree of participation for this poll, calculated by dividing the total amount of ANC voted to the poll with the total staked ANC supply at the time of [EndPoll](gov.md#endpoll). Can only be issued within a window of `snapshot_period` blocks before the poll's `end_height`.
@@ -376,7 +374,7 @@ Snapshots the total amount of staked ANC and stores the number to the specified 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     SnapshotPoll {
         poll_id: u64, 
     }
@@ -449,15 +447,15 @@ pub enum Cw20HookMsg {
         title: String, 
         description: String, 
         link: Option<String>, 
-        execute_msgs: Option<Vec<ExecuteMsg>>, 
+        execute_msgs: Option<Vec<PollExecuteMsg>>, 
     }
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub struct ExecuteMsg {
+pub struct PollExecuteMsg {
     pub order: u64, 
-    pub contract: HumanAddr,
+    pub contract: String,
     pub msg: Binary,
 }
 ```
@@ -493,12 +491,12 @@ pub struct ExecuteMsg {
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
-| `execute_msgs`\* | Vec&lt;ExecuteMsg&gt; | List of governance messages to be issued by Gov contract upon poll execution |
+| `execute_msgs`\* | Vec&lt;PollExecuteMsg&gt; | List of governance messages to be issued by Gov contract upon poll execution |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `order` | u64 | Order sequence of message |
-| `contract` | HumanAddr | Contract address of governance message recipient |
+| `contract` | String | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON of governance message |
 
 \* = optional
@@ -540,8 +538,8 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr,
-    pub anchor_token: HumanAddr,
+    pub owner: String,
+    pub anchor_token: String,
     pub quorum: Decimal,
     pub threshold: Decimal,
     pub voting_period: u64,
@@ -572,8 +570,8 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | CanonicalAddr | Address of contract owner |
-| `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
+| `owner` | String | Address of contract owner |
+| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
 | `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
 | `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
 | `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
@@ -652,7 +650,7 @@ Gets information for the specified ANC staker.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Staker {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
@@ -671,7 +669,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of staker |
+| `address` | String | Address of staker |
 
 ### `StakerResponse`
 
@@ -782,14 +780,14 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema)]
 pub struct PollResponse {
     pub id: u64,
-    pub creator: HumanAddr,
+    pub creator: String,
     pub status: PollStatus,
     pub end_height: u64,
     pub title: String,
     pub description: String,
     pub link: Option<String>,
     pub deposit_amount: Uint128,
-    pub execute_data: Option<ExecuteMsg>,
+    pub execute_data: Option<PollExecuteMsg>,
     pub yes_votes: Uint128, // balance
     pub no_votes: Uint128,  // balance
     pub staked_amount: Option<Uint128>, 
@@ -803,14 +801,15 @@ pub enum PollStatus {
     Passed,
     Rejected,
     Executed,
-    Expired,
+    Expired, // Deprecated 
+    Failed, 
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct ExecuteMsg {
     pub order: u64, 
-    pub contract: HumanAddr,
+    pub contract: String,
     pub msg: Binary,
 }
 ```
@@ -851,14 +850,14 @@ pub struct ExecuteMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `id` | u64 | Poll ID |
-| `creator` | HumanAddr | Poll creator |
+| `creator` | String | Poll creator |
 | `status` | PollStatus | Current poll status |
 | `end_height` | u64 | Block number when voting for this poll closes **\[block\]** |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
 | `deposit_amount` | Uint128 | ANC deposit used to submit poll |
-| `execute_data`\* | `Vec<ExecuteMsg>` | List of governance messages to be issued upon poll execution |
+| `execute_data`\* | `Vec<PollExecuteMsg>` | List of governance messages to be issued upon poll execution |
 | `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
 | `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
 | `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
@@ -870,12 +869,13 @@ pub struct ExecuteMsg {
 | `Passed` | This poll has been passed by governance |
 | `Rejected` | This poll has been rejected by governance |
 | `Executed` | This poll has been passed by governance and executed |
-| `Expired` | This poll has been expired after rejection / execution |
+| `Expired` | This poll has been expired after rejection / execution **\[Deprecated\]** |
+| `Failed` | This poll has been passed, but failed to execute |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `order` | u64 | Order sequence of message |
-| `contract` | HumanAddr | Contract address of governance message recipient |
+| `contract` | String | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON governance message |
 
 \* = optional
@@ -905,7 +905,8 @@ pub enum PollStatus {
     Passed,
     Rejected,
     Executed,
-    Expired,
+    Expired, // Deprecated 
+    Failed, 
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -944,7 +945,8 @@ pub enum OrderBy {
 | `Passed` | Poll has been passed by governance |
 | `Rejected` | Poll has been rejected by governance |
 | `Executed` | Poll has been passed and executed by governance |
-| `Expired` | Poll has expired |
+| `Expired` | Poll has been expired after rejection / execution **\[Deprecated\]** |
+| `Failed` | Poll has been passed, but failed to execute |
 
 | Key | Description |
 | :--- | :--- |
@@ -966,14 +968,14 @@ pub struct PollsResponse {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema)]
 pub struct PollResponse {
     pub id: u64,
-    pub creator: HumanAddr,
+    pub creator: String,
     pub status: PollStatus,
     pub end_height: u64,
     pub title: String,
     pub description: String,
     pub link: Option<String>,
     pub deposit_amount: Uint128,
-    pub execute_data: Option<ExecuteMsg>,
+    pub execute_data: Option<PollExecuteMsg>,
     pub yes_votes: Uint128, // balance
     pub no_votes: Uint128,  // balance
     pub staked_amount: Option<Uint128>, 
@@ -987,14 +989,15 @@ pub enum PollStatus {
     Passed,
     Rejected,
     Executed,
-    Expired,
+    Expired, // Deprecated 
+    Failed, 
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub struct ExecuteMsg {
+pub struct PollExecuteMsg {
     pub order: u32, 
-    pub contract: HumanAddr,
+    pub contract: String,
     pub msg: Binary,
 }
 ```
@@ -1067,14 +1070,14 @@ pub struct ExecuteMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `id` | u64 | Poll ID |
-| `creator` | HumanAddr | Poll creator |
+| `creator` | String | Poll creator |
 | `status` | PollStatus | Current poll status |
 | `end_height` | u64 | Block number when voting for this poll closes **\[block\]** |
 | `title` | String | Poll title |
 | `description` | String | Poll description |
 | `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
 | `deposit_amount` | Uint128 | ANC deposit used to submit poll |
-| `execute_data`\* | Vec&lt;ExecuteMsg&gt; | List of governance messages to be issued upon poll execution |
+| `execute_data`\* | Vec&lt;PollExecuteMsg&gt; | List of governance messages to be issued upon poll execution |
 | `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
 | `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
 | `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
@@ -1086,12 +1089,13 @@ pub struct ExecuteMsg {
 | `Passed` | This poll has been passed by governance |
 | `Rejected` | This poll has been rejected by governance |
 | `Executed` | This poll has been passed by governance and executed |
-| `Expired` | This poll has been expired after rejection / execution |
+| `Expired` | This poll has been expired after rejection / execution **\[Deprecated\]** |
+| `Failed` | This poll has been passed, but failed to execute |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `order` | u64 | Order sequence of message |
-| `contract` | HumanAddr | Contract address of governance message recipient |
+| `contract` | String | Contract address of governance message recipient |
 | `msg` | Binary | Base64-encoded JSON governance message |
 
 \* = optional
@@ -1108,7 +1112,7 @@ Gets voter information of the poll with the specified ID.
 pub enum QueryMsg {
     Voters {
         poll_id: u64, 
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
         order_by: Option<OrderBy>, 
     }
@@ -1133,7 +1137,7 @@ pub enum QueryMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `poll_id` | u64 | ID of poll to query voters |
-| `start_after`\* | HumanAddr | Address of voter to start query |
+| `start_after`\* | String | Address of voter to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 | `order_by`\* | OrderBy | Order to make query |
 
@@ -1156,7 +1160,7 @@ pub struct VotersResponse {
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema)]
 pub struct VotersResponseItem {
-    pub voter: HumanAddr,
+    pub voter: String,
     pub vote: VoteOption,
     pub balance: Uint128,
 }
@@ -1196,7 +1200,7 @@ pub enum VoteOption {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `voter` | HumanAddr | Address of voter |
+| `voter` | String | Address of voter |
 | `vote` | VoteOption | Vote type made by voter |
 | `balance` | Uint128 | Amount of staked ANC locked to vote this poll |
 

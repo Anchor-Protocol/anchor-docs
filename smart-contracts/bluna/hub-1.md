@@ -24,7 +24,7 @@ The Hub contract acts as the central hub for all minted bLuna. Native Luna token
 | `er_threshold` | Decimal | Minimum bLuna exchange rate before peg recovery fee is applied |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards \(Terra USD\) |
 
-## InitMsg
+## InstantiateMsg
 
 Instantiates the bLuna Hub contract. Adds specified validator to whitelist and bonds the creator's initial Luna deposit. The creator's initial Luna deposit ensures the bLuna supply to always be a high enough value to prevent rounding errors in the bLuna exchange rate calculation. 
 
@@ -32,14 +32,14 @@ Instantiates the bLuna Hub contract. Adds specified validator to whitelist and b
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
+pub struct InstantiateMsg {
     pub epoch_period: u64, 
     pub underlying_coin_denom: String, 
     pub unbonding_period: u64, 
     pub peg_recovery_fee: Decimal, 
     pub er_threshold: Decimal, 
     pub reward_denom: String, 
-    pub validator: HumanAddr, 
+    pub validator: String, 
 }
 ```
 {% endtab %}
@@ -67,9 +67,9 @@ pub struct InitMsg {
 | `peg_recovery_fee` | Decimal | Fee applied to bLuna generation and redemption |
 | `er_threshold` | Decimal | Minimum bLuna exchange rate before the peg recovery fee is applied |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
-| `validator` | HumanAddr | Address of validator for initial whitelisting |
+| `validator` | String | Address of validator for initial whitelisting |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Receive`
 
@@ -80,11 +80,11 @@ Can be called during a Cw20 token transfer when the Hub contract is the recipien
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Receive {
+        sender: String, 
         amount: Uint128, 
-        sender: HumanAddr, 
-        msg: Option<Binary>, 
+        msg: Binary, 
     }
 }
 ```
@@ -105,24 +105,22 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `sender` | String | Sender of token transfer |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](hub-1.md#receive-hooks) |
-
-\* = optional
+| `msg` | Binary | Base64-encoded string of JSON of [Receive Hook](hub-1.md#receive-hooks) |
 
 ### `Bond`
 
-Bonds luna to the specified validator and mints bLuna tokens to the message sender. Requires native Luna tokens to be sent to `Hub`.
+Bonds Luna to the specified validator and mints bLuna tokens to the message sender. Requires native Luna tokens to be sent to `Hub`.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Bond {
-        validator: HumanAddr, 
+        validator: String, 
     }
 }
 ```
@@ -141,7 +139,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `validator` | HumanAddr | Address of validator to bond Luna |
+| `validator` | String | Address of validator to bond Luna |
 
 ### `UpdateGlobalIndex`
 
@@ -154,7 +152,7 @@ Tokens airdropped to Luna stakers \(i.e. bLuna Hub contract\) can be claimed by 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateGlobalIndex {
         airdrop_hooks: Option<Vec<Binary>>, 
     }
@@ -191,7 +189,7 @@ Withdraws unbonded Luna. Requires an unbonding entry to have been made prior to 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg { 
+pub enum ExecuteMsg { 
     WithdrawUnbonded {}
 }
 ```
@@ -219,9 +217,9 @@ Registers a new validator to the validator whitelist. Can only be issued by the 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RegisterValidator {
-        validator: HumanAddr, 
+        validator: String, 
     }
 }
 ```
@@ -240,7 +238,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `validator` | HumanAddr | Address of validator to add to whitelist |
+| `validator` | String | Address of validator to add to whitelist |
 
 ### `DeregisterValidator`
 
@@ -251,9 +249,9 @@ Deregisters a validator from the validator whitelist and redelegates all delegat
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     DeregisterValidator {
-        validator: HumanAddr, 
+        validator: String, 
     }
 }
 ```
@@ -272,7 +270,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `validator` | HumanAddr | Address of validator to remove from whitelist |
+| `validator` | String | Address of validator to remove from whitelist |
 
 ### `CheckSlashing`
 
@@ -283,7 +281,7 @@ Checks whether a slashing event occurred and updates state accordingly.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     CheckSlashing {}
 }
 ```
@@ -311,7 +309,7 @@ Updates parameter values of the Hub contract. Can only be issued by the creator.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateParams {
         epoch_period: Option<u64>, 
         unbonding_period: Option<u64>, 
@@ -354,12 +352,12 @@ Updates the `Hub` contract configuration. Can only be issued by the creator.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>, 
-        reward_contract: Option<HumanAddr>, 
-        token_contract: Option<HumanAddr>, 
-        airdrop_registry_contract: Option<HumanAddr>, 
+        owner: Option<String>, 
+        reward_contract: Option<String>, 
+        token_contract: Option<String>, 
+        airdrop_registry_contract: Option<String>, 
     }
 }
 ```
@@ -381,10 +379,10 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new creator |
-| `reward_contract`\* | HumanAddr | New contract address of bLuna Reward |
-| `token_contract`\* | HumanAddr | New contract address of bLuna Cw20 token |
-| `airdrop_registry_contract`\* | HumanAddr | New contract address of bLuna Airdrop Registry |
+| `owner`\* | String | Address of new creator |
+| `reward_contract`\* | String | New contract address of bLuna Reward |
+| `token_contract`\* | String | New contract address of bLuna Cw20 token |
+| `airdrop_registry_contract`\* | String | New contract address of bLuna Airdrop Registry |
 
 \* = optional
 
@@ -397,11 +395,11 @@ Claims tokens airdropped to `Hub`'s Luna delegations and swaps them to UST throu
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ClaimAirdrop {
-        airdrop_token_contract: HumanAddr, 
-        airdrop_contract: HumanAddr, 
-        airdrop_swap_contract: HumanAddr, 
+        airdrop_token_contract: String, 
+        airdrop_contract: String, 
+        airdrop_swap_contract: String, 
         claim_msg: Binary, 
         swap_msg: Binary, 
     }    
@@ -427,9 +425,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
-| `airdrop_contract` | HumanAddr | Contract address of airdrop contract |
-| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
+| `airdrop_token_contract` | String | Contract address of airdrop token's Cw20 token contract |
+| `airdrop_contract` | String | Contract address of airdrop contract |
+| `airdrop_swap_contract` | String | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
 | `claim_msg` | Binary | Base64-encoded string of JSON of airdrop contract's claim message \(claims airdrop\) |
 | `swap_msg` | Binary | Base64-encoded string of JSON of swap contract's swap message \(swaps airdrop token to Terra USD\) |
 
@@ -442,10 +440,10 @@ Swaps claimed airdrop tokens to the reward denomination. Can only be issued by i
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     SwapHook {
-        airdrop_token_contract: HumanAddr, 
-        airdrop_swap_contract: HumanAddr, 
+        airdrop_token_contract: String, 
+        airdrop_swap_contract: String, 
         swap_msg: Binary, 
     }
 }
@@ -467,8 +465,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
-| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
+| `airdrop_token_contract` | String | Contract address of airdrop token's Cw20 token contract |
+| `airdrop_swap_contract` | String | Contract address of swap contract to convert airdrop token to Terra USD \(e.g. Terraswap Pair\) |
 | `swap_msg` | Binary | Base64-encoded string of JSON of swap contract's swap message \(swaps airdrop token to Terra USD\) |
 
 ## Receive Hooks
@@ -538,10 +536,10 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr,
-    pub reward_contract: Option<HumanAddr>,
-    pub token_contract: Option<HumanAddr>,
-    pub airdrop_registry_contract: Option<HumanAddr>, 
+    pub owner: String,
+    pub reward_contract: Option<String>,
+    pub token_contract: Option<String>,
+    pub airdrop_registry_contract: Option<String>, 
 }
 ```
 {% endtab %}
@@ -560,10 +558,10 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract creator |
-| `reward_contract`\* | HumanAddr | Contract address of [bLuna Reward](reward.md) |
-| `token_contract`\* | HumanAddr | Contract address of bLuna's Cw20 token contract |
-| `airdrop_registry_contract`\* | HumanAddr | Contract address of [bLuna Airdrop Registry](airdrop-registry.md) |
+| `owner` | String | Address of contract creator |
+| `reward_contract`\* | String | Contract address of [bLuna Reward](reward.md) |
+| `token_contract`\* | String | Contract address of bLuna's Cw20 token contract |
+| `airdrop_registry_contract`\* | String | Contract address of [bLuna Airdrop Registry](airdrop-registry.md) |
 
 \* = Not returned if address not registered yet
 
@@ -671,7 +669,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct WhitelistedvalidatorsResponse { 
-    pub validators: Vec<HumanAddr>, 
+    pub validators: Vec<String>, 
 }
 ```
 {% endtab %}
@@ -691,7 +689,7 @@ pub struct WhitelistedvalidatorsResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `validators` | Vec&lt;HumanAddr&gt; | List of whitelisted validator addresses |
+| `validators` | Vec&lt;String&gt; | List of whitelisted validator addresses |
 
 ### `CurrentBatch`
 
@@ -760,8 +758,7 @@ Gets the amount of undelegated Luna that will be available for withdrawal \(unbo
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     WithdrawableUnbonded {
-        address: HumanAddr, 
-        block_time: u64, 
+        address: String, 
     }
 }
 ```
@@ -771,8 +768,7 @@ pub enum QueryMsg {
 ```javascript
 {
   "withdrawable_unbonded": {
-    "address": "terra1...", 
-    "block_time": 123456 
+    "address": "terra1..." 
   }
 }
 ```
@@ -781,8 +777,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user that previously unbonded Luna via redeeming bLuna |
-| `block_time` | u64 | Unix block timestamp to use in calculation |
+| `address` | String | Address of user that previously unbonded Luna via redeeming bLuna |
 
 ### `WithdrawableUnbondedResponse`
 
@@ -888,7 +883,7 @@ Gets the list of Luna unbonding amounts being unbonded for the specified user.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     UnbondRequests {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
@@ -907,7 +902,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user that previously unbonded Luna by redeeming bLuna |
+| `address` | String | Address of user that previously unbonded Luna by redeeming bLuna |
 
 ### `UnbondRequestsResponse`
 
@@ -916,7 +911,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct UnbondRequestsResponse {
-    pub address: HumanAddr, 
+    pub address: String, 
     pub requests: UnbondRequest, 
 }
 
@@ -940,7 +935,7 @@ pub type UnbondRequest = Vec<(u64, Uint128)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user that requested to unbond bLuna |
+| `address` | String | Address of user that requested to unbond bLuna |
 | `requests` | UnbondRequest | List of unbonding requests made by user |
 
 | Key | Type | Description |

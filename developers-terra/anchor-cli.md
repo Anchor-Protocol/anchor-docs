@@ -42,36 +42,36 @@ $ anchorcli
 
 ## Configuration
 
-By default, `anchorcli` works with the default configuration which is set to be for contracts on `tequila-0004`. This setting provides the address of contracts and specifies the setting for LCD provider, gas prices for fee estimation. `anchorcli` will create two configuration files in your home directory: `$HOME/anchorcliTestnet.json` and `$HOME/anchorcliMainnet.json`.
+By default, `anchorcli` works with the default configuration which is set to be for contracts on `bombay-12`. This setting provides the address of contracts and specifies the setting for LCD provider, gas prices for fee estimation. `anchorcli` will create two configuration files in your home directory: `$HOME/anchorcliTestnet.json` and `$HOME/anchorcliMainnet.json`.
 
 ### Specifying LCD settings
 
 Each network configuration should define how to connect to the Terra blockchain via LCD parameters.
 
-* `columbus-4`:
+* `columbus-5`:
 
 ```javascript
 "lcd": {
-    "chainID": "columbus-4",
+    "chainID": "columbus-5",
     "URL": "https://lcd.terra.dev",
     "gasPrices": {
-      "uluna": 0.15,
-      "usdr": 0.1018,
-      "uusd": 0.15,
-      "ukrw": 178.05,
-      "umnt": 431.6259
+      "uluna": 0.15, // example value 
+      "usdr": 0.1018, // example value 
+      "uusd": 0.15, // example value  
+      "ukrw": 178.05, // example value 
+      "umnt": 431.6259 // example value
     },
     "gasAdjustment": 1.2
   },
 ```
 
-* `tequila-0004`:
+* `bombay-12`:
 
 ```javascript
 {
   "lcd": {
-    "chainID": "tequila-0004",
-    "URL": "https://tequila-lcd.terra.dev",
+    "chainID": "bombay-12",
+    "URL": "https://bombay-lcd.terra.dev",
     "gasPrices": {
       "uluna": 0.15,
       "usdr": 0.1018,
@@ -88,7 +88,7 @@ Each network configuration should define how to connect to the Terra blockchain 
 
 Each address configuration should point to the correct Anchor core contract addresses.
 
-* `columbus-4`:
+* `columbus-5`:
 
 ```javascript
 "contracts": {
@@ -120,7 +120,7 @@ Each address configuration should point to the correct Anchor core contract addr
   }
 ```
 
-* `tequila-0004`:
+* `bombay-12`:
 
 ```javascript
 {
@@ -156,18 +156,18 @@ Each address configuration should point to the correct Anchor core contract addr
 
 #### Specifying the Network \[IMPORTANT\]
 
-By default, `anchorcli` will use the network setting for `columbus-4` configured in `$HOME/anchorcliMainnet.json`. You can direct `anchorcli` to use a different network configuration by changing the value of the `ANCHORCLI_NETWORK` environment variable.
+By default, `anchorcli` will use the network setting for `columbus-5` configured in `$HOME/anchorcliMainnet.json`. You can direct `anchorcli` to use a different network configuration by changing the value of the `ANCHORCLI_NETWORK` environment variable.
 
 **Example**
 
 ```text
-ANCHORCLI_NETWORK=tequila-0004 anchorcli x basset-hub bond ...
+ANCHORCLI_NETWORK=bombay-12 anchorcli x basset-hub bond ...
 ```
 
 OR
 
 ```text
-export ANCHORCLI_NETWORK=tequila-0004
+export ANCHORCLI_NETWORK=bombay-12
 anchorcli x basset-hub bond ...
 ```
 

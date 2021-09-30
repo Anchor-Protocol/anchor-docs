@@ -12,8 +12,8 @@ Price data from the Oracle contract are only valid for 60 seconds \(`price_timef
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner that can update config |
-| `oracle_contract` | HumanAddr | Contract address of Oracle |
+| `owner` | CanonicalAddr | Address of contract owner that can update config |
+| `oracle_contract` | CanonicalAddr | Contract address of Oracle |
 | `stable_denom` | String | Native token denomination for bids |
 | `safe_ratio` | Decimal256 | A liability / borrow limit ratio of a loan deemed safe |
 | `bid_fee` | Decimal256 | Fee rate applied to all executed bids |
@@ -21,15 +21,15 @@ Price data from the Oracle contract are only valid for 60 seconds \(`price_timef
 | `liquidation_threshold` | Uint256 | Threshold collateral value for partial collateral liquidations |
 | `price_timeframe` | u64 | Window of time before oracle price data is considered outdated **\[seconds\]** |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub owner: HumanAddr, 
-    pub oracle_contract: HumanAddr, 
+pub struct InstantiateMsg {
+    pub owner: String, 
+    pub oracle_contract: String, 
     pub stable_denom: String, 
     pub safe_ratio: Decimal256, 
     pub bid_fee: Decimal256, 
@@ -58,8 +58,8 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner that can update config |
-| `oracle_contract` | HumanAddr | Contract address of Oracle |
+| `owner` | String | Address of contract owner that can update config |
+| `oracle_contract` | String | Contract address of Oracle |
 | `stable_denom` | String | Native token denomination for bids |
 | `safe_ratio` | Decimal256 | A liability / borrow limit ratio of a loan deemed safe |
 | `bid_fee` | Decimal256 | Fee rate applied to executed bids |
@@ -67,7 +67,7 @@ pub struct InitMsg {
 | `liquidation_threshold` | Uint256 | Threshold collateral value for triggering partial collateral liquidations |
 | `price_timeframe` | u64 | Window of time before oracle price data is considered outdated **\[seconds\]** |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Receive`
 
@@ -78,11 +78,11 @@ Can be called during a CW20 token transfer when the Liquidation Contract is the 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Receive {
+        sender: String, 
         amount: Uint128, 
-        sender: HumanAddr, 
-        msg: Option<Binary>, 
+        msg: Binary, 
     }
 }
 ```
@@ -92,8 +92,8 @@ pub enum HandleMsg {
 ```javascript
 {
   "receive": {
-    "amount": "10000000", 
     "sender": "terra1...", 
+    "amount": "10000000", 
     "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9" 
   }
 }
@@ -103,11 +103,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `sender` | String | Sender of the token transfer |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of the token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](liquidation-contract.md#receive-hooks) |
-
-\* = optional
+| `msg` | Binary | Base64-encoded string of JSON of [Receive Hook](liquidation-contract.md#receive-hooks) |
 
 ### `UpdateConfig`
 
@@ -118,10 +116,10 @@ Updates the Liquidation Contract's configuration. Can only be issued by the owne
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg { 
+pub enum ExecuteMsg { 
     UpdateConfig {
-        owner: Option<HumanAddr>, 
-        oracle_contract: Option<HumanAddr>, 
+        owner: Option<String>, 
+        oracle_contract: Option<String>, 
         stable_denom: Option<String>, 
         safe_ratio: Option<Decimal256>, 
         bid_fee: Option<Decimal256>, 
@@ -153,8 +151,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new owner |
-| `oracle_contract`\* | HumanAddr | New oracle contract address |
+| `owner`\* | String | Address of new owner |
+| `oracle_contract`\* | String | New oracle contract address |
 | `stable_denom`\* | String | New native token denomination for bids |
 | `safe_ratio`\* | Decimal256 | New liability / borrow limit of a loan deemed safe |
 | `bid_fee`\* | Decimal256 | New fee rate applied to executed bids |
@@ -173,9 +171,9 @@ Submits a new bid for the specified Cw20 collateral with the specified premium r
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     SubmitBid {
-        collateral_token: HumanAddr, 
+        collateral_token: String, 
         premium_rate: Decimal256, 
     }
 }
@@ -196,7 +194,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Cw20 token contract address of bidding collateral |
+| `collateral_token` | String | Cw20 token contract address of bidding collateral |
 | `premium_rate` | Decimal256 | Rate of commission on executing this bid |
 
 ### `RetractBid`
@@ -208,9 +206,9 @@ Withdraws specified amount of stablecoins from the bid for the specified collate
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RetractBid {
-        collateral_token: HumanAddr, 
+        collateral_token: String, 
         amount: Option<Uint256>, 
     }
 }
@@ -231,7 +229,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Cw20 token contract address of bidding collateral |
+| `collateral_token` | String | Cw20 token contract address of bidding collateral |
 | `amount`\* | Uint256 | Amount of stablecoins remove from bid |
 
 \* = optional
@@ -249,9 +247,9 @@ Liquidates collateral by executing an existing bid for the received collateral. 
 #[serde(rename_all = "snake_case")]
 pub enum Cw20HookMsg {
     ExecuteBid {
-        liquidator: HumanAddr, 
-        fee_address: Option<HumanAddr>, // Filled as Overseer contract's address
-        repay_address: Option<HumanAddr>, // Filled as Market contract's address
+        liquidator: String, 
+        fee_address: Option<String>, // Filled as Overseer contract's address
+        repay_address: Option<String>, // Filled as Market contract's address
     }
 }
 ```
@@ -272,9 +270,9 @@ pub enum Cw20HookMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `liquidator` | HumanAddr | Address of collateral liquidator |
-| `fee_address`\* | HumanAddr | Address to receive `bid_fee` from liquidation |
-| `repay_address`\* | HumanAddr | Address to receive bid stablecoins from liquidation |
+| `liquidator` | String | Address of collateral liquidator |
+| `fee_address`\* | String | Address to receive `bid_fee` from liquidation |
+| `repay_address`\* | String | Address to receive bid stablecoins from liquidation |
 
 \* = optional
 
@@ -315,8 +313,8 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr, 
-    pub oracle_contract: HumanAddr, 
+    pub owner: String, 
+    pub oracle_contract: String, 
     pub stable_denom: String, 
     pub safe_ratio: Decimal256, 
     pub bid_fee: Decimal256, 
@@ -345,8 +343,8 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner that can update config |
-| `oracle_contract` | HumanAddr | Contract address of Oracle |
+| `owner` | String | Address of contract owner that can update config |
+| `oracle_contract` | String | Contract address of Oracle |
 | `stable_denom` | String | Native token denomination for bids |
 | `safe_ratio` | Decimal256 | A liability / borrow limit ratio of a loan deemed safe |
 | `bid_fee` | Decimal256 | Fee rate applied to all executed bids |
@@ -372,7 +370,7 @@ pub enum QueryMsg {
     }
 }
 
-pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
+pub type TokensHuman = Vec<(String, Uint256)>;
 ```
 {% endtab %}
 
@@ -405,7 +403,7 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Collateral's token address, Amount of collateral locked by borrower\) |
+| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral's token address, Amount of collateral locked by borrower\) |
 
 ### `LiquidationAmountResponse`
 
@@ -417,7 +415,7 @@ pub struct LiquidationAmountResponse {
     pub collaterals: TokensHuman, 
 }
 
-pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
+pub type TokensHuman = Vec<(String, Uint256)>;
 ```
 {% endtab %}
 
@@ -439,7 +437,7 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Collateral's token address, Amount that has to be liquidated\) |
+| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral's token address, Amount that has to be liquidated\) |
 
 ### `Bid`
 
@@ -452,8 +450,8 @@ Gets information about the specified bidder's bid for the specified collateral.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Bid {
-        collateral_token: HumanAddr, 
-        bidder: HumanAddr, 
+        collateral_token: String, 
+        bidder: String, 
     }
 }
 ```
@@ -473,8 +471,8 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Token contract address of bidding collateral |
-| `bidder` | HumanAddr | Address of bidder |
+| `collateral_token` | String | Token contract address of bidding collateral |
+| `bidder` | String | Address of bidder |
 
 ### `BidResponse`
 
@@ -483,8 +481,8 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BidResponse {
-    pub collateral_token: HumanAddr, 
-    pub bidder: HumanAddr, 
+    pub collateral_token: String, 
+    pub bidder: String, 
     pub amount: Uint256, 
     pub premium_rate: Decimal256, 
 }
@@ -505,8 +503,8 @@ pub struct BidResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Token contract address of bidding collateral |
-| `bidder` | HumanAddr | Address of bidder |
+| `collateral_token` | String | Token contract address of bidding collateral |
+| `bidder` | String | Address of bidder |
 | `amount` | Uint256 | Amount of stablecoins put up in bid |
 | `premium_rate` | Decimal256 | Rate of commission taken by bidder upon bid execution |
 
@@ -521,8 +519,8 @@ Gets information for all bids submitted by the specified bidder
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     BidsByUser {
-        bidder: HumanAddr, 
-        start_after: Option<HumanAddr>, 
+        bidder: String, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -544,8 +542,8 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `bidder` | HumanAddr | Address of bidder |
-| `start_after`\* | HumanAddr | Token contract address of collateral to start query |
+| `bidder` | String | Address of bidder |
+| `start_after`\* | String | Token contract address of collateral to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 ### `BidsByUserResponse`
@@ -559,8 +557,8 @@ pub struct BidsResponse {
 }
 
 pub struct BidResponse {
-    pub collateral_token: HumanAddr, 
-    pub bidder: HumanAddr, 
+    pub collateral_token: String, 
+    pub bidder: String, 
     pub amount: Uint256, 
     pub premium_rate: Decimal256, 
 }
@@ -595,8 +593,8 @@ pub struct BidResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Token contract address of bidding collateral |
-| `bidder` | HumanAddr | Address of bidder |
+| `collateral_token` | String | Token contract address of bidding collateral |
+| `bidder` | String | Address of bidder |
 | `amount` | Uint256 | Amount of stablecoins put up in bid |
 | `premium_rate` | Decimal256 | Rate of commission taken by bidder upon bid execution |
 
@@ -611,8 +609,8 @@ Gets bid information for all bids submitted for the specified collateral.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     BidsByCollateral {
-        collateral_token: HumanAddr, 
-        start_after: Option<HumanAddr>, 
+        collateral_token: String, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -634,8 +632,8 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Token contract address of collateral |
-| `start_after`\* | HumanAddr | Token contract address of collateral to start query |
+| `collateral_token` | String | Token contract address of collateral |
+| `start_after`\* | String | Token contract address of collateral to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -651,8 +649,8 @@ pub struct BidsResponse {
 }
 
 pub struct BidResponse {
-    pub collateral_token: HumanAddr, 
-    pub bidder: HumanAddr, 
+    pub collateral_token: String, 
+    pub bidder: String, 
     pub amount: Uint256, 
     pub premium_rate: Decimal256, 
 }
@@ -687,8 +685,8 @@ pub struct BidResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Token contract address of bidding collateral |
-| `bidder` | HumanAddr | Address of bidder |
+| `collateral_token` | String | Token contract address of bidding collateral |
+| `bidder` | String | Address of bidder |
 | `amount` | Uint256 | Amount of stablecoins put up in bid |
 | `premium_rate` | Decimal256 | Rate of commission taken by bidder upon bid execution |
 

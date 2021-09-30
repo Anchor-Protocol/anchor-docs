@@ -105,7 +105,7 @@ While Anchor Earn by default handles transaction signing and broadcasting, these
 ```javascript
 const anchorEarn = new AnchorEarn({
   chain: CHAINS.TERRA,
-  network: NETWORKS.TEQUILA_0004,
+  network: NETWORKS.BOMBAY_12,
   mnemonic: '...',
 });
 ```
@@ -119,7 +119,7 @@ const anchorEarn = new AnchorEarn({
 Creating an instance of the `Account` object generates a new blockchain account.
 
 {% hint style="info" %}
-Tokens for testnet environments \(e.g. Tequila\) can be acquired using faucets, outlined in the [appendix](appendix.md#testnet-faucets) section.
+Tokens for testnet environments \(e.g. Bombay\) can be acquired using faucets, outlined in the [appendix](appendix.md#testnet-faucets) section.
 {% endhint %}
 
 **Method Parameters**
@@ -586,8 +586,8 @@ The `NETWORKS` enumerated type specifies the network type to be used.
 
 ```javascript
 export enum NETWORKS {
-  COLUMBUS_4,
-  TEQUILA_0004,
+  COLUMBUS_5,
+  BOMBAY_12,
 }
 ```
 
@@ -599,13 +599,13 @@ Anchor Earn supports mainnet and testnet networks with the below chain IDs:
 
 | Enum Member | Chain ID | Network Name |
 | :--- | :--- | :--- |
-| **`COLUMBUS_4`** | `columbus-4` | Columbus 4 |
+| **`COLUMBUS_5`** | `columbus-5` | Columbus 5 |
 
 **Testnet**
 
 | Enum Member | Chain ID | Network Name |
 | :--- | :--- | :--- |
-| **`TEQUILA_0004`** | `tequila-0004` | Tequila |
+| **`BOMBAY_12`** | `bombay-12` | Bombay |
 {% endtab %}
 {% endtabs %}
 
@@ -1199,7 +1199,7 @@ export interface Loggable<T> {
 {% tab title="Terra" %}
 | Generic Type Notation | Type | Description |
 | :--- | :--- | :--- |
-| `T` \(Argument\) | \`\`[Output](anchor-earn-sdk.md#output) | Transaction progress data |
+| `T` \(Argument\) | [Output](anchor-earn-sdk.md#output) | Transaction progress data |
 | `K` \(Expected Output\) | void | nil |
 {% endtab %}
 {% endtabs %}

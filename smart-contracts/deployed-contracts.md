@@ -6,8 +6,8 @@ The core smart contracts of Anchor are deployed on the [Terra blockchain](https:
 
 | Network Classification | Chain ID |
 | :--- | :--- |
-| Mainnet | `columbus-4` |
-| Testnet | `tequila-0004` |
+| Mainnet | `columbus-5` |
+| Testnet | `bombay-12` |
 
 For money market and liquidations, a separate set of contracts are to be deployed for each Terra stablecoin denomination. Each set, called Markets, will use different Terra denominations as their base currency. Only UST-supporting contracts have been deployed on initial launch.
 
@@ -162,7 +162,7 @@ For money market and liquidations, a separate set of contracts are to be deploye
 Sending native tokens with a denomination not supported by the recipient contract will lead to **PERMANENT LOSS OF FUNDS**.
 {% endhint %}
 
-Below are addresses of money market and liquidation contracts that use **Terra USD** as their base denomination.
+Below are addresses of money market and liquidation contracts that use **TerraUSD** as their base denomination.
 
 #### Money Market
 
@@ -184,7 +184,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor Terra USD \(aUST\) | [terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu](https://finder.terra.money/columbus-4/address/terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu) |
+| Anchor TerraUSD \(aUST\) | [terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu](https://finder.terra.money/columbus-4/address/terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu) |
 {% endtab %}
 
 {% tab title="Testnet" %}
@@ -204,7 +204,7 @@ Below are addresses of money market and liquidation contracts that use **Terra U
 
 | Contract | Address |
 | :--- | :--- |
-| Anchor Terra USD \(aUST\) | [terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl](https://finder.terra.money/tequila-0004/address/terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl) |
+| Anchor TerraUSD \(aUST\) | [terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl](https://finder.terra.money/tequila-0004/address/terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl) |
 {% endtab %}
 {% endtabs %}
 

@@ -17,7 +17,7 @@ The Market contract acts as the point of interaction for all lending and borrowi
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
-## InitMsg
+## InstantiateMsg
 
 Instantiates the money market Market contract. Requires the owner to make an initial deposit of 1 Terra stablecoin and mints 1 aTerra to the Market contract \(inaccessible\). The creator's initial stablecoin deposit ensures the aTerra supply to always be a high enough value to prevent rounding errors in the aTerra exchange rate calculation.
 
@@ -26,8 +26,8 @@ Instantiates the money market Market contract. Requires the owner to make an ini
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub struct InitMsg {
-    pub owner_addr: HumanAddr, 
+pub struct InstantiateMsg {
+    pub owner_addr: String, 
     pub stable_denom: String, 
     pub aterra_code_id: u64, 
     pub anc_emission_rate: Decimal256, 
@@ -51,13 +51,13 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner_addr` | HumanAddr | Address of contract owner |
+| `owner_addr` | String | Address of contract owner |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `aterra_code_id` | u64 | Code ID for aTerra contract |
 | `anc_emission_rate` | Decimal256 | Initial per-block ANC emission rate to borrowers |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Receive`
 
@@ -68,11 +68,11 @@ Can be called during a CW20 token transfer when the Mint contract is the recipie
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Receive {
+        sender: String,
         amount: Uint128,
-        sender: HumanAddr,
-        msg: Option<Binary>,
+        msg: Binary,
     }
 }
 ```
@@ -82,8 +82,8 @@ pub enum HandleMsg {
 ```javascript
 {
   "receive": {
-    "amount": "10000000",
     "sender": "terra1...",
+    "amount": "10000000",
     "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmxhaCBibGFoIiB9"
   }
 }
@@ -93,11 +93,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `sender` | String | Sender of token transfer |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](market.md#receive-hooks) |
-
-\* = optional
+| `msg` | Binary | Base64-encoded string of JSON of [Receive Hook](market.md#receive-hooks) |
 
 ### `RegisterContracts`
 
@@ -108,13 +106,13 @@ Registers the addresses of other Money Market contracts. Can only be issued by t
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RegisterContracts {
-        overseer_contract: HumanAddr, 
-        interest_model: HumanAddr, 
-        distribution_model: HumanAddr, 
-        collector_contract: HumanAddr, 
-        distributor_contract: HumanAddr, 
+        overseer_contract: String, 
+        interest_model: String, 
+        distribution_model: String, 
+        collector_contract: String, 
+        distributor_contract: String, 
     }
 }
 ```
@@ -137,11 +135,11 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `overseer_contract` | HumanAddr | Contract address of Overseer |
-| `interest_model` | HumanAddr | Contract address of Interest Model |
-| `distribution_model` | HumanAddr | Contract address of Distribution Model |
-| `collector_contract` | HumanAddr | Contract address of Collector |
-| `distributor_contract` | HumanAddr | Contract address of Distributor |
+| `overseer_contract` | String | Contract address of Overseer |
+| `interest_model` | String | Contract address of Interest Model |
+| `distribution_model` | String | Contract address of Distribution Model |
+| `collector_contract` | String | Contract address of Collector |
+| `distributor_contract` | String | Contract address of Distributor |
 
 ### `[Internal] RegisterATerra`
 
@@ -152,7 +150,7 @@ Registers the contract address of `aTerra` Cw20 Token contract. Issued by `aTerr
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RegisterATerra {}
 }
 ```
@@ -180,12 +178,12 @@ Updates the configuration of the contract. Can be only issued by the owner.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner_addr: Option<HumanAddr>, 
+        owner_addr: Option<String>, 
         max_borrow_factor: Option<Decimal256>, 
-        interest_model: Option<HumanAddr>, 
-        distribution_model: Option<HumanAddr>, 
+        interest_model: Option<String>, 
+        distribution_model: Option<String>, 
     }
 }
 ```
@@ -207,10 +205,10 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner_addr`\* | HumanAddr | Address of new owner |
+| `owner_addr`\* | String | Address of new owner |
 | `max_borrow_factor`\* | Decimal256 | New maximum portion of stablecoin liquidity available for borrows |
-| `interest_model`\* | HumanAddr | New interest model contract address |
-| `distribution_model`\* | HumanAddr | New contract address of Distribution Model |
+| `interest_model`\* | String | New interest model contract address |
+| `distribution_model`\* | String | New contract address of Distribution Model |
 
 \* = optional
 
@@ -223,9 +221,9 @@ Repays a liquidated loan using stablecoins gained from liquidated collaterals. C
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RepayStableFromLiquidation {
-        borrower: HumanAddr, 
+        borrower: String, 
         prev_balance: Uint256, 
     }
 }
@@ -246,7 +244,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of loan borrower |
+| `borrower` | String | Address of loan borrower |
 | `prev_balance` | Uint256 | Balance of Market contract prior to collateral liquidation |
 
 ### `[Internal] ExecuteEpochOperations`
@@ -258,7 +256,7 @@ Adjusts the borrower ANC emission rate and sends accumulated ANC excess yield re
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ExecuteEpochOperations {
         deposit_rate: Decimal256, 
         target_deposit_rate: Decimal256, 
@@ -299,7 +297,7 @@ Deposits stablecoins to Anchor. Requires stablecoins to be sent with the message
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     DepositStable {}
 }
 ```
@@ -327,10 +325,10 @@ Borrows stablecoins from Anchor.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     BorrowStable {
         borrow_amount: Uint256, 
-        to: Option<HumanAddr>, 
+        to: Option<String>, 
     }
 }
 ```
@@ -351,7 +349,7 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `borrow_amount` | Uint256 | Amount of stablecoins to borrow |
-| `to`\* | HumanAddr | Withdrawal address for borrowed stablecoins |
+| `to`\* | String | Withdrawal address for borrowed stablecoins |
 
 \* = optional
 
@@ -364,7 +362,7 @@ Repays previous stablecoin liability. Requires stablecoins to be sent with the m
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RepayStable {}
 }
 ```
@@ -392,9 +390,9 @@ Claims accrued ANC rewards. Can designate an optional recipient. Sends rewards t
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ClaimRewards {
-        to: Option<HumanAddr>, 
+        to: Option<String>, 
     }
 }
 ```
@@ -413,7 +411,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `to`\* | HumanAddr | Optional recipient of accrued ANC rewards |
+| `to`\* | String | Optional recipient of accrued ANC rewards |
 
 \* = optional
 
@@ -484,13 +482,13 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner_addr: HumanAddr, 
-    pub aterra_contract: HumanAddr, 
-    pub interest_model: HumanAddr, 
-    pub distribution_model: HumanAddr, 
-    pub overseer_contract: HumanAddr, 
-    pub collector_contract: HumanAddr, 
-    pub distributor_contract: HumanAddr, 
+    pub owner_addr: String, 
+    pub aterra_contract: String, 
+    pub interest_model: String, 
+    pub distribution_model: String, 
+    pub overseer_contract: String, 
+    pub collector_contract: String, 
+    pub distributor_contract: String, 
     pub stable_denom: String, 
     pub max_borrow_factor: Decimal256, 
 }
@@ -516,13 +514,13 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner_addr` | HumanAddr | Address of contract owner |
-| `aterra_contract` | HumanAddr | Contract address of aTerra |
-| `interest_model` | HumanAddr | Contract address of Interest Model |
-| `distribution_model` | HumanAddr | Contract address of Distribution Model |
-| `overseer_contract` | HumanAddr | Contract address of Overseer |
-| `collector_contract` | HumanAddr | Contract address of Collector |
-| `distributor_contract` | HumanAddr | Contract address of Distributor |
+| `owner_addr` | String | Address of contract owner |
+| `aterra_contract` | String | Contract address of aTerra |
+| `interest_model` | String | Contract address of Interest Model |
+| `distribution_model` | String | Contract address of Distribution Model |
+| `overseer_contract` | String | Contract address of Overseer |
+| `collector_contract` | String | Contract address of Collector |
+| `distributor_contract` | String | Contract address of Distributor |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `max_borrow_factor` | Decimal256 | Maximum portion of stablecoin liquidity available for borrows |
 
@@ -685,7 +683,7 @@ Gets information for the specified borrower. Returns an interest-and-reward-accr
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     BorrowerInfo {
-        borrower: HumanAddr, 
+        borrower: String, 
         block_height: Option<u64>, 
     }
 }
@@ -706,7 +704,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
+| `borrower` | String | Address of borrower |
 | `block_height`\* | u64 | Current block number |
 
 \* = optional
@@ -718,7 +716,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BorrowInfoResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub interest_index: Decimal256, 
     pub reward_index: Decimal256, 
     pub loan_amount: Uint256, 
@@ -742,7 +740,7 @@ pub struct BorrowInfoResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
+| `borrower` | String | Address of borrower |
 | `interest_index` | Decimal256 | Interest index of borrower |
 | `reward_index` | Decimal256 | ANC reward index of borrower |
 | `loan_amount` | Uint256 | Amount of borrower's liability |
@@ -759,7 +757,7 @@ Gets information for all borrowers.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     BorrowInfos {
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -780,7 +778,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `start_after`\* | HumanAddr | Borrower address to start query |
+| `start_after`\* | String | Borrower address to start query |
 | `limit`\* | u32 | Maximum number of entries to query |
 
 \* = optional
@@ -797,7 +795,7 @@ pub struct BorrowerInfosResponse {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BorrowInfoResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub interest_index: Decimal256, 
     pub reward_index: Decimal256, 
     pub loan_amount: Uint256, 
@@ -836,7 +834,7 @@ pub struct BorrowInfoResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
+| `borrower` | String | Address of borrower |
 | `interest_index` | Decimal256 | Interest index of borrower |
 | `reward_index` | Decimal256 | ANC reward index of borrower |
 | `loan_amount` | Uint256 | Amount of borrower's liability |

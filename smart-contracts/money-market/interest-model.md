@@ -10,14 +10,14 @@ The Interest Model contract is responsible for calculating the current borrow in
 | `base_rate` | Decimal256 | Minimum per-block interest rate applied to borrows |
 | `interest_multiplier` | Decimal256 | Multiplier between utilization ratio and per-block borrow rate |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub owner: HumanAddr, 
+pub struct InstantiateMsg {
+    pub owner: String, 
     pub base_rate: Decimal256, 
     pub interest_multiplier: Decimal256, 
 }
@@ -37,11 +37,11 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner that can update model parameters |
+| `owner` | String | Address of contract owner that can update model parameters |
 | `base_rate` | Decimal256 | Minimum per-block interest rate applied to borrows |
 | `interest_multiplier` | Decimal256 | Multiplier between utilization ratio and per-block borrow rate |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -52,9 +52,9 @@ Updates the configuration of the interest model contract. This message can only 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>, 
+        owner: Option<String>, 
         base_rate: Option<Decimal256>, 
         interest_multiplier: Option<Decimal256>, 
     }
@@ -77,7 +77,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new owner |
+| `owner`\* | String | Address of new owner |
 | `base_rate`\* | Decimal256 | New minimum per-block borrow rate |
 | `interest_multiplier`\* | Decimal256 | New borrow rate multiplier |
 
@@ -120,7 +120,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr, 
+    pub owner: String, 
     pub base_rate: Decimal256, 
     pub interest_multiplier: Decimal256, 
 }
@@ -140,7 +140,7 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `base_rate` | Decimal256 | Minimum per-block borrow rate |
 | `interest_multiplier` | Decimal256 | Borrow rate multiplier |
 

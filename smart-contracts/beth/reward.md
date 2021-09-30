@@ -93,14 +93,14 @@ pub struct Holder {
 | `index` | Decimal | Holder's reward index value |
 | `pending_rewards` | Decimal | Amount of holder's pending rewards |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub owner: HumanAddr
+pub struct InstantiateMsg {
+    pub owner: String, 
     pub reward_denom: String, 
 }
 ```
@@ -118,10 +118,10 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `reward_denom` | String | Native token denomination for distributed bETH rewards |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `PostInitialize`
 
@@ -132,9 +132,9 @@ Registers the bETH Token contract address.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     PostInitialize {
-        token_contract: HumanAddr, 
+        token_contract: String, 
     }
 }
 ```
@@ -153,7 +153,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `token_contract` | HumanAddr | Address of bETH Token |
+| `token_contract` | String | Address of bETH Token |
 
 ### `UpdateConfig`
 
@@ -164,9 +164,9 @@ Updates the Reward contract configuration.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: HumanAddr, 
+        owner: String, 
     }
 }
 ```
@@ -185,7 +185,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of new owner |
+| `owner` | String | Address of new owner |
 
 ### `ClaimRewards`
 
@@ -196,9 +196,9 @@ Claims bETH holder's accrued rewards to the specified address. Sends rewards to 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ClaimRewards {
-        recipient: Option<HumanAddr>, 
+        recipient: Option<String>, 
     }
 }
 ```
@@ -217,7 +217,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `recipient`\* | HumanAddr | Recipient address of claimed bETH rewards |
+| `recipient`\* | String | Recipient address of claimed bETH rewards |
 
 \* = optional
 
@@ -230,9 +230,9 @@ Increases stored user's bETH balance. Stores user's accrued rewards to pending r
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     IncreaseBalance {
-        address: HumanAddr, 
+        address: String, 
         amount: Uint128,  
     }
 }
@@ -253,7 +253,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user whose balance has increased |
+| `address` | String | Address of user whose balance has increased |
 | `amount` | Uint128 | Amount of bETH balance increased |
 
 ### `[Internal] DecreaseBalance`
@@ -265,9 +265,9 @@ Decreases stored user's bETH balance. Stores user's accrued rewards to pending r
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     DecreaseBalance {
-        address: HumanAddr, 
+        address: String, 
         amount: Uint128, 
     }
 }
@@ -288,7 +288,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user whose balance has decreased |
+| `address` | String | Address of user whose balance has decreased |
 | `amount` | Uint128 | Amount of bETH balance decreased |
 
 ## QueryMsg
@@ -318,17 +318,17 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr, 
+    pub owner: String, 
     pub reward_denom: String, 
-    pub token_contract: Option<HumanAddr>, 
+    pub token_contract: Option<String>, 
 }
 ```
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `reward_denom` | String | Native token denomination for distributed bETH rewards |
-| `token_contract`\* | HumanAddr | Contract address of bETH Token |
+| `token_contract`\* | String | Contract address of bETH Token |
 
 \* = optional
 {% endtab %}
@@ -358,9 +358,9 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `reward_denom` | String | Native token denomination for distributed bETH rewards |
-| `token_contract`\* | HumanAddr | Contract address of bETH Token |
+| `token_contract`\* | String | Contract address of bETH Token |
 
 \* = optional
 {% endtab %}
@@ -377,7 +377,7 @@ Gets information about the contract's current state.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum QueryMsg {
     State {}
 }
 ```
@@ -448,14 +448,14 @@ Gets the amount of rewards accrued to the specified bETH holder.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     AccruedRewards {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
 
 #### Response
 
@@ -484,7 +484,7 @@ pub struct AccruedRewardsResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
 
 #### Response
 
@@ -513,21 +513,21 @@ Gets information about the specified bETH holder.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Holder {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
 
 #### Response
 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct HolderResponse {
-    pub address: HumanAddr, 
+    pub address: String, 
     pub balance: Uint128, 
     pub index: Decimal, 
     pub pending_rewards: Decimal, 
@@ -536,7 +536,7 @@ pub struct HolderResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
 | `balance` | Uint128 | bETH balance of holder |
 | `index` | Decimal | Holder's reward index value |
 | `pending_rewards` | Decimal | Amount of holder's pending rewards |
@@ -555,7 +555,7 @@ pub struct HolderResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
 
 #### Response
 
@@ -570,7 +570,7 @@ pub struct HolderResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
 | `balance` | Uint128 | bETH balance of holder |
 | `index` | Decimal | Holder's reward index value |
 | `pending_rewards` | Decimal | Amount of holder's pending rewards |
@@ -590,7 +590,7 @@ Gets information about all bETH holders.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Holders {
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -598,7 +598,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `start_after`\* | HumanAddr | Address of bETH holder to start query |
+| `start_after`\* | String | Address of bETH holder to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -613,7 +613,7 @@ pub struct HoldersResponse {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct HolderResponse {
-    pub address: HumanAddr, 
+    pub address: String, 
     pub balance: Uint128, 
     pub index: Decimal, 
     pub pending_rewards: Decimal, 
@@ -626,7 +626,59 @@ pub struct HolderResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bETH holder |
+| `address` | String | Address of bETH holder |
+| `balance` | Uint128 | bETH balance of holder |
+| `index` | Decimal | Holder's reward index value |
+| `pending_rewards` | Decimal | Amount of holder's pending rewards |
+{% endtab %}
+
+{% tab title="JSON" %}
+#### Request
+
+```rust
+{
+  "holders": {
+    "start_after": "terra1...", 
+    "limit": 8 
+  }
+}
+```
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `start_after`\* | String | Address of bETH holder to start query |
+| `limit`\* | u32 | Maximum number of query entries |
+
+\* = optional
+
+#### Response
+
+```rust
+{
+  "holders": [
+    {
+      "address": "terra1...", 
+      "balance": "100000000", 
+      "index": "123.456789", 
+      "pending_rewards": "123.456789" 
+    }, 
+    {
+      "address": "terra1...", 
+      "balance": "100000000", 
+      "index": "123.456789", 
+      "pending_rewards": "123.456789" 
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `holders` | Vec&lt;HolderResponse&gt; | Vector of holder informations |
+
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `address` | String | Address of bETH holder |
 | `balance` | Uint128 | bETH balance of holder |
 | `index` | Decimal | Holder's reward index value |
 | `pending_rewards` | Decimal | Amount of holder's pending rewards |

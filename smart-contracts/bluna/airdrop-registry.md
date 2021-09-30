@@ -9,19 +9,19 @@ The Airdrop Registry is initially configured to support airdrops of [ANC](../../
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `owner` | CanonicalAddr | Address of contract owner |
-| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
-| `reward_contract` | HumanAddr | Contract address of [bLuna Reward](reward.md) |
+| `hub_contract` | String | Contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract` | String | Contract address of [bLuna Reward](reward.md) |
 | `airdrop_tokens` | Vec&lt;String&gt; | List of supported airdrop token tickers |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub hub_contract: HumanAddr,
-    pub reward_contract: HumanAddr,
+pub struct InstantiateMsg {
+    pub hub_contract: String,
+    pub reward_contract: String,
 }
 ```
 {% endtab %}
@@ -38,10 +38,10 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
-| `reward_contract` | HumanAddr | Contract address of [bLuna Reward](reward.md) |
+| `hub_contract` | String | Contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract` | String | Contract address of [bLuna Reward](reward.md) |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -52,11 +52,11 @@ Updates the Airdrop Registry contract configuration. Can only be issued by contr
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>, 
-        hub_contract: Option<HumanAddr>, 
-        reward_contract: Option<HumanAddr>, 
+        owner: Option<String>, 
+        hub_contract: Option<String>, 
+        reward_contract: Option<String>, 
     }
 }
 ```
@@ -77,9 +77,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new owner |
-| `hub_contract`\* | HumanAddr | New contract address of [bLuna Hub](hub-1.md) |
-| `reward_contract`\* | HumanAddr | New contract address of [bLuna Reward](reward.md) |
+| `owner`\* | String | Address of new owner |
+| `hub_contract`\* | String | New contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract`\* | String | New contract address of [bLuna Reward](reward.md) |
 
 \* = optional
 
@@ -92,7 +92,7 @@ Adds support for a new airdrop to Luna stakers. Can only be issued by contract o
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     AddAirdropInfo {
         airdrop_token: String, 
         airdrop_info: AirdropInfo, 
@@ -101,9 +101,9 @@ pub enum HandleMsg {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct AirdropInfo {
-    pub airdrop_token_contract: HumanAddr, 
-    pub airdrop_contract: HumanAddr, 
-    pub airdrop_swap_contract: HumanAddr, 
+    pub airdrop_token_contract: String, 
+    pub airdrop_contract: String, 
+    pub airdrop_swap_contract: String, 
     pub swap_belief_price: Option<Decimal>, 
     pub swap_max_spread: Option<Decimal>, 
 }
@@ -135,9 +135,9 @@ pub struct AirdropInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
-| `airdrop_contract` | HumanAddr | Contract address of airdrop contract to claim airdrop token |
-| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to TerraUSD \(e.g. Terraswap Pair\) |
+| `airdrop_token_contract` | String | Contract address of airdrop token's Cw20 token contract |
+| `airdrop_contract` | String | Contract address of airdrop contract to claim airdrop token |
+| `airdrop_swap_contract` | String | Contract address of swap contract to convert airdrop token to TerraUSD \(e.g. Terraswap Pair\) |
 | `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to TerraUSD. |
 | `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to TerraUSD. |
 
@@ -152,7 +152,7 @@ Updates information for an already supported airdrop token. Can only be issued b
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateAirdropInfo {
         airdrop_token: String, 
         airdrop_info: AirdropInfo, 
@@ -161,9 +161,9 @@ pub enum HandleMsg {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct AirdropInfo {
-    pub airdrop_token_contract: HumanAddr, 
-    pub airdrop_contract: HumanAddr, 
-    pub airdrop_swap_contract: HumanAddr, 
+    pub airdrop_token_contract: String, 
+    pub airdrop_contract: String, 
+    pub airdrop_swap_contract: String, 
     pub swap_belief_price: Option<Decimal>, 
     pub swap_max_spread: Option<Decimal>, 
 }
@@ -195,9 +195,9 @@ pub struct AirdropInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `airdrop_token_contract` | HumanAddr | New contract address of airdrop token's Cw20 token contract |
-| `airdrop_contract` | HumanAddr | New contract address of airdrop contract to claim airdrop token |
-| `airdrop_swap_contract` | HumanAddr | New contract address of swap contract to convert airdrop token to TerraUSD |
+| `airdrop_token_contract` | String | New contract address of airdrop token's Cw20 token contract |
+| `airdrop_contract` | String | New contract address of airdrop contract to claim airdrop token |
+| `airdrop_swap_contract` | String | New contract address of swap contract to convert airdrop token to TerraUSD |
 | `swap_belief_price`\* | Decimal | New expected conversion rate when swapping airdropped token to TerraUSD |
 | `swap_max_spread`\* | Decimal | New maximum allowed spread when swapping airdropped token to TerraUSD |
 
@@ -212,7 +212,7 @@ Removes support for a currently supported airdrop. Can only be issued by contrac
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RemoveAirdropInfo {
         airdrop_token: String, 
     }
@@ -244,7 +244,7 @@ Fabricates a message to claim MIR airdrop. Can only be issued by [Hub](hub-1.md)
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     FabricateMIRClaim {
         stage: u8, 
         amount: Uint128, 
@@ -287,7 +287,7 @@ pub enum HandleMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     FabricateANCClaim {
         stage: u8, 
         amount: Uint128, 
@@ -360,9 +360,9 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr, 
-    pub hub_contract: HumanAddr, 
-    pub reward_contract: HumanAddr, 
+    pub owner: String, 
+    pub hub_contract: String, 
+    pub reward_contract: String, 
     pub airdrop_tokens: Vec<String>, 
 }
 ```
@@ -384,9 +384,9 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
-| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
-| `reward_contract` | HumanAddr | Contract address of [bLuna Reward](reward.md) |
+| `owner` | String | Address of contract owner |
+| `hub_contract` | String | Contract address of [bLuna Hub](hub-1.md) |
+| `reward_contract` | String | Contract address of [bLuna Reward](reward.md) |
 | `airdrop_tokens` | Vec&lt;String&gt; | List of supported airdrop token tickers |
 
 ### `AirdropInfo`
@@ -447,9 +447,9 @@ pub struct AirdropInfoElem {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct AirdropInfo {
-    pub airdrop_token_contract: HumanAddr, 
-    pub airdrop_contract: HumanAddr, 
-    pub airdrop_swap_contract: HumanAddr, 
+    pub airdrop_token_contract: String, 
+    pub airdrop_contract: String, 
+    pub airdrop_swap_contract: String, 
     pub swap_belief_price: Option<Decimal>, 
     pub swap_max_spread: Option<Decimal>, 
 }
@@ -487,9 +487,9 @@ pub struct AirdropInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `airdrop_token_contract` | HumanAddr | Contract address of airdrop token's Cw20 token contract |
-| `airdrop_contract` | HumanAddr | Contract address of airdrop contract to claim airdrop token |
-| `airdrop_swap_contract` | HumanAddr | Contract address of swap contract to convert airdrop token to TerraUSD |
+| `airdrop_token_contract` | String | Contract address of airdrop token's Cw20 token contract |
+| `airdrop_contract` | String | Contract address of airdrop contract to claim airdrop token |
+| `airdrop_swap_contract` | String | Contract address of swap contract to convert airdrop token to TerraUSD |
 | `swap_belief_price`\* | Decimal | Expected conversion rate when swapping airdropped token to TerraUSD |
 | `swap_max_spread`\* | Decimal | Maximum allowed spread when swapping airdropped token to TerraUSD |
 

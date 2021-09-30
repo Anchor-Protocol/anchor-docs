@@ -9,14 +9,14 @@ The Oracle contract acts as the price source for the Anchor Money Market. Stable
 | `owner` | CanonicalAddr | Address of contract owner that can feed in price values |
 | `base_asset` | String | Asset which fed-in prices will be denominated in |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub owner: HumanAddr, 
+pub struct InstantiateMsg {
+    pub owner: String, 
     pub base_asset: String, 
 }
 ```
@@ -34,10 +34,10 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner that can feed in price values |
+| `owner` | String | Address of contract owner that can feed in price values |
 | `base_asset` | String | Asset which fed-in prices will be denominated in |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -48,9 +48,9 @@ Updates the configuration of the contract. Can only be issued by the owner.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>, 
+        owner: Option<String>, 
     }
 }
 ```
@@ -69,7 +69,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new owner |
+| `owner`\* | String | Address of new owner |
 
 \* = optional
 
@@ -82,10 +82,10 @@ Registers a feeder to the specified asset token.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     RegisterFeeder {
         asset: String, 
-        feeder: HumanAddr, 
+        feeder: String, 
     }
 }
 ```
@@ -106,7 +106,7 @@ pub enum HandleMsg {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `asset` | String | Asset to register feeder |
-| `feeder` | HumanAddr | Address of feeder to register |
+| `feeder` | String | Address of feeder to register |
 
 ### `FeedPrice`
 
@@ -117,7 +117,7 @@ Feeds new price data. Can only be issued by the owner.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     FeedPrice {
         prices: Vec<(String, Decimal256)>, 
     }
@@ -180,7 +180,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr, 
+    pub owner: String, 
     pub base_asset: String, 
 }
 ```
@@ -198,7 +198,7 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `base_asset` | String | Asset in which fed-in prices will be denominated |
 
 ### `Feeder`
@@ -241,7 +241,7 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct FeederResponse {
     pub asset: String, 
-    pub feeder: HumanAddr, 
+    pub feeder: String, 
 }
 ```
 {% endtab %}
@@ -259,7 +259,7 @@ pub struct FeederResponse {
 | Key | Type | Description |
 | :--- | :--- | :--- |
 | `asset` | String | Asset type |
-| `feeder` | HumanAddr | Address of feeder allowed to feed prices for this asset |
+| `feeder` | String | Address of feeder allowed to feed prices for this asset |
 
 ### `Price`
 

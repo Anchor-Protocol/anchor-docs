@@ -9,7 +9,7 @@ For demonstration purposes, implementation of `customSigner` was done using Terr
 ```javascript
 const anchorEarn = new AnchorEarn({
   chain: CHAINS.TERRA,
-  network: NETWORKS.TEQUILA_0004,
+  network: NETWORKS.BOMBAY_12,
   mnemonic:
     '...',
 });
@@ -23,8 +23,8 @@ const customSigner = async (tx: Msg[]) => {
 
   const wallet = new Wallet(
     new LCDClient({
-      URL: 'https://tequila-lcd.terra.dev',
-      chainID: 'tequila-0004',
+      URL: 'https://bombay-lcd.terra.dev',
+      chainID: 'bombay-12',
     }),
     account,
   );
@@ -57,7 +57,7 @@ For demonstration purposes, implementation of `customBroadcaster` was done using
 ```javascript
 const anchorEarn = new AnchorEarn({
   chain: CHAINS.TERRA,
-  network: NETWORKS.TEQUILA_0004,
+  network: NETWORKS.BOMBAY_12,
   mnemonic:
     '...',
 });
@@ -65,8 +65,8 @@ const anchorEarn = new AnchorEarn({
 // customBroadcaster signs and broadcasts the generated unsigned tx
 const customBroadcaster = async (tx: Msg[]) => {
   const lcd = new LCDClient({
-    URL: 'https://tequila-lcd.terra.dev',
-    chainID: 'tequila-0004',
+    URL: 'https://bombay-lcd.terra.dev',
+    chainID: 'bombay-12',
   });
 
   const wallet = new Wallet(

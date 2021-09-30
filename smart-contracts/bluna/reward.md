@@ -11,14 +11,14 @@ The Reward contract also stores the balance and reward index values for all bLun
 | `hub_contract` | CanonicalAddr | Contract address of [bLuna Hub](hub-1.md) |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub hub_contract: HumanAddr,
+pub struct InstantiateMsg {
+    pub hub_contract: String,
     pub reward_denom: String, 
 }
 ```
@@ -36,10 +36,10 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `hub_contract` | HumanAddr | Contract address of bLuna Hub |
+| `hub_contract` | String | Contract address of bLuna Hub |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `ClaimRewards`
 
@@ -50,9 +50,9 @@ Claims bLuna holder's accrued rewards to the specified address. Sends rewards to
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ClaimRewards {
-        recipient: Option<HumanAddr>, 
+        recipient: Option<String>, 
     }
 }
 ```
@@ -71,7 +71,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `recipient`\* | HumanAddr | Recipient address of claimed bLuna rewards |
+| `recipient`\* | String | Recipient address of claimed bLuna rewards |
 
 \* = optional
 
@@ -84,7 +84,7 @@ Swaps all withdrawn delegation rewards to `reward_denom`. Can only be issued by 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     SwapToRewardDenom {}
 }
 ```
@@ -112,7 +112,7 @@ Updates the global reward index based on the newly withdrawn rewards. Can only b
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateGlobalIndex {}
 }
 ```
@@ -140,9 +140,9 @@ Increases stored user's bLuna balance. Stores user's accrued rewards to pending 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     IncreaseBalance {
-        address: HumanAddr, 
+        address: String, 
         amount: Uint128,  
     }
 }
@@ -163,7 +163,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user whose balance has increased |
+| `address` | String | Address of user whose balance has increased |
 | `amount` | Uint128 | Amount of bLuna balance increased |
 
 ### `[Internal] DecreaseBalance`
@@ -175,9 +175,9 @@ Decreases stored user's bLuna balance. Stores user's accrued rewards to pending 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     DecreaseBalance {
-        address: HumanAddr, 
+        address: String, 
         amount: Uint128, 
     }
 }
@@ -198,7 +198,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of user whose balance has decreased |
+| `address` | String | Address of user whose balance has decreased |
 | `amount` | Uint128 | Amount of bLuna balance decreased |
 
 ## QueryMsg
@@ -238,7 +238,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub hub_contract: HumanAddr, 
+    pub hub_contract: String, 
     pub reward_denom: String, 
 }
 ```
@@ -256,7 +256,7 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `hub_contract` | HumanAddr | Contract address of [bLuna Hub](hub-1.md) |
+| `hub_contract` | String | Contract address of [bLuna Hub](hub-1.md) |
 | `reward_denom` | String | Native token denomination for distributed bLuna rewards |
 
 ### `State`
@@ -329,7 +329,7 @@ Gets the amount of rewards accrued to the specified bLuna holder.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     AccruedRewards {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
@@ -348,7 +348,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bLuna holder |
+| `address` | String | Address of bLuna holder |
 
 ### `AccruedRewardsResponse`
 
@@ -386,7 +386,7 @@ Gets information about the specified bLuna holder.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Holder {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
@@ -405,7 +405,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bLuna holder |
+| `address` | String | Address of bLuna holder |
 
 ### `HolderResponse`
 
@@ -414,7 +414,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct HolderResponse {
-    pub address: HumanAddr, 
+    pub address: String, 
     pub balance: Uint128, 
     pub index: Decimal, 
     pub pending_rewards: Decimal, 
@@ -436,7 +436,7 @@ pub struct HolderResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bLuna holder |
+| `address` | String | Address of bLuna holder |
 | `balance` | Uint128 | bLuna balance of holder |
 | `index` | Decimal | Holder's reward index value |
 | `pending_rewards` | Decimal | Amount of holder's pending rewards |
@@ -452,7 +452,7 @@ Gets information about all bLuna holders.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Holders {
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -473,7 +473,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `start_after` | HumanAddr | Address of bLuna holder to start query |
+| `start_after` | String | Address of bLuna holder to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -489,7 +489,7 @@ pub struct HoldersResponse {
 }
 
 pub struct HolderResponse {
-    pub address: HumanAddr, 
+    pub address: String, 
     pub balance: Uint128, 
     pub index: Decimal, 
     pub pending_rewards: Decimal, 
@@ -525,7 +525,7 @@ pub struct HolderResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of bLuna holder |
+| `address` | String | Address of bLuna holder |
 | `balance` | Uint128 | bLuna balance of holder |
 | `index` | Decimal | Holder's reward index value |
 | `pending_rewards` | Decimal | Amount of holder's pending rewards |

@@ -15,20 +15,20 @@ The Custody contract is where supplied bAsset collaterals are managed. Users can
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `basset_info` | BAssetInfo | bAsset token information |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub struct InitMsg {
-    pub owner: HumanAddr, 
-    pub collateral_token: HumanAddr,
-    pub overseer_contract: HumanAddr,
-    pub market_contract: HumanAddr,
-    pub reward_contract: HumanAddr,
-    pub liquidation_contract: HumanAddr,
+pub struct InstantiateMsg {
+    pub owner: String, 
+    pub collateral_token: String,
+    pub overseer_contract: String,
+    pub market_contract: String,
+    pub reward_contract: String,
+    pub liquidation_contract: String,
     pub stable_denom: String, 
     pub basset_info: BAssetInfo, 
 }
@@ -64,12 +64,12 @@ pub struct BAssetInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
-| `collateral_token` | HumanAddr | Contract address of bLuna Token |
-| `overseer_contract` | HumanAddr | Contract address of Overseer |
-| `market_contract` | HumanAddr | Contract address of Market |
-| `reward_contract` | HumanAddr | Contract address of bLuna Reward |
-| `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
+| `owner` | String | Address of contract owner |
+| `collateral_token` | String | Contract address of bLuna Token |
+| `overseer_contract` | String | Contract address of Overseer |
+| `market_contract` | String | Contract address of Market |
+| `reward_contract` | String | Contract address of bLuna Reward |
+| `liquidation_contract` | String | Contract address of Liquidation Contract |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `basset_info` | BAssetInfo | bAsset token information |
 
@@ -79,7 +79,7 @@ pub struct BAssetInfo {
 | `symbol` | String | Symbol of bAsset |
 | `decimals` | u8 | Number of decimals of bAsset token |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `Receive`
 
@@ -90,11 +90,11 @@ Can be called during a Cw20 token transfer when the Mint contract is the recipie
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Receive {
+        sender: String, 
         amount: Uint128, 
-        sender: HumanAddr, 
-        msg: Option<Binary>, 
+        msg: Binary, 
     }
 }
 ```
@@ -104,8 +104,8 @@ pub enum HandleMsg {
 ```javascript
 {
   "receive": {
-    "amount": "10000000",
     "sender": "terra1...",
+    "amount": "10000000",
     "msg": "eyAiZXhlY3V0ZV9tc2ciOiAiYmluYXJ5IiB9"
   }
 }
@@ -115,11 +115,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
+| `sender` | String | Sender of the token transfer |
 | `amount` | Uint128 | Amount of tokens received |
-| `sender` | HumanAddr | Sender of the token transfer |
-| `msg`\* | Binary | Base64-encoded string of JSON of [Receive Hook](custody-bluna-specific.md#receive-hooks) |
-
-\* = optional
+| `msg` | Binary | Base64-encoded string of JSON of [Receive Hook](custody-bluna-specific.md#receive-hooks) |
 
 ### `UpdateConfig`
 
@@ -130,10 +128,10 @@ Updates the configuration of the Custody contract.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>, 
-        liquidation_contract: Option<HumanAddr>, 
+        owner: Option<String>, 
+        liquidation_contract: Option<String>, 
     }
 }
 ```
@@ -153,8 +151,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | New address of contract owner |
-| `liquidation_contract`\* | HumanAddr | New contract address of Liquidation Contract |
+| `owner`\* | String | New address of contract owner |
+| `liquidation_contract`\* | String | New contract address of Liquidation Contract |
 
 \* = optional
 
@@ -167,9 +165,9 @@ Locks borrower's collateral to be used in their loan position, decreasing the am
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     LockCollateral {
-        borrower: HumanAddr, 
+        borrower: String, 
         amount: Uint256, 
     }
 }
@@ -190,7 +188,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower locking collateral |
+| `borrower` | String | Address of borrower locking collateral |
 | `amount` | Uint256 | Amount of collateral to lock |
 
 ### `[Internal] UnlockCollateral`
@@ -202,9 +200,9 @@ Unlocks borrower's collateral from their loan position, increasing the amount of
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UnlockCollateral {
-        borrower: HumanAddr, 
+        borrower: String, 
         amount: Uint256, 
     }
 }
@@ -225,19 +223,21 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower unlocking collateral |
+| `borrower` | String | Address of borrower unlocking collateral |
 | `amount` | Uint256 | Amount of collateral to unlock |
 
 ### `[Internal] DistributeRewards`
 
 Withdraws accrued rewards from the bLuna Contract, swaps rewards to the appropriate stablecoin denomination. Can only be issued by `Overseer`.
 
+Afterwards, distributes swapped rewards to depositors by sending swapped rewards to `Market`. If the deposit rate during the last epoch is above the target deposit rate, then a portion of the rewards are set aside as a yield reserve, which are sent to `Overseer`. 
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     DistributeRewards {}
 }
 ```
@@ -256,62 +256,6 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 |  |  |  |
 
-### `[Internal] DistributeHook`
-
-Distributes swapped rewards to depositors by sending swapped rewards to `Market`. If the deposit rate during the last epoch is above the target deposit rate, then a portion of the rewards are set aside as an interest buffer, which are sent to `Overseer`. Can only be issued by `Custody`.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
-    DistributeHook {}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "distribute_hook": {} 
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
-
-### `[Internal] SwapToStableDenom`
-
-Swaps claimed bAsset rewards to `stable_denom`. Can only be issued by `Custody`.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
-    SwapToStableDenom {}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-  "swap_to_stable_denom": {} 
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Key | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
-
 ### `[Internal] LiquidateCollateral`
 
 Liquidates specified amount of locked collateral. Can only be issued by `Overseer`.
@@ -321,10 +265,10 @@ Liquidates specified amount of locked collateral. Can only be issued by `Oversee
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     LiquidateCollateral {
-        liquidator: HumanAddr, 
-        borrower: HumanAddr, 
+        liquidator: String, 
+        borrower: String, 
         amount: Uint256, 
     }
 }
@@ -346,8 +290,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `liquidator` | HumanAddr | Address of user that triggered liquidations |
-| `borrower` | HumanAddr | Address of borrower being liquidated |
+| `liquidator` | String | Address of user that triggered liquidations |
+| `borrower` | String | Address of borrower being liquidated |
 | `amount` | Uint256 | Amount of collateral to liquidate |
 
 ### `WithdrawCollateral`
@@ -363,7 +307,7 @@ Withdraws specified amount of spendable collateral. Withdraws all spendable coll
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     WithdrawCollateral {
         amount: Option<Uint256>, 
     }
@@ -420,7 +364,7 @@ pub enum Cw20HookMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-
+|  |  |  |
 
 ## QueryMsg
 
@@ -459,12 +403,12 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr, 
-    pub collateral_token: HumanAddr, 
-    pub overseer_contract: HumanAddr, 
-    pub market_contract: HumanAddr, 
-    pub reward_contract: HumanAddr, 
-    pub liquidation_contract: HumanAddr, 
+    pub owner: String, 
+    pub collateral_token: String, 
+    pub overseer_contract: String, 
+    pub market_contract: String, 
+    pub reward_contract: String, 
+    pub liquidation_contract: String, 
     pub stable_denom: String, 
     pub basset_info: BAssetInfo, 
 }
@@ -500,12 +444,12 @@ pub struct BAssetInfo {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
-| `collateral_token` | HumanAddr | Contract address of bLuna Token |
-| `overseer_contract` | HumanAddr | Contract address of Overseer |
-| `market_contract` | HumanAddr | Contract address of Market |
-| `reward_contract` | HumanAddr | Contract address bLuna Reward |
-| `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
+| `owner` | String | Address of contract owner |
+| `collateral_token` | String | Contract address of bLuna Token |
+| `overseer_contract` | String | Contract address of Overseer |
+| `market_contract` | String | Contract address of Market |
+| `reward_contract` | String | Contract address bLuna Reward |
+| `liquidation_contract` | String | Contract address of Liquidation Contract |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `basset_info` | BAssetInfo | bAsset token information |
 
@@ -526,7 +470,7 @@ Gets the collateral balance of the specified borrower.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Borrower {
-        address: HumanAddr, 
+        address: String, 
     }
 }
 ```
@@ -545,7 +489,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `address` | HumanAddr | Address of borrower that deposited collateral |
+| `address` | String | Address of borrower that deposited collateral |
 
 ### `BorrowerResponse`
 
@@ -554,7 +498,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BorrowerResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub balance: Uint256, 
     pub spendable: Uint256, 
 }
@@ -574,7 +518,7 @@ pub struct BorrowerResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower that deposited collateral |
+| `borrower` | String | Address of borrower that deposited collateral |
 | `balance` | Uint256 | Total amount of deposited collateral |
 | `spendable` | Uint256 | Amount of spendable collateral |
 
@@ -589,7 +533,7 @@ Get the collateral balance of all borrowers.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Borrowers {
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -610,7 +554,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `start_after`\* | HumanAddr | Borrower address to start query |
+| `start_after`\* | String | Borrower address to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -627,7 +571,7 @@ pub struct BorrowersResponse {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BorrowerResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub balance: Uint256, 
     pub spendable: Uint256, 
 }
@@ -660,7 +604,7 @@ pub struct BorrowerResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower that deposited collateral |
+| `borrower` | String | Address of borrower that deposited collateral |
 | `balance` | Uint256 | Total amount of deposited collateral |
 | `spendable` | Uint256 | Amount of spendable collateral |
 

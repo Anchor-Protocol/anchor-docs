@@ -33,17 +33,17 @@ Using `MessageFabricators`:
 import {fabricateRedeemStable, fabricateDepositStableCoin} from '@anchor-protocol/anchor.js';
 import {contractAddresses, AddressProviderFromJSON} from ".@anchor-protocol/anchor.js";
 
-// default -- uses tequila core contract addresses
+// default -- uses bombay core contract addresses
 const addressProvider = new AddressProviderFromJSON(contractaddresses);
     const redeemMsg = fabricateRedeemStable({
       address: 'terra123...',
-      symbol: 'usd',
+      symbol: 'uusd',
       amount: '10000',
     })(addressProvider);
 
     const depositMsg = fabricateDepositStableCoin({
       address: 'terra123...',
-      symbol: 'usd',
+      symbol: 'uusd',
       amount: '10',
     })(addressProvider);
 ```
@@ -55,7 +55,7 @@ A message fabricator contains functions for generating proper `MsgExecuteContrac
 ```javascript
 import { LCDClient, Wallet, MnemonicKey, StdFee} from '@terra-money/terra.js';
 
-const anchor = new LCDClient({ URL: 'https://tequila-lcd.terra.dev', chainID:'tequila-0004' });
+const anchor = new LCDClient({ URL: 'https://bombay-lcd.terra.dev', chainID:'bombay-12' });
 const owner = new MnemonicKey({ mnemonic: "..."});
 const wallet = new Wallet(anchor, owner);
 

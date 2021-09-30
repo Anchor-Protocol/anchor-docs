@@ -10,15 +10,15 @@ The Community Contract holds the funds of the [Community Pool](../../protocol/an
 | `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
 | `spend_limit` | Uint128 | Upper cap on community grant size |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub gov_contract: HumanAddr, 
-    pub anchor_token: HumanAddr, 
+pub struct InstantiateMsg {
+    pub gov_contract: String, 
+    pub anchor_token: String, 
     pub spend_limit: Uint128, 
 }
 ```
@@ -37,11 +37,11 @@ pub struct InitMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `gov_contract` | HumanAddr | Contract address of Gov |
-| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
-| `spend_limit` | HumanAddr | Upper cap on community grant size |
+| `gov_contract` | String | Contract address of Gov |
+| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
+| `spend_limit` | Uint128 | Upper cap on community grant size |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -52,7 +52,7 @@ Updates the Collector contract configuration.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
         spend_limit: Option<Uint128>, 
     }
@@ -86,9 +86,9 @@ Transfers ANC tokens to the grant recipient. Can only be issued by the Gov contr
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Spend {
-        recipient: HumanAddr, 
+        recipient: String, 
         amount: Uint128, 
     }
 }
@@ -109,7 +109,7 @@ pub enum HandleMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `recipient` | HumanAddr | Recipient of community grant |
+| `recipient` | String | Recipient of community grant |
 | `amount` | Uint128 | Community grant amount |
 
 ## QueryMsg
@@ -149,8 +149,8 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub gov_contract: HumanAddr,
-    pub anchor_token: HumanAddr,
+    pub gov_contract: String,
+    pub anchor_token: String,
     pub spend_limit: Uint128,
 }
 ```
@@ -169,7 +169,7 @@ pub struct ConfigResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| `gov_contract` | HumanAddr | Contract address of Gov |
-| `anchor_token` | HumanAddr | Contract address of Anchor Token \(ANC\) |
+| `gov_contract` | String | Contract address of Gov |
+| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
 | `spend_limit` | Uint128 | Upper cap on community grant size |
 

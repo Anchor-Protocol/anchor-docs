@@ -9,16 +9,16 @@
 | `whitelist` | Vec&lt;CanonicalAddr&gt; | List of addresses permissioned to spend ANC in Distributor |
 | `spend_limit` | Uint128 | Maximum amount of ANC spendable per spend event |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub gov_contract: HumanAddr,   // anchor gov contract
-    pub anchor_token: HumanAddr,   // anchor token address
-    pub whitelist: Vec<HumanAddr>, // whitelisted contract addresses allowed to spend from distributor 
+pub struct InstantiateMsg {
+    pub gov_contract: String,   // anchor gov contract
+    pub anchor_token: String,   // anchor token address
+    pub whitelist: Vec<String>, // whitelisted contract addresses allowed to spend from distributor 
     pub spend_limit: Uint128,      // spend limit per each `spend` request
 }
 ```
@@ -42,12 +42,12 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `gov_contract` | HumanAddr | Contract address of Gov |
-| `anchor_token` | HumanAddr | Contract address of ANC token |
-| `whitelist` | Vec&lt;HumanAddr&gt; | List of addresses permissioned to spend ANC in Distributor |
+| `gov_contract` | String | Contract address of Gov |
+| `anchor_token` | String | Contract address of ANC token |
+| `whitelist` | Vec&lt;String&gt; | List of addresses permissioned to spend ANC in Distributor |
 | `spend_limit` | Uint128 | Maximum amount of ANC spendable per spend event |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -58,7 +58,7 @@ Updates the Distributor contract configuration. Can only be issued by the Gov co
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg { 
+pub enum ExecuteMsg { 
     UpdateConfig {
         spend_limit: Option<Uint128>, 
     }
@@ -92,9 +92,9 @@ Spends ANC in Distributor. Can only be issued by whitelisted addresses.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg { 
+pub enum ExecuteMsg { 
     Spend {
-        recipient: HumanAddr, 
+        recipient: String, 
         amount: Uint128, 
     }
 }
@@ -115,7 +115,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `recipient` | HumanAddr | Recipient address of ANC spend |
+| `recipient` | String | Recipient address of ANC spend |
 | `amount` | Uint128 | ANC amount to receive |
 
 ### `AddDistributor`
@@ -127,9 +127,9 @@ Adds a new ANC distribution contract to the whitelist. Can only be issued by the
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg { 
+pub enum ExecuteMsg { 
     AddDistributor {
-        distributor: HumanAddr, 
+        distributor: String, 
     }
 }
 ```
@@ -148,7 +148,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `distributor` | HumanAddr | Contract address of ANC distribution contract to add |
+| `distributor` | String | Contract address of ANC distribution contract to add |
 
 ### `RemoveDistributor`
 
@@ -159,9 +159,9 @@ Removes a ANC distribution contract from the whitelist. Can only be issued by th
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg { 
+pub enum ExecuteMsg { 
     RemoveDistributor {
-        distributor: HumanAddr, 
+        distributor: String, 
     }
 }
 ```
@@ -180,7 +180,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `distributor` | HumanAddr | Contract address of ANC distribution contract to remove |
+| `distributor` | String | Contract address of ANC distribution contract to remove |
 
 ## QueryMsg
 
@@ -219,9 +219,9 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub gov_contract: HumanAddr,
-    pub anchor_token: HumanAddr,
-    pub whitelist: Vec<HumanAddr>,
+    pub gov_contract: String,
+    pub anchor_token: String,
+    pub whitelist: Vec<String>,
     pub spend_limit: Uint128,
 }
 ```
@@ -245,8 +245,8 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `gov_contract` | HumanAddr | Contract address of Gov |
-| `anchor_token` | HumanAddr | Contract address of ANC Token |
-| `whitelist` | Vec&lt;HumanAddr&gt; | List of addresses permissioned to spend ANC in Distributor |
+| `gov_contract` | String | Contract address of Gov |
+| `anchor_token` | String | Contract address of ANC Token |
+| `whitelist` | Vec&lt;String&gt; | List of addresses permissioned to spend ANC in Distributor |
 | `spend_limit` | Uint128 | Maximum amount of ANC spendable per spend event |
 

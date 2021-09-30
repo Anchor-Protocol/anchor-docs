@@ -1,6 +1,6 @@
 # Interchain Transfers
 
-Native Terra tokens \(Terra USD, Luna\) and ANC are interchain tokens -- they are available on the Terra blockchain and the Ethereum blockchain, also being available on the Binance Smart Chain \(BSC\) in the case for Native Terra tokens.
+Native Terra tokens \(TerraUSD, Luna\) and ANC are interchain tokens -- they are available on the Terra blockchain and the Ethereum blockchain, also being available on the Binance Smart Chain \(BSC\) in the case for Native Terra tokens.
 
 Interchain transfers between different chains are facilitated by the [Shuttle](https://github.com/terra-project/shuttle) bridge. Tokens transferred to blockchains other than Terra follow the most widely adopted standard on the chain \(e.g. ERC20 for Ethereum\) and are backed 1:1 with its counterparts on the Terra blockchain.
 
@@ -10,7 +10,7 @@ Interchain transfers between different chains are facilitated by the [Shuttle](h
 
 | Network | Token Denom / Contract Address |
 | :--- | :--- |
-| Terra | uluna |
+| Terra | `uluna` |
 | Ethereum | [0xd2877702675e6cEb975b4A1dFf9fb7BAF4C91ea9](https://etherscan.io/address/0xd2877702675e6cEb975b4A1dFf9fb7BAF4C91ea9) |
 | BSC | [0xECCF35F941Ab67FfcAA9A1265C2fF88865caA005](https://bscscan.com/address/0xECCF35F941Ab67FfcAA9A1265C2fF88865caA005) |
 
@@ -18,7 +18,7 @@ Interchain transfers between different chains are facilitated by the [Shuttle](h
 
 | Network | Token Denom / Contract Address |
 | :--- | :--- |
-| Terra | uusd |
+| Terra | `uusd` |
 | Ethereum | [0xa47c8bf37f92aBed4A126BDA807A7b7498661acD](https://etherscan.io/address/0xa47c8bf37f92aBed4A126BDA807A7b7498661acD) |
 | BSC | [0x23396cF899Ca06c4472205fC903bDB4de249D6fC](https://bscscan.com/address/0x23396cF899Ca06c4472205fC903bDB4de249D6fC) |
 

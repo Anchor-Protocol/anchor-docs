@@ -6,20 +6,20 @@ The Distribution Model contract manages the calculation of the ANC emission rate
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | CanonicalAddr | Address of contract owner |
 | `emission_cap` | Decimal256 | Maximum per-block ANC emission rate |
 | `emission_floor` | Decimal256 | Minimum per-block ANC emission rate |
 | `increment_multiplier` | Decimal256 | Rate multiplier when increasing emission |
 | `decrement_multiplier` | Decimal256 | Rate multiplier when decreasing emission |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InitMsg {
-    pub owner: HumanAddr,
+pub struct InstantiateMsg {
+    pub owner: String,
     pub emission_cap: Decimal256,
     pub emission_floor: Decimal256, 
     pub increment_multiplier: Decimal256,
@@ -43,13 +43,13 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `emission_cap` | Decimal256 | Maximum per-block ANC emission rate |
 | `emission_floor` | Decimal256 | Minimum per-block ANC emission rate |
 | `increment_multiplier` | Decimal256 | Rate multiplier when increasing emission |
 | `decrement_multiplier` | Decimal256 | Rate multiplier when decreasing emission |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -60,9 +60,9 @@ Updates the Distribution Model contract configuration.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner: Option<HumanAddr>,
+        owner: Option<String>,
         emission_cap: Option<Decimal256>,
         emission_floor: Option<Decimal256>, 
         increment_multiplier: Option<Decimal256>,
@@ -89,7 +89,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner`\* | HumanAddr | Address of new owner |
+| `owner`\* | String | Address of new owner |
 | `emission_cap`\* | Decimal256 | New maximum per-block ANC emission rate |
 | `emission_floor`\* | Decimal256 | New minimum per-block ANC emission rate |
 | `increment_multiplier`\* | Decimal256 | New rate multiplier when increasing emission |
@@ -134,7 +134,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner: HumanAddr,
+    pub owner: String,
     pub emission_cap: Decimal256,
     pub emission_floor: Decimal256, 
     pub increment_multiplier: Decimal256,
@@ -158,7 +158,7 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner` | HumanAddr | Address of contract owner |
+| `owner` | String | Address of contract owner |
 | `emission_cap` | Decimal256 | Maximum per-block ANC emission rate |
 | `emission_floor` | Decimal256 | Minimum per-block ANC emission rate |
 | `increment_multiplier` | Decimal256 | Rate multiplier when increasing emission |

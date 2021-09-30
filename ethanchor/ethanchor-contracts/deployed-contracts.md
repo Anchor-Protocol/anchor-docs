@@ -13,8 +13,8 @@ Deposits and withdrawal requests made through supported Ethereum networks are ea
 
 | Network Classification | Chain ID |
 | :--- | :--- |
-| Mainnet | `columbus-4` |
-| Testnet | `bombay-10` |
+| Mainnet | `columbus-5` |
+| Testnet | `bombay-12` |
 
 {% tabs %}
 {% tab title="Mainnet" %}

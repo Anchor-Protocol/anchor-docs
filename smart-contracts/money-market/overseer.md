@@ -23,19 +23,19 @@ The Overseer halts borrow-related operations if the Oracle's price data is older
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
 
-## InitMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub struct InitMsg {
-    pub owner_addr: HumanAddr, 
-    pub oracle_contract: HumanAddr, 
-    pub market_contract: HumanAddr, 
-    pub liquidation_contract: HumanAddr, 
-    pub collector_contract: HumanAddr, 
+pub struct InstantiateMsg {
+    pub owner_addr: String, 
+    pub oracle_contract: String, 
+    pub market_contract: String, 
+    pub liquidation_contract: String, 
+    pub collector_contract: String, 
     pub stable_denom: String, 
     pub epoch_period: u64, 
     pub threshold_deposit_rate: Decimal256, 
@@ -69,11 +69,11 @@ pub struct InitMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner_addr` | HumanAddr | Address of contract owner that can update config |
-| `oracle_contract` | HumanAddr | Contract address of Oracle |
-| `market_contract` | HumanAddr | Contract address of Market |
-| `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
-| `collector_contract` | HumanAddr | Contract address of Collector |
+| `owner_addr` | String | Address of contract owner that can update config |
+| `oracle_contract` | String | Contract address of Oracle |
+| `market_contract` | String | Contract address of Market |
+| `liquidation_contract` | String | Contract address of Liquidation Contract |
+| `collector_contract` | String | Contract address of Collector |
 | `stable_denom` | String | Native token denomination for stablecoin |
 | `epoch_period` | u64 | Minimum time delay between epoch operations **\[blocks\]** |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate to trigger interest buffer distribution |
@@ -82,7 +82,7 @@ pub struct InitMsg {
 | `anc_purchase_factor` | Decimal256 | Portion of bAsset rewards used to purchase ANC |
 | `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
 
-## HandleMsg
+## ExecuteMsg
 
 ### `UpdateConfig`
 
@@ -93,11 +93,11 @@ Updates the configuration of the contract. Can only be issued by the owner.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateConfig {
-        owner_addr: Option<HumanAddr>, 
-        oracle_contract: Option<HumanAddr>, 
-        liquidation_contract: Option<HumanAddr>, 
+        owner_addr: Option<String>, 
+        oracle_contract: Option<String>, 
+        liquidation_contract: Option<String>, 
         threshold_deposit_rate: Option<Decimal256>, 
         target_deposit_rate: Option<Decimal256>, 
         buffer_distribution_factor: Option<Decimal256>, 
@@ -130,9 +130,9 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner_addr`\* | HumanAddr | Address of new contract owner |
-| `oracle_contract`\* | HumanAddr | Contract address of new Oracle |
-| `liquidation_contract`\* | HumanAddr | Contract address of new Liquidation Contract |
+| `owner_addr`\* | String | Address of new contract owner |
+| `oracle_contract`\* | String | Contract address of new Oracle |
+| `liquidation_contract`\* | String | Contract address of new Liquidation Contract |
 | `threshold_deposit_rate`\* | Decimal256 | New threshold per-block deposit rate to trigger interest buffer distribution |
 | `target_deposit_rate`\* | Decimal256 | New target per-block stablecoin deposit rate of Anchor |
 | `buffer_distribution_factor`\* | Decimal256 | New maximum portion of interest buffer that can be distributed in an epoch |
@@ -151,12 +151,12 @@ Whitelists a new collateral accepted in the money market. Can only be issued by 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     Whitelist {
         name: String, 
         symbol: String, 
-        collateral_token: HumanAddr, 
-        custody_contract: HumanAddr, 
+        collateral_token: String, 
+        custody_contract: String, 
         max_ltv: Decimal256,  
     }
 }
@@ -182,8 +182,8 @@ pub enum HandleMsg {
 | :--- | :--- | :--- |
 | `name` | String | Name of collateral bAsset |
 | `symbol` | String | Token symbol of collateral bAsset |
-| `collateral_token` | HumanAddr | Cw20 token contract address of collateral |
-| `custody_contract` | HumanAddr | Custody contract address of collateral |
+| `collateral_token` | String | Cw20 token contract address of collateral |
+| `custody_contract` | String | Custody contract address of collateral |
 | `max_ltv` | Decimal256 | Maximum loan-to-value ratio allowed for collateral |
 
 ### `UpdateWhitelist`
@@ -195,10 +195,10 @@ Updates information for an already whitelisted collateral. Can only be issued by
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateWhitelist {
-        collateral_token: HumanAddr, 
-        custody_contract: Option<HumanAddr>, 
+        collateral_token: String, 
+        custody_contract: Option<String>, 
         max_ltv: Option<Decimal256>,  
     }
 }
@@ -220,8 +220,8 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token` | HumanAddr | Cw20 token contract address of collateral |
-| `custody_contract`\* | HumanAddr | New Custody contract address of collateral |
+| `collateral_token` | String | Cw20 token contract address of collateral |
+| `custody_contract`\* | String | New Custody contract address of collateral |
 | `max_ltv`\* | Decimal256 | New maximum loan-to-value ratio allowed for collateral |
 
 \* = optional
@@ -235,7 +235,7 @@ Executes epoch operations. Distributes interest buffers if necessary, and reques
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     ExecuteEpochOperations {}
 }
 ```
@@ -263,7 +263,7 @@ Updates state related to epoch operations. Can only be issued by `Overseer`.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UpdateEpochState {
         interest_buffer: Uint256, 
         distributed_interest: Uint256, 
@@ -298,13 +298,13 @@ Locks specified amount of collateral deposited by message sender. Requests Custo
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     LockCollateral {
         collaterals: TokensHuman, 
     }
 }
 
-pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
+pub type TokensHuman = Vec<(String, Uint256)>;
 ```
 {% endtab %}
 
@@ -328,7 +328,7 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Collateral token address, Amount to lock\) |
+| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral token address, Amount to lock\) |
 
 ### `UnlockCollateral`
 
@@ -339,13 +339,13 @@ Unlocks specified amount of collateral unlocked by message sender. Requests Cust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     UnlockCollateral {
         collaterals: TokensHuman, 
     }
 }
 
-pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
+pub type TokensHuman = Vec<(String, Uint256)>;
 ```
 {% endtab %}
 
@@ -369,7 +369,7 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Collateral token address, Amount to lock\) |
+| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral token address, Amount to lock\) |
 
 ### `LiquidateCollateral`
 
@@ -380,9 +380,9 @@ Liquidates loan position of the specified borrower. Requests Custody contracts t
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum HandleMsg {
+pub enum ExecuteMsg {
     LiquidateCollateral {
-        borrower: HumanAddr, 
+        borrower: String, 
     }
 }
 ```
@@ -401,7 +401,7 @@ pub enum HandleMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower to liquidate loan position |
+| `borrower` | String | Address of borrower to liquidate loan position |
 
 ## QueryMsg
 
@@ -440,11 +440,11 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
-    pub owner_addr: HumanAddr, 
-    pub oracle_contract: HumanAddr, 
-    pub market_contract: HumanAddr, 
-    pub liquidation_contract: HumanAddr, 
-    pub collector_contract: HumanAddr, 
+    pub owner_addr: String, 
+    pub oracle_contract: String, 
+    pub market_contract: String, 
+    pub liquidation_contract: String, 
+    pub collector_contract: String, 
     pub threshold_deposit_rate: Decimal256, 
     pub target_deposit_rate: Decimal256, 
     pub buffer_distribution_factor: Decimal256, 
@@ -478,11 +478,11 @@ pub struct ConfigResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `owner_addr` | HumanAddr | Address of contract owner |
-| `oracle_contract` | HumanAddr | Contract address of Oracle |
-| `market_contract` | HumanAddr | Contract address of Market |
-| `liquidation_contract` | HumanAddr | Contract address of Liquidation Contract |
-| `collector_contract` | HumanAddr | Contract address of Collector |
+| `owner_addr` | String | Address of contract owner |
+| `oracle_contract` | String | Contract address of Oracle |
+| `market_contract` | String | Contract address of Market |
+| `liquidation_contract` | String | Contract address of Liquidation Contract |
+| `collector_contract` | String | Contract address of Collector |
 | `threshold_deposit_rate` | Decimal256 | Threshold per-block deposit rate before triggering interest buffer distribution |
 | `target_deposit_rate` | Decimal256 | Target per-block stablecoin deposit rate of Anchor |
 | `buffer_distribution_factor` | Decimal256 | Maximum portion of interest buffer that can be distributed in an epoch |
@@ -567,8 +567,8 @@ Gets information about the specified collateral if the `collateral_token` field 
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Whitelist {
-        collateral_token: Option<HumanAddr>, 
-        start_after: Option<HumanAddr>, 
+        collateral_token: Option<String>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -590,8 +590,8 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `collateral_token`\* | HumanAddr | Cw20 Token address of collateral to query information |
-| `start_after`\* | HumanAddr | Collateral Cw20 Token address to start query |
+| `collateral_token`\* | String | Cw20 Token address of collateral to query information |
+| `start_after`\* | String | Collateral Cw20 Token address to start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -611,8 +611,8 @@ pub struct WhitelistResponseElem {
     pub name: String, 
     pub symbol: String, 
     pub max_ltv: Decimal256, 
-    pub custody_contract: HumanAddr, 
-    pub collateral_token: HumanAddr, 
+    pub custody_contract: String, 
+    pub collateral_token: String, 
 }
 ```
 {% endtab %}
@@ -650,8 +650,8 @@ pub struct WhitelistResponseElem {
 | `name` | String | Name of bAsset collateral |
 | `symbol` | String | Token symbol of bAsset collateral |
 | `max_ltv` | Decimal256 | Loan-to-value ratio allowed for collateral |
-| `custody_contract` | HumanAddr | Custody contract address of this collateral |
-| `collateral_token` | HumanAddr | Cw20 Token contract address of this collateral |
+| `custody_contract` | String | Custody contract address of this collateral |
+| `collateral_token` | String | Cw20 Token contract address of this collateral |
 
 ### `Collaterals`
 
@@ -664,7 +664,7 @@ Gets locked collateral information for the specified borrower.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Collaterals {
-        borrower: HumanAddr, 
+        borrower: String, 
     }
 }
 ```
@@ -683,7 +683,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower that locked collateral |
+| `borrower` | String | Address of borrower that locked collateral |
 
 ### `CollateralsResponse`
 
@@ -692,11 +692,11 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct CollateralsResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub collaterals: TokensHuman, 
 }
 
-pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
+pub type TokensHuman = Vec<(String, Uint256)>;
 ```
 {% endtab %}
 
@@ -715,12 +715,12 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower that locked collateral |
+| `borrower` | String | Address of borrower that locked collateral |
 | `collaterals` | TokensHuman | List of collaterals and locked amounts |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Collateral token address, Amount locked\) |
+| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral token address, Amount locked\) |
 
 ### `AllCollaterals`
 
@@ -733,7 +733,7 @@ Gets locked collateral information for all borrowers.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     AllCollaterals {
-        start_after: Option<HumanAddr>, 
+        start_after: Option<String>, 
         limit: Option<u32>, 
     }
 }
@@ -754,7 +754,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `start_after`\* | HumanAddr | Borrower address of start query |
+| `start_after`\* | String | Borrower address of start query |
 | `limit`\* | u32 | Maximum number of query entries |
 
 \* = optional
@@ -770,11 +770,11 @@ pub struct AllCollateralsResponse {
 }
 
 pub struct CollateralsResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub collaterals: TokensHuman, 
 }
 
-pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
+pub type TokensHuman = Vec<(String, Uint256)>;
 ```
 {% endtab %}
 
@@ -808,12 +808,12 @@ pub type TokensHuman = Vec<(HumanAddr, Uint256)>;
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of user that locked collateral |
+| `borrower` | String | Address of user that locked collateral |
 | `collaterals` | TokensHuman | List of collaterals and locked amounts |
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(HumanAddr, Uint256\)&gt; | Vector of \(Contract address of collateral token, Locked amount\) |
+| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Contract address of collateral token, Locked amount\) |
 
 ### `BorrowLimit`
 
@@ -826,7 +826,7 @@ Gets the borrow limit for the specified borrower. Fails if the oracle price is e
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     BorrowLimit {
-        borrower: HumanAddr, 
+        borrower: String, 
         block_time: Option<u64>, 
     }
 }
@@ -847,7 +847,7 @@ pub enum QueryMsg {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
+| `borrower` | String | Address of borrower |
 | `block_time`\* | u64 | Current block timestamp |
 
 \* = optional
@@ -859,7 +859,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BorrowLimitResponse {
-    pub borrower: HumanAddr, 
+    pub borrower: String, 
     pub borrow_limit: Uint128, 
 }
 ```
@@ -877,6 +877,6 @@ pub struct BorrowLimitResponse {
 
 | Key | Type | Description |
 | :--- | :--- | :--- |
-| `borrower` | HumanAddr | Address of borrower |
+| `borrower` | String | Address of borrower |
 | `borrow_limit` | Uint256 | Borrow limit of borrower |
 
