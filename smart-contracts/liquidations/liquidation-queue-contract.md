@@ -1,31 +1,31 @@
 # Liquidation Queue Contract
 
-The Liquidation Contract enables users to submit Terra stablecoin bids for a Cw20-compliant token. Bidders can submit a bid to one of the bid pools; each of the pools deposited funds are used to buy the liquidated colalteral at different discount rates. There are 31 slots per collateral, from 0% to 30%; users can bid on one or more slots. 
+The Liquidation contract enables users to submit Terra stablecoin bids for a Cw20-compliant token. Bidders can submit a bid to one of the bid pools; each of the pools deposited funds are used to buy the liquidated collateral at different discount rates. There are 31 slots per collateral, from 0% to 30%; users can bid on one or more slots.
 
-Upon execution of a bid, Cw20 tokens are sent to the bidder, while the bidder's Terra stablecoins are sent to the repay address \(if not specified, sent to message sender\). A portion of the collateral value liquidated will be given to the address triggering the liquidation \(`liquidator_fee`\). 
+Upon execution of a bid, Cw20 tokens are sent to the bidder, while the bidder's Terra stablecoins are sent to the repay address (if not specified, sent to message sender). A portion of the collateral value liquidated will be given to the address triggering the liquidation (`liquidator_fee`).
 
-Bids are consumed from the bid pools in increasing order of premium rate (e.g 2% bids are only consumed after 0% and 1% pools are emptied). The liquidated collateral is then distributed to the bidders in the afected pools in proportion to their bid amount. The respective collateral should be claimed by the bidders. 
+Bids are consumed from the bid pools in increasing order of premium rate (e.g 2% bids are only consumed after 0% and 1% pools are emptied). The liquidated collateral is then distributed to the bidders in the affected pools in proportion to their bid amount. The respective collateral should be claimed by the bidders.
 
-To prevent bots sniping loans, submitted bids can only be activated after `wait_period` has expired, unless the total bid amount falls under the `bid_threshold`, in which case bids will be directly activated upon submission.
+To prevent bots from sniping loans, submitted bids can only be activated after `wait_period` has expired, unless the total bid amount falls under the `bid_threshold`, in which case bids will be directly activated upon submission.
 
-Additionally, the Liquidation Contract serves as the point of calculation for partial collateral liquidations, where a loan position is liquidated until it reaches a safe `borrow_amount / borrow_limit` ratio. The required liquidation amount for each collateral is calculated based on the fed-in loan position's attributes and the state of the bid pools.
+Additionally, the Liquidation contract serves as the point of calculation for partial collateral liquidations, where a loan position is liquidated until it reaches a safe `borrow_amount / borrow_limit` ratio. The required liquidation amount for each collateral is calculated based on the fed-in loan position's attributes and the state of the bid pools.
 
-The oracle contract is responsible for providing the relevant Cw20 token prices. Price data from the Oracle contract are only valid for 60 seconds \(`price_timeframe`\). The Liquidation contract disables bid executions until new price data is fed-in to the Oracle contract.
+The oracle contract is responsible for providing the relevant Cw20 token prices. Price data from the Oracle contract are only valid for 60 seconds (`price_timeframe`). The Liquidation contract disables bid executions until new price data is fed in to the Oracle contract.
 
 ## Config
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner` | CanonicalAddr | Address of contract owner that can update config |
-| `oracle_contract` | CanonicalAddr | Contract address of Oracle |
-| `stable_denom` | String | Native token denomination for bids |
-| `safe_ratio` | Decimal256 | A liability / borrow limit ratio of a loan deemed safe |
-| `liquidator_fee` | Decimal256 | Fee rate given to the executor |
-| `bid_fee` | Decimal256 | Fee rate applied to all executed liquidations |
-| `liquidation_threshold` | Uint256 | Threshold collateral value for partial collateral liquidations |
-| `price_timeframe` | u64 | Window of time before oracle price data is considered outdated **\[seconds\]** |
-| `waiting_period` | u64 | Time after submitted bids can be activated **\[seconds\]** |
-| `overseer` | CanonicalAddr | Contract address of Overseer |
+| Key                     | Type          | Description                                                                   |
+| ----------------------- | ------------- | ----------------------------------------------------------------------------- |
+| `owner`                 | CanonicalAddr | Address of contract owner that can update config                              |
+| `oracle_contract`       | CanonicalAddr | Contract address of Oracle                                                    |
+| `stable_denom`          | String        | Native token denomination for bids                                            |
+| `safe_ratio`            | Decimal256    | A liability / borrow limit ratio of a loan deemed safe                        |
+| `liquidator_fee`        | Decimal256    | Fee rate given to the executor                                                |
+| `bid_fee`               | Decimal256    | Fee rate applied to all executed liquidations                                 |
+| `liquidation_threshold` | Uint256       | Threshold collateral value for partial collateral liquidations                |
+| `price_timeframe`       | u64           | Window of time before oracle price data is considered outdated **\[seconds]** |
+| `waiting_period`        | u64           | Time after submitted bids can be activated **\[seconds]**                     |
+| `overseer`              | CanonicalAddr | Contract address of Overseer                                                  |
 
 ## InstantiateMsg
 
@@ -66,24 +66,24 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner` | String | Address of contract owner that can update config |
-| `oracle_contract` | String | Contract address of Oracle |
-| `stable_denom` | String | Native token denomination for bids |
-| `safe_ratio` | Decimal256 | A liability / borrow limit ratio of a loan deemed safe |
-| `bid_fee` | Decimal256 | Fee rate applied to executed bids |
-| `liquidator_fee` | Decimal256 | Fee rate given to the executor  |
-| `liquidation_threshold` | Uint256 | Threshold collateral value for triggering partial collateral liquidations |
-| `price_timeframe` | u64 | Window of time before oracle price data is considered outdated **\[seconds\]** |
-| `waiting_period` | u64 | Time after submitted bids can be activated **\[seconds\]** |
-| `overseer` | String | Contract address of Overseer |
+| Key                     | Type       | Description                                                                   |
+| ----------------------- | ---------- | ----------------------------------------------------------------------------- |
+| `owner`                 | String     | Address of contract owner that can update config                              |
+| `oracle_contract`       | String     | Contract address of Oracle                                                    |
+| `stable_denom`          | String     | Native token denomination for bids                                            |
+| `safe_ratio`            | Decimal256 | A liability / borrow limit ratio of a loan deemed safe                        |
+| `bid_fee`               | Decimal256 | Fee rate applied to executed bids                                             |
+| `liquidator_fee`        | Decimal256 | Fee rate given to the executor                                                |
+| `liquidation_threshold` | Uint256    | Threshold collateral value for triggering partial collateral liquidations     |
+| `price_timeframe`       | u64        | Window of time before oracle price data is considered outdated **\[seconds]** |
+| `waiting_period`        | u64        | Time after submitted bids can be activated **\[seconds]**                     |
+| `overseer`              | String     | Contract address of Overseer                                                  |
 
 ## ExecuteMsg
 
 ### `Receive`
 
-Can be called during a CW20 token transfer when the Liquidation Contract is the recipient. Allows the token transfer to execute a [Receive Hook](liquidation-contract.md#receive-hooks) as a subsequent action within the same transaction.
+Can be called during a CW20 token transfer when the Liquidation contract is the recipient. Allows the token transfer to execute a [Receive Hook](liquidation-contract.md#receive-hooks) as a subsequent action within the same transaction.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -113,15 +113,15 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `sender` | String | Sender of the token transfer |
-| `amount` | Uint128 | Amount of tokens received |
-| `msg` | Binary | Base64-encoded string of JSON of [Receive Hook](liquidation-contract.md#receive-hooks) |
+| Key      | Type    | Description                                                                            |
+| -------- | ------- | -------------------------------------------------------------------------------------- |
+| `sender` | String  | Sender of the token transfer                                                           |
+| `amount` | Uint128 | Amount of tokens received                                                              |
+| `msg`    | Binary  | Base64-encoded string of JSON of [Receive Hook](liquidation-contract.md#receive-hooks) |
 
 ### `UpdateConfig`
 
-Updates the Liquidation Queue Contract's configuration. Can only be issued by the owner.
+Updates the Liquidation contract's configuration. Can only be issued by the owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -163,17 +163,17 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner`\* | String | Address of new owner |
-| `oracle_contract`\* | String | New oracle contract address |
-| `safe_ratio`\* | Decimal256 | New liability / borrow limit of a loan deemed safe |
-| `bid_fee`\* | Decimal256 | New fee rate applied to executed bids |
-| `liquidator_fee`\* | Decimal256 | Fee rate given to the executor  |
-| `liquidation_threshold`\* | Uint256 | New threshold collateral value for triggering partial collateral liquidations |
-| `price_timeframe`\* | u64 | New window of time before price data is considered outdated **\[seconds\]** |
-| `waiting_period`\* | u64 | Time after submitted bids can be activated **\[seconds\]** |
-| `overseer`\* | String | Contract address of Overseer |
+| Key                       | Type       | Description                                                                   |
+| ------------------------- | ---------- | ----------------------------------------------------------------------------- |
+| `owner`\*                 | String     | Address of new owner                                                          |
+| `oracle_contract`\*       | String     | New oracle contract address                                                   |
+| `safe_ratio`\*            | Decimal256 | New liability / borrow limit of a loan deemed safe                            |
+| `bid_fee`\*               | Decimal256 | New fee rate applied to executed bids                                         |
+| `liquidator_fee`\*        | Decimal256 | Fee rate given to the executor                                                |
+| `liquidation_threshold`\* | Uint256    | New threshold collateral value for triggering partial collateral liquidations |
+| `price_timeframe`\*       | u64        | New window of time before price data is considered outdated **\[seconds]**    |
+| `waiting_period`\*        | u64        | Time after submitted bids can be activated **\[seconds]**                     |
+| `overseer`\*              | String     | Contract address of Overseer                                                  |
 
 \* = optional
 
@@ -211,12 +211,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Address of the collateral token to whitelist |
-| `bid_threshold` | Uint256 | Bid amount threshold under which bids will be activated upon submission |
-| `max_slot` | u8 | Maximum premium slot |
-| `premium_rate_per_slot` | Decimal256 | Premium rate increase for each slot |
+| Key                     | Type       | Description                                                             |
+| ----------------------- | ---------- | ----------------------------------------------------------------------- |
+| `collateral_token`      | String     | Address of the collateral token to whitelist                            |
+| `bid_threshold`         | Uint256    | Bid amount threshold under which bids will be activated upon submission |
+| `max_slot`              | u8         | Maximum premium slot                                                    |
+| `premium_rate_per_slot` | Decimal256 | Premium rate increase for each slot                                     |
 
 ### `UpdateCollateralInfo`
 
@@ -250,11 +250,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Address of the collateral token to whitelist |
-| `bid_threshold`\* | Uint256 | Bid amount threshold under which bids will be activated upon submission |
-| `max_slot`\* | u8 | Maximum premium slot |
+| Key                | Type    | Description                                                             |
+| ------------------ | ------- | ----------------------------------------------------------------------- |
+| `collateral_token` | String  | Address of the collateral token to whitelist                            |
+| `bid_threshold`\*  | Uint256 | Bid amount threshold under which bids will be activated upon submission |
+| `max_slot`\*       | u8      | Maximum premium slot                                                    |
 
 \* = optional
 
@@ -288,10 +288,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Cw20 token contract address of bidding collateral |
-| `premium_slot` | u8 | Premium rate slot to which the bid will be submitted to |
+| Key                | Type   | Description                                             |
+| ------------------ | ------ | ------------------------------------------------------- |
+| `collateral_token` | String | Cw20 token contract address of bidding collateral       |
+| `premium_slot`     | u8     | Premium rate slot to which the bid will be submitted to |
 
 ### `ActivateBids`
 
@@ -323,10 +323,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Cw20 token contract address of bidding collateral |
-| `bids_idx`\* | Vec&lt;Uint128&gt; | List of bid unique identifiers |
+| Key                | Type          | Description                                       |
+| ------------------ | ------------- | ------------------------------------------------- |
+| `collateral_token` | String        | Cw20 token contract address of bidding collateral |
+| `bids_idx`\*       | Vec\<Uint128> | List of bid unique identifiers                    |
 
 \* = optional
 
@@ -360,9 +360,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `bid_idx` | Uint128 | Bid unique identifier |
+| Key        | Type    | Description                              |
+| ---------- | ------- | ---------------------------------------- |
+| `bid_idx`  | Uint128 | Bid unique identifier                    |
 | `amount`\* | Uint256 | Amount of stablecoins to remove from bid |
 
 \* = optional
@@ -397,10 +397,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Cw20 token contract address of bidding collateral |
-| `bids_idx`\* | Vec&lt;Uint128&gt; | List of bid unique identifiers |
+| Key                | Type          | Description                                       |
+| ------------------ | ------------- | ------------------------------------------------- |
+| `collateral_token` | String        | Cw20 token contract address of bidding collateral |
+| `bids_idx`\*       | Vec\<Uint128> | List of bid unique identifiers                    |
 
 \* = optional
 
@@ -438,11 +438,11 @@ pub enum Cw20HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `liquidator` | String | Address of collateral liquidator to receive `liquidator_fee` from liquidation |
-| `fee_address`\* | String | Address to receive `bid_fee` from liquidation |
-| `repay_address`\* | String | Address to receive bid stablecoins from liquidation |
+| Key               | Type   | Description                                                                   |
+| ----------------- | ------ | ----------------------------------------------------------------------------- |
+| `liquidator`      | String | Address of collateral liquidator to receive `liquidator_fee` from liquidation |
+| `fee_address`\*   | String | Address to receive `bid_fee` from liquidation                                 |
+| `repay_address`\* | String | Address to receive bid stablecoins from liquidation                           |
 
 \* = optional
 
@@ -511,18 +511,18 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner` | String | Address of contract owner that can update config |
-| `oracle_contract` | String | Contract address of Oracle |
-| `stable_denom` | String | Native token denomination for bids |
-| `safe_ratio` | Decimal256 | A liability / borrow limit ratio of a loan deemed safe |
-| `bid_fee` | Decimal256 | Fee rate applied to all executed bids |
-| `liquidator_fee` | Decimal256 | Fee rate given to the executor |
-| `liquidation_threshold` | Uint256 | Threshold collateral value for partial collateral liquidations |
-| `price_timeframe` | u64 | Window of time before price data is considered outdated **\[seconds\]** |
-| `waiting_period` | u64 | Time after submitted bids can be activated **\[seconds\]** |
-| `overseer` | String | Contract address of Overseer |
+| Key                     | Type       | Description                                                            |
+| ----------------------- | ---------- | ---------------------------------------------------------------------- |
+| `owner`                 | String     | Address of contract owner that can update config                       |
+| `oracle_contract`       | String     | Contract address of Oracle                                             |
+| `stable_denom`          | String     | Native token denomination for bids                                     |
+| `safe_ratio`            | Decimal256 | A liability / borrow limit ratio of a loan deemed safe                 |
+| `bid_fee`               | Decimal256 | Fee rate applied to all executed bids                                  |
+| `liquidator_fee`        | Decimal256 | Fee rate given to the executor                                         |
+| `liquidation_threshold` | Uint256    | Threshold collateral value for partial collateral liquidations         |
+| `price_timeframe`       | u64        | Window of time before price data is considered outdated **\[seconds]** |
+| `waiting_period`        | u64        | Time after submitted bids can be activated **\[seconds]**              |
+| `overseer`              | String     | Contract address of Overseer                                           |
 
 ### `CollateralInfo`
 
@@ -552,8 +552,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
+| Key                | Type   | Description            |
+| ------------------ | ------ | ---------------------- |
 | `collateral_token` | String | Token contract address |
 
 ### `CollateralInfoResponse`
@@ -583,12 +583,12 @@ pub struct CollateralInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Address of the collateral token whitelisted |
-| `bid_threshold` | Uint256 | Bid amount threshold under which bids will be activated upon submission |
-| `max_slot` | u8 | Maximum premium slot |
-| `premium_rate_per_slot` | Decimal256 | Premium rate increase for each slot |
+| Key                     | Type       | Description                                                             |
+| ----------------------- | ---------- | ----------------------------------------------------------------------- |
+| `collateral_token`      | String     | Address of the collateral token whitelisted                             |
+| `bid_threshold`         | Uint256    | Bid amount threshold under which bids will be activated upon submission |
+| `max_slot`              | u8         | Maximum premium slot                                                    |
+| `premium_rate_per_slot` | Decimal256 | Premium rate increase for each slot                                     |
 
 ### `LiquidationAmount`
 
@@ -632,16 +632,16 @@ pub type TokensHuman = Vec<(String, Uint256)>;
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `borrow_amount` | Uint256 | Liability of borrower |
-| `borrow_limit` | Uint256 | Borrow limit of borrower |
-| `collaterals` | TokensHuman | Held collaterals and locked amounts |
-| `collateral_prices` | Vec&lt;Decimal&gt; | Vector of collateral prices |
+| Key                 | Type          | Description                         |
+| ------------------- | ------------- | ----------------------------------- |
+| `borrow_amount`     | Uint256       | Liability of borrower               |
+| `borrow_limit`      | Uint256       | Borrow limit of borrower            |
+| `collaterals`       | TokensHuman   | Held collaterals and locked amounts |
+| `collateral_prices` | Vec\<Decimal> | Vector of collateral prices         |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral's token address, Amount of collateral locked by borrower\) |
+| Key           | Type                   | Description                                                                     |
+| ------------- | ---------------------- | ------------------------------------------------------------------------------- |
+| `TokensHuman` | Vec<(String, Uint256)> | Vector of (Collateral's token address, Amount of collateral locked by borrower) |
 
 ### `LiquidationAmountResponse`
 
@@ -669,13 +669,13 @@ pub type TokensHuman = Vec<(String, Uint256)>;
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
+| Key           | Type        | Description                                   |
+| ------------- | ----------- | --------------------------------------------- |
 | `collaterals` | TokensHuman | Calculated amount of collaterals to liquidate |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `TokensHuman` | Vec&lt;\(String, Uint256\)&gt; | Vector of \(Collateral's token address, Amount that has to be liquidated\) |
+| Key           | Type                   | Description                                                              |
+| ------------- | ---------------------- | ------------------------------------------------------------------------ |
+| `TokensHuman` | Vec<(String, Uint256)> | Vector of (Collateral's token address, Amount that has to be liquidated) |
 
 ### `Bid`
 
@@ -705,8 +705,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
+| Key       | Type    | Description           |
+| --------- | ------- | --------------------- |
 | `bid_idx` | Uint128 | Bid unique identifier |
 
 ### `BidResponse`
@@ -750,19 +750,19 @@ pub struct BidResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `bid_idx` | Uint128 | Bid unique identifier |
-| `collateral_token` | String | Token contract address of bidding collateral |
-| `premium_slot` | u8 | Premium rate slot to which the bid is submitted to |
-| `bidder` | String | Address of bidder |
-| `amount` | Uint256 | Amount of stablecoins put up in bid |
-| `product_snapshot` | Decimal256 | Snapshot of the bid pool's product at the time of activation |
-| `sum_snapshot` | Decimal256 | Snapshot of the bid pool's sum at the time of activation |
-| `pending_liquidated_collateral` | Uint256 | Amount of claimable collateral |
-| `wait_end` | u64 | Timestamp (seconds) when bid can be activated, empty if already active |
-| `epoch_snapshot` | Uint128 | Snapshot of the bid pool epoch at the time of activation |
-| `scale_snapshot` | Uint128 | Snapshot of the bid pool scale at the time of activation |
+| Key                             | Type       | Description                                                            |
+| ------------------------------- | ---------- | ---------------------------------------------------------------------- |
+| `bid_idx`                       | Uint128    | Bid unique identifier                                                  |
+| `collateral_token`              | String     | Token contract address of bidding collateral                           |
+| `premium_slot`                  | u8         | Premium rate slot to which the bid is submitted to                     |
+| `bidder`                        | String     | Address of bidder                                                      |
+| `amount`                        | Uint256    | Amount of stablecoins put up in bid                                    |
+| `product_snapshot`              | Decimal256 | Snapshot of the bid pool's product at the time of activation           |
+| `sum_snapshot`                  | Decimal256 | Snapshot of the bid pool's sum at the time of activation               |
+| `pending_liquidated_collateral` | Uint256    | Amount of claimable collateral                                         |
+| `wait_end`                      | u64        | Timestamp (seconds) when bid can be activated, empty if already active |
+| `epoch_snapshot`                | Uint128    | Snapshot of the bid pool epoch at the time of activation               |
+| `scale_snapshot`                | Uint128    | Snapshot of the bid pool scale at the time of activation               |
 
 ### `BidsByUser`
 
@@ -798,11 +798,11 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `bidder` | String | Address of bidder |
-| `start_after`\* | Uint128 | User bid idx to start the query after |
-| `limit`\* | u8 | Maximum number of query entries (capped at 31) |
+| Key             | Type    | Description                                    |
+| --------------- | ------- | ---------------------------------------------- |
+| `bidder`        | String  | Address of bidder                              |
+| `start_after`\* | Uint128 | User bid idx to start the query after          |
+| `limit`\*       | u8      | Maximum number of query entries (capped at 31) |
 
 ### `BidsByUserResponse`
 
@@ -866,23 +866,23 @@ pub struct BidResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `bids` | Vec&lt;BidResponse&gt; | Vector of user's bid information |
+| Key    | Type              | Description                      |
+| ------ | ----------------- | -------------------------------- |
+| `bids` | Vec\<BidResponse> | Vector of user's bid information |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `bid_idx` | Uint128 | Bid unique identifier |
-| `collateral_token` | String | Token contract address of bidding collateral |
-| `premium_slot` | u8 | Premium rate slot to which the bid is submitted to |
-| `bidder` | String | Address of bidder |
-| `amount` | Uint256 | Amount of stablecoins put up in bid |
-| `product_snapshot` | Decimal256 | Snapshot of the bid pool's product at the time of activation |
-| `sum_snapshot` | Decimal256 | Snapshot of the bid pool's sum at the time of activation |
-| `pending_liquidated_collateral` | Uint256 | Amount of claimable collateral |
-| `wait_end` | u64 | Timestamp (seconds) when bid can be activated, empty if already active |
-| `epoch_snapshot` | Uint128 | Snapshot of the bid pool epoch at the time of activation |
-| `scale_snapshot` | Uint128 | Snapshot of the bid pool scale at the time of activation |
+| Key                             | Type       | Description                                                            |
+| ------------------------------- | ---------- | ---------------------------------------------------------------------- |
+| `bid_idx`                       | Uint128    | Bid unique identifier                                                  |
+| `collateral_token`              | String     | Token contract address of bidding collateral                           |
+| `premium_slot`                  | u8         | Premium rate slot to which the bid is submitted to                     |
+| `bidder`                        | String     | Address of bidder                                                      |
+| `amount`                        | Uint256    | Amount of stablecoins put up in bid                                    |
+| `product_snapshot`              | Decimal256 | Snapshot of the bid pool's product at the time of activation           |
+| `sum_snapshot`                  | Decimal256 | Snapshot of the bid pool's sum at the time of activation               |
+| `pending_liquidated_collateral` | Uint256    | Amount of claimable collateral                                         |
+| `wait_end`                      | u64        | Timestamp (seconds) when bid can be activated, empty if already active |
+| `epoch_snapshot`                | Uint128    | Snapshot of the bid pool epoch at the time of activation               |
+| `scale_snapshot`                | Uint128    | Snapshot of the bid pool scale at the time of activation               |
 
 ### `BidPool`
 
@@ -914,10 +914,10 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
+| Key                | Type   | Description                                  |
+| ------------------ | ------ | -------------------------------------------- |
 | `collateral_token` | String | Token contract address of bidding collateral |
-| `premium_slot` | u8 | Premium rate slot |
+| `premium_slot`     | u8     | Premium rate slot                            |
 
 ### `BidPoolResponse`
 
@@ -950,14 +950,14 @@ pub struct BidPoolResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `sum_snapshot` | Decimal256 | Internal parameter that represents amount of collateral liquidated to be distributed |
-| `product_snapshot` | Decimal256 | Internal parameter that represents rate at which bids are consumed |
-| `total_bid_amount` | Uint256 | Total remaining bid amount for this pool |
-| `premium_rate` | Decimal256 | Discount rate at which the bid pool buys liquidated collateral |
-| `current_epoch` | Uint128 | Increases every time all bids in the bid pool are totally consumed |
-| `current_scale` | Uint128 | Increases every time `product_snapshot` is scaled, resets when epoch changes |
+| Key                | Type       | Description                                                                          |
+| ------------------ | ---------- | ------------------------------------------------------------------------------------ |
+| `sum_snapshot`     | Decimal256 | Internal parameter that represents amount of collateral liquidated to be distributed |
+| `product_snapshot` | Decimal256 | Internal parameter that represents rate at which bids are consumed                   |
+| `total_bid_amount` | Uint256    | Total remaining bid amount for this pool                                             |
+| `premium_rate`     | Decimal256 | Discount rate at which the bid pool buys liquidated collateral                       |
+| `current_epoch`    | Uint128    | Increases every time all bids in the bid pool are totally consumed                   |
+| `current_scale`    | Uint128    | Increases every time `product_snapshot` is scaled, resets when epoch changes         |
 
 ### `BidPoolsByCollateral`
 
@@ -991,11 +991,11 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `collateral_token` | String | Token contract address of collateral |
-| `start_after`\* | u8 | Premium slot to start the query after |
-| `limit`\* | u32 | Maximum number of query entries (capped at 31) |
+| Key                | Type   | Description                                    |
+| ------------------ | ------ | ---------------------------------------------- |
+| `collateral_token` | String | Token contract address of collateral           |
+| `start_after`\*    | u8     | Premium slot to start the query after          |
+| `limit`\*          | u32    | Maximum number of query entries (capped at 31) |
 
 \* = optional
 
@@ -1046,16 +1046,15 @@ pub struct BidPoolResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `bid_pools` | Vec&lt;BidPoolResponse&gt; | Vector of bid pools information |
+| Key         | Type                  | Description                     |
+| ----------- | --------------------- | ------------------------------- |
+| `bid_pools` | Vec\<BidPoolResponse> | Vector of bid pools information |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `sum_snapshot` | Decimal256 | Internal parameter that represents amount of collateral liquidated to be distributed |
-| `product_snapshot` | Decimal256 | Internal parameter that represents rate at which bids are consumed |
-| `total_bid_amount` | Uint256 | Total remaining bid amount for this pool |
-| `premium_rate` | Decimal256 | Discount rate at which the bid pool buys liquidated collateral |
-| `current_epoch` | Uint128 | Increases every time all bids in the bid pool are totally consumed |
-| `current_scale` | Uint128 | Increases every time `product_snapshot` is scaled, resets when epoch changes |
-
+| Key                | Type       | Description                                                                          |
+| ------------------ | ---------- | ------------------------------------------------------------------------------------ |
+| `sum_snapshot`     | Decimal256 | Internal parameter that represents amount of collateral liquidated to be distributed |
+| `product_snapshot` | Decimal256 | Internal parameter that represents rate at which bids are consumed                   |
+| `total_bid_amount` | Uint256    | Total remaining bid amount for this pool                                             |
+| `premium_rate`     | Decimal256 | Discount rate at which the bid pool buys liquidated collateral                       |
+| `current_epoch`    | Uint128    | Increases every time all bids in the bid pool are totally consumed                   |
+| `current_scale`    | Uint128    | Increases every time `product_snapshot` is scaled, resets when epoch changes         |
