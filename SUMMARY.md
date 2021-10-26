@@ -79,6 +79,7 @@
   * [Oracle](smart-contracts/money-market/oracle.md)
 * [Liquidation](smart-contracts/liquidations/README.md)
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
+  * [Liquidation Queue Contract](smart-contracts/liquidations/liquidation-queue-contract.md)
 * [Anchor Token \(ANC\)](smart-contracts/anchor-token/README.md)
   * [Gov](smart-contracts/anchor-token/gov.md)
   * [Staking](smart-contracts/anchor-token/staking.md)
