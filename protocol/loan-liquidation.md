@@ -1,50 +1,65 @@
 # Loan Liquidation
 
-To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquidators to observe and liquidate loans with an LTV ratio above the allowed maximum. The Liquidation Contract is used to convert collaterals of a liquidating loan to Terra stablecoins, which are then used to repay the loan.
+To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquidators to observe and liquidate loans with an LTV ratio above the allowed maximum. The Liquidation Queue is used to convert collaterals of a liquidating loan to TerraUSD (UST), which are then used to repay the loan.
 
-The Liquidation Contract acts as an over-the-counter \(OTC\) exchange between Cw20-compliant collateral tokens and Terra stablecoins. Using Anchor's Oracle Contract as a price feed, conversions between any arbitrary Cw20 token-based assets and Terra stablecoins are facilitated.
+The Liquidation Queue serves as the exchange point between Anchor collateral and UST. Using Anchor's Oracle Contract as the reference price feed, conversions between whitelisted bAssets and UST are facilitated.
 
-In addition to collateral liquidation, the Liquidation Contract handles calculations of collateral liquidation amounts in cases of [partial collateral liquidation](loan-liquidation.md#partial-liquidation).
+In addition to collateral liquidation, the Liquidation Queue handles calculations of collateral liquidation amounts in cases of [partial collateral liquidation](loan-liquidation.md#partial-liquidation).
 
 ## Bids
 
-Collateral tokens are liquidated to Terra stablecoins by executing bids submitted to the Liquidation Contract. Bids are purchase offers for Cw20 tokens in exchange for Terra stablecoins, typically submitted by those that hold Terra stablecoins, and are wishing to exchange their stablecoins with a certain Cw20 token.
+Collateral tokens are liquidated to UST by executing bids submitted to the Liquidation Queue. Bids are purchase offers for liquidated collaterals in exchange for UST, typically submitted by those that wish to exchange their UST with a certain collateral token at a discounted price.
 
 ### Properties
 
-Bids are characterized by four properties: **bidder**, **asset**, **size**, and **premium rate**.
+Bids are characterized by six properties: **bid ID**, **bidder**, **asset**, **size**, **premium slot**, and **activation time**.
 
-#### Bidder
+* **Bid ID** - A bid's unique identifier.
+* **Bidder** - Terra account that has submitted the bid. When the bid is executed, liquidated collaterals are credited to this account, made available for withdrawal.
+* **Asset** - collateral that the bidder is hoping to purchase. Bids can only be made for whitelisted Anchor collaterals.
+* **Size** - amount of UST that was put up upon bid submission. This is the amount of UST that the bidder will use to purchase the specified collateral.
+* **Premium Slot** - rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase collateral at a price below the current oracle price. While bidders are able to set premium slots of their own, the Liquidation Queue only allows values between **0%** and **30%**, in increments of **1%**.
+* **Activation Time** - block timestamp when the bid becomes eligible for activation. Bid execution can only occur for activated bids.
 
-The **bidder** of a bid is the account that has submitted the bid. When a bid is executed, the purchased Cw20 tokens are sent to this account.
+### Lifecycle
 
-#### Asset
+#### Bid Submission
 
-A bid's **asset** refers to the Cw20 token that the bidder is hoping to purchase. Any token that complies with the Cw20 standard is supported as long as a price feed is provided by the Oracle Contract.
+Any user with a sufficient UST balance can submit a bid to the Liquidation Queue. Bidders are required to specify the CW20 token address of the purchasing collateral and their preferred premium slot.
 
-#### Size
 
-The **size** of a bid is the amount of Terra stablecoins that were put up upon bid submission. This is the amount of stablecoins that the bidder will use to purchase the specified Cw20 token.
 
-#### Premium Rate
+#### Bid Activation
 
-The **premium rate** of a bid is the rate of premium that the bidder is demanding upon bid execution. If set to a non-zero value, the bidder can purchase Cw20 tokens at a price cheaper than the current oracle price. While bidders are able to set premium rates of their own, the Liquidation Contract limits the maximum submittable value to **15%**.
+After a certain activation period (**10 minutes**), bids can then be activated into the queue. A bid's activation makes it eligible to be used in collateral liquidations. Unactivated bids will not be used in liquidations.
 
-### Bid Submission / Retraction
+Once activated, bids are arranged into an orderbook-style queue. Bids with lower premiums are given a higher execution priority, thus being executed first during liquidation events. Bids with matching premiums are pooled together to have the same execution priority.
 
-{% hint style="info" %}
-There can exist at most one bid per asset type per bidder -- existing bids should be retracted before submitting a new bid with different properties \(i.e. premium rate\).
-{% endhint %}
+The activation period exists to prevent bots from front running. Without it, the system can be gamed during short-term market volatilities - bidders may retract their bids and instantly resubmit at a lower premium, causing bids to be retracted when they asre needed the most. The activation period forces bidders to thoughtfully select premiums fit for mid-to-long term market fluctuations, as their premiums cannot by eapidly changed.
 
-Any user with a Terra stablecoin balance can submit a bid to a Liquidation Contract with the matching stablecoin denomination. Bidders are required to specify the Cw20 token address of purchasing asset and their preferred premium rate.
+The activation period is not applied when bids of a collateral are below a certain threshold (**5M UST for bLuna, 1M UST for bETH**). This is so that new bids can be rapidly supplied to the system.
 
-A submitted bid can be retracted at any time, provided that the bid has not been fully executed. Users can specify the retract amount, and if not specified, the entire bid is retracted.
 
-### Bid Execution
 
-Bids can be executed when a user desires to convert their Cw20 assets for Terra stablecoins. Bid executors should specify a bidder to execute on, from which the specified bidder's bid is executed. The bidder receives the Cw20 asset sent by the user, and the user receives the bidder's stablecoin, minus the bidder premium. Executors are allowed to designate a different account to receive the converted stablecoins \(optional\).
+#### Bid Retraction
 
-For external contracts \(e.g. money market\) interacting with the Liquidation Contract, a fee address can be set to receive **1%** of the executed bid's stablecoins.
+A submitted bid - activated or not - can be retracted at any time, provided that the bid has not been fully executed. Users can specify the retract amount, and if not specified, the entire bid is retracted.
+
+
+
+#### Bid Execution
+
+Collateral liquidations are performed by executing activated bids. Bids are executed from the bid pools in increasing order of premium rate (e.g 2% bids are only consumed after 0% and 1% pools are emptied). Bids with the lowest premium are executed first, iterating until the requested liquidation amount is fully consumed. Liquidated collaterals are credited to bidders, available for later withdrawal.
+
+As bids with the same premium slot are pooled together, liquidated collaterals are credited pro-rata to each bidder's bid amount share.
+
+**1%** of the liquidated value is attached as a liquidation fee, sent to Anchor's yield reserve.
+
+
+
+#### Claiming Liquidated Collaterals
+
+Post-liquidation, bidders can send a transaction to withdraw liquidated collaterals.
 
 ## Collateral Liquidation
 
@@ -70,27 +85,28 @@ $$
 \text{liquidationFactor} = \frac{\text{liability} - \text{safeRiskRatio} \cdot \text{borrowLimit}}{\text{collateralValue} \cdot \text{feeDeductor} - \text{safeRiskRatio} \cdot \text{borrowLimit}}
 $$
 
-The liquidation factor accounts for fees lost during bid execution\( $$\text{feeDeductor}$$ \), such as the premium rate of bids, fees applied on bid execution, and taxes charged on native Terra transfers:
+The liquidation factor accounts for fees lost during bid execution( $$\text{feeDeductor}$$ ), such as the premium rate of bids, fees applied on bid execution, and taxes charged on native Terra transfers:
 
 $$
 \text{feeDeductor} = (1-\text{maxPremiumRate}) \cdot(1-\text{executionFee})\cdot(1-\text{terraTax})
 $$
 
-Note that $$\text{feeDeductor}$$ uses the maximum rate of fees that can be applied during liquidation, liquidating slightly more collateral than the minimum required \(to reach the safe risk ratio\).
+Note that $$\text{feeDeductor}$$ uses the maximum rate of fees that can be applied during liquidation, liquidating slightly more collateral than the minimum required (to reach the safe risk ratio).
 
-### Multicollateral Liquidation
+### Multi-collateral Liquidation
 
-Liquidation also applies for multicollateral loans, which are loans that are backed with two or more collaterals. When liquidated, all of the locked collateral types are liquidated accordingly until the multicollateral loan meets the safe risk ratio \(if partial liquidation is applicable\).
+Liquidation also applies for multi-collateral loans, which are loans that are backed with two or more collaterals. When liquidated, all of the locked collateral types are liquidated accordingly until the multi-collateral loan meets the safe risk ratio (if partial liquidation is applicable).
 
-During liquidation, collaterals in a multicollateral loan are liquidated proportional to each collateral's collateral value.
+During liquidation, collaterals in a multi-collateral loan are liquidated proportional to each collateral's collateral value, and inverse to the its maximum LTV. Collaterals with lower maximum LTVs are given a higher weight as they require a lesser amount of liquidated value to decrease the risk ratio.
 
 $$
-\text{liquidationAmount}_\text{collateral}\propto \frac{\text{collateralValue}_\text{collateral}}{\Sigma\, \text{collateralValue}}
+\text{liquidationAmount}_\text{collateral} \propto \frac{\min(\text{collateralValue}_\text{collateral}, \text{availableBids}_\text{collateral})}{\text{maxLTV}_\text{collateral}}
 $$
 
 ### Bid Execution
 
-Collaterals locked to a liquidated loan position are converted to Terra stablecoins through bid execution. The money market executes bids that were submitted by the loan liquidator, and stablecoins received from execution are used to repay the liquidated borrower's loan.
+Collaterals locked to a liquidated loan position are converted to UST through bid execution. The money market executes bids, and UST received from execution are used to repay the liquidated borrower's loan.
 
-The money market sets the execution fee address to its yield reserve, transferring **1%** of the bid value to the yield reserve.
+### Liquidation Incentives
 
+Due to the message-driven nature of smart contracts, liquidation can only occur when triggered by an external entity (liquidator). **1% of the liquidated value is set aside as incentives for liquidators to actively monitor risky loans and trigger liquidations**.

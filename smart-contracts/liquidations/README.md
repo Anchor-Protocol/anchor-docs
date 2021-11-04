@@ -8,7 +8,7 @@ Even with a thorough understanding of Anchor Protocol, it is highly recommended 
 
 ## Smart Contracts
 
-| Contract | Function |
-| :--- | :--- |
-| [Liquidation Contract](liquidation-contract.md) | OTC exchange contract for bAsset collateral liquidations |
-
+| Contract                                                    | Function                                                 |
+| ----------------------------------------------------------- | -------------------------------------------------------- |
+| [Liquidation Contract \[Legacy\]](liquidation-contract.md)  | OTC exchange contract for bAsset collateral liquidations |
+| [Liquidation Queue Contract](liquidation-queue-contract.md) | Contract for capital-efficient collateral liquidations   |
