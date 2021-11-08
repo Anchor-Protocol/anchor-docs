@@ -35,7 +35,7 @@ After a certain activation period (**10 minutes**), bids can then be activated i
 
 Once activated, bids are arranged into an orderbook-style queue. Bids with lower premiums are given a higher execution priority, thus being executed first during liquidation events. Bids with matching premiums are pooled together to have the same execution priority.
 
-The activation period exists to prevent bots from front running. Without it, the system can be gamed during short-term market volatilities - bidders may retract their bids and instantly resubmit at a lower premium, causing bids to be retracted when they asre needed the most. The activation period forces bidders to thoughtfully select premiums fit for mid-to-long term market fluctuations, as their premiums cannot by eapidly changed.
+The activation period exists to prevent bots from front running. Without it, the system can be gamed during short-term market volatilities - bidders may retract their bids and instantly resubmit at a lower premium, causing bids to be retracted when they are needed the most. The activation period forces bidders to thoughtfully select premiums fit for mid-to-long term market fluctuations, as their premiums cannot be rapidly changed.
 
 The activation period is not applied when bids of a collateral are below a certain threshold (**5M UST for bLuna, 1M UST for bETH**). This is so that new bids can be rapidly supplied to the system.
 
