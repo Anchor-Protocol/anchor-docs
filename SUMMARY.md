@@ -6,13 +6,13 @@
 ## Protocol
 
 * [Overview](protocol/overview.md)
-* [Bonded Assets \(bAssets\)](protocol/bonded-assets-bassets/README.md)
-  * [Bonded Luna \(bLuna\)](protocol/bonded-assets-bassets/bonded-luna-bluna.md)
-  * [Bonded ETH \(bETH\)](protocol/bonded-assets-bassets/bonded-eth-beth.md)
+* [Bonded Assets (bAssets)](protocol/bonded-assets-bassets/README.md)
+  * [Bonded Luna (bLuna)](protocol/bonded-assets-bassets/bonded-luna-bluna.md)
+  * [Bonded ETH (bETH)](protocol/bonded-assets-bassets/bonded-eth-beth.md)
 * [Money Market](protocol/money-market/README.md)
   * [Deposit Rate Subsidization](protocol/money-market/deposit-rate-subsidization.md)
 * [Loan Liquidation](protocol/loan-liquidation.md)
-* [Anchor Token \(ANC\)](protocol/anchor-token-anc.md)
+* [Anchor Token (ANC)](protocol/anchor-token-anc.md)
 * [Anchor Governance](protocol/anchor-governance/README.md)
   * [Modify Collateral Attributes](protocol/anchor-governance/modify-collateral-parameters.md)
   * [Modify Market Parameters](protocol/anchor-governance/modify-market-parameters.md)
@@ -80,14 +80,14 @@
 * [Liquidation](smart-contracts/liquidations/README.md)
   * [Liquidation Contract](smart-contracts/liquidations/liquidation-contract.md)
   * [Liquidation Queue Contract](smart-contracts/liquidations/liquidation-queue-contract.md)
-* [Anchor Token \(ANC\)](smart-contracts/anchor-token/README.md)
+* [Anchor Token (ANC)](smart-contracts/anchor-token/README.md)
   * [Gov](smart-contracts/anchor-token/gov.md)
   * [Staking](smart-contracts/anchor-token/staking.md)
   * [Community](smart-contracts/anchor-token/community.md)
   * [Collector](smart-contracts/anchor-token/collector.md)
   * [Distributor](smart-contracts/anchor-token/distributor.md)
 
-## Developers - Ethereum \[Legacy\] <a id="developers-ethereum"></a>
+## Developers - Ethereum \[Legacy] <a href="#developers-ethereum" id="developers-ethereum"></a>
 
 * [EthAnchor](developers-ethereum/ethanchor.md)
 * [EthAnchor Account Contract](developers-ethereum/ethanchor-account-contract.md)
@@ -99,7 +99,7 @@
 
 ## External Resources
 
-* [Anchor WebApp](https://app.anchorprotocol.com/)
+* [Anchor WebApp](https://app.anchorprotocol.com)
 * [Anchor Protocol GitHub](https://github.com/Anchor-Protocol)
-* [Terra Blockchain](https://docs.terra.money/)
-
+* [Terra Blockchain](https://docs.terra.money)
+* [Anchor Bug Bounty Program](https://immunefi.com/bounty/anchor/)

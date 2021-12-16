@@ -8,15 +8,34 @@ We believe that size, visibility, and time are the true test for the security of
 
 ## Audits
 
-* [Anchor Protocol Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20[20210308].pdf) by [Cryptonics](https://cryptonics.consulting/)
-* [Anchor Token and Distributions Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20[20210406].pdf) by [Cryptonics](https://cryptonics.consulting/)
-* [EthAnchor - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20EthAnchor%20[09.07.2021].pdf) by [Solidified](https://solidified.io/)
+* [Anchor Protocol Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20\[20210308].pdf) by [Cryptonics](https://cryptonics.consulting)
+* [Anchor Token and Distributions Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20\[20210406].pdf) by [Cryptonics](https://cryptonics.consulting)
+* [EthAnchor - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20EthAnchor%20\[09.07.2021].pdf) by [Solidified](https://solidified.io)
+
+## Immunefi Bug Bounty Program
+
+[Anchor bug bounties](https://immunefi.com/bounty/anchor/) are available on [Immunefi's](https://immunefi.com/bounty/anchor/) bug bounty platform. This bounty program applies to Anchor's smart contracts and app and is focused on preventing:
+
+* Thefts and freezing of principal of any amount
+* Thefts and freezing of unclaimed yield of any amount
+* Theft of governance funds
+* Governance activity disruption
+* Website uptime disruption
+* User data leaks
+* Deletion of user data
+* Access to sensitive pages without authorization
+
+All rewards on Immunefi are distributed according to the [Immunefi vulnerability severity classification system](https://immunefi.com/severity-updated/). Any vulnerability with regards to the use of centralized price feed oracles is not eligible for a reward.
+
+To view the current bounties and rewards, or to find out more information, visit the [Immunefi Anchor bounty page](https://immunefi.com/bounty/anchor/).&#x20;
+
+In addition to the Immunefi bounty program, Anchor also has its own bounty program, outlined below.&#x20;
 
 ## Anchor Bug Bounty Program
 
 Security is core to our values, and we value the input of hackers acting in good faith to help us maintain the highest standard for the security and safety of the Anchor ecosystem. Anchor Protocol, while it has gone through professional audits and formal verification, depends on new technology that may contain undiscovered vulnerabilities.
 
-Anchor encourages the community to audit our contracts and security; we also encourage the responsible disclosure of any issues. This program is intended to recognize the value of working with the community of independent security researchers, and sets out our definition of good faith in the context of finding and reporting vulnerabilities, as well as what you can expect from us in return.
+Anchor encourages the community to audit our contracts and security; we also encourage the responsible disclosure of any issues. This program is intended to recognize the value of working with the community of independent security researchers and sets out our definition of good faith in the context of finding and reporting vulnerabilities, as well as what you can expect from us in return.
 
 ### **Rewards**
 
@@ -24,13 +43,13 @@ Anchor offers substantial rewards for discoveries that can prevent the loss of a
 
 ### **Scope**
 
-The primary scope of the bug bounty program is for vulnerabilities affecting the on-chain Anchor Protocol, deployed to the Terra Columbus 0.4.1 Mainnet, for contract addresses listed in this developer documentation.
+The primary scope of the bug bounty program is for vulnerabilities affecting the on-chain Anchor Protocol, deployed to the Terra Columbus-5 Mainnet, for contract addresses listed in this developer documentation.
 
-This list may change as new contracts are deployed, or as existing contracts are removed from usage. Vulnerabilities in contracts built on top of the Protocol by third-party developers \(such as smart contract wallets\) are not in-scope, nor are vulnerabilities that require ownership of an admin key.
+This list may change as new contracts are deployed, or as existing contracts are removed from usage. Vulnerabilities in contracts built on top of the Protocol by third-party developers (such as smart contract wallets) are not in-scope, nor are vulnerabilities that require ownership of an admin key.
 
-The secondary scope of the bug bounty program is for vulnerabilities affecting the Anchor Protocol Interface hosted at [app.anchorprotocol.com](https://app.anchorprotocol.com/) that could conceivably result in exploitation of user accounts.
+The secondary scope of the bug bounty program is for vulnerabilities affecting the Anchor Protocol Interface hosted at [app.anchorprotocol.com](https://app.anchorprotocol.com) that could conceivably result in exploitation of user accounts.
 
-Finally, test contracts \(Tequila and other testnets\) and staging servers are out of scope, unless the discovered vulnerability also affects Anchor Protocol or Interface, or could otherwise be exploited in a way that risks user funds.
+Finally, test contracts (Bombay and other testnets) and staging servers are out of scope, unless the discovered vulnerability also affects Anchor Protocol or Interface, or could otherwise be exploited in a way that risks user funds.
 
 ### **Disclosure**
 
@@ -67,4 +86,3 @@ When working with us according to this program, you can expect us to:
 * Recognize your contribution to improving our security if you are the first to report a unique vulnerability, and your report triggers a code or configuration change.
 
 **All reward determinations, including eligibility and payment amount, are made at Anchor's sole discretion. Anchor reserves the right to reject submissions and alter the terms and conditions of this program.**
-
