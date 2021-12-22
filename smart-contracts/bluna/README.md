@@ -8,11 +8,11 @@ Even with a thorough understanding of Anchor Protocol, it is highly recommended 
 
 ## Smart Contracts
 
-| Contract | Function |
-| :--- | :--- |
-| [Hub](hub-1.md) | Central hub that manages underlying Luna delegation / undelegation |
-| [Reward](reward.md) | Handles bLuna reward distribution |
-| [Airdrop Registry](airdrop-registry.md) | Stores contract interfaces for claiming and swapping tokens airdropped to Luna delegations |
-
-
-
+| Contract                                                                            | Function                                                                                   |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [Hub](https://docs.terra.lido.fi/contracts/hub)                                     | Central hub that manages underlying Luna delegation / undelegation                         |
+| [Reward](https://docs.terra.lido.fi/contracts/reward)                               | Handles bLuna reward distribution                                                          |
+| [Rewards Dispatcher](https://docs.terra.lido.fi/contracts/rewards\_dispatcher)      | Accumulates rewards of Hub's delegations and manages them                                  |
+| [Validators Registry](https://docs.terra.lido.fi/contracts/validators\_registry)    | Stores the list of whitelisted validators                                                  |
+| [Airdrop Registry](broken-reference)                                                | Stores contract interfaces for claiming and swapping tokens airdropped to Luna delegations |
+| [Tokens: bLuna and stLuna](https://docs.terra.lido.fi/contracts/stLuna\_and\_bLuna) | Modified CW20 token contract for handling token balances                                   |

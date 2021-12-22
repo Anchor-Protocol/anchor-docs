@@ -1,24 +1,24 @@
 # Gov
 
-The Gov Contract contains logic for holding governance polls and handling Anchor Token \(ANC\) staking, and allows Anchor Protocol to be governed by its users in a decentralized manner. After the initial bootstrapping of Anchor Protocol's contracts, the Gov Contract is assigned to be the owner of all contracts in Anchor Protocol.
+The Gov Contract contains logic for holding governance polls and handling Anchor Token (ANC) staking, and allows Anchor Protocol to be governed by its users in a decentralized manner. After the initial bootstrapping of Anchor Protocol's contracts, the Gov Contract is assigned to be the owner of all contracts in Anchor Protocol.
 
 New proposals for change are submitted as polls, and are voted on by ANC stakers through the [voting procedure](../../protocol/anchor-governance/). Polls can contain messages that can be executed directly without changing the Anchor Protocol code.
 
-The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers with funds it receives from trading fees sent by the [Anchor Collector](collector.md) and user deposits from creating new governance polls. This balance is separate from the [Community Pool](../../protocol/anchor-governance/spend-community-pool.md), which is held by the [Community](community.md) contract \(owned by the Gov contract\).
+The Gov Contract keeps a balance of ANC tokens, which it uses to reward stakers with funds it receives from trading fees sent by the [Anchor Collector](collector.md) and user deposits from creating new governance polls. This balance is separate from the [Community Pool](../../protocol/anchor-governance/spend-community-pool.md), which is held by the [Community](community.md) contract (owned by the Gov contract).
 
 ## Config
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner` | CanonicalAddr | Address of contract owner |
-| `anchor_token` | CanonicalAddr | Contract address of Anchor Token \(ANC\) |
-| `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
-| `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
-| `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
-| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes **\[blocks\]** |
-| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
-| `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
+| Key                 | Type          | Description                                                                                       |
+| ------------------- | ------------- | ------------------------------------------------------------------------------------------------- |
+| `owner`             | CanonicalAddr | Address of contract owner                                                                         |
+| `anchor_token`      | CanonicalAddr | Contract address of Anchor Token (ANC)                                                            |
+| `quorum`            | Decimal       | Minimum percentage of participation required for a poll to pass                                   |
+| `threshold`         | Decimal       | Minimum percentage of `yes` votes required for a poll to pass                                     |
+| `voting_period`     | u64           | Number of blocks during which votes can be cast **\[blocks]**                                     |
+| `timelock_period`   | u64           | Number of blocks required after a poll pass before executing changes **\[blocks]**                |
+| `expiration_period` | u64           | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks]** |
+| `proposal_deposit`  | Uint128       | Minimum ANC deposit required for submitting a new poll                                            |
+| `snapshot_period`   | u64           | Window of time (number of blocks) allowed for poll snapshot before a poll's end **\[blocks]**     |
 
 ## InstantiateMsg
 
@@ -53,15 +53,15 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
-| `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
-| `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
-| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes **\[blocks\]** |
-| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
-| `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
+| Key                 | Type    | Description                                                                                       |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `quorum`            | Decimal | Minimum percentage of participation required for a poll to pass                                   |
+| `threshold`         | Decimal | Minimum percentage of `yes` votes required for a poll to pass                                     |
+| `voting_period`     | u64     | Number of blocks during which votes can be cast **\[blocks]**                                     |
+| `timelock_period`   | u64     | Number of blocks required after a poll pass before executing changes **\[blocks]**                |
+| `expiration_period` | u64     | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks]** |
+| `proposal_deposit`  | Uint128 | Minimum ANC deposit required for submitting a new poll                                            |
+| `snapshot_period`   | u64     | Window of time (number of blocks) allowed for poll snapshot before a poll's end **\[blocks]**     |
 
 ## ExecuteMsg
 
@@ -97,11 +97,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `sender` | String | Sender of token transfer |
-| `amount` | Uint128 | Amount of tokens received |
-| `msg` | Binary | Base64-encoded JSON of [Receive Hook](gov.md#receive-hooks) |
+| Key      | Type    | Description                                                 |
+| -------- | ------- | ----------------------------------------------------------- |
+| `sender` | String  | Sender of token transfer                                    |
+| `amount` | Uint128 | Amount of tokens received                                   |
+| `msg`    | Binary  | Base64-encoded JSON of [Receive Hook](gov.md#receive-hooks) |
 
 ### `[Internal] ExecutePollMsgs`
 
@@ -131,13 +131,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
+| Key       | Type | Description |
+| --------- | ---- | ----------- |
+| `poll_id` | u64  | Poll ID     |
 
 ### `RegisterContracts`
 
-Registers the contract addresses \(i.e. Anchor Token, ANC\) to Gov.
+Registers the contract addresses (i.e. Anchor Token, ANC) to Gov.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -163,9 +163,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
+| Key            | Type   | Description                            |
+| -------------- | ------ | -------------------------------------- |
+| `anchor_token` | String | Contract address of Anchor Token (ANC) |
 
 ### `UpdateConfig`
 
@@ -209,22 +209,22 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner`\* | String | New address of contract owner |
-| `quorum`\* | Decimal | New percentage of participation \(of total staked ANC\) required for a poll to pass |
-| `threshold`\* | Decimal | New percentage of `yes` votes required for a poll to pass |
-| `voting_period`\* | u64 | New number of blocks during which votes for a poll can be cast after it has finished its deposit **\[blocks\]** |
-| `timelock_period`\* | u64 | New number of blocks required after a poll pass before executing changes **\[blocks\]** |
-| `expiration_period`\* | u64 | New number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
-| `proposal_deposit`\* | Uint128 | New minimum ANC deposit required for a poll to enter voting |
-| `snapshot_period`\* | u64 | New window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
+| Key                   | Type    | Description                                                                                                    |
+| --------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| `owner`\*             | String  | New address of contract owner                                                                                  |
+| `quorum`\*            | Decimal | New percentage of participation (of total staked ANC) required for a poll to pass                              |
+| `threshold`\*         | Decimal | New percentage of `yes` votes required for a poll to pass                                                      |
+| `voting_period`\*     | u64     | New number of blocks during which votes for a poll can be cast after it has finished its deposit **\[blocks]** |
+| `timelock_period`\*   | u64     | New number of blocks required after a poll pass before executing changes **\[blocks]**                         |
+| `expiration_period`\* | u64     | New number of blocks after a poll's voting period during which the poll can be executed **\[blocks]**          |
+| `proposal_deposit`\*  | Uint128 | New minimum ANC deposit required for a poll to enter voting                                                    |
+| `snapshot_period`\*   | u64     | New window of time (number of blocks) allowed for poll snapshot before a poll's end **\[blocks]**              |
 
 \* = optional
 
 ### `CastVote`
 
-Submits a user's vote for an active poll. Once a user has voted, they cannot change their vote with subsequent messages \(increasing voting power, changing vote option, cancelling vote, etc.\)
+Submits a user's vote for an active poll. Once a user has voted, they cannot change their vote with subsequent messages (increasing voting power, changing vote option, cancelling vote, etc.)
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -261,11 +261,11 @@ pub enum VoteOption {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
-| `vote` | VoteOption | Can be `yes` or `no` |
-| `amount` | Uint128 | Amount of voting power \(staked ANC\) to allocate |
+| Key       | Type       | Description                                     |
+| --------- | ---------- | ----------------------------------------------- |
+| `poll_id` | u64        | Poll ID                                         |
+| `vote`    | VoteOption | Can be `yes` or `no`                            |
+| `amount`  | Uint128    | Amount of voting power (staked ANC) to allocate |
 
 ### `WithdrawVotingTokens`
 
@@ -295,8 +295,8 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
+| Key        | Type    | Description                      |
+| ---------- | ------- | -------------------------------- |
 | `amount`\* | Uint128 | Amount of ANC tokens to withdraw |
 
 \* = optional
@@ -329,9 +329,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
+| Key       | Type | Description |
+| --------- | ---- | ----------- |
+| `poll_id` | u64  | Poll ID     |
 
 ### `ExecutePoll`
 
@@ -361,9 +361,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
+| Key       | Type | Description |
+| --------- | ---- | ----------- |
+| `poll_id` | u64  | Poll ID     |
 
 ### `SnapshotPoll`
 
@@ -393,18 +393,18 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
+| Key       | Type | Description |
+| --------- | ---- | ----------- |
+| `poll_id` | u64  | Poll ID     |
 
 ## Receive Hooks
 
 ### `StakeVotingTokens`
 
 {% hint style="danger" %}
-**WARNING**  
-  
-Sending ANC tokens to the Gov contract without issuing this hook will lead to **PERMANENT LOSS OF FUNDS** and will be irrevocably donated to the reward pool for stakers.
+**WARNING**\
+****\
+****Sending ANC tokens to the Gov contract without issuing this hook will lead to **PERMANENT LOSS OF FUNDS** and will be irrevocably donated to the reward pool for stakers.
 {% endhint %}
 
 Issued when sending ANC tokens to the Gov contract to add them to their ANC staking position.
@@ -430,12 +430,12 @@ pub enum Cw20HookMsg {
 {% endtabs %}
 
 | Key | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
+| --- | ---- | ----------- |
+|     |      |             |
 
 ### `CreatePoll`
 
-Issued when sending ANC tokens to the Gov contract to create a new poll. Will only succeed if the amount of tokens sent meets the configured `proposal_deposit` amount. Can contain a list of generic messages to be issued by the Gov contract if it passes \(can invoke messages in other contracts it owns\).
+Issued when sending ANC tokens to the Gov contract to create a new poll. Will only succeed if the amount of tokens sent meets the configured `proposal_deposit` amount. Can contain a list of generic messages to be issued by the Gov contract if it passes (can invoke messages in other contracts it owns).
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -486,18 +486,18 @@ pub struct PollExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `title` | String | Poll title |
-| `description` | String | Poll description |
-| `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
-| `execute_msgs`\* | Vec&lt;PollExecuteMsg&gt; | List of governance messages to be issued by Gov contract upon poll execution |
+| Key              | Type                 | Description                                                                  |
+| ---------------- | -------------------- | ---------------------------------------------------------------------------- |
+| `title`          | String               | Poll title                                                                   |
+| `description`    | String               | Poll description                                                             |
+| `link`\*         | String               | URL to external post about poll (forum, PDF, etc.)                           |
+| `execute_msgs`\* | Vec\<PollExecuteMsg> | List of governance messages to be issued by Gov contract upon poll execution |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `order` | u64 | Order sequence of message |
+| Key        | Type   | Description                                      |
+| ---------- | ------ | ------------------------------------------------ |
+| `order`    | u64    | Order sequence of message                        |
 | `contract` | String | Contract address of governance message recipient |
-| `msg` | Binary | Base64-encoded JSON of governance message |
+| `msg`      | Binary | Base64-encoded JSON of governance message        |
 
 \* = optional
 
@@ -528,8 +528,8 @@ pub enum QueryMsg {
 {% endtabs %}
 
 | Key | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
+| --- | ---- | ----------- |
+|     |      |             |
 
 ### `ConfigResponse`
 
@@ -568,17 +568,17 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `owner` | String | Address of contract owner |
-| `anchor_token` | String | Contract address of Anchor Token \(ANC\) |
-| `quorum` | Decimal | Minimum percentage of participation required for a poll to pass |
-| `threshold` | Decimal | Minimum percentage of `yes` votes required for a poll to pass |
-| `voting_period` | u64 | Number of blocks during which votes can be cast **\[blocks\]** |
-| `timelock_period` | u64 | Number of blocks required after a poll pass before executing changes **\[blocks\]** |
-| `expiration_period` | u64 | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks\]** |
-| `proposal_deposit` | Uint128 | Minimum ANC deposit required for submitting a new poll |
-| `snapshot_period` | u64 | Window of time \(number of blocks\) allowed for poll snapshot before a poll's end **\[blocks\]** |
+| Key                 | Type    | Description                                                                                       |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `owner`             | String  | Address of contract owner                                                                         |
+| `anchor_token`      | String  | Contract address of Anchor Token (ANC)                                                            |
+| `quorum`            | Decimal | Minimum percentage of participation required for a poll to pass                                   |
+| `threshold`         | Decimal | Minimum percentage of `yes` votes required for a poll to pass                                     |
+| `voting_period`     | u64     | Number of blocks during which votes can be cast **\[blocks]**                                     |
+| `timelock_period`   | u64     | Number of blocks required after a poll pass before executing changes **\[blocks]**                |
+| `expiration_period` | u64     | Number of blocks after a poll's voting period during which the poll can be executed **\[blocks]** |
+| `proposal_deposit`  | Uint128 | Minimum ANC deposit required for submitting a new poll                                            |
+| `snapshot_period`   | u64     | Window of time (number of blocks) allowed for poll snapshot before a poll's end **\[blocks]**     |
 
 ### `State`
 
@@ -605,8 +605,8 @@ pub enum QueryMsg {
 {% endtabs %}
 
 | Key | Type | Description |
-| :--- | :--- | :--- |
-|  |  |  |
+| --- | ---- | ----------- |
+|     |      |             |
 
 ### `StateResponse`
 
@@ -633,10 +633,10 @@ pub struct StateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_count` | u64 | Total number of created polls |
-| `total_share` | Uint128 | Current total number of voting shares |
+| Key             | Type    | Description                                               |
+| --------------- | ------- | --------------------------------------------------------- |
+| `poll_count`    | u64     | Total number of created polls                             |
+| `total_share`   | Uint128 | Current total number of voting shares                     |
 | `total_deposit` | Uint128 | Total amount of ANC currently deposited for poll creation |
 
 ### `Staker`
@@ -667,8 +667,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
+| Key       | Type   | Description       |
+| --------- | ------ | ----------------- |
 | `address` | String | Address of staker |
 
 ### `StakerResponse`
@@ -724,21 +724,21 @@ pub enum VoteOption {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `balance` | Uint128 | Amount of ANC staked by staker |
-| `share` | Uint128 | Total voting shares owned by staker |
-| `locked_balance` | Vec&lt;\(u64, VoterInfo\)&gt; | List of \(voted poll's ID, voter's vote information\) |
+| Key              | Type                  | Description                                         |
+| ---------------- | --------------------- | --------------------------------------------------- |
+| `balance`        | Uint128               | Amount of ANC staked by staker                      |
+| `share`          | Uint128               | Total voting shares owned by staker                 |
+| `locked_balance` | Vec<(u64, VoterInfo)> | List of (voted poll's ID, voter's vote information) |
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| `vote` | VoteOption | Vote type made by staker |
-| `balance` | Uint128 | Amount of staked ANC locked to vote this poll |
+| Name      | Type       | Description                                   |
+| --------- | ---------- | --------------------------------------------- |
+| `vote`    | VoteOption | Vote type made by staker                      |
+| `balance` | Uint128    | Amount of staked ANC locked to vote this poll |
 
-| Name | Description |
-| :--- | :--- |
-| `yes` | Staker has voted for the proposal |
-| `no` | Staker has voted against the proposal |
+| Name  | Description                           |
+| ----- | ------------------------------------- |
+| `yes` | Staker has voted for the proposal     |
+| `no`  | Staker has voted against the proposal |
 
 ### `Poll`
 
@@ -768,9 +768,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | Poll ID |
+| Key       | Type | Description |
+| --------- | ---- | ----------- |
+| `poll_id` | u64  | Poll ID     |
 
 ### `PollResponse`
 
@@ -847,36 +847,36 @@ pub struct ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `id` | u64 | Poll ID |
-| `creator` | String | Poll creator |
-| `status` | PollStatus | Current poll status |
-| `end_height` | u64 | Block number when voting for this poll closes **\[block\]** |
-| `title` | String | Poll title |
-| `description` | String | Poll description |
-| `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
-| `deposit_amount` | Uint128 | ANC deposit used to submit poll |
-| `execute_data`\* | `Vec<PollExecuteMsg>` | List of governance messages to be issued upon poll execution |
-| `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
-| `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
-| `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
-| `total_balance_at_end_poll`\* | Uint128 | Total staked ANC amount at the end of this poll |
+| Key                           | Type                  | Description                                                  |
+| ----------------------------- | --------------------- | ------------------------------------------------------------ |
+| `id`                          | u64                   | Poll ID                                                      |
+| `creator`                     | String                | Poll creator                                                 |
+| `status`                      | PollStatus            | Current poll status                                          |
+| `end_height`                  | u64                   | Block number when voting for this poll closes **\[block]**   |
+| `title`                       | String                | Poll title                                                   |
+| `description`                 | String                | Poll description                                             |
+| `link`\*                      | String                | URL to external post about poll (forum, PDF, etc.)           |
+| `deposit_amount`              | Uint128               | ANC deposit used to submit poll                              |
+| `execute_data`\*              | `Vec<PollExecuteMsg>` | List of governance messages to be issued upon poll execution |
+| `yes_votes`                   | Uint128               | Total yes votes (staked ANC amount) for this poll            |
+| `no_votes`                    | Uint128               | Total no votes (staked ANC amount) for this poll             |
+| `staked_amount`\*             | Uint128               | Total staked ANC amount at time of poll snapshot             |
+| `total_balance_at_end_poll`\* | Uint128               | Total staked ANC amount at the end of this poll              |
 
-| Key | Description |
-| :--- | :--- |
-| `InProgress` | Voting for this poll is currently in progress |
-| `Passed` | This poll has been passed by governance |
-| `Rejected` | This poll has been rejected by governance |
-| `Executed` | This poll has been passed by governance and executed |
-| `Expired` | This poll has been expired after rejection / execution **\[Deprecated\]** |
-| `Failed` | This poll has been passed, but failed to execute |
+| Key          | Description                                                              |
+| ------------ | ------------------------------------------------------------------------ |
+| `InProgress` | Voting for this poll is currently in progress                            |
+| `Passed`     | This poll has been passed by governance                                  |
+| `Rejected`   | This poll has been rejected by governance                                |
+| `Executed`   | This poll has been passed by governance and executed                     |
+| `Expired`    | This poll has been expired after rejection / execution **\[Deprecated]** |
+| `Failed`     | This poll has been passed, but failed to execute                         |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `order` | u64 | Order sequence of message |
+| Key        | Type   | Description                                      |
+| ---------- | ------ | ------------------------------------------------ |
+| `order`    | u64    | Order sequence of message                        |
 | `contract` | String | Contract address of governance message recipient |
-| `msg` | Binary | Base64-encoded JSON governance message |
+| `msg`      | Binary | Base64-encoded JSON governance message           |
 
 \* = optional
 
@@ -932,25 +932,25 @@ pub enum OrderBy {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `filter`\* | PollStatus | Poll statuses to search for |
-| `start_after`\* | u64 | Poll ID to start query at |
-| `limit`\* | u32 | Maximum number of query entries |
-| `order_by`\* | OrderBy | Order to make query |
+| Key             | Type       | Description                     |
+| --------------- | ---------- | ------------------------------- |
+| `filter`\*      | PollStatus | Poll statuses to search for     |
+| `start_after`\* | u64        | Poll ID to start query at       |
+| `limit`\*       | u32        | Maximum number of query entries |
+| `order_by`\*    | OrderBy    | Order to make query             |
 
-| Key | Description |
-| :--- | :--- |
-| `InProgress` | Poll is currently in voting period |
-| `Passed` | Poll has been passed by governance |
-| `Rejected` | Poll has been rejected by governance |
-| `Executed` | Poll has been passed and executed by governance |
-| `Expired` | Poll has been expired after rejection / execution **\[Deprecated\]** |
-| `Failed` | Poll has been passed, but failed to execute |
+| Key          | Description                                                         |
+| ------------ | ------------------------------------------------------------------- |
+| `InProgress` | Poll is currently in voting period                                  |
+| `Passed`     | Poll has been passed by governance                                  |
+| `Rejected`   | Poll has been rejected by governance                                |
+| `Executed`   | Poll has been passed and executed by governance                     |
+| `Expired`    | Poll has been expired after rejection / execution **\[Deprecated]** |
+| `Failed`     | Poll has been passed, but failed to execute                         |
 
-| Key | Description |
-| :--- | :--- |
-| `Asc` | Make query in ascending order |
+| Key    | Description                    |
+| ------ | ------------------------------ |
+| `Asc`  | Make query in ascending order  |
 | `Desc` | Make query in descending order |
 
 \* = optional
@@ -1063,40 +1063,40 @@ pub struct PollExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `polls` | Vec&lt;PollResponse&gt; | List of poll information |
+| Key     | Type               | Description              |
+| ------- | ------------------ | ------------------------ |
+| `polls` | Vec\<PollResponse> | List of poll information |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `id` | u64 | Poll ID |
-| `creator` | String | Poll creator |
-| `status` | PollStatus | Current poll status |
-| `end_height` | u64 | Block number when voting for this poll closes **\[block\]** |
-| `title` | String | Poll title |
-| `description` | String | Poll description |
-| `link`\* | String | URL to external post about poll \(forum, PDF, etc.\) |
-| `deposit_amount` | Uint128 | ANC deposit used to submit poll |
-| `execute_data`\* | Vec&lt;PollExecuteMsg&gt; | List of governance messages to be issued upon poll execution |
-| `yes_votes` | Uint128 | Total yes votes \(staked ANC amount\) for this poll |
-| `no_votes` | Uint128 | Total no votes \(staked ANC amount\) for this poll |
-| `staked_amount`\* | Uint128 | Total staked ANC amount at time of poll snapshot |
-| `total_balance_at_end_poll`\* | Uint128 | Total staked ANC amount at the end of this poll |
+| Key                           | Type                 | Description                                                  |
+| ----------------------------- | -------------------- | ------------------------------------------------------------ |
+| `id`                          | u64                  | Poll ID                                                      |
+| `creator`                     | String               | Poll creator                                                 |
+| `status`                      | PollStatus           | Current poll status                                          |
+| `end_height`                  | u64                  | Block number when voting for this poll closes **\[block]**   |
+| `title`                       | String               | Poll title                                                   |
+| `description`                 | String               | Poll description                                             |
+| `link`\*                      | String               | URL to external post about poll (forum, PDF, etc.)           |
+| `deposit_amount`              | Uint128              | ANC deposit used to submit poll                              |
+| `execute_data`\*              | Vec\<PollExecuteMsg> | List of governance messages to be issued upon poll execution |
+| `yes_votes`                   | Uint128              | Total yes votes (staked ANC amount) for this poll            |
+| `no_votes`                    | Uint128              | Total no votes (staked ANC amount) for this poll             |
+| `staked_amount`\*             | Uint128              | Total staked ANC amount at time of poll snapshot             |
+| `total_balance_at_end_poll`\* | Uint128              | Total staked ANC amount at the end of this poll              |
 
-| Key | Description |
-| :--- | :--- |
-| `InProgress` | Voting for this poll is currently in progress |
-| `Passed` | This poll has been passed by governance |
-| `Rejected` | This poll has been rejected by governance |
-| `Executed` | This poll has been passed by governance and executed |
-| `Expired` | This poll has been expired after rejection / execution **\[Deprecated\]** |
-| `Failed` | This poll has been passed, but failed to execute |
+| Key          | Description                                                              |
+| ------------ | ------------------------------------------------------------------------ |
+| `InProgress` | Voting for this poll is currently in progress                            |
+| `Passed`     | This poll has been passed by governance                                  |
+| `Rejected`   | This poll has been rejected by governance                                |
+| `Executed`   | This poll has been passed by governance and executed                     |
+| `Expired`    | This poll has been expired after rejection / execution **\[Deprecated]** |
+| `Failed`     | This poll has been passed, but failed to execute                         |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `order` | u64 | Order sequence of message |
+| Key        | Type   | Description                                      |
+| ---------- | ------ | ------------------------------------------------ |
+| `order`    | u64    | Order sequence of message                        |
 | `contract` | String | Contract address of governance message recipient |
-| `msg` | Binary | Base64-encoded JSON governance message |
+| `msg`      | Binary | Base64-encoded JSON governance message           |
 
 \* = optional
 
@@ -1134,16 +1134,16 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `poll_id` | u64 | ID of poll to query voters |
-| `start_after`\* | String | Address of voter to start query |
-| `limit`\* | u32 | Maximum number of query entries |
-| `order_by`\* | OrderBy | Order to make query |
+| Key             | Type    | Description                     |
+| --------------- | ------- | ------------------------------- |
+| `poll_id`       | u64     | ID of poll to query voters      |
+| `start_after`\* | String  | Address of voter to start query |
+| `limit`\*       | u32     | Maximum number of query entries |
+| `order_by`\*    | OrderBy | Order to make query             |
 
-| Key | Description |
-| :--- | :--- |
-| `Asc` | Make query in ascending order |
+| Key    | Description                    |
+| ------ | ------------------------------ |
+| `Asc`  | Make query in ascending order  |
 | `Desc` | Make query in descending order |
 
 \* = optional
@@ -1194,18 +1194,17 @@ pub enum VoteOption {
 {% endtab %}
 {% endtabs %}
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `voters` | Vec&lt;VotersResponseItem&gt; | List of voter information |
+| Key      | Type                     | Description               |
+| -------- | ------------------------ | ------------------------- |
+| `voters` | Vec\<VotersResponseItem> | List of voter information |
 
-| Key | Type | Description |
-| :--- | :--- | :--- |
-| `voter` | String | Address of voter |
-| `vote` | VoteOption | Vote type made by voter |
-| `balance` | Uint128 | Amount of staked ANC locked to vote this poll |
+| Key       | Type       | Description                                   |
+| --------- | ---------- | --------------------------------------------- |
+| `voter`   | String     | Address of voter                              |
+| `vote`    | VoteOption | Vote type made by voter                       |
+| `balance` | Uint128    | Amount of staked ANC locked to vote this poll |
 
-| Key | Description |
-| :--- | :--- |
-| `yes` | Voter has voted for the proposal |
-| `no` | Voter has voted against the proposal |
-
+| Key   | Description                          |
+| ----- | ------------------------------------ |
+| `yes` | Voter has voted for the proposal     |
+| `no`  | Voter has voted against the proposal |

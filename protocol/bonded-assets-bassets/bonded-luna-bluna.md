@@ -1,6 +1,10 @@
-# Bonded Luna \(bLuna\)
+# Bonded Luna (bLuna)
 
-bLuna tokens are bAssets built for the Terra blockchain, their value backed by underlying Luna delegations. bLuna tokens follows full compliance with the [Cw20 standard](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw20/README.md), having the potential to be integrated into a wide variety of decentralized finance applications.
+{% hint style="info" %}
+The below documentation only focuses on the high-level contents of bLuna. For more in-depth documentation on bLuna and stLuna, refer to the [Lido Terra Docs](https://docs.terra.lido.fi).
+{% endhint %}
+
+bLuna tokens are bAssets built for the Terra blockchain, their value backed by underlying Luna delegations. bLuna tokens follows full compliance with the [CW20 standard](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw20/README.md), having the potential to be integrated into a wide variety of decentralized finance applications.
 
 {% hint style="info" %}
 bLuna tokens are used as collateral to borrow Terra stablecoins from Anchor. Learn more about creating loan positions [here](../money-market/).
@@ -26,29 +30,19 @@ The protocol applies a fee of **0.5%** to bLuna mints and burns whenever the exc
 
 The bLuna contract keeps a whitelist of validators, only permitting delegations to those included in the whitelist. This is crucial since all bLuna tokens equally share slashing risks, and delegations to low-performing validators could negatively affect all holders.
 
-The initial whitelist includes the below validators:
-
-| Name | Operator Address |
-| :--- | :--- |
-| P2P.ORG - P2P Validator | [terravaloper144l7c3uph5a7h62xd8u5et3rqvj3dqtvvka2fu](https://finder.terra.money/columbus-4/validator/terravaloper144l7c3uph5a7h62xd8u5et3rqvj3dqtvvka2fu) |
-| B-Harvest | [terravaloper15zcjduavxc5mkp8qcqs9eyhwlqwdlrzy6jln3m](https://finder.terra.money/columbus-4/validator/terravaloper15zcjduavxc5mkp8qcqs9eyhwlqwdlrzy6jln3m) |
-| DokiaCapital | [terravaloper1v5hrqlv8dqgzvy0pwzqzg0gxy899rm4kdur03x](https://finder.terra.money/columbus-4/validator/terravaloper1v5hrqlv8dqgzvy0pwzqzg0gxy899rm4kdur03x) |
-| DSRV - CHAISCAN.com | [terravaloper175hhkyxmkp8hf2zrzka7cnn7lk6mudtv4uuu64](https://finder.terra.money/columbus-4/validator/terravaloper175hhkyxmkp8hf2zrzka7cnn7lk6mudtv4uuu64) |
-| Certus One | [terravaloper1kprce6kc08a6l03gzzh99hfpazfjeczfpzkkau](https://finder.terra.money/columbus-4/validator/terravaloper1kprce6kc08a6l03gzzh99hfpazfjeczfpzkkau) |
-| Chorus One | [terravaloper15urq2dtp9qce4fyc85m6upwm9xul30496sgk37](https://finder.terra.money/columbus-4/validator/terravaloper15urq2dtp9qce4fyc85m6upwm9xul30496sgk37) |
-| Staking Fund | [terravaloper123gn6j23lmexu0qx5qhmgxgunmjcqsx8gmsyse](https://finder.terra.money/columbus-4/validator/terravaloper123gn6j23lmexu0qx5qhmgxgunmjcqsx8gmsyse) |
-| StakeWith.Us | [terravaloper1c9ye54e3pzwm3e0zpdlel6pnavrj9qqvq89r3r](https://finder.terra.money/columbus-4/validator/terravaloper1c9ye54e3pzwm3e0zpdlel6pnavrj9qqvq89r3r) |
-| Forbole | [terravaloper1jkqr2vfg4krfd4zwmsf7elfj07cjuzss30ux8g](https://finder.terra.money/columbus-4/validator/terravaloper1jkqr2vfg4krfd4zwmsf7elfj07cjuzss30ux8g) |
+{% hint style="success" %}
+The list of whitelisted validators can be viewed [here](https://docs.terra.lido.fi/introduction/validator\_whitelist).
+{% endhint %}
 
 #### Registration
 
-Validators that have proven their operational capabilities are eligible for whitelisting. Track records such as uptime and community support are factors of consideration.
+Validators that have proven their operational capabilities are eligible for whitelisting via the Lido DAO. Track records such as uptime and community support are factors of consideration.
 
 #### Deregistration
 
-Underperforming validators are deregistered from the whitelist, disallowing bLuna minters from making new delegations to them. Following deregistration, the bLuna contract automatically redelegates existing delegations to a different, randomly selected validator.
+The Lido DAO may deregister underperforming validators from the whitelist, disallowing bLuna minters from making new delegations to them. Following deregistration, the bLuna contract automatically redelegates existing delegations to a different, randomly selected validator.
 
-The Terra blockchain permanently disables validator addresses that have double signed a block \(i.e. tombstoned\). Tombstoned validators are also deregistered, with their remaining delegations redelegated. The new address of the tombstoned validator can later be re-registered to the whitelist if necessary.
+The Terra blockchain permanently disables validator addresses that have double signed a block (i.e. tombstoned). Tombstoned validators are also deregistered, with their remaining delegations redelegated. The new address of the tombstoned validator can later be re-registered to the whitelist if necessary.
 
 ### Undelegation Batches
 
@@ -75,7 +69,19 @@ A peg recovery fee of **0.5%** is applied to bLuna minting and redeeming when th
 
 ### Minting bLuna
 
-bLuna tokens are minted by delegating Luna via the bLuna contract. Users are required to specify a validator to delegate, selected among the list of [whitelisted validators](bonded-luna-bluna.md#validator-whitelist). The amount of bLuna they receive is dependent on the current bLuna exchange rate -- minted bLuna amounts will be greater than the Luna amount sent when the bLuna exchange rate is below 1.
+{% hint style="success" %}
+Following the bLuna upgrade performed as stated in [Anchor's governance poll 8](https://app.anchorprotocol.com/poll/8), users are no longer required to specify a validator when minting bLuna.
+{% endhint %}
+
+bLuna tokens are minted by delegating Luna via the bLuna contract. Given a single delegation, the exact number of validators that will receive delegations and the amount that they will receive depends on the current distribution of stake.
+
+The contract takes a sorted (ASC) list of validators, calculates the desired amount that each validator should have `target_stake = (total delegated + delegation_amount) / num_validators` and begins adding stake up to the desired amount, starting from the validator with the least stake. The exact amount of a single delegation is calculated as `target_stake - validator_stake`, and you'll have as many delegations as it takes to "drain" the `delegation_amount`.
+
+{% hint style="info" %}
+Implementation of the stake distribution algorithm can be found [here](https://github.com/lidofinance/lido-terra-contracts/blob/main/contracts/lido\_terra\_validators\_registry/src/common.rs#L19).
+{% endhint %}
+
+The amount of bLuna minted is dependent on the current bLuna exchange rate -- minted bLuna amounts will be greater than the Luna amount sent when the bLuna exchange rate is below 1.
 
 ### Redeeming bLuna
 
@@ -83,7 +89,7 @@ bLuna tokens are minted by delegating Luna via the bLuna contract. Users are req
 Slashing occurrences between the time of request and withdrawal may affect the final amount later withdrawn.
 {% endhint %}
 
-Any bLuna holder can redeem their tokens for their underlying bonded Luna. Redemption is a two-step process; 1\) requesting to unbond bLuna \(undelegates underlying Luna\) and 2\) withdrawing undelegated Luna.
+Any bLuna holder can redeem their tokens for their underlying bonded Luna. Redemption is a two-step process; 1) requesting to unbond bLuna (undelegates underlying Luna) and 2) withdrawing undelegated Luna.
 
 Due to the Terra blockchain's unbonding period, a complete redemption cycle requires **at least 21 days** to finish.
 
@@ -101,13 +107,22 @@ To disallow any holder from manipulating the bLuna contract's delegations by con
 
 #### Withdrawing Undelegated Luna
 
-Users that previously made a request to unbond bLuna can later withdraw the undelegated Luna tokens. The amount of Luna that the user can withdraw from an undelegation batch is calculated by multiplying the amount in the user's waitlist with the batch's `withdraw_rate`. Summation of this value for batches that are past the unbonding period \(`released` marked as `true`\) yields the user's total withdrawable amount.
+Users that previously made a request to unbond bLuna can later withdraw the undelegated Luna tokens. The amount of Luna that the user can withdraw from an undelegation batch is calculated by multiplying the amount in the user's waitlist with the batch's `withdraw_rate`. Summation of this value for batches that are past the unbonding period (`released` marked as `true`) yields the user's total withdrawable amount.
 
 ### bLuna Rewards
 
-bLuna tokens accrue **TerraUSD** rewards, generated from delegation rewards of underlying Luna delegations. Delegation rewards, collected in various native token denominations \(TerraUSD, TerraSDR, Luna, etc.\), are swapped for TerraUSD. Swapped TerraUSD is then distributed pro-rata to bLuna holders.
+bLuna tokens accrue **TerraUSD** rewards, generated from delegation rewards of underlying Luna delegations. Delegation rewards, collected in various native token denominations (TerraUSD, TerraSDR, Luna, etc.), are swapped for TerraUSD. Swapped TerraUSD is then distributed pro-rata to bLuna holders.
 
 #### Claiming Rewards
 
 Holders can send a request to the bLuna contract, which prompts the transfer of accrued rewards to their account. As rewards accrue during the user's period of ownership, transferring bLuna to a different user automatically credits accrued rewards to the previous holder.
 
+## Fees
+
+### Peg recovery fee
+
+Slashing events decrease the bLuna exchange rate, lowering the calculated value of a bLuna token. The protocol applies a fee of 0.5% (configurable value) to bLuna mints and burns whenever the exchange rate is below 1, targeting a gradual recovery to a one-to-one peg.
+
+### Lido operating costs fee
+
+All accrued bLuna rewards are taxed at a configurable % rate. This fee is initially set as **0%**, but may increase with the involvement of Lido's governance DAO.
