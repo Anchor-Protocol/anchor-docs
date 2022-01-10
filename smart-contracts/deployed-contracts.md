@@ -126,13 +126,14 @@ For money market and liquidations, a separate set of contracts are to be deploye
 {% tab title="Mainnet" %}
 #### Core Contracts
 
-| Contract    | Address                                                                                                                                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Gov         | [terra1f32xyep306hhcxxxf7mlyh0ucggc00rm2s9da5](https://finder.terra.money/columbus-4/address/terra1f32xyep306hhcxxxf7mlyh0ucggc00rm2s9da5) |
-| Staking     | [terra1897an2xux840p9lrh6py3ryankc6mspw49xse3](https://finder.terra.money/columbus-4/address/terra1897an2xux840p9lrh6py3ryankc6mspw49xse3) |
-| Community   | [terra12wk8dey0kffwp27l5ucfumczlsc9aned8rqueg](https://finder.terra.money/columbus-4/address/terra12wk8dey0kffwp27l5ucfumczlsc9aned8rqueg) |
-| Collector   | [terra14ku9pgw5ld90dexlyju02u4rn6frheexr5f96h](https://finder.terra.money/columbus-4/address/terra14ku9pgw5ld90dexlyju02u4rn6frheexr5f96h) |
-| Distributor | [terra1mxf7d5updqxfgvchd7lv6575ehhm8qfdttuqzz](https://finder.terra.money/columbus-4/address/terra1mxf7d5updqxfgvchd7lv6575ehhm8qfdttuqzz) |
+| Contract             | Address                                                                                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Gov                  | [terra1f32xyep306hhcxxxf7mlyh0ucggc00rm2s9da5](https://finder.terra.money/columbus-4/address/terra1f32xyep306hhcxxxf7mlyh0ucggc00rm2s9da5) |
+| LP Staking \[Legacy] | [terra1897an2xux840p9lrh6py3ryankc6mspw49xse3](https://finder.terra.money/columbus-4/address/terra1897an2xux840p9lrh6py3ryankc6mspw49xse3) |
+| LP Staking           | [terra1h3mf22jm68ddueryuv2yxwfmqxxadvjceuaqz6](https://finder.terra.money/mainnet/address/terra1h3mf22jm68ddueryuv2yxwfmqxxadvjceuaqz6)    |
+| Community            | [terra12wk8dey0kffwp27l5ucfumczlsc9aned8rqueg](https://finder.terra.money/columbus-4/address/terra12wk8dey0kffwp27l5ucfumczlsc9aned8rqueg) |
+| Collector            | [terra14ku9pgw5ld90dexlyju02u4rn6frheexr5f96h](https://finder.terra.money/columbus-4/address/terra14ku9pgw5ld90dexlyju02u4rn6frheexr5f96h) |
+| Distributor          | [terra1mxf7d5updqxfgvchd7lv6575ehhm8qfdttuqzz](https://finder.terra.money/columbus-4/address/terra1mxf7d5updqxfgvchd7lv6575ehhm8qfdttuqzz) |
 
 #### Cw20-Compliant Token Contracts
 
@@ -144,13 +145,14 @@ For money market and liquidations, a separate set of contracts are to be deploye
 {% tab title="Testnet" %}
 #### Core Contracts
 
-| Contract    | Address                                                                                                                                      |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gov         | [terra16ckeuu7c6ggu52a8se005mg5c0kd2kmuun63cu](https://finder.terra.money/tequila-0004/address/terra16ckeuu7c6ggu52a8se005mg5c0kd2kmuun63cu) |
-| Staking     | [terra19nxz35c8f7t3ghdxrxherym20tux8eccar0c3k](https://finder.terra.money/tequila-0004/address/terra19nxz35c8f7t3ghdxrxherym20tux8eccar0c3k) |
-| Community   | [terra17g577z0pqt6tejhceh06y3lyeudfs3v90mzduy](https://finder.terra.money/tequila-0004/address/terra17g577z0pqt6tejhceh06y3lyeudfs3v90mzduy) |
-| Collector   | [terra1hlctcrrhcl2azxzcsns467le876cfuzam6jty4](https://finder.terra.money/tequila-0004/address/terra1hlctcrrhcl2azxzcsns467le876cfuzam6jty4) |
-| Distributor | [terra1z7nxemcnm8kp7fs33cs7ge4wfuld307v80gypj](https://finder.terra.money/tequila-0004/address/terra1z7nxemcnm8kp7fs33cs7ge4wfuld307v80gypj) |
+| Contract             | Address                                                                                                                                      |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gov                  | [terra16ckeuu7c6ggu52a8se005mg5c0kd2kmuun63cu](https://finder.terra.money/tequila-0004/address/terra16ckeuu7c6ggu52a8se005mg5c0kd2kmuun63cu) |
+| LP Staking \[Legacy] | [terra19nxz35c8f7t3ghdxrxherym20tux8eccar0c3k](https://finder.terra.money/tequila-0004/address/terra19nxz35c8f7t3ghdxrxherym20tux8eccar0c3k) |
+| LP Staking           | [terra1q68gyyxqnlh58jacz5r6rxfmxqpmmjv583fzqq](https://finder.terra.money/testnet/address/terra1q68gyyxqnlh58jacz5r6rxfmxqpmmjv583fzqq)      |
+| Community            | [terra17g577z0pqt6tejhceh06y3lyeudfs3v90mzduy](https://finder.terra.money/tequila-0004/address/terra17g577z0pqt6tejhceh06y3lyeudfs3v90mzduy) |
+| Collector            | [terra1hlctcrrhcl2azxzcsns467le876cfuzam6jty4](https://finder.terra.money/tequila-0004/address/terra1hlctcrrhcl2azxzcsns467le876cfuzam6jty4) |
+| Distributor          | [terra1z7nxemcnm8kp7fs33cs7ge4wfuld307v80gypj](https://finder.terra.money/tequila-0004/address/terra1z7nxemcnm8kp7fs33cs7ge4wfuld307v80gypj) |
 
 #### Cw20-Compliant Token Contracts
 
