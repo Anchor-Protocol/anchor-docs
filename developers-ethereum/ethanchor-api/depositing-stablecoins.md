@@ -1,51 +1,63 @@
 # Depositing Stablecoins
 
-ERC20 stablecoins \(e.g. UST\) can be redeemed to receive ERC20 aTerra using the below endpoints:
+ERC20 stablecoins (e.g. UST) can be redeemed to receive ERC20 aTerra using the below endpoints:
 
-| Endpoint | Method | Description |
-| :--- | :--- | :--- |
-| [`init_deposit_stable`](depositing-stablecoins.md#initiate-stablecoin-deposit) | POST | Initiates the deposit of ERC20 stablecoins |
-| [`finish_deposit_stable`](depositing-stablecoins.md#finish-stablecoin-deposit) | POST | Claims minted ERC20 aTerra |
-| [`deposit_stable_status`](depositing-stablecoins.md#get-stablecoin-deposit-status) | GET | Gets status of an ongoing stablecoin deposit request |
+| Endpoint                                                                           | Method | Description                                          |
+| ---------------------------------------------------------------------------------- | ------ | ---------------------------------------------------- |
+| [`init_deposit_stable`](depositing-stablecoins.md#initiate-stablecoin-deposit)     | POST   | Initiates the deposit of ERC20 stablecoins           |
+| [`finish_deposit_stable`](depositing-stablecoins.md#finish-stablecoin-deposit)     | POST   | Claims minted ERC20 aTerra                           |
+| [`deposit_stable_status`](depositing-stablecoins.md#get-stablecoin-deposit-status) | GET    | Gets status of an ongoing stablecoin deposit request |
 
-{% api-method method="post" host="https://eth-api.anchorprotocol.com" path="/api/v1/init\_deposit\_stable" %}
-{% api-method-summary %}
-Initiate stablecoin deposit
-{% endapi-method-summary %}
+{% swagger baseUrl="https://eth-api.anchorprotocol.com" path="/api/v1/init_deposit_stable" method="post" summary="Initiate stablecoin deposit" %}
+{% swagger-description %}
+`POST /api/v1/init_deposit_stable`
 
-{% api-method-description %}
-`POST /api/v1/init_deposit_stable` allows you to fabricate an unsigned Ethereum Tx payload that initiates a stablecoin deposit request. You can sign the Tx payload transaction yourself and broadcast to the Ethereum network, or broadcast via any custodian API that supports signing a raw Tx payload.  
-  
-Note that only **one** `init_deposit_stable` operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the EthAnchor Account contract will block any subsequent operations \(including stablecoin redemptions\) until an ongoing stablecoin deposit request is finished with `finish_deposit_stable`.
-{% endapi-method-description %}
+ allows you to fabricate an unsigned Ethereum Tx payload that initiates a stablecoin deposit request. You can sign the Tx payload transaction yourself and broadcast to the Ethereum network, or broadcast via any custodian API that supports signing a raw Tx payload.
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Authentication" type="string" required=true %}
+\
+
+
+
+
+\
+
+
+Note that only 
+
+**one**
+
+ 
+
+`init_deposit_stable`
+
+ operation can take place at the same time; even if you successfully broadcast the resulting Tx to the network, the EthAnchor Account contract will block any subsequent operations (including stablecoin redemptions) until an ongoing stablecoin deposit request is finished with 
+
+`finish_deposit_stable`
+
+.
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authentication" type="string" %}
 Anchor client key.
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter required=true name="stable\_denom" type="string" %}
-Denomination of stablecoin to deposit  
-Example: `"uusd"`
-{% endapi-method-parameter %}
+{% swagger-parameter in="body" name="stable_denom" type="string" %}
+Denomination of stablecoin to deposit
 
-{% api-method-parameter name="stable\_amount" type="string" required=true %}
-\(uint256\) Amount of stablecoins to deposit to Anchor in 18 decimals.
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+\
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-DepositStable raw Tx hash.
-{% endapi-method-response-example-description %}
 
-```text
+Example: 
+
+`"uusd"`
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="stable_amount" type="string" %}
+(uint256) Amount of stablecoins to deposit to Anchor in 18 decimals.
+{% endswagger-parameter %}
+
+{% swagger-response status="200" description="DepositStable raw Tx hash." %}
+```
 {
     "success": true,
     "tx_hash": "0x......",
@@ -54,106 +66,126 @@ DepositStable raw Tx hash.
     "stable_amount": "500000000"
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=401 %}
-{% api-method-response-example-description %}
-You are not authorized to call this endpoint; client not registered.
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="401" description="You are not authorized to call this endpoint; client not registered." %}
+```
 {
     "success": false,
     "error": "unauthorized; client not registered"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-{% api-method method="post" host="https://eth-api.anchorprotocol.com" path="/api/v1/finish\_deposit\_stable" %}
-{% api-method-summary %}
-Finish stablecoin deposit
-{% endapi-method-summary %}
+{% swagger baseUrl="https://eth-api.anchorprotocol.com" path="/api/v1/finish_deposit_stable" method="post" summary="Finish stablecoin deposit" %}
+{% swagger-description %}
+`POST /api/v1/finish_deposit_stable`
 
-{% api-method-description %}
-`POST /api/v1/finish_deposit_stable` allows you to finish a previously requested deposit stable operation.  
-  
+ allows you to finish a previously requested deposit stable operation.
+
+\
+
+
+
+
+\
+
+
 This endpoint returns an unsigned Ethereum transaction payload. You can sign the transaction yourself and send to the network, or broadcast using any custodian API that supports signing a raw Tx payload.
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Authentication" type="string" required=true %}
+{% swagger-parameter in="header" name="Authentication" type="string" %}
 Anchor client key.api/
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-FinishDepositStable raw Tx hash
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="200" description="FinishDepositStable raw Tx hash" %}
+```
 {
     "success": true,
     "tx_hash": "0x......",
     "action": "anchor/finish_deposit_stable"
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=401 %}
-{% api-method-response-example-description %}
-You are not authorized to call this endpoint; client not registered
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="401" description="You are not authorized to call this endpoint; client not registered" %}
+```
 {
     "success": false,
     "error": "unauthorized; client not registered"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-{% api-method method="get" host="https://eth-api.anchorprotocol.com" path="/api/v1/deposit\_stable\_status" %}
-{% api-method-summary %}
-Check stablecoin deposit status
-{% endapi-method-summary %}
+{% swagger baseUrl="https://eth-api.anchorprotocol.com" path="/api/v1/deposit_stable_status" method="get" summary="Check stablecoin deposit status" %}
+{% swagger-description %}
+`GET /api/v1/deposit_stable_status`
 
-{% api-method-description %}
-`GET /api/v1/deposit_stable_status` allows you to check the status of an ongoing `deposit_stable` operation.  
-  
-You may want to periodically check the progress of your `deposit_stable` request, since an operation may take up to minutes due to congestion on the Ethereum network.  
-  
-Please note that status being `"finished"` does **NOT** mean you have run a full cycle of `deposit_stable` operation; you still need to send another transaction from `POST /api/v1/finish_deposit_stable` to finalize your operation.  
-  
+ allows you to check the status of an ongoing 
+
+`deposit_stable`
+
+ operation.
+
+\
+
+
+
+
+\
+
+
+You may want to periodically check the progress of your 
+
+`deposit_stable`
+
+ request, since an operation may take up to minutes due to congestion on the Ethereum network.
+
+\
+
+
+
+
+\
+
+
+Please note that status being 
+
+`"finished"`
+
+ does 
+
+**NOT**
+
+ mean you have run a full cycle of 
+
+`deposit_stable`
+
+ operation; you still need to send another transaction from 
+
+`POST /api/v1/finish_deposit_stable`
+
+ to finalize your operation.
+
+\
+
+
+
+
+\
+
+
 This endpoint responds with HTTP 204 when there is no ongoing operation.
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Authentication" type="string" required=true %}
+{% swagger-parameter in="header" name="Authentication" type="string" %}
 Anchor client access key.
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Current status of ongoing deposit stable operation.
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="200" description="Current status of ongoing deposit stable operation." %}
+```
 {
     // Phase
     // 0 - (Ethereum) wrapper contract has received stablecoins (e.g. UST) and 
@@ -201,33 +233,22 @@ Current status of ongoing deposit stable operation.
     ]
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=204 %}
-{% api-method-response-example-description %}
-No ongoing `deposit_stable` operation
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="204" description="No ongoing deposit_stable operation" %}
+```
 {
     "status": "idle"
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=401 %}
-{% api-method-response-example-description %}
-You are not authorized to call this endpoint; client not registered.
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="401" description="You are not authorized to call this endpoint; client not registered." %}
+```
 {
     "success": false,
     "error": "unauthorized; client not registered"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
+{% endswagger-response %}
+{% endswagger %}
