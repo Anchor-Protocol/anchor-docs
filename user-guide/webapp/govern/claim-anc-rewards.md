@@ -8,21 +8,21 @@ Unlike ANC rewards from UST borrowing or ANC - UST LP staking, rewards from gove
 
 The **Anchor Governance Staking** section of the **GOVERN** page displays:
 
-* **APY**: Annualized percentage yield (APY) of staking rewards given to ANC stakers.
+* **APY**: Annualized percentage yield \(APY\) of staking rewards given to ANC stakers.
 
 ## Buy / Sell ANC with UST
 
 The Anchor WebApp provides an interface for users to trade ANC tokens with Terra USD, supported by Terraswap's ANC-UST exchange pair.
 
-1\. Navigate to the **GOVERN** page and click on **\[Trade ANC]**.
+1. Navigate to the **GOVERN** page and click on **\[Trade ANC\]**.
 
 ![](../../../.gitbook/assets/govern-staking-trade-1.png)
 
-2\. Select whether to buy or sell ANC.
+2. Select whether to buy or sell ANC.
 
 ![](../../../.gitbook/assets/govern-staking-trade-2.png)
 
-3\. Enter amount to buy / sell. Assert the swap price, minimum received amount and click **\[Swap]**.
+3. Enter amount to buy / sell. Assert the swap price, minimum received amount and click **\[Swap\]**.
 
 ![](../../../.gitbook/assets/govern-staking-trade-3.png)
 
@@ -30,35 +30,36 @@ The Anchor WebApp provides an interface for users to trade ANC tokens with Terra
 * **Minimum Received**: Minimum amount of tokens guaranteed to receive. Swap is reverted if the final receive amount is below this value.
 
 {% hint style="warning" %}
-The displayed amount of the counterparty token is an estimate value, calculated at the time of user interaction. The final amount received may be different (but always above **Minimum Received**) due the time required for transaction acceptance.
+The displayed amount of the counterparty token is an estimate value, calculated at the time of user interaction. The final amount received may be different \(but always above **Minimum Received**\) due the time required for transaction acceptance.
 {% endhint %}
 
-4\. Station Extension should prompt you to sign a transaction that contains the buy /sell operation. Confirm the details presented and enter your password to sign.
+4. Station Extension should prompt you to sign a transaction that contains the buy /sell operation. Confirm the details presented and enter your password to sign.
 
 ![](../../../.gitbook/assets/govern-staking-trade-4.png)
 
-5\. Buy / sell complete.
+5. Buy / sell complete.
 
 ![](../../../.gitbook/assets/govern-staking-trade-5.png)
 
 ## Staking / unstaking ANC to / from Anchor Governance
 
-1\. Navigate to the **GOVERN** page and click **\[Gov Stake]**.
+1. Navigate to the **GOVERN** page and click **\[Gov Stake\]**.
 
 ![](../../../.gitbook/assets/govern-staking-stake-1.png)
 
-2\. Select whether to stake or unstake.
+2. Select whether to stake or unstake.
 
 ![](../../../.gitbook/assets/govern-staking-stake-2.png)
 
-3\. Enter amount of ANC to stake / unstake and click **\[Stake]** / **\[Unstake]**.
+3. Enter amount of ANC to stake / unstake and click **\[Stake\]** / **\[Unstake\]**.
 
 ![](../../../.gitbook/assets/govern-staking-stake-3.png)
 
-4\. Station Extension should prompt you to sign a transaction that contains the stake /unstake operation. Confirm the details presented and enter your password to sign.
+4. Station Extension should prompt you to sign a transaction that contains the stake /unstake operation. Confirm the details presented and enter your password to sign.
 
 ![](../../../.gitbook/assets/govern-stakiing-stake-4.png)
 
-6\. Stake / unstake complete.
+6. Stake / unstake complete.
 
 ![](../../../.gitbook/assets/govern-staking-stake-5.png)
+

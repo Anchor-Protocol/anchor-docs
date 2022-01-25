@@ -1,11 +1,11 @@
 # Anchor Earn SDK
 
-![](../.gitbook/assets/anchor-earn\_logo.png)
+![](../.gitbook/assets/anchor-earn_logo.png)
 
 Anchor Earn is a JavaScript SDK that specializes for integrations that are wishing to leverage the deposit functionality of Anchor.
 
 {% hint style="info" %}
-Anchor Earn only covers the savings-related operations of Anchor. For a SDK with full functional coverage (e.g. minting bLuna, borrowing UST), [Anchor.js](https://docs.anchorprotocol.com/developers-terra/anchor.js) is recommended.
+Anchor Earn only covers the savings-related operations of Anchor. For a SDK with full functional coverage \(e.g. minting bLuna, borrowing UST\), [Anchor.js](https://docs.anchorprotocol.com/developers-terra/anchor.js) is recommended.
 {% endhint %}
 
 Anchor Earn is designed with interchain access in mind. Further releases of Anchor Earn are to enable integrations for interchain deposits, opening up savings for applications outside of the Terra blockchain. With the use of [EthAnchor](../developers-ethereum/ethanchor.md), BscAnchor, SolAnchor, etc., Anchor Earn is to be further expanded to enable savings regardless of blockchain or the type of stablecoin.
@@ -22,13 +22,13 @@ Anchor Earn requires NPM and Node.js 12 or above for its proper usage.
 
 Anchor Earn is available as a package on NPM. Add `@anchor-protocol/anchor-earn` to your JavaScript project's `package.json` as dependencies using preferred package manager:
 
-```
+```text
 npm install -S @anchor-protocol/anchor-earn
 ```
 
 or
 
-```
+```text
 yarn add @anchor-protocol/anchor-earn
 ```
 
@@ -42,17 +42,63 @@ yarn add @anchor-protocol/anchor-earn
 
 A blockchain account is required when calling this function. Register the account's private key or mnemonics from which transactions will be signed and broadcasted. If you do not have a pre-created blockchain account, a new account can be created using the [`Account`](anchor-earn-sdk.md#creating-a-new-blockchain-account) instance.
 
-While Anchor Earn by default handles transaction signing and broadcasting, these operations can be handed off to a callback function that connects with external key-signing solutions (e.g. Terra Station Extension, Ledger Hardware Wallet, Custodian APIs). For this case, the `AnchorEarn` instance should be created by the pre-created account's address.
+While Anchor Earn by default handles transaction signing and broadcasting, these operations can be handed off to a callback function that connects with external key-signing solutions \(e.g. Terra Station Extension, Ledger Hardware Wallet, Custodian APIs\). For this case, the `AnchorEarn` instance should be created by the pre-created account's address.
 
 **Method Parameters**
 
-| Parameter / Type / Optionality / Description                                                                                                                                                                                                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>chain</code>   </strong>   (<a href="anchor-earn-sdk.md#chains">CHAINS</a>) <strong>   </strong><em><strong>Required</strong></em></p><p> Blockchain to interact from.</p><p></p><p>For Anchor Earn v1.0, only <code>CHAINS.TERRA</code> (Terra blockchain) is supported.</p>                                                                  |
-| <p><strong><code>network</code></strong>   (<a href="anchor-earn-sdk.md#networks">NETWORKS</a>)   <em><strong>Required</strong></em></p><p> Network to interact in.</p>                                                                                                                                                                                         |
-| <p><strong><code>privateKey</code></strong>   (Buffer | any)   <em>Optional</em></p><p>Account private key.</p>                                                                                                                                                                                                                                                 |
-| <p><strong><code>mnemonic</code></strong>   (string | any)   <em>Optional</em></p><p>Account mnemonics.</p>                                                                                                                                                                                                                                                     |
-| <p><strong><code>address</code></strong>   (string)   <em>Optional</em> </p><p>Account address.</p><p></p><p>Required if transactions are to be signed / broadcasted remotely with the use of <a href="anchor-earn-sdk.md#customsigner"><code>customSigner</code></a> or <a href="anchor-earn-sdk.md#custombroadcaster"><code>customBroadcaster</code></a>.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>chain</code>   </b>(<a href="anchor-earn-sdk.md#chains">CHAINS</a>)<b> </b><em><b>  Required</b></em>
+        </p>
+        <p>Blockchain to interact from.</p>
+        <p></p>
+        <p>For Anchor Earn v1.0, only <code>CHAINS.TERRA</code> (Terra blockchain)
+          is supported.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>network</code></b> (<a href="anchor-earn-sdk.md#networks">NETWORKS</a>) <em><b>Required</b></em>
+        </p>
+        <p>Network to interact in.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>privateKey</code></b> (Buffer | any) <em>Optional</em>
+        </p>
+        <p>Account private key.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>mnemonic</code></b> (string | any) <em>Optional</em>
+        </p>
+        <p>Account mnemonics.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>address</code></b> (string) <em>Optional</em> 
+        </p>
+        <p>Account address.</p>
+        <p></p>
+        <p>Required if transactions are to be signed / broadcasted remotely with
+          the use of <a href="anchor-earn-sdk.md#customsigner"><code>customSigner</code></a> or
+          <a
+          href="anchor-earn-sdk.md#custombroadcaster"><code>customBroadcaster</code>
+            </a>.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Example**
 
@@ -73,14 +119,27 @@ const anchorEarn = new AnchorEarn({
 Creating an instance of the `Account` object generates a new blockchain account.
 
 {% hint style="info" %}
-Tokens for testnet environments (e.g. Bombay) can be acquired using faucets, outlined in the [appendix](appendix.md#testnet-faucets) section.
+Tokens for testnet environments \(e.g. Bombay\) can be acquired using faucets, outlined in the [appendix](appendix.md#testnet-faucets) section.
 {% endhint %}
 
 **Method Parameters**
 
-| Parameter / Type / Optionality / Description                                                                                                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>chain</code></strong>   (<a href="anchor-earn-sdk.md#chains">CHAINS</a>)   <em><strong>Required</strong></em></p><p>Blockchain to generate account on.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>chain</code></b> (<a href="anchor-earn-sdk.md#chains">CHAINS</a>) <em><b>Required</b></em>
+        </p>
+        <p>Blockchain to generate account on.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Example**
 
@@ -108,12 +167,39 @@ export class Account {
 
 **Attributes**
 
-| Attribute / Type / Description                                                           |
-| ---------------------------------------------------------------------------------------- |
-| <p><strong><code>accAddress</code></strong>   (AccAddress)</p><p>Address of account.</p> |
-| <p><strong><code>publicKey</code></strong>   (string)</p><p>Public key of account.</p>   |
-| <p><strong><code>privateKey</code></strong>   (Buffer)</p><p>Private key of account.</p> |
-| <p><strong><code>mnemonic</code></strong>   (string)</p><p>Mnemonics of account.</p>     |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>accAddress</code></b> (AccAddress)</p>
+        <p>Address of account.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>publicKey</code></b> (string)</p>
+        <p>Public key of account.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>privateKey</code></b> (Buffer)</p>
+        <p>Private key of account.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>mnemonic</code></b> (string)</p>
+        <p>Mnemonics of account.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### Generating an Account with Mnemonics
 
@@ -123,9 +209,22 @@ An account can also be generated using existing mnemonics. The `MnemonicKey` obj
 
 **Method Parameter**
 
-| Parameter / Type / Optionality / Description                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>mnemonic</code></strong>   (string)   <em><strong>Required</strong></em></p><p>Mnemonics of account.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>mnemonic</code></b> (string) <em><b>Required</b></em>
+        </p>
+        <p>Mnemonics of account.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ```javascript
 import { Wallet, MnemonicKey } from '@anchor-protocol/anchor-earn';
@@ -148,13 +247,58 @@ This method deposits the specified amount of stablecoins to Anchor.
 
 **Method Parameters**
 
-| Parameter / Type / Optionality / Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <p><strong><code>currency</code></strong>   (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>)   <em><strong>Required</strong></em></p><p>Currency of stablecoin to deposit.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| <p><strong><code>amount</code></strong>   (string)   <em><strong>Required</strong></em></p><p>Amount of stablecoins to deposit.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| <p><strong><code>CustomSigner</code></strong>   (callback function => <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html">StdTx</a>)   <em>Optional</em></p><p>Callback function provided by the integrator that creates, signs a transaction encoding the deposit request and returns the signed transaction to be broadcasted by Anchor Earn.</p><p></p><p>Expects <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html"><code>StdTx</code></a>, a transaction object used by the Terra blockchain (imported from <a href="https://terra-project.github.io/terra.js/index.html">Terra.js</a>).</p> |
-| <p><strong><code>CustomBroadcaster</code></strong>   (callback function => string)   <em>Optional</em></p><p>Callback function provided by the integrator that creates, signs and broadcasts a transaction that encodes the deposit request. <br><br>Expects the tx hash of the broadcasted transaction in <code>string</code> format.</p>                                                                                                                                                                                                                                                                                                                   |
-| <p><strong><code>Loggable</code></strong>   (callback function)   <em>Optional</em> </p><p>Callback function that logs transaction requests.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currency</code></b> (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
+        </p>
+        <p>Currency of stablecoin to deposit.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>amount</code></b> (string) <em><b>Required</b></em>
+        </p>
+        <p>Amount of stablecoins to deposit.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>CustomSigner</code></b> (callback function =&gt; <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html">StdTx</a>) <em>Optional</em>
+        </p>
+        <p>Callback function provided by the integrator that creates, signs a transaction
+          encoding the deposit request and returns the signed transaction to be broadcasted
+          by Anchor Earn.</p>
+        <p></p>
+        <p>Expects <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html"><code>StdTx</code></a>,
+          a transaction object used by the Terra blockchain (imported from <a href="https://terra-project.github.io/terra.js/index.html">Terra.js</a>).</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>CustomBroadcaster</code></b> (callback function =&gt; string) <em>Optional</em>
+        </p>
+        <p>Callback function provided by the integrator that creates, signs and broadcasts
+          a transaction that encodes the deposit request.
+          <br />
+          <br />Expects the tx hash of the broadcasted transaction in <code>string</code> format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>Loggable</code></b> (callback function) <em>Optional</em> 
+        </p>
+        <p>Callback function that logs transaction requests.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Returns**
 
@@ -175,21 +319,67 @@ const deposit = await anchorEarn.deposit({
 
 #### `anchorEarn.withdraw({currency, amount})`
 
-This method withdraws the specified amount of stablecoins (or their aTerra counterpart) from Anchor.
+This method withdraws the specified amount of stablecoins \(or their aTerra counterpart\) from Anchor.
 
 {% hint style="warning" %}
-Note that the actual amount of stablecoins withdrawn will be smaller due to transfer fees (tax) enforced by the Terra blockchain.
+Note that the actual amount of stablecoins withdrawn will be smaller due to transfer fees \(tax\) enforced by the Terra blockchain.
 {% endhint %}
 
 **Method Parameters**
 
-| **Parameter / Type / Optionality / Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>currency</code></strong>   (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>)   <em><strong>Required</strong></em></p><p>Currency of stablecoin to withdraw or their aTerra counterpart.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| <p><strong><code>amount</code></strong>   (string)   <em><strong>Required</strong></em></p><p>Amount of stablecoins (or their aTerra counterpart) to withdraw.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| <p><strong><code>CustomSigner</code></strong>   (callback function => <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html">StdTx</a>)   <em>Optional</em></p><p>Callback function provided by the integrator that creates, signs a transaction encoding the withdraw request and returns the signed transaction to be broadcasted by Anchor Earn.</p><p></p><p>Expects <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html"><code>StdTx</code></a>, a transaction object used by the Terra blockchain (imported from <a href="https://terra-project.github.io/terra.js/index.html">Terra.js</a>).</p> |
-| <p><strong><code>CustomBroadcaster</code></strong>   (callback function => string)   <em>Optional</em></p><p>Callback function provided by the integrator that creates, signs and broadcasts a transaction that encodes the withdraw request.</p><p></p><p>Expects the tx hash of the broadcasted transaction in <code>string</code> format.</p>                                                                                                                                                                                                                                                                                                              |
-| <p><strong><code>Loggable</code></strong>   (callback function)   <em>Optional</em> </p><p>Callback function that logs transaction requests.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Parameter / Type / Optionality / Description</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currency</code></b> (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
+        </p>
+        <p>Currency of stablecoin to withdraw or their aTerra counterpart.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>amount</code></b> (string) <em><b>Required</b></em>
+        </p>
+        <p>Amount of stablecoins (or their aTerra counterpart) to withdraw.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>CustomSigner</code></b> (callback function =&gt; <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html">StdTx</a>) <em>Optional</em>
+        </p>
+        <p>Callback function provided by the integrator that creates, signs a transaction
+          encoding the withdraw request and returns the signed transaction to be
+          broadcasted by Anchor Earn.</p>
+        <p></p>
+        <p>Expects <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html"><code>StdTx</code></a>,
+          a transaction object used by the Terra blockchain (imported from <a href="https://terra-project.github.io/terra.js/index.html">Terra.js</a>).</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>CustomBroadcaster</code></b> (callback function =&gt; string) <em>Optional</em>
+        </p>
+        <p>Callback function provided by the integrator that creates, signs and broadcasts
+          a transaction that encodes the withdraw request.</p>
+        <p></p>
+        <p>Expects the tx hash of the broadcasted transaction in <code>string</code> format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>Loggable</code></b> (callback function) <em>Optional</em> 
+        </p>
+        <p>Callback function that logs transaction requests.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Returns**
 
@@ -210,18 +400,69 @@ const withdraw = await anchorEarn.withdraw({
 
 #### `anchorEarn.send({currency, recipient, amount})`
 
-Use `anchorEarn.send` to send tokens (stablecoins or their aTerra counterpart) to a different account.
+Use `anchorEarn.send` to send tokens \(stablecoins or their aTerra counterpart\) to a different account.
 
 **Method Parameters**
 
-| Parameter / Type / Optionality / Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>currency</code></strong>   (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>)   <em><strong>Required</strong></em></p><p>Currency of token (stablecoins or their aTerra counterpart) to send.</p>                                                                                                                                                                                                                                                                                                                                                     |
-| <p><strong><code>recipient</code></strong>   (string)   <em><strong>Required</strong></em></p><p>Recipient address to receive sent tokens.</p>                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| <p><strong><code>amount</code></strong>   (string)   <em><strong>Required</strong></em></p><p>Amount of tokens (stablecoins or their aTerra counterpart) to send.</p>                                                                                                                                                                                                                                                                                                                                                                                                |
-| <p><strong><code>CustomSigner</code></strong>   (callback function => StdTx)   <em>Optional</em></p><p>Callback function provided by the integrator that creates, signs a transaction encoding the send request and returns the signed transaction to be broadcasted by Anchor Earn.</p><p></p><p>Expects <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html"><code>StdTx</code></a>, a transaction object used by the Terra blockchain (imported from <a href="https://terra-project.github.io/terra.js/index.html">Terra.js</a>).</p> |
-| <p><strong><code>CustomBroadcaster</code></strong>   (callback function => string)   <em>Optional</em></p><p>Callback function provided by the integrator that creates, signs and broadcasts a transaction that encodes the send request.</p><p></p><p>Expects the tx hash of the broadcasted transaction in <code>string</code> format.</p>                                                                                                                                                                                                                         |
-| <p><strong><code>Loggable</code></strong>   (callback function)   <em>Optional</em> </p><p>Callback function that logs transaction requests.</p>                                                                                                                                                                                                                                                                                                                                                                                                                     |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currency</code></b> (<a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
+        </p>
+        <p>Currency of token (stablecoins or their aTerra counterpart) to send.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>recipient</code></b> (string) <em><b>Required</b></em>
+        </p>
+        <p>Recipient address to receive sent tokens.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>amount</code></b> (string) <em><b>Required</b></em>
+        </p>
+        <p>Amount of tokens (stablecoins or their aTerra counterpart) to send.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>CustomSigner</code></b> (callback function =&gt; StdTx) <em>Optional</em>
+        </p>
+        <p>Callback function provided by the integrator that creates, signs a transaction
+          encoding the send request and returns the signed transaction to be broadcasted
+          by Anchor Earn.</p>
+        <p></p>
+        <p>Expects <a href="https://terra-project.github.io/terra.js/modules/core_stdtx.stdtx.html"><code>StdTx</code></a>,
+          a transaction object used by the Terra blockchain (imported from <a href="https://terra-project.github.io/terra.js/index.html">Terra.js</a>).</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>CustomBroadcaster</code></b> (callback function =&gt; string) <em>Optional</em>
+        </p>
+        <p>Callback function provided by the integrator that creates, signs and broadcasts
+          a transaction that encodes the send request.</p>
+        <p></p>
+        <p>Expects the tx hash of the broadcasted transaction in <code>string</code> format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>Loggable</code></b> (callback function) <em>Optional</em> 
+        </p>
+        <p>Callback function that logs transaction requests.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Returns**
 
@@ -243,13 +484,26 @@ const sendUst = await anchorEarn.send({
 
 #### `anchorEarn.balance({currencies})`
 
-This method retrieves balance information for the specified stablecoins.&#x20;
+This method retrieves balance information for the specified stablecoins. 
 
 **Method Parameters**
 
-| Parameters / Type / Optionality / Description                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>currencies</code></strong>   (array of <a href="anchor-earn-sdk.md#denoms">DENOMS</a>)   <em><strong>Required</strong></em></p><p>List of currencies to retrieve balances.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameters / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currencies</code></b> (array of <a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
+        </p>
+        <p>List of currencies to retrieve balances.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Returns**
 
@@ -275,9 +529,22 @@ This method retrieves market information for the specified stablecoins.
 
 **Method Parameters**
 
-| Parameter / Type / Optionality / Description                                                                                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>currencies</code></strong>   (array of <a href="anchor-earn-sdk.md#denoms">DENOMS</a>)   <em><strong>Required</strong></em></p><p>List of stablecoins to retrieve information about their markets.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter / Type / Optionality / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currencies</code></b> (array of <a href="anchor-earn-sdk.md#denoms">DENOMS</a>) <em><b>Required</b></em>
+        </p>
+        <p>List of stablecoins to retrieve information about their markets.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 **Returns**
 
@@ -297,7 +564,7 @@ const marketInfo = await anchorEarn.market({
 
 ### CHAINS
 
-The `CHAINS` enumerated type specifies blockchains that are supported by Anchor Earn.&#x20;
+The `CHAINS` enumerated type specifies blockchains that are supported by Anchor Earn. 
 
 ```javascript
 export enum CHAINS {
@@ -307,15 +574,15 @@ export enum CHAINS {
 
 Anchor Earn currently supports the following blockchains:
 
-| Enum Member        | Blockchain Name                             |
-| ------------------ | ------------------------------------------- |
-| **`CHAINS.TERRA`** | [Terra blockchain](https://www.terra.money) |
+| Enum Member | Blockchain Name |
+| :--- | :--- |
+| **`CHAINS.TERRA`** | [Terra blockchain](https://www.terra.money/) |
 
 
 
 ### NETWORKS
 
-The `NETWORKS` enumerated type specifies the network type to be used.&#x20;
+The `NETWORKS` enumerated type specifies the network type to be used. 
 
 ```javascript
 export enum NETWORKS {
@@ -330,15 +597,15 @@ Anchor Earn supports mainnet and testnet networks with the below chain IDs:
 {% tab title="Terra" %}
 **Mainnet**
 
-| Enum Member      | Chain ID     | Network Name |
-| ---------------- | ------------ | ------------ |
-| **`COLUMBUS_5`** | `columbus-5` | Columbus 5   |
+| Enum Member | Chain ID | Network Name |
+| :--- | :--- | :--- |
+| **`COLUMBUS_5`** | `columbus-5` | Columbus 5 |
 
 **Testnet**
 
-| Enum Member     | Chain ID    | Network Name |
-| --------------- | ----------- | ------------ |
-| **`BOMBAY_12`** | `bombay-12` | Bombay       |
+| Enum Member | Chain ID | Network Name |
+| :--- | :--- | :--- |
+| **`BOMBAY_12`** | `bombay-12` | Bombay |
 {% endtab %}
 {% endtabs %}
 
@@ -361,17 +628,17 @@ Anchor Earn supports functionalities for the below stablecoin denominations:
 {% tab title="Terra" %}
 **Mainnet**
 
-| Denomination | Code    | Decimals | Contract Address                                                                                                                           |
-| ------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| UST          | `uusd`  | 6        | Native Token                                                                                                                               |
-| aUST         | `uaust` | 6        | [terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu](https://finder.terra.money/columbus-4/address/terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu) |
+| Denomination | Code | Decimals | Contract Address |
+| :--- | :--- | :--- | :--- |
+| UST | `uusd` | 6 | Native Token |
+| aUST | `uaust` | 6 | [terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu](https://finder.terra.money/columbus-4/address/terra1hzh9vpxhsk8253se0vv5jj6etdvxu3nv8z07zu) |
 
 **Testnet**
 
-| **Denomination** | Code    | Decimals | Contract Address                                                                                                                             |
-| ---------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| UST              | `uusd`  | 6        | Native Token                                                                                                                                 |
-| aUST             | `uaust` | 6        | [terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl](https://finder.terra.money/tequila-0004/address/terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl) |
+| **Denomination** | Code | Decimals | Contract Address |
+| :--- | :--- | :--- | :--- |
+| UST | `uusd` | 6 | Native Token |
+| aUST | `uaust` | 6 | [terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl](https://finder.terra.money/tequila-0004/address/terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl) |
 {% endtab %}
 {% endtabs %}
 
@@ -393,13 +660,56 @@ export interface OperationError {
 
 **Attributes**
 
-| Attribute / Type / Description                                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>chain</code></strong>   (<a href="anchor-earn-sdk.md#chains">CHAINS</a>)</p><p>Blockchain from which the request was made.</p>                                                                                                                                                                                                                                                                                               |
-| <p><strong><code>network</code></strong>   (<a href="anchor-earn-sdk.md#networks">NETWORKS</a>)</p><p>Network from which the request was made.</p>                                                                                                                                                                                                                                                                                            |
-| <p><strong><code>status</code></strong>   (<a href="anchor-earn-sdk.md#status">STATUS</a>)</p><p>Request status. <br><br>Should display <code>UNSUCCESSFUL</code> as the request encountered an error.</p>                                                                                                                                                                                                                                    |
-| <p><strong><code>type</code></strong>   (<a href="anchor-earn-sdk.md#txtype">TxType</a>)</p><p>Request type. Can be either of: </p><p></p><ul><li><code>deposit</code>: request is a transaction that deposits stablecoins to Anchor.</li><li><code>withdraw</code>: request is a transaction that withdraws stablecoins from Anchor.</li><li><code>send</code>: request is a transaction that sends tokens to a different account.</li></ul> |
-| <p><strong><code>error_msg</code></strong>   (string)</p><p>Human-readable sentence describing the error.</p>                                                                                                                                                                                                                                                                                                                                 |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>chain</code></b> (<a href="anchor-earn-sdk.md#chains">CHAINS</a>)</p>
+        <p>Blockchain from which the request was made.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>network</code></b> (<a href="anchor-earn-sdk.md#networks">NETWORKS</a>)</p>
+        <p>Network from which the request was made.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>status</code></b> (<a href="anchor-earn-sdk.md#status">STATUS</a>)</p>
+        <p>Request status.
+          <br />
+          <br />Should display <code>UNSUCCESSFUL</code> as the request encountered an error.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>type</code></b> (<a href="anchor-earn-sdk.md#txtype">TxType</a>)</p>
+        <p>Request type. Can be either of:</p>
+        <p></p>
+        <ul>
+          <li><code>deposit</code>: request is a transaction that deposits stablecoins
+            to Anchor.</li>
+          <li><code>withdraw</code>: request is a transaction that withdraws stablecoins
+            from Anchor.</li>
+          <li><code>send</code>: request is a transaction that sends tokens to a different
+            account.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>error_msg</code></b> (string)</p>
+        <p>Human-readable sentence describing the error.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -423,17 +733,97 @@ export interface Output {
 
 **Attributes**
 
-| Attribute / Type / Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>chain</code></strong>   (string)</p><p>Blockchain from which the request was made.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| <p><strong><code>network</code></strong>   (string)</p><p>Network from which the request was made.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| <p><strong><code>status</code></strong>   (<a href="anchor-earn-sdk.md#status">STATUS</a>)</p><p>Request status. Can be either of:<br></p><ul><li><code>STATUS.INPROGRESS</code>: request is in flight.</li><li><code>STATUS.SUCESSFUL</code>: request was successfully processed.</li><li><code>STATUS.UNSUCESSFUL</code>: request failed.</li></ul>                                                                                                                                                                                                                                                                                                                                 |
-| <p><strong><code>type</code></strong>   (<a href="anchor-earn-sdk.md#txtype">TxType</a>)</p><p>Request type. Can be either of:</p><p></p><ul><li><code>deposit</code>: request is a transaction that deposits stablecoins to Anchor.</li><li><code>withdraw</code>: request is a transaction that withdraws stablecoins from Anchor.</li><li><code>send</code>: request is a transaction that sends tokens to a different account.</li></ul>                                                                                                                                                                                                                                          |
-| <p><strong><code>currency</code></strong>   (string)</p><p>Currency of token (stablecoin or their aTerra counterpart).</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| <p><strong><code>amount</code></strong>   (string)</p><p>Amount of <code>currency</code> tokens utilized in the request.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| <p><strong><code>txDetails</code></strong>   (array of <a href="anchor-earn-sdk.md#txdetails">TxDetails</a>)</p><p>Transaction details.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| <p><strong><code>txFee</code></strong>   (string)</p><p>Amount of transaction fees spent by the requester.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| <p><strong><code>deductedTax</code></strong>   (string)</p><p>Amount of stablecoins that were deducted from the deposit / withdraw amount.</p><p></p><p>Deduction can occur from three causes: </p><ul><li><a href="https://docs.terra.money/luna.html#taxes">Taxes</a> - fees charged on Terra transactions.</li><li><a href="https://github.com/terra-project/shuttle#relaying-fee">Shuttle Fees</a> - fees charged on interchain token transfers.</li><li>Stablecoin Swap Fees - value lost as fees / slippage during conversion.</li></ul><p></p><p>Applies only for withdrawals on Terra, and deposits / withdrawals to / from outside the Terra blockchain (e.g. Ethereum).</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>chain</code></b> (string)</p>
+        <p>Blockchain from which the request was made.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>network</code></b> (string)</p>
+        <p>Network from which the request was made.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>status</code></b> (<a href="anchor-earn-sdk.md#status">STATUS</a>)</p>
+        <p>Request status. Can be either of:
+          <br />
+        </p>
+        <ul>
+          <li><code>STATUS.INPROGRESS</code>: request is in flight.</li>
+          <li><code>STATUS.SUCESSFUL</code>: request was successfully processed.</li>
+          <li><code>STATUS.UNSUCESSFUL</code>: request failed.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>type</code></b> (<a href="anchor-earn-sdk.md#txtype">TxType</a>)</p>
+        <p>Request type. Can be either of:</p>
+        <p></p>
+        <ul>
+          <li><code>deposit</code>: request is a transaction that deposits stablecoins
+            to Anchor.</li>
+          <li><code>withdraw</code>: request is a transaction that withdraws stablecoins
+            from Anchor.</li>
+          <li><code>send</code>: request is a transaction that sends tokens to a different
+            account.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currency</code></b> (string)</p>
+        <p>Currency of token (stablecoin or their aTerra counterpart).</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>amount</code></b> (string)</p>
+        <p>Amount of <code>currency</code> tokens utilized in the request.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>txDetails</code></b> (array of <a href="anchor-earn-sdk.md#txdetails">TxDetails</a>)</p>
+        <p>Transaction details.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>txFee</code></b> (string)</p>
+        <p>Amount of transaction fees spent by the requester.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>deductedTax</code></b> (string)</p>
+        <p>Amount of stablecoins that were deducted from the deposit / withdraw amount.</p>
+        <p></p>
+        <p>Deduction can occur from three causes:</p>
+        <ul>
+          <li><a href="https://docs.terra.money/luna.html#taxes">Taxes</a> - fees charged
+            on Terra transactions.</li>
+          <li><a href="https://github.com/terra-project/shuttle#relaying-fee">Shuttle Fees</a> -
+            fees charged on interchain token transfers.</li>
+          <li>Stablecoin Swap Fees - value lost as fees / slippage during conversion.</li>
+        </ul>
+        <p></p>
+        <p>Applies only for withdrawals on Terra, and deposits / withdrawals to /
+          from outside the Terra blockchain (e.g. Ethereum).</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -449,11 +839,11 @@ export enum STATUS {
 }
 ```
 
-| Enum Member        | Description                        |
-| ------------------ | ---------------------------------- |
-| **`INPROGRESS`**   | Request is in flight               |
-| **`SUCCESSFUL`**   | Request was successfully processed |
-| **`UNSUCCESSFUL`** | Request failed                     |
+| Enum Member | Description |
+| :--- | :--- |
+| **`INPROGRESS`** | Request is in flight |
+| **`SUCCESSFUL`** | Request was successfully processed |
+| **`UNSUCCESSFUL`** | Request failed |
 
 
 
@@ -469,11 +859,11 @@ export enum TxType {
 }
 ```
 
-| Enum Member    | Description                                                       |
-| -------------- | ----------------------------------------------------------------- |
-| **`DEPOSIT`**  | Request is a transaction that deposits stablecoins to Anchor      |
-| **`WITHDRAW`** | Request is a transaction that withdraws stablecoins from Anchor   |
-| **`SEND`**     | Request is a transaction that sends tokens to a different account |
+| Enum Member | Description |
+| :--- | :--- |
+| **`DEPOSIT`** | Request is a transaction that deposits stablecoins to Anchor |
+| **`WITHDRAW`** | Request is a transaction that withdraws stablecoins from Anchor |
+| **`SEND`** | Request is a transaction that sends tokens to a different account |
 
 
 
@@ -492,18 +882,46 @@ export interface TxDetails {
 
 **Attributes**
 
-| **Attribute / Type / Description**                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>chain</code></strong>   (string)</p><p>Blockchain on which the transaction occurred on.</p>              |
-| <p><strong><code>height</code></strong>   (number)</p><p>Block height of the block that the transaction was included.</p> |
-| <p><strong><code>timestamp</code></strong>   (Date)</p><p>Timestamp when the transaction was included in a block.</p>     |
-| <p><strong><code>txHash</code></strong>   (string)</p><p>Transaction hash of the transaction.</p>                         |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Attribute / Type / Description</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>chain</code></b> (string)</p>
+        <p>Blockchain on which the transaction occurred on.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>height</code></b> (number)</p>
+        <p>Block height of the block that the transaction was included.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>timestamp</code></b> (Date)</p>
+        <p>Timestamp when the transaction was included in a block.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>txHash</code></b> (string)</p>
+        <p>Transaction hash of the transaction.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
 ### BalanceOutput
 
-The `BalanceOutput` namespace represents your balance.&#x20;
+The `BalanceOutput` namespace represents your balance. 
 
 ```javascript
 export interface BalanceOutput {
@@ -520,16 +938,61 @@ export interface BalanceOutput {
 
 **Attributes**
 
-| Attribute / Type / Description                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <p><strong><code>chain</code></strong>   (string)<br>Blockchain that the account resides on.</p>                                                 |
-| <p><strong><code>network</code></strong>   (string)</p><p>Network that the account resides on.</p>                                               |
-| <p><strong><code>height</code></strong>   (number)</p><p>Block height when the information was queried from the blockchain.</p>                  |
-| <p><strong><code>timestamp</code></strong>   (Date)</p><p>Timestamp when the information was queried from the blockchain.</p>                    |
-| <p><strong><code>address</code></strong>   (string)</p><p>Address of the account that was used to retrieve its balance.</p>                      |
-| <p><strong><code>balances</code></strong>   (array of <a href="anchor-earn-sdk.md#balanceentry">BalanceEntry</a>)</p><p>Balance information.</p> |
-| <p><strong><code>total_account_balance_in_ust</code></strong>   (string)</p><p>Total value of account's stablecoin balance valued in UST.</p>    |
-| <p><strong><code>total_deposit_balance_in_ust</code></strong>   (string)</p><p>Total value of account's deposit balance valued in UST.</p>       |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><b><code>chain</code></b> (string)
+        <br />Blockchain that the account resides on.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>network</code></b> (string)</p>
+        <p>Network that the account resides on.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>height</code></b> (number)</p>
+        <p>Block height when the information was queried from the blockchain.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>timestamp</code></b> (Date)</p>
+        <p>Timestamp when the information was queried from the blockchain.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>address</code></b> (string)</p>
+        <p>Address of the account that was used to retrieve its balance.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>balances</code></b> (array of <a href="anchor-earn-sdk.md#balanceentry">BalanceEntry</a>)</p>
+        <p>Balance information.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>total_account_balance_in_ust</code></b> (string)</p>
+        <p>Total value of account&apos;s stablecoin balance valued in UST.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>total_deposit_balance_in_ust</code></b> (string)</p>
+        <p>Total value of account&apos;s deposit balance valued in UST.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -547,17 +1010,39 @@ export interface BalanceEntry {
 
 **Attributes**
 
-| Attribute / Type / Description                                                                                       |
-| -------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>currency</code></strong>   (string)</p><p>Currency of stablecoin.</p>                               |
-| <p><strong><code>account_balance</code></strong>   (string)</p><p>Account balance for this stablecoin.</p>           |
-| <p><strong><code>deposit_balance</code></strong>   (string)</p><p>Account's deposit balance for this stablecoin.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currency</code></b> (string)</p>
+        <p>Currency of stablecoin.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>account_balance</code></b> (string)</p>
+        <p>Account balance for this stablecoin.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>deposit_balance</code></b> (string)</p>
+        <p>Account&apos;s deposit balance for this stablecoin.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
 ### MarketOutput
 
-Represents overall market information.&#x20;
+Represents overall market information. 
 
 ```javascript
 export interface MarketOutput {
@@ -571,13 +1056,45 @@ export interface MarketOutput {
 
 **Attributes**
 
-| Attribute / Type / Description                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong><code>chain</code></strong>   (string)</p><p>Blockchain that the market resides on.</p>                                           |
-| <p><strong><code>network</code></strong>   (string)</p><p>Network that the market resides on.</p>                                            |
-| <p><strong><code>height</code></strong>   (number)</p><p>Block height when the information was queried from the blockchain.</p>              |
-| <p><strong><code>timestamp</code></strong>   (Date)</p><p>Timestamp when the information was queried from the blockchain.</p>                |
-| <p><strong><code>markets</code></strong>   (Array of <a href="anchor-earn-sdk.md#marketentry">MarketEntry</a>)</p><p>Market information.</p> |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>chain</code></b> (string)</p>
+        <p>Blockchain that the market resides on.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>network</code></b> (string)</p>
+        <p>Network that the market resides on.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>height</code></b> (number)</p>
+        <p>Block height when the information was queried from the blockchain.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>timestamp</code></b> (Date)</p>
+        <p>Timestamp when the information was queried from the blockchain.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>markets</code></b> (Array of <a href="anchor-earn-sdk.md#marketentry">MarketEntry</a>)</p>
+        <p>Market information.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -593,17 +1110,42 @@ export interface MarketEntry {
 
 **Attributes**
 
-| Attribute / Type / Description                                                                                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <p><strong><code>currency</code></strong>   (string)</p><p>Currency of stablecoin.</p>                                                                                                                                         |
-| <p><strong><code>liquidity</code></strong>   (string)</p><p>Amount of stablecoins that are available for withdrawal.</p><p></p><p>Attempting to withdraw stablecoins in excess of this amount may lead to request failure.</p> |
-| <p><strong><code>APY</code></strong>   (string)</p><p>Annualized yield for deposits of this stablecoin.</p>                                                                                                                    |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Attribute / Type / Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>currency</code></b> (string)</p>
+        <p>Currency of stablecoin.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>liquidity</code></b> (string)</p>
+        <p>Amount of stablecoins that are available for withdrawal.</p>
+        <p></p>
+        <p>Attempting to withdraw stablecoins in excess of this amount may lead to
+          request failure.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p><b><code>APY</code></b> (string)</p>
+        <p>Annualized yield for deposits of this stablecoin.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
 ### CustomSigner
 
-A utility function that allows remote signing of transaction (e.g. Ledger Hardware Wallet, Custodian APIs). When provided, Anchor Earn would act as a message/unsignedTx generator, and all transaction creation and signing should be handled within the function. `customSigner` should throw an error if any step results in failures. &#x20;
+A utility function that allows remote signing of transaction \(e.g. Ledger Hardware Wallet, Custodian APIs\). When provided, Anchor Earn would act as a message/unsignedTx generator, and all transaction creation and signing should be handled within the function. `customSigner` should throw an error if any step results in failures.  
 
 ```javascript
 export interface CustomSigner<T, K> {
@@ -613,10 +1155,10 @@ export interface CustomSigner<T, K> {
 
 {% tabs %}
 {% tab title="Terra" %}
-| Generic Type Notation | Type    | Description                                                |
-| --------------------- | ------- | ---------------------------------------------------------- |
-| `T` (Argument)        | Msg\[ ] | Terra message array used to create an unsigned transaction |
-| `K` (Expected Output) | StdTx   | Signed transaction                                         |
+| Generic Type Notation | Type | Description |
+| :--- | :--- | :--- |
+| `T` \(Argument\) | Msg\[ \] | Terra message array used to create an unsigned transaction |
+| `K` \(Expected Output\) | StdTx | Signed transaction |
 {% endtab %}
 {% endtabs %}
 
@@ -624,7 +1166,7 @@ export interface CustomSigner<T, K> {
 
 ### CustomBroadcaster
 
-A utility function that allows remote signing and broadcasting of transaction (e.g. Web Wallet Extensions). When provided, Anchor Earn would act as a message generator, and all transaction creation & signing & broadcasting should be handled within the function. `customBroadcaster` should throw an error if any step results in failures. &#x20;
+A utility function that allows remote signing and broadcasting of transaction \(e.g. Web Wallet Extensions\). When provided, Anchor Earn would act as a message generator, and all transaction creation & signing & broadcasting should be handled within the function. `customBroadcaster` should throw an error if any step results in failures.  
 
 ```javascript
 export interface CustomBroadcaster<T, K> {
@@ -634,10 +1176,10 @@ export interface CustomBroadcaster<T, K> {
 
 {% tabs %}
 {% tab title="Terra" %}
-| Generic Type Notation | Type    | Description                                                |
-| --------------------- | ------- | ---------------------------------------------------------- |
-| `T` (Argument)        | Msg\[ ] | Terra message array used to create an unsigned transaction |
-| `K` (Expected Output) | string  | Hash of broadcasted transaction                            |
+| Generic Type Notation | Type | Description |
+| :--- | :--- | :--- |
+| `T` \(Argument\) | Msg\[ \] | Terra message array used to create an unsigned transaction |
+| `K` \(Expected Output\) | string | Hash of broadcasted transaction |
 {% endtab %}
 {% endtabs %}
 
@@ -645,7 +1187,7 @@ export interface CustomBroadcaster<T, K> {
 
 ### Loggable
 
-A utility function that allows observation of the transaction progress. When provided, the function is called every time there is a state update to the transaction. Particularly useful in case of EthAnchor transactions (not supported in this version), as EthAnchor operations are asynchronous and there are multiple interim states.
+A utility function that allows observation of the transaction progress. When provided, the function is called every time there is a state update to the transaction. Particularly useful in case of EthAnchor transactions \(not supported in this version\), as EthAnchor operations are asynchronous and there are multiple interim states.
 
 ```javascript
 export interface Loggable<T> {
@@ -655,9 +1197,10 @@ export interface Loggable<T> {
 
 {% tabs %}
 {% tab title="Terra" %}
-| Generic Type Notation | Type                                | Description               |
-| --------------------- | ----------------------------------- | ------------------------- |
-| `T` (Argument)        | [Output](anchor-earn-sdk.md#output) | Transaction progress data |
-| `K` (Expected Output) | void                                | nil                       |
+| Generic Type Notation | Type | Description |
+| :--- | :--- | :--- |
+| `T` \(Argument\) | [Output](anchor-earn-sdk.md#output) | Transaction progress data |
+| `K` \(Expected Output\) | void | nil |
 {% endtab %}
 {% endtabs %}
+

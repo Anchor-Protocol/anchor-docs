@@ -10,7 +10,7 @@ Welcome to the Anchor documentation site.
 
 ## What is Anchor?
 
-**Anchor** is a savings protocol offering low-volatile yields on Terra stablecoin deposits. The Anchor rate is powered by a diversified stream of staking rewards from major proof-of-stake blockchains, and therefore can be expected to be much more stable than money market interest rates. We believe that a stable, reliable source of yield in Anchor has the opportunity to become the reference interest rate in crypto.&#x20;
+**Anchor** is a decentralized savings protocol offering low-volatile yields on Terra stablecoin deposits. The Anchor rate is powered by a diversified stream of staking rewards from major proof-of-stake blockchains, and therefore can be expected to be much more stable than money market interest rates.  The Anchor community believes that a stable, reliable source of yield in Anchor has the opportunity to become the reference interest rate in crypto.&#x20;
 
 The Anchor protocol defines a money market between a **lender**, looking to earn stable yields on their stablecoins, and a **borrower**, looking to borrow stablecoins on stakeable assets. To borrow stablecoins, the borrower locks up [Bonded Assets](protocol/bonded-assets-bassets/) (bAssets) as collateral, and borrows stablecoins below the protocol-defined LTV ratio. The diversified stream of staking rewards accruing to the global pool of collateral then gets converted to stablecoin, and then conferred to the lender in the form of a stable yield.&#x20;
 
@@ -22,7 +22,7 @@ Deposited stablecoins are represented by [Anchor Terra (aTerra)](protocol/money-
 
 Anchor is an open, permissionless savings protocol, meaning that any third-party application is free to connect and earn interest without restrictions. Through [Anchor Earn](developers-earn/anchor-earn-sdk.md), [Anchor.js](developers-terra/anchor.js.md) or [EthAnchor](developers-ethereum/ethanchor.md), developers can interact with Anchor using just a few lines of code.
 
-Further documentation of Anchor Protocol is provided in the following pages.
+Further documentation of the Anchor Protocol is provided in the following pages.
 
 ## Sections
 

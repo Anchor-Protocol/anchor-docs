@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The security of Anchor Protocol is our highest priority; our development team, alongside third-party auditors and consultants, has invested considerable effort to create a protocol that we believe is safe and dependable. All contract code and balances are publicly verifiable, and security researchers are eligible for a bug bounty for reporting undiscovered vulnerabilities.
+Security is the highest priority of the Anchor Protocol. All members of the Anchor community working on the protocol have invested considerable effort to ensure the safety and dependability of the Anchor Protocol. All contract codes and balances are publicly verifiable, and security researchers are eligible for a bug bounty for reporting undiscovered vulnerabilities.
 
-We believe that size, visibility, and time are the true test for the security of a smart contract; please exercise caution, and make your own determination of security and suitability.
+The Anchor community believes that size, visibility, and time are the true test for the security of a smart contract platform. Please review the following security audits and make your own determination of security and suitability. If you would like to help ensure the security of the protocol, please contact security@anchorprotocol.com
 
 ## Audits
 
@@ -12,77 +12,21 @@ We believe that size, visibility, and time are the true test for the security of
 * [Anchor Token and Distributions Smart Contracts - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20Anchor%20Protocol%20\[20210406].pdf) by [Cryptonics](https://cryptonics.consulting)
 * [EthAnchor - Audit Report](https://anchorprotocol.com/docs/Audit%20Report%20-%20EthAnchor%20\[09.07.2021].pdf) by [Solidified](https://solidified.io)
 
-## Immunefi Bug Bounty Program
-
-[Anchor bug bounties](https://immunefi.com/bounty/anchor/) are available on [Immunefi's](https://immunefi.com/bounty/anchor/) bug bounty platform. This bounty program applies to Anchor's smart contracts and app and is focused on preventing:
-
-* Thefts and freezing of principal of any amount
-* Thefts and freezing of unclaimed yield of any amount
-* Theft of governance funds
-* Governance activity disruption
-* Website uptime disruption
-* User data leaks
-* Deletion of user data
-* Access to sensitive pages without authorization
-
-All rewards on Immunefi are distributed according to the [Immunefi vulnerability severity classification system](https://immunefi.com/severity-updated/). Any vulnerability with regards to the use of centralized price feed oracles is not eligible for a reward.
-
-To view the current bounties and rewards, or to find out more information, visit the [Immunefi Anchor bounty page](https://immunefi.com/bounty/anchor/).&#x20;
-
-In addition to the Immunefi bounty program, Anchor also has its own bounty program, outlined below.&#x20;
-
 ## Anchor Bug Bounty Program
 
-Security is core to our values, and we value the input of hackers acting in good faith to help us maintain the highest standard for the security and safety of the Anchor ecosystem. Anchor Protocol, while it has gone through professional audits and formal verification, depends on new technology that may contain undiscovered vulnerabilities.
+The Anchor community values the input of white hat hackers working in good faith to help maintain the highest standards for the security and safety of the Anchor ecosystem. While the Anchor Protocol has gone through professional audits and formal verification, it depends on new technology that may contain undiscovered vulnerabilities. The Anchor community encourages its members to audit all contracts and security and to responsibly disclose any issues. The Anchor Bounty Program was created to recognize the value of working with a community of independent security researchers, and aims to identify and rectify any issues in good faith.
 
-Anchor encourages the community to audit our contracts and security; we also encourage the responsible disclosure of any issues. This program is intended to recognize the value of working with the community of independent security researchers and sets out our definition of good faith in the context of finding and reporting vulnerabilities, as well as what you can expect from us in return.
+## Immunefi Bug Bounty Program
 
-### **Rewards**
+[Anchor bug bounties](https://immunefi.com/bounty/anchor/) are available on [ImmuneFi's bug bounty platform](https://immunefi.com/bounty/anchor/). This bounty program applies to Anchor's smart contracts and app and is focused on preventing:&#x20;
 
-Anchor offers substantial rewards for discoveries that can prevent the loss of assets, the freezing of assets, or harm to a user, commensurate with the severity and exploitability of the vulnerability. Anchor will pay a reward of $500 to $150,000 for eligible discoveries according to the terms and conditions provided below.
+* Thefts and freezing of principal of any amount&#x20;
+* Thefts and freezing of unclaimed yield of any amount&#x20;
+* Theft of governance funds&#x20;
+* Governance activity disruption&#x20;
+* Website uptime disruption&#x20;
+* User data leaks&#x20;
+* Deletion of user data&#x20;
+* Access to sensitive pages without authorization&#x20;
 
-### **Scope**
-
-The primary scope of the bug bounty program is for vulnerabilities affecting the on-chain Anchor Protocol, deployed to the Terra Columbus-5 Mainnet, for contract addresses listed in this developer documentation.
-
-This list may change as new contracts are deployed, or as existing contracts are removed from usage. Vulnerabilities in contracts built on top of the Protocol by third-party developers (such as smart contract wallets) are not in-scope, nor are vulnerabilities that require ownership of an admin key.
-
-The secondary scope of the bug bounty program is for vulnerabilities affecting the Anchor Protocol Interface hosted at [app.anchorprotocol.com](https://app.anchorprotocol.com) that could conceivably result in exploitation of user accounts.
-
-Finally, test contracts (Bombay and other testnets) and staging servers are out of scope, unless the discovered vulnerability also affects Anchor Protocol or Interface, or could otherwise be exploited in a way that risks user funds.
-
-### **Disclosure**
-
-Submit all bug bounty disclosures to [**security@anchorprotocol.com**](mailto:security@anchorprotocol.com). The disclosure must include clear and concise steps to reproduce the discovered vulnerability in either written or video format. Anchor will follow up promptly with acknowledgement of the disclosure.
-
-### **Terms and Conditions**
-
-To be eligible for bug bounty reward consideration, you must:
-
-* Identify an original, previously unreported, non-public vulnerability within the scope of the Anchor bug bounty program as described above.
-* Include sufficient detail in your disclosure to enable our engineers to quickly reproduce, understand, and fix the vulnerability.
-* Be at least 18 years of age.
-* Be reporting in an individual capacity, or if employed by a company, reporting with the company’s written approval to submit a disclosure to Anchor.
-* Not be subject to US sanctions or reside in a US-embargoed country.
-* Not be a current or former Anchor employee, vendor, contractor, or employee of an Anchor vendor or contractor.
-
-To encourage vulnerability research and to avoid any confusion between good-faith hacking and malicious attack, we require that you:
-
-* Play by the rules, including following the terms and conditions of this program and any other relevant agreements. If there is any inconsistency between this program and any other relevant agreements, the terms of this program will prevail.
-* Report any vulnerability you’ve discovered promptly.
-* Avoid violating the privacy of others, disrupting our systems, destroying data, or harming user experience.
-* Use only [**security@anchorprotocol.com**](mailto:security@anchorprotocol.com) to discuss vulnerabilities with us.
-* Keep the details of any discovered vulnerabilities confidential until they are fixed.
-* Perform testing only on in-scope systems, and respect systems and activities which are out-of-scope.
-* Only interact with accounts you own or with explicit permission from the account holder.
-* Not engage in blackmail, extortion, or any other unlawful conduct.
-
-When working with us according to this program, you can expect us to:
-
-* Pay generous rewards for eligible discoveries based on the severity and exploitability of the discovery, at Anchor's sole discretion
-* Extend Safe Harbor for your vulnerability research that is related to this program, meaning we will not threaten or bring any legal action against anyone who makes a good faith effort to comply with our bug bounty program.
-* Work with you to understand and validate your report, including a timely initial response to the submission.
-* Work to remediate discovered vulnerabilities in a timely manner.
-* Recognize your contribution to improving our security if you are the first to report a unique vulnerability, and your report triggers a code or configuration change.
-
-**All reward determinations, including eligibility and payment amount, are made at Anchor's sole discretion. Anchor reserves the right to reject submissions and alter the terms and conditions of this program.**
+All rewards on ImmuneFi are distributed according to the [Immunefi Vulnerability Severity Classification System](https://immunefi.com/severity-updated/). Any vulnerability with regards to the use of centralized price feed oracles is ineligible for a reward. To view the current bounties and rewards, and to find out more information, visit the [Immunefi Anchor bounty page](https://immunefi.com/bounty/anchor/).
