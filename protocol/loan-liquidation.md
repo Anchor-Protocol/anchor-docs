@@ -1,6 +1,6 @@
 # Loan Liquidation
 
-To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquidators to observe and liquidate loans with an LTV ratio above the allowed maximum. The Liquidation Queue is used to convert collaterals of a liquidating loan to TerraUSD (UST), which are then used to repay the loan.
+To prohibit borrowers from defaulting on their loans, Anchor incentivizes liquidators to observe and liquidate loans with a borrow amount above the allowed borrowing limit. The Liquidation Queue is used to convert collaterals of a liquidating loan to TerraUSD (UST), which are then used to repay the loan.
 
 The Liquidation Queue serves as the exchange point between Anchor collateral and UST. Using Anchor's Oracle Contract as the reference price feed, conversions between whitelisted bAssets and UST are facilitated.
 
