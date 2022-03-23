@@ -36,6 +36,7 @@ extensions = ["myst_parser",
               'sphinx_tabs.tabs',
               'notfound.extension',
               'sphinxcontrib.redoc',
+              'sphinx_reredirects',
     ]
 # myst headings note: always include "." in link, as in [text](./path#heading)
 myst_heading_anchors = 3
@@ -114,4 +115,11 @@ html_theme_options = {
     "logo_only": False,
     "show_toc_level": 4,
     "extra_navbar": False,
+}
+
+
+# Redirects (visit https://documatt.gitlab.io/sphinx-reredirects/usage.html for more info)
+
+redirects = {
+    # "<source>": "<target>"
 }

@@ -38,5 +38,6 @@ sphinx-copybutton
 sphinx_design
 sphinx-notfound-page
 sphinx_panels
+sphinx-reredirects
 sphinx-tabs
 urllib3
