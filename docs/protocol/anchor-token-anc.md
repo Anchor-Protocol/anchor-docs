@@ -70,7 +70,7 @@ A total of **1,000,000,000 ANC** tokens are to be distributed over a period of a
 
 ### Genesis Token Distribution
 
-![](<../assets/Genesis Token Distribution.png>)
+![](../assets/GenesisTokenDistribution.png)
 
 A total of **150M ANC** tokens are released at the genesis of Anchor Protocol. The initial distribution of ANC is given to:
 
@@ -79,7 +79,7 @@ A total of **150M ANC** tokens are released at the genesis of Anchor Protocol. T
 
 ### Final Token Distribution
 
-![](<../assets/Final Token Distribution (1).png>)
+![](../assets/FinalTokenDistribution(1).png)
 
 The remaining ANC tokens are set to be released over a period of at least 4 years, increasing total supply until it reaches **1,000,000,000 ANC**. The final distribution structure will be:
 
