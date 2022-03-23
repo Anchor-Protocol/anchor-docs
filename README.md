@@ -47,11 +47,11 @@ Markdown example:
 To link a top-level page, insert a toctree and filepath into `index.md`:
  
 ```
-:::{toctree}
+\```{toctree}
 :hidden:
 /docs/top-level-page
 /docs/other-top-level-page
-:::
+\```
 ```
  
 This will list top-level-page in the navigation.
@@ -61,10 +61,10 @@ To link a second-level page, add a filename's relative path to the toctree in th
 In `top-level-page.md`, input the following toctree
  
 ```
-:::{toctree}
+\```{toctree}
 :hidden:
 /docs/second-level-page
-:::
+\```
 ```
  
 These two examples together will create the following navigation:
