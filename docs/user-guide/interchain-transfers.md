@@ -39,7 +39,7 @@ Terra Bridge and Terra Station are two major interfaces that allow users to easi
 
 ### Terra Bridge
 
-![](<../assets/Screen Shot 2021-03-22 at 2.09.13 PM.png>)
+![](../assets/ScreenShot2021-03-22at2.09.13PM.png)
 
 **Terra Bridge** is a web interface created specifically for interchain transfers. When a interchain transfer is requested, Terra Bridge will generate a transaction in the appropriate format that encodes the necessary data required for the transfer.
 
@@ -102,7 +102,7 @@ Interchain transfers from Terra to Ethereum / BSC are also supported on **Terra 
 
 #### 1. Select an Asset to Transfer
 
-![](<../assets/Screen Shot 2021-03-22 at 3.29.53 PM.png>)
+![](../assets/ScreenShot2021-03-22at3.29.53PM.png)
 
 Select an asset to transfer and click **\[Send]**.
 
