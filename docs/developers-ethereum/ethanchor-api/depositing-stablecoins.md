@@ -4,9 +4,9 @@ ERC20 stablecoins (e.g. UST) can be redeemed to receive ERC20 aTerra using the b
 
 | Endpoint                                                                           | Method | Description                                          |
 | ---------------------------------------------------------------------------------- | ------ | ---------------------------------------------------- |
-| [`init_deposit_stable`](depositing-stablecoins.md#initiate-stablecoin-deposit)     | POST   | Initiates the deposit of ERC20 stablecoins           |
-| [`finish_deposit_stable`](depositing-stablecoins.md#finish-stablecoin-deposit)     | POST   | Claims minted ERC20 aTerra                           |
-| [`deposit_stable_status`](depositing-stablecoins.md#get-stablecoin-deposit-status) | GET    | Gets status of an ongoing stablecoin deposit request |
+| `init_deposit_stable`    | POST   | Initiates the deposit of ERC20 stablecoins           |
+| `finish_deposit_stable`     | POST   | Claims minted ERC20 aTerra                           |
+| `deposit_stable_status` | GET    | Gets status of an ongoing stablecoin deposit request |
 
 {% swagger baseUrl="https://eth-api.anchorprotocol.com" path="/api/v1/init_deposit_stable" method="post" summary="Initiate stablecoin deposit" %}
 {% swagger-description %}
