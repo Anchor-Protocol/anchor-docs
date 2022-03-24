@@ -53,7 +53,7 @@ pub struct MinterData {
 
 ## InstantiateMsg
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, JsonSchema)]
@@ -102,7 +102,7 @@ pub struct TokenInstantiateMsg {
 
 Transfers tokens to the specified address.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -137,7 +137,7 @@ pub enum Cw20ExecuteMsg {
 
 Burns the specified amount of tokens.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -169,7 +169,7 @@ pub enum Cw20ExecuteMsg {
 
 Sends tokens to the specified contract address along with a message.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -207,7 +207,7 @@ pub enum Cw20ExecuteMsg {
 
 Mints tokens to the specified address. Can only be issued by the minter.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -242,7 +242,7 @@ pub enum Cw20ExecuteMsg {
 
 Increases allowance for the specified spender address.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -302,7 +302,7 @@ pub enum Expiration {
 
 Decreases allowance for the specified spender address.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -360,7 +360,7 @@ pub enum Expiration {
 
 Transfers tokens from the specified owner to the specified recipient. Requires unexpired allowance to be set beforehand.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -398,7 +398,7 @@ pub enum Cw20ExecuteMsg {
 
 Sends tokens from the specified owner to the specified contract, along with a message. Requires unexpired allowance to be set beforehand.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -439,7 +439,7 @@ pub enum Cw20ExecuteMsg {
 
 Burns tokens from the specified owner. Requires unexpired allowance to be set beforehand.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -476,7 +476,7 @@ pub enum Cw20ExecuteMsg {
 
 Gets the balance for the specified address.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 #### Request
 
@@ -541,7 +541,7 @@ pub struct BalanceResponse {
 
 Gets information for the token.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 #### Request
 
@@ -614,7 +614,7 @@ pub struct TokenInfoResponse {
 
 Gets information for the token minter.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 #### Request
 
@@ -679,7 +679,7 @@ pub struct MinterResponse {
 
 Gets allowance information for the specified owner and spender.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 #### Request
 
@@ -778,7 +778,7 @@ pub enum Expiration {
 
 Gets all allowance information for the specified owner.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 #### Request
 
@@ -917,7 +917,7 @@ pub enum Expiration {
 
 Gets account information for all holders.
 
-::::{tab-set}
+:::::{tab-set}
 ::::{tab-item} Rust
 #### Request
 
