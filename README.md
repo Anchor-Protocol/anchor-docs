@@ -70,7 +70,7 @@ In `top-level-page.md`, input the following toctree
 These two examples together will create the following navigation:
  
 Top level page
-- Second level page
+- Second level page  
 Other top level page
  
 ### Links
