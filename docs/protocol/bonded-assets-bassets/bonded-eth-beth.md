@@ -5,7 +5,7 @@
 bETH tokens are bAssets built for Ethereum 2.0 staking, with their token value backed by Ethereum 2.0 staking positions. bETH tokens exist on both on the Ethereum chain and the Terra chain, each complying to the [ERC20 standard](https://eips.ethereum.org/EIPS/eip-20) and the [CW20 standard](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw20/README.md).
 
 ::: {note}
-bETH tokens are used as collateral to borrow Terra stablecoins from Anchor. Learn more about creating loan positions [here](../money-market/).
+bETH tokens are used as collateral to borrow Terra stablecoins from Anchor. Learn more about creating loan positions [here](../money-market/README.md).
 :::
 
 bETH tokens are wrapped tokens of [Lido Finance's staked ETH (stETH)](https://lido.fi/ethereum), refitted to follow the contract interfaces required to integrate with Anchor smart contracts.
@@ -38,7 +38,7 @@ The Lido DAO is governed by holders of LDO, Lido's protocol token. The governanc
 
 ### Minting bETH with stETH
 
-:::{info}
+:::{note}
 stETH can be minted through WebApp interfaces provided by Lido.
 :::
 
@@ -62,7 +62,7 @@ bETH tokens can only be redeemed through Ethereum-side bETH contracts. bETH toke
 
 bETH tokens on Ethereum can be converted back to stETH, with the use of Ethereum-side bETH contracts. Conversion is conducted based on the bETH exchange rate.
 
-:::{info}
+:::{note}
 Converting stETH to ETH can be proceeded via AMM protocols on Ethereum, most notably [Curve](https://curve.fi).
 :::
 
