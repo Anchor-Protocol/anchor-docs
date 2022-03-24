@@ -72,7 +72,7 @@ To access Ledger from Terra Station Extension, the following steps are required:
 
 1\. Select **\[Recover existing wallet]**
 
-![](../../asset/ts-recover.png)
+![](../../assets/ts-recover.png)
 
 2\. Enter a new wallet name and password.
 
