@@ -36,7 +36,7 @@ Deposit yields in excess of the target deposit rate are accumulated to the yield
 
 #### Collateral Liquidation Fees
 
-Whenever a loan is liquidated, 1% of the liquidated collateral value is sent to the yield reserve, a portion of which is used to purchase ANC. This fee is applied separately from [bid premiums](./loan-liquidation.md#premium-rate).
+Whenever a loan is liquidated, 1% of the liquidated collateral value is sent to the yield reserve, a portion of which is used to purchase ANC. This fee is applied separately from [bid premiums](./loan-liquidation.md#bid-execution).
 
 
 
