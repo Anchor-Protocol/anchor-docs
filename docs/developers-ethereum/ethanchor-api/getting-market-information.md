@@ -1,10 +1,10 @@
 # Getting Market Information
 
-General information about a stablecoin [market](../../protocol/money-market/#depositing-terra-stablecoins) can be retrieved via the below endpoint:
+General information about a stablecoin [market](../../protocol/money-market/README.md#depositing-terra-stablecoins) can be retrieved via the below endpoint:
 
 | Endpoint                                                                      | Method | Description                                            |
 | ----------------------------------------------------------------------------- | ------ | ------------------------------------------------------ |
-| [`stablecoin_info`](getting-market-information.md#get-stablecoin-information) | GET    | Gets information about the specified stablecoin market |
+| `stablecoin_info` | GET    | Gets information about the specified stablecoin market |
 
 ::: {warning}
 Due to the asynchronous nature of EthAnchor, the actual aTerra exchange rate applied **will be different** to the exchange rate returned by `stablecoin_info`. The expected receive amount calculated using this value **WILL NOT** match the actual receive amount.
