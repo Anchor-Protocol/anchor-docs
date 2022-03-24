@@ -47,8 +47,8 @@ Governance polls in Anchor follow the below procedure:
 | [Modify Market Parameters](modify-market-parameters.md)           | Propose for parameter changes in Anchor money market                                                |
 | [Modify Liquidation Parameters](modify-liquidation-parameters.md) | Propose for parameter changes in Anchor's [Liquidation Contract](../loan-liquidation.md)            |
 | [Modify ANC Parameters](modify-anc-parameters.md)                 | Propose for parameter changes in the [Anchor Token](../anchor-token-anc.md)                         |
-| [Modify Governance Parameters](modify-governance-parameters.md)   | Propose for parameter changes in [Anchor Governance](./)                                            |
-| [Modify Borrow Interest](modify-the-interest-model.md)            | Propose for changes in the stablecoin [borrow interest formula](../money-market/#borrow-rate-model) |
+| [Modify Governance Parameters](modify-governance-parameters.md)   | Propose for parameter changes in Anchor Governance                                            |
+| [Modify Borrow Interest](modify-the-interest-model.md)            | Propose for changes in the stablecoin [borrow interest formula](../money-market/README.md#borrow-rate-model) |
 | [Modify ANC Distribution](modify-the-distribution-model.md)       | Propose for changes related to Anchor token distribution                                            |
 | [Community Grants](spend-community-pool.md)                       | Propose for Anchor community funded development work                                                |
 | [Text Proposal](text-proposal.md)                                 | Submit a text proposal                                                                              |
