@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Anchor Docs'
+project = 'Anchor'
 copyright = '2022, Anchor Protocol'
 html_show_copyright = False
 #author = Anchor Protocol
@@ -39,7 +39,7 @@ extensions = ["myst_parser",
               'sphinx_reredirects',
     ]
 # myst headings note: always include "." in link, as in [text](./path#heading)
-myst_heading_anchors = 3
+myst_heading_anchors = 4
 notfound_urls_prefix = None
 
 # Add any paths that contain templates here, relative to this directory.
@@ -119,7 +119,6 @@ html_theme_options = {
 
 
 # Redirects (visit https://documatt.gitlab.io/sphinx-reredirects/usage.html for more info)
-
 redirects = {
     # "<source>": "<target>"
 }
