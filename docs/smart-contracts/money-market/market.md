@@ -715,7 +715,7 @@ pub enum QueryMsg {
 ::::{tab-item} Rust
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct BorrowInfoResponse {
+pub struct BorrowerInfoResponse {
     pub borrower: String, 
     pub interest_index: Decimal256, 
     pub reward_index: Decimal256, 
@@ -746,7 +746,7 @@ pub struct BorrowInfoResponse {
 | `loan_amount`     | Uint256    | Amount of borrower's liability            |
 | `pending_rewards` | Decimal256 | Amount of ANC rewards accrued to borrower |
 
-### `BorrowInfos`
+### `BorrowerInfos`
 
 Gets information for all borrowers.
 
@@ -756,7 +756,7 @@ Gets information for all borrowers.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    BorrowInfos {
+    BorrowerInfos {
         start_after: Option<String>, 
         limit: Option<u32>, 
     }
@@ -794,7 +794,7 @@ pub struct BorrowerInfosResponse {
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct BorrowInfoResponse {
+pub struct BorrowerInfoResponse {
     pub borrower: String, 
     pub interest_index: Decimal256, 
     pub reward_index: Decimal256, 
