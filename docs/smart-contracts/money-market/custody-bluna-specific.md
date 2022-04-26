@@ -230,7 +230,7 @@ pub enum ExecuteMsg {
 
 Withdraws accrued rewards from the bLuna Contract, swaps rewards to the appropriate stablecoin denomination. Can only be issued by `Overseer`.
 
-Afterwards, distributes swapped rewards to depositors by sending swapped rewards to `Market`. If the deposit rate during the last epoch is above the target deposit rate, then a portion of the rewards are set aside as a yield reserve, which are sent to `Overseer`.&#x20;
+Afterwards, sends swapped rewards to `Overseer`. If the deposit rate during the last epoch is below the threshold deposit rate, then a portion of the rewards are sent to `Market`.&#x20;
 
 :::::{tab-set}
 ::::{tab-item} Rust
